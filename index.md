@@ -536,6 +536,7 @@ Watch EnterpriseLab agents in action performing complex enterprise workflows:
 
 If you use EnterpriseLab or EnterpriseArena in your research, please cite our work:
 
+{% raw %}
 ```bibtex
 @article{enterpriselab2026,
   title = {{EnterpriseLab}: A Full-Stack Platform for Developing and Deploying Agents in Enterprises},
@@ -544,6 +545,7 @@ If you use EnterpriseLab or EnterpriseArena in your research, please cite our wo
   year = {2026}
 }
 ```
+{% endraw %}
 
 <div style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 4px solid #667eea;">
   <h3 style="color: #667eea; margin-top: 0;">🚀 Get Started with EnterpriseLab</h3>
