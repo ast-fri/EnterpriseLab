@@ -1,7 +1,7 @@
 title: EnterpriseLab
 description: Full-Stack Platform for Developing and Deploying Agents in Enterprises
-url: "https://ast-fri.github.io"
-baseurl: "/EnterpriseLab"
+url: "https://ast-fri.github.io/EnterpriseLab"
+baseurl: ""
 
 # Theme - remove minima, we're using custom CSS
 # theme: minima  # Comment this out or remove it
