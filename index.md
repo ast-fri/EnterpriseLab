@@ -16,9 +16,9 @@ title: EnterpriseLab - Full-Stack Platform for Enterprise AI Agents
 
   <p style="margin: 25px 0 10px; font-size: 1.1em; line-height: 1.6;">
   <strong>
-    Suraj Nagaje<sup>1,*</sup>, 
+    Ankush Agarwal<sup>1,*</sup>, 
     Harsh Vishwakarma<sup>1,*</sup>, 
-    Ankush Agarwal<sup>1,*</sup>
+    Suraj Nagaje<sup>1,*</sup>
   </strong><br>
   <span style="font-size: 0.95em; opacity: 0.85;">
     <sup>1</sup>Fujitsu Research India<br>
