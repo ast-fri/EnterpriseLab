@@ -1,0 +1,10 @@
+services:
+  zammad-mcp:
+    build: .
+    container_name: zammad-mcp
+    ports:
+      - "12010:12010"
+    environment:
+      - ZAMMAD_URL=http://localhost:8050
+      - ZAMMAD_TOKEN=_XRj_9kV0TKJJDdIoRop8qV5Xa_eD-VY3t8CDG1Ac7_IbUbGxMb-4AdKIhJdYKKY
+    restart: unless-stopped

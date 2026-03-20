@@ -1,0 +1,2231 @@
+{
+  "owncloud_list_files": {
+    "examples": [
+      {
+        "path": "/"
+      },
+      {
+        "path": "/Documents"
+      },
+      {
+        "path": "/Projects/2025/Q4"
+      }
+    ],
+    "notes": "path must start with /; defaults to root directory"
+  },
+  "owncloud_get_file_info": {
+    "examples": [
+      {
+        "path": "/Documents/report.pdf"
+      },
+      {
+        "path": "/Images/logo.png"
+      },
+      {
+        "path": "/Projects"
+      }
+    ],
+    "notes": "Full path to file or folder; returns metadata like size, modified date"
+  },
+  "owncloud_upload_file": {
+    "examples": [
+      {
+        "local_path": "/home/user/document.pdf",
+        "remote_path": "/Documents/document.pdf"
+      },
+      {
+        "local_path": "./data/report.xlsx",
+        "remote_path": "/Reports/Q4/report.xlsx"
+      }
+    ],
+    "notes": "local_path is absolute or relative local file path; remote_path starts with /"
+  },
+  "owncloud_download_file": {
+    "examples": [
+      {
+        "remote_path": "/Documents/report.pdf",
+        "local_path": "/home/user/downloads/report.pdf"
+      },
+      {
+        "remote_path": "/Images/logo.png",
+        "local_path": "./downloads/logo.png"
+      }
+    ],
+    "notes": "Downloads file from OwnCloud to local system"
+  },
+  "owncloud_create_folder": {
+    "examples": [
+      {
+        "path": "/Projects/2025"
+      },
+      {
+        "path": "/Documents/Invoices/Q4"
+      },
+      {
+        "path": "/Backups/Daily"
+      }
+    ],
+    "notes": "Creates nested folders automatically if they do not exist"
+  },
+  "owncloud_delete_file": {
+    "examples": [
+      {
+        "path": "/Documents/old_report.pdf"
+      },
+      {
+        "path": "/Projects/archived"
+      },
+      {
+        "path": "/Temp/cache"
+      }
+    ],
+    "notes": "Permanently deletes file or folder; use with caution"
+  },
+  "owncloud_search_files": {
+    "examples": [
+      {
+        "query": "budget"
+      },
+      {
+        "query": "*.pdf"
+      },
+      {
+        "query": "report 2025"
+      },
+      {
+        "query": "invoice"
+      }
+    ],
+    "notes": "Searches file and folder names; supports wildcards like *.pdf"
+  },
+  "owncloud_get_storage_info": {
+    "examples": [
+      {}
+    ],
+    "notes": "Returns storage quota, used space, and available space; no parameters needed"
+  },
+  "plane_get_user": {
+    "examples": [
+      {}
+    ],
+    "notes": "Returns current user information including username, email, quota; no parameters needed"
+  },
+  "plane_get_workspace_members": {
+    "examples": [
+      {}
+    ],
+    "notes": "Returns all members of the current workspace; no parameters needed"
+  },
+  "plane_get_projects": {
+    "examples": [
+      {}
+    ],
+    "notes": "Returns all projects accessible to current user; no parameters needed"
+  },
+  "plane_create_project": {
+    "examples": [
+      {
+        "name": "Website Redesign"
+      },
+      {
+        "name": "Mobile App Development"
+      },
+      {
+        "name": "Q4 Marketing Campaign"
+      }
+    ],
+    "notes": "Creates new project in workspace; returns project UUID"
+  },
+  "plane_list_issue_types": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    ],
+    "notes": "project_id is UUID format; returns all issue types like Bug, Feature, Task"
+  },
+  "plane_get_issue_type": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "type_id": "type-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "type_id": "type-uuid-456"
+      }
+    ],
+    "notes": "Both IDs are UUIDs; returns details of specific issue type"
+  },
+  "plane_create_issue_type": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "Epic",
+        "description": "Large feature spanning multiple sprints"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "Subtask",
+        "description": "Smaller task within an issue"
+      }
+    ],
+    "notes": "Creates custom issue type for project"
+  },
+  "plane_update_issue_type": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "type_id": "type-uuid-123",
+        "issue_type_data": "{\"name\": \"Bug\", \"description\": \"Software defects\"}"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "type_id": "type-uuid-456",
+        "issue_type_data": "{\"name\": \"Enhancement\"}"
+      }
+    ],
+    "notes": "issue_type_data must be JSON string with fields to update"
+  },
+  "plane_delete_issue_type": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "type_id": "type-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "type_id": "type-uuid-789"
+      }
+    ],
+    "notes": "Permanently deletes issue type; cannot be undone"
+  },
+  "plane_list_states": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    ],
+    "notes": "Returns all workflow states like Todo, In Progress, Done"
+  },
+  "plane_get_state": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "state_id": "state-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "state_id": "state-uuid-456"
+      }
+    ],
+    "notes": "Both IDs are UUIDs; returns state details including color and group"
+  },
+  "plane_create_state": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "In Review",
+        "color": "#FFA500"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "Blocked",
+        "color": "#FF0000"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "Ready for QA",
+        "color": "#00FF00"
+      }
+    ],
+    "notes": "color in hex format (#RRGGBB); common colors: red, orange, yellow, green, blue"
+  },
+  "plane_update_state": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "state_id": "state-uuid-123",
+        "state_data": "{\"name\": \"In Testing\", \"color\": \"#00FFFF\"}"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "state_id": "state-uuid-456",
+        "state_data": "{\"sequence\": 5}"
+      }
+    ],
+    "notes": "state_data is JSON string; can update name, color, description, sequence"
+  },
+  "plane_delete_state": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "state_id": "state-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "state_id": "state-uuid-789"
+      }
+    ],
+    "notes": "Issues in this state should be moved before deletion"
+  },
+  "plane_list_labels": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    ],
+    "notes": "Returns all labels/tags for project organization"
+  },
+  "plane_get_label": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "label_id": "label-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "label_id": "label-uuid-456"
+      }
+    ],
+    "notes": "Returns label details including color and associated issues count"
+  },
+  "plane_create_label": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "bug",
+        "color": "#FF0000"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "feature",
+        "color": "#00FF00"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "urgent",
+        "color": "#FF6600"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "documentation",
+        "color": "#0066FF"
+      }
+    ],
+    "notes": "color in hex format; labels are used for categorizing issues"
+  },
+  "plane_update_label": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "label_id": "label-uuid-123",
+        "label_data": "{\"name\": \"critical-bug\", \"color\": \"#8B0000\"}"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "label_id": "label-uuid-456",
+        "label_data": "{\"name\": \"enhancement\"}"
+      }
+    ],
+    "notes": "label_data is JSON string with fields to update"
+  },
+  "plane_delete_label": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "label_id": "label-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "label_id": "label-uuid-789"
+      }
+    ],
+    "notes": "Removes label from all associated issues"
+  },
+  "plane_get_issue_using_readable_identifier": {
+    "examples": [
+      {
+        "project_identifier": "PROJ",
+        "issue_identifier": "123"
+      },
+      {
+        "project_identifier": "DEV",
+        "issue_identifier": "456"
+      },
+      {
+        "project_identifier": "MOBILE",
+        "issue_identifier": "789"
+      }
+    ],
+    "notes": "Use format PROJ-123 where PROJ is project identifier and 123 is issue number"
+  },
+  "plane_get_issue_comments": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "issue_id": "issue-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "issue_id": "issue-uuid-456"
+      }
+    ],
+    "notes": "Returns all comments with author, timestamp, and HTML content"
+  },
+  "plane_add_issue_comment": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "issue_id": "issue-uuid-123",
+        "comment_html": "<p>I will work on this tomorrow</p>"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "issue_id": "issue-uuid-456",
+        "comment_html": "<p>Fixed in PR #42</p>"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "issue_id": "issue-uuid-789",
+        "comment_html": "<p>Blocked by <a href=\"#\">PROJ-123</a></p>"
+      }
+    ],
+    "notes": "comment_html accepts HTML markup; supports links to other issues"
+  },
+  "plane_create_issue": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "cycle_id": "cycle-uuid-123",
+        "name": "Implement feature X",
+        "description_html": "<p>New feature for Q4</p>"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "cycle_id": "cycle-uuid-456",
+        "name": "Bug fix",
+        "description_html": "<p>Critical bug in production</p>"
+      }
+    ],
+    "notes": "Creates issue directly in a cycle/sprint; bypasses backlog"
+  },
+  "plane_create_cycle_issue": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    ],
+    "notes": "Modules are feature groups or project components"
+  },
+  "plane_update_issue": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "module_id": "module-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "module_id": "module-uuid-456"
+      }
+    ],
+    "notes": "Returns module details including progress, issue count, dates"
+  },
+  "plane_delete_issue": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "Authentication Module"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "Payment Integration"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "User Dashboard"
+      }
+    ],
+    "notes": "Modules help organize issues by feature or component"
+  },
+  "plane_list_modules": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "module_id": "module-uuid-123",
+        "module_data": "{\"name\": \"Auth & Security\", \"description\": \"User authentication and security features\"}"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "module_id": "module-uuid-456",
+        "module_data": "{\"status\": \"completed\", \"lead_id\": \"user-uuid\"}"
+      }
+    ],
+    "notes": "module_data is JSON string with fields to update"
+  },
+  "plane_get_module": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "module_id": "module-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "module_id": "module-uuid-789"
+      }
+    ],
+    "notes": "Issues remain in project but are unlinked from module"
+  },
+  "plane_create_module": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "module_id": "module-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "module_id": "module-uuid-456"
+      }
+    ],
+    "notes": "Returns all issues associated with the module"
+  },
+  "plane_update_module": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "module_id": "module-uuid-123",
+        "issues": "[\"issue-uuid-1\", \"issue-uuid-2\", \"issue-uuid-3\"]"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "module_id": "module-uuid-456",
+        "issues": "[\"issue-uuid-4\"]"
+      }
+    ],
+    "notes": "issues parameter is JSON string array of issue UUIDs"
+  },
+  "plane_delete_module": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "module_id": "module-uuid-123",
+        "issue_id": "issue-uuid-1"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "module_id": "module-uuid-456",
+        "issue_id": "issue-uuid-2"
+      }
+    ],
+    "notes": "Removes issue from module but does not delete the issue"
+  },
+  "plane_list_module_issues": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    ],
+    "notes": "Cycles are sprints or time-boxed iterations"
+  },
+  "plane_add_module_issues": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "cycle_id": "cycle-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "cycle_id": "cycle-uuid-456"
+      }
+    ],
+    "notes": "Returns cycle details including dates, progress, issue counts"
+  },
+  "plane_delete_module_issue": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "Sprint 23",
+        "start_date": "2025-10-21",
+        "end_date": "2025-11-04"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "Q4 Sprint 1",
+        "start_date": "2025-10-01",
+        "end_date": "2025-10-15"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "name": "Release 2.0",
+        "start_date": "2025-11-01",
+        "end_date": "2025-12-01"
+      }
+    ],
+    "notes": "Dates in YYYY-MM-DD format; typical sprints are 1-4 weeks"
+  },
+  "plane_list_cycles": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "cycle_id": "cycle-uuid-123",
+        "cycle_data": "{\"name\": \"Sprint 24\", \"end_date\": \"2025-11-11\"}"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "cycle_id": "cycle-uuid-456",
+        "cycle_data": "{\"view_props\": {\"completed\": true}}"
+      }
+    ],
+    "notes": "cycle_data is JSON string; can update name, dates, status"
+  },
+  "plane_get_cycle": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "cycle_id": "cycle-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "cycle_id": "cycle-uuid-789"
+      }
+    ],
+    "notes": "Issues are moved back to backlog; cycle data is permanently deleted"
+  },
+  "plane_create_cycle": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "cycle_id": "cycle-uuid-old",
+        "new_cycle_id": "cycle-uuid-new"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "cycle_id": "cycle-uuid-123",
+        "new_cycle_id": "cycle-uuid-456"
+      }
+    ],
+    "notes": "Moves all incomplete issues from one cycle to another"
+  },
+  "plane_update_cycle": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "cycle_id": "cycle-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "cycle_id": "cycle-uuid-456"
+      }
+    ],
+    "notes": "Returns all issues in the cycle with full details"
+  },
+  "plane_delete_cycle": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "cycle_id": "cycle-uuid-123",
+        "issues": "[\"issue-uuid-1\", \"issue-uuid-2\"]"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "cycle_id": "cycle-uuid-456",
+        "issues": "[\"issue-uuid-3\", \"issue-uuid-4\", \"issue-uuid-5\"]"
+      }
+    ],
+    "notes": "issues is JSON string array; moves existing issues into cycle"
+  },
+  "plane_transfer_cycle_issues": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "cycle_id": "cycle-uuid-123",
+        "issue_id": "issue-uuid-1"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "cycle_id": "cycle-uuid-456",
+        "issue_id": "issue-uuid-2"
+      }
+    ],
+    "notes": "Removes issue from cycle; issue remains in project backlog"
+  },
+  "plane_list_cycle_issues": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "issue_id": "issue-uuid-123"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000",
+        "issue_id": "issue-uuid-456"
+      }
+    ],
+    "notes": "Returns all time entries logged for the issue"
+  },
+  "plane_add_cycle_issues": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789"
+      },
+      {
+        "project_id": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    ],
+    "notes": "Returns total time logged across all project issues"
+  },
+  "plane_delete_cycle_issue": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "issue_id": "issue-uuid-123",
+        "description": "Implemented user authentication",
+        "duration": 7200
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "issue_id": "issue-uuid-456",
+        "description": "Code review and testing",
+        "duration": 3600
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "issue_id": "issue-uuid-789",
+        "description": "Bug fix and documentation",
+        "duration": 5400
+      }
+    ],
+    "notes": "duration in seconds: 3600=1hr, 7200=2hrs, 28800=8hrs"
+  },
+  "plane_get_issue_worklogs": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "issue_id": "issue-uuid-123",
+        "worklog_id": "worklog-uuid-1",
+        "worklog_data": "{\"duration\": 9000, \"description\": \"Extended implementation time\"}"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "issue_id": "issue-uuid-456",
+        "worklog_id": "worklog-uuid-2",
+        "worklog_data": "{\"duration\": 5400}"
+      }
+    ],
+    "notes": "worklog_data is JSON string; can update duration and description"
+  },
+  "plane_get_total_worklogs": {
+    "examples": [
+      {
+        "project_id": "abc123-def456-ghi789",
+        "issue_id": "issue-uuid-123",
+        "worklog_id": "worklog-uuid-1"
+      },
+      {
+        "project_id": "abc123-def456-ghi789",
+        "issue_id": "issue-uuid-456",
+        "worklog_id": "worklog-uuid-2"
+      }
+    ],
+    "notes": "Permanently removes time entry from issue"
+  },
+  "plane_create_worklog": {
+    "examples": [
+      {
+        "limit": 10,
+        "sortfield": "name",
+        "sortorder": "ASC"
+      },
+      {
+        "limit": 50,
+        "sortfield": "date_creation",
+        "sortorder": "DESC"
+      },
+      {
+        "limit": null,
+        "sortfield": null,
+        "sortorder": null
+      }
+    ],
+    "notes": "All parameters optional; sortfield can be: name, date_creation, code_client"
+  },
+  "plane_update_worklog": {
+    "examples": [
+      {
+        "id": 1
+      },
+      {
+        "id": 42
+      },
+      {
+        "id": 128
+      }
+    ],
+    "notes": "id is integer company/third-party ID from database"
+  },
+  "plane_delete_worklog": {
+    "examples": [
+      {
+        "name": "Acme Corp",
+        "email": "contact@acme.com",
+        "phone": "+1-555-0123",
+        "address": "123 Main St",
+        "zip": "12345",
+        "town": "New York",
+        "country_code": "US"
+      },
+      {
+        "name": "Tech Solutions Ltd",
+        "email": "info@techsolutions.com",
+        "phone": "+44-20-1234-5678",
+        "address": "10 Downing St",
+        "zip": "SW1A 2AA",
+        "town": "London",
+        "country_code": "GB"
+      },
+      {
+        "name": "Global Services",
+        "email": null,
+        "phone": null,
+        "address": null,
+        "zip": null,
+        "town": null,
+        "country_code": null
+      }
+    ],
+    "notes": "Only name required; country_code uses ISO 3166-1 alpha-2 (US, GB, FR, DE, etc.)"
+  },
+  "dolibarr_get_companies": {
+    "examples": [
+      {
+        "thirdparty_id": 5,
+        "status": "unpaid",
+        "limit": 10
+      },
+      {
+        "thirdparty_id": null,
+        "status": "paid",
+        "limit": 50
+      },
+      {
+        "thirdparty_id": 12,
+        "status": null,
+        "limit": null
+      }
+    ],
+    "notes": "status can be: draft, validated, paid, unpaid, canceled, abandoned"
+  },
+  "dolibarr_get_company": {
+    "examples": [
+      {
+        "id": 1
+      },
+      {
+        "id": 245
+      },
+      {
+        "id": 1024
+      }
+    ],
+    "notes": "id is integer invoice ID; returns full invoice with line items"
+  },
+  "dolibarr_create_company": {
+    "examples": [
+      {
+        "thirdparty_id": 5,
+        "date": "2025-10-21",
+        "ref": "INV-2025-001",
+        "note": "Payment terms: Net 30"
+      },
+      {
+        "thirdparty_id": 12,
+        "date": "2025-11-01",
+        "ref": "INV-2025-002",
+        "note": "Early payment discount: 2%"
+      },
+      {
+        "thirdparty_id": 8,
+        "date": null,
+        "ref": null,
+        "note": null
+      }
+    ],
+    "notes": "date format YYYY-MM-DD; ref is invoice reference number; date defaults to today"
+  },
+  "dolibarr_get_invoices": {
+    "examples": [
+      {
+        "type": "service",
+        "limit": 10
+      },
+      {
+        "type": "product",
+        "limit": 50
+      },
+      {
+        "type": null,
+        "limit": null
+      }
+    ],
+    "notes": "type can be: product, service; returns both if type is null"
+  },
+  "dolibarr_get_invoice": {
+    "examples": [
+      {
+        "id": 1
+      },
+      {
+        "id": 56
+      },
+      {
+        "id": 789
+      }
+    ],
+    "notes": "id is integer product/service ID; returns details including price, stock"
+  },
+  "dolibarr_create_invoice": {
+    "examples": [
+      {
+        "ref": "PROD-001",
+        "label": "Professional Services",
+        "type": 1,
+        "price": 150.0,
+        "description": "Hourly consulting rate"
+      },
+      {
+        "ref": "PROD-002",
+        "label": "Software License",
+        "type": 0,
+        "price": 999.99,
+        "description": "Annual subscription"
+      },
+      {
+        "ref": "SVC-003",
+        "label": "Support Package",
+        "type": 1,
+        "price": 500.0,
+        "description": "24/7 premium support"
+      }
+    ],
+    "notes": "type: 0=physical product, 1=service; price is float in base currency"
+  },
+  "dolibarr_get_products": {
+    "examples": [
+      {
+        "limit": 10
+      },
+      {
+        "limit": 100
+      },
+      {
+        "limit": null
+      }
+    ],
+    "notes": "Returns all employees/users; includes active and inactive"
+  },
+  "dolibarr_get_product": {
+    "examples": [
+      {
+        "login": "jdoe",
+        "firstname": "John",
+        "lastname": "Doe",
+        "email": "john.doe@company.com",
+        "password": "SecureP@ssw0rd",
+        "admin": 0
+      },
+      {
+        "login": "asmith",
+        "firstname": "Alice",
+        "lastname": "Smith",
+        "email": "alice.smith@company.com",
+        "password": "AdminP@ss123",
+        "admin": 1
+      },
+      {
+        "login": "bjones",
+        "firstname": "Bob",
+        "lastname": "Jones",
+        "email": "bob.jones@company.com",
+        "password": "B0bP@ssw0rd",
+        "admin": 0
+      }
+    ],
+    "notes": "admin: 0=regular user, 1=administrator; password must meet security requirements"
+  },
+  "dolibarr_create_product": {
+    "examples": [
+      {
+        "status": "approved"
+      },
+      {
+        "status": "pending"
+      },
+      {
+        "status": null
+      }
+    ],
+    "notes": "status can be: approved, pending, refused, canceled; null returns all"
+  },
+  "dolibarr_get_projects": {
+    "examples": [
+      {
+        "fk_user": 5,
+        "date_debut": "2025-12-20",
+        "date_fin": "2025-12-27",
+        "type": "vacation",
+        "halfday": 0,
+        "description": "Christmas holiday"
+      },
+      {
+        "fk_user": 8,
+        "date_debut": "2025-11-15",
+        "date_fin": "2025-11-15",
+        "type": "sick",
+        "halfday": 1,
+        "description": "Doctor appointment"
+      },
+      {
+        "fk_user": 12,
+        "date_debut": "2026-01-10",
+        "date_fin": "2026-01-24",
+        "type": "vacation",
+        "halfday": 0,
+        "description": "Annual leave"
+      }
+    ],
+    "notes": "Dates YYYY-MM-DD; halfday: 0=full day, 1=morning only, 2=afternoon only; type: vacation, sick, rtt"
+  },
+  "dolibarr_get_users": {
+    "examples": [
+      {
+        "fk_user": 5,
+        "year": 2025,
+        "month": 10
+      },
+      {
+        "fk_user": null,
+        "year": 2025,
+        "month": null
+      },
+      {
+        "fk_user": 12,
+        "year": 2025,
+        "month": 9
+      }
+    ],
+    "notes": "fk_user=null for all users; month 1-12; year is integer; returns time tracking data"
+  },
+  "dolibarr_get_user": {
+    "examples": [
+      {
+        "channel": "@john.doe",
+        "message": "Hello John! Can you review the PR?"
+      },
+      {
+        "channel": "#general",
+        "message": "Team meeting at 3 PM in conference room"
+      },
+      {
+        "channel": "@jane.smith",
+        "message": "The deployment is complete"
+      },
+      {
+        "channel": "#development",
+        "message": "Build #123 failed. Investigating now."
+      }
+    ],
+    "notes": "Use @first.last for direct messages to users in lowercase, #channel-name for public/private channels"
+  },
+  "dolibarr_create_user": {
+    "examples": [
+      {}
+    ],
+    "notes": "Returns list of all channels user has access to; no parameters needed"
+  },
+  "dolibarr_get_holidays": {
+    "examples": [
+      {
+        "channel": "#general",
+        "count": 20
+      },
+      {
+        "channel": "#development",
+        "count": 50
+      },
+      {
+        "channel": "#random",
+        "count": 10
+      }
+    ],
+    "notes": "Channel name must start with #; count defaults to 20; returns recent messages"
+  },
+  "dolibarr_create_holiday_request": {
+    "examples": [
+      {
+        "name": "project-alpha",
+        "description": "Project Alpha discussions",
+        "private": false
+      },
+      {
+        "name": "finance-team",
+        "description": "Finance team private channel",
+        "private": true
+      },
+      {
+        "name": "announcements",
+        "description": "Company announcements",
+        "private": false
+      }
+    ],
+    "notes": "Channel names lowercase with hyphens; private=true for private channels"
+  },
+  "dolibarr_get_timesheets": {
+    "examples": [
+      {}
+    ],
+    "notes": "Returns current authenticated user information; no parameters needed"
+  },
+  "rocktchat_send_message": {
+    "examples": [
+      {}
+    ],
+    "notes": "Returns Rocket.Chat server version and configuration info; no parameters"
+  },
+  "rocktchat_get_channels": {
+    "examples": [
+      {
+        "query": "deadline",
+        "room_id": null
+      },
+      {
+        "query": "budget report",
+        "room_id": "abc123xyz"
+      },
+      {
+        "query": "meeting notes",
+        "room_id": null
+      }
+    ],
+    "notes": "room_id optional; searches across all accessible rooms if null"
+  },
+  "rocktchat_get_channel_messages": {
+    "examples": [
+      {}
+    ],
+    "notes": "Returns list of all direct message conversations; no parameters needed"
+  },
+  "rocktchat_create_channel": {
+    "examples": [
+      {
+        "channel": "#general"
+      },
+      {
+        "channel": "#random"
+      },
+      {
+        "channel": "#project-updates"
+      }
+    ],
+    "notes": "Must include # prefix; only works for public channels"
+  },
+  "rocktchat_get_user_info": {
+    "examples": [
+      {
+        "channel": "#old-project"
+      },
+      {
+        "channel": "#archived"
+      },
+      {
+        "channel": "#temp-channel"
+      }
+    ],
+    "notes": "Must include # prefix; leaves the specified channel"
+  },
+  "rocktchat_get_server_info": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42",
+        "auto_merge": false,
+        "squash": true,
+        "should_remove_source_branch": true
+      },
+      {
+        "project_id": "my-group/my-project",
+        "merge_request_iid": "123",
+        "merge_commit_message": "Merge branch 'feature/new-feature' into 'main'",
+        "squash_commit_message": "Add new authentication feature"
+      }
+    ],
+    "notes": "project_id can be numeric ID or URL-encoded path; merge_request_iid is the internal ID (not global ID); use squash=true to combine commits"
+  },
+  "rocktchat_search_messages": {
+    "examples": [
+      {
+        "query": "query { currentUser { id username email } }"
+      },
+      {
+        "query": "query($projectPath: ID!) { project(fullPath: $projectPath) { name description } }",
+        "variables": {
+          "projectPath": "my-group/my-project"
+        }
+      },
+      {
+        "query": "mutation($projectId: ProjectID!, $title: String!) { createIssue(input: {projectPath: $projectId, title: $title}) { issue { iid title } } }",
+        "variables": {
+          "projectId": "my-group/my-project",
+          "title": "New issue via GraphQL"
+        }
+      }
+    ],
+    "notes": "Powerful GraphQL API for complex queries; variables must be JSON object; use for advanced queries not covered by REST API"
+  },
+  "rocktchat_get_direct_messages": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "file_path": "README.md",
+        "content": "# My Project\n\nThis is my project documentation.",
+        "commit_message": "Update README with project info",
+        "branch": "main"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "file_path": "src/config.json",
+        "content": "{\"apiUrl\": \"https://api.example.com\"}",
+        "commit_message": "Configure API endpoint",
+        "branch": "development"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "file_path": "docs/api/v2/endpoints.md",
+        "content": "## API Endpoints\n\n### GET /users",
+        "commit_message": "Add API v2 documentation",
+        "branch": "feature/api-docs",
+        "previous_path": "docs/api/endpoints.md"
+      }
+    ],
+    "notes": "Creates file if it doesn't exist, updates if it does; previous_path for moving/renaming files; automatically creates directories in path"
+  },
+  "rocktchat_get_users": {
+    "examples": [
+      {
+        "search": "machine learning",
+        "page": 1,
+        "per_page": 20
+      },
+      {
+        "search": "react",
+        "page": 2,
+        "per_page": 50
+      }
+    ],
+    "notes": "Searches across all accessible Rocket Chat Users; supports partial name matching; Show all the users, don't restrict based on page or per_page"
+  },
+  "rocktchat_join_channel": {
+    "examples": [
+      {
+        "name": "my-new-project",
+        "description": "A new project for testing",
+        "visibility": "private",
+        "initialize_with_readme": true
+      },
+      {
+        "name": "public-api",
+        "description": "Public API documentation",
+        "visibility": "public",
+        "initialize_with_readme": true
+      },
+      {
+        "name": "internal-tools",
+        "visibility": "internal",
+        "initialize_with_readme": false
+      }
+    ],
+    "notes": "visibility: private (members only), internal (logged-in users), public (everyone); initialize_with_readme creates default README.md"
+  },
+  "gitlab_merge_merge_request": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "file_path": "README.md",
+        "ref": "main"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "file_path": "src/components",
+        "ref": "development"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "file_path": "package.json",
+        "ref": "v1.2.3"
+      }
+    ],
+    "notes": "Returns file content or directory listing; ref can be branch, tag, or commit SHA; file_path can be file or directory"
+  },
+  "gitlab_execute_graphql": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "branch": "main",
+        "commit_message": "Add new configuration files",
+        "files": [
+          {
+            "file_path": "config/database.yml",
+            "content": "production:\n  adapter: postgresql"
+          },
+          {
+            "file_path": "config/redis.yml",
+            "content": "host: localhost\nport: 6379"
+          }
+        ]
+      },
+      {
+        "project_id": "my-group/my-project",
+        "branch": "feature/setup",
+        "commit_message": "Initial project setup",
+        "files": [
+          {
+            "file_path": ".gitignore",
+            "content": "node_modules/\n.env\ndist/"
+          },
+          {
+            "file_path": "package.json",
+            "content": "{\"name\": \"my-app\", \"version\": \"1.0.0\"}"
+          },
+          {
+            "file_path": "README.md",
+            "content": "# My App"
+          }
+        ]
+      }
+    ],
+    "notes": "Atomic operation: all files committed together; creates branch if it doesn't exist; files is array of {file_path, content} objects"
+  },
+  "gitlab_create_or_update_file": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "title": "Fix login bug",
+        "description": "Users unable to login with SSO credentials",
+        "assignee_ids": [
+          42,
+          56
+        ],
+        "labels": [
+          "bug",
+          "urgent",
+          "security"
+        ],
+        "issue_type": "incident"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "title": "Add dark mode support",
+        "description": "## Requirements\n- Toggle switch in settings\n- Persist preference\n- Apply to all pages",
+        "labels": [
+          "feature",
+          "enhancement"
+        ],
+        "issue_type": "task"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "title": "Test API endpoints",
+        "description": "Verify all REST API endpoints return correct status codes",
+        "milestone_id": "milestone-123",
+        "issue_type": "test_case"
+      }
+    ],
+    "notes": "Arguments: [project_id; title: title or name of the issue; issue_type: issue (default), incident, test_case, task; assignee_ids are user IDs (numbers); labels are strings; description supports Markdown]"
+  },
+  "gitlab_search_repositories": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "title": "Feature: Add user authentication",
+        "description": "## Changes\n- JWT token authentication\n- Login/logout endpoints\n- Password hashing",
+        "source_branch": "feature/authentication",
+        "target_branch": "main",
+        "assignee_ids": [
+          42
+        ],
+        "reviewer_ids": [
+          56,
+          78
+        ],
+        "labels": [
+          "feature"
+        ],
+        "squash": true,
+        "remove_source_branch": true
+      },
+      {
+        "project_id": "my-group/my-project",
+        "title": "WIP: Refactor database queries",
+        "description": "Work in progress - optimizing slow queries",
+        "source_branch": "refactor/db-queries",
+        "target_branch": "development",
+        "draft": true,
+        "allow_collaboration": true
+      }
+    ],
+    "notes": "draft=true creates WIP/Draft MR; squash=true combines commits on merge; remove_source_branch=true deletes branch after merge; assignee_ids vs reviewer_ids"
+  },
+  "gitlab_create_repository": {
+    "examples": [
+      {
+        "project_id": "12345"
+      },
+      {
+        "project_id": "upstream-group/upstream-project",
+        "namespace": "my-group/my-subgroup"
+      }
+    ],
+    "notes": "Forks to your personal namespace by default; namespace parameter to fork to specific group/subgroup; full path required for namespace"
+  },
+  "gitlab_get_file_contents": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "branch": "feature/new-feature",
+        "ref": "main"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "branch": "hotfix/critical-bug",
+        "ref": "production"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "branch": "experiment",
+        "ref": "abc123def456"
+      }
+    ],
+    "notes": "ref is source branch, tag, or commit SHA; branch is new branch name; creates from specified ref point"
+  },
+  "gitlab_push_files": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "source_branch": "feature/authentication"
+      }
+    ],
+    "notes": "Provide either merge_request_iid OR source_branch; returns full MR details including approvals, conflicts, pipeline status"
+  },
+  "gitlab_create_issue": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42",
+        "view": "inline"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "source_branch": "feature/new-ui",
+        "view": "parallel"
+      }
+    ],
+    "notes": "view: 'inline' (default) or 'parallel' for side-by-side diff view; returns unified diff format"
+  },
+  "gitlab_create_merge_request": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42",
+        "page": 1,
+        "per_page": 20,
+        "unidiff": true
+      },
+      {
+        "project_id": "my-group/my-project",
+        "source_branch": "refactor/code-cleanup",
+        "page": 2,
+        "per_page": 50
+      }
+    ],
+    "notes": "Paginated diff listing; unidiff=true for unified diff format (GitLab 16.5+); useful for large MRs with many file changes"
+  },
+  "gitlab_fork_repository": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "from": "main",
+        "to": "development",
+        "straight": false
+      },
+      {
+        "project_id": "my-group/my-project",
+        "from": "v1.0.0",
+        "to": "v2.0.0",
+        "excluded_file_patterns": [
+          "^test/",
+          "\\.spec\\.ts$",
+          "package-lock\\.json"
+        ]
+      },
+      {
+        "project_id": "my-group/my-project",
+        "from": "abc123",
+        "to": "def456",
+        "straight": true
+      }
+    ],
+    "notes": "straight=false uses three-dot diff (...), straight=true uses two-dot (--); excluded_file_patterns uses JavaScript regex; from/to can be branches, tags, or commit SHAs"
+  },
+  "gitlab_create_branch": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42",
+        "title": "Feature: User authentication (updated)",
+        "description": "Updated implementation with OAuth2 support",
+        "labels": [
+          "feature",
+          "security",
+          "reviewed"
+        ]
+      },
+      {
+        "project_id": "my-group/my-project",
+        "source_branch": "hotfix/bug",
+        "state_event": "close",
+        "remove_source_branch": true
+      },
+      {
+        "project_id": "my-group/my-project",
+        "merge_request_iid": "123",
+        "draft": false,
+        "assignee_ids": [
+          42,
+          56
+        ],
+        "reviewer_ids": [
+          78
+        ]
+      }
+    ],
+    "notes": "state_event: 'close' or 'reopen'; draft=true/false toggles WIP status; can update assignees, reviewers, labels independently"
+  },
+  "gitlab_get_merge_request": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "noteable_type": "issue",
+        "noteable_iid": "42",
+        "body": "This issue is related to #123 and needs attention"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "noteable_type": "merge_request",
+        "noteable_iid": "56",
+        "body": "LGTM! Approving this MR :+1:"
+      }
+    ],
+    "notes": "noteable_type: 'issue' or 'merge_request'; noteable_iid is internal ID; body supports Markdown and emoji"
+  },
+  "gitlab_get_merge_request_diffs": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42",
+        "body": "Consider refactoring this function for better readability",
+        "position": {
+          "base_sha": "abc123",
+          "head_sha": "def456",
+          "start_sha": "ghi789",
+          "position_type": "text",
+          "new_path": "src/auth.py",
+          "old_path": "src/auth.py",
+          "new_line": 45
+        }
+      },
+      {
+        "project_id": "my-group/my-project",
+        "merge_request_iid": "56",
+        "body": "This block should be optimized",
+        "position": {
+          "base_sha": "abc123",
+          "head_sha": "def456",
+          "start_sha": "ghi789",
+          "position_type": "text",
+          "new_path": "src/utils.js",
+          "old_path": "src/utils.js",
+          "line_range": {
+            "start": {
+              "line_code": "a1b2c3_10_15",
+              "type": "new",
+              "new_line": 15
+            },
+            "end": {
+              "line_code": "a1b2c3_12_20",
+              "type": "new",
+              "new_line": 20
+            }
+          }
+        }
+      }
+    ],
+    "notes": "CRITICAL: Get base_sha, head_sha, start_sha from MR diff_refs; line_code format: {hash}_{old_line}_{new_line}; position_type: 'text' for code, 'image' for images, 'file' for file-level"
+  },
+  "gitlab_list_merge_request_diffs": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42",
+        "page": 1,
+        "per_page": 20
+      },
+      {
+        "project_id": "my-group/my-project",
+        "merge_request_iid": "56",
+        "page": 2,
+        "per_page": 50
+      }
+    ],
+    "notes": "Returns all discussion threads with notes; includes resolved/unresolved status; paginated for large MRs"
+  },
+  "gitlab_get_branch_diffs": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42",
+        "discussion_id": "disc123",
+        "note_id": "note456",
+        "body": "Updated comment: Fixed in latest commit",
+        "resolved": true
+      },
+      {
+        "project_id": "my-group/my-project",
+        "merge_request_iid": "56",
+        "discussion_id": "disc789",
+        "note_id": "note012",
+        "body": "Reopening discussion - issue not fully resolved"
+      }
+    ],
+    "notes": "Requires both discussion_id and note_id; resolved=true marks thread as resolved; only author or maintainers can edit"
+  },
+  "gitlab_update_merge_request": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42",
+        "discussion_id": "disc123",
+        "body": "Agreed, will implement this suggestion"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "merge_request_iid": "56",
+        "discussion_id": "disc789",
+        "body": "Fixed in commit abc123def456",
+        "created_at": "2025-10-21T10:30:00Z"
+      }
+    ],
+    "notes": "Adds reply to existing discussion thread; created_at optional (ISO 8601 format); body supports Markdown"
+  },
+  "gitlab_create_note": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42",
+        "draft_note_id": "draft123"
+      }
+    ],
+    "notes": "Retrieves single draft note; drafts are visible only to author until published"
+  },
+  "gitlab_create_merge_request_thread": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "merge_request_iid": "56"
+      }
+    ],
+    "notes": "Returns all draft notes for MR; drafts are private until published; useful for batching review comments"
+  },
+  "gitlab_mr_discussions": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42",
+        "body": "Consider using async/await here",
+        "position": {
+          "base_sha": "abc123",
+          "head_sha": "def456",
+          "start_sha": "ghi789",
+          "position_type": "text",
+          "new_path": "src/api.js",
+          "old_path": "src/api.js",
+          "new_line": 67
+        },
+        "resolve_discussion": false
+      },
+      {
+        "project_id": "my-group/my-project",
+        "merge_request_iid": "56",
+        "body": "General comment about the PR approach"
+      }
+    ],
+    "notes": "Creates draft comment (not published immediately); position optional for line-specific comments; resolve_discussion for publishing drafts that resolve threads"
+  },
+  "gitlab_update_merge_request_note": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42",
+        "draft_note_id": "draft123",
+        "body": "Updated suggestion: Use Promise.all instead",
+        "resolve_discussion": true
+      }
+    ],
+    "notes": "Updates existing draft note; can change body, position, and resolve_discussion setting before publishing"
+  },
+  "gitlab_create_merge_request_note": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42",
+        "draft_note_id": "draft123"
+      }
+    ],
+    "notes": "Permanently deletes draft note; cannot be undone; only affects unpublished drafts"
+  },
+  "gitlab_get_draft_note": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42",
+        "draft_note_id": "draft123"
+      }
+    ],
+    "notes": "Publishes single draft note; makes it visible to all MR participants; converts to regular note"
+  },
+  "gitlab_list_draft_notes": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "merge_request_iid": "42"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "merge_request_iid": "56"
+      }
+    ],
+    "notes": "Publishes ALL draft notes for the MR at once; useful for batch review; atomic operation"
+  },
+  "gitlab_create_draft_note": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "issue_iid": "42",
+        "discussion_id": "disc123",
+        "note_id": "note456",
+        "body": "Updated: This was fixed in v2.0.1"
+      }
+    ],
+    "notes": "Updates existing issue comment; requires both discussion_id and note_id; only author or maintainers can edit"
+  },
+  "gitlab_update_draft_note": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "issue_iid": "42",
+        "discussion_id": "disc123",
+        "body": "I can help with this issue"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "issue_iid": "56",
+        "discussion_id": "disc789",
+        "body": "Related to #78 and #92",
+        "created_at": "2025-10-21T14:00:00Z"
+      }
+    ],
+    "notes": "Adds reply to existing issue discussion; created_at optional; body supports Markdown and issue references"
+  },
+  "gitlab_delete_draft_note": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "state": "opened",
+        "labels": [
+          "bug",
+          "urgent"
+        ],
+        "assignee_id": "42",
+        "scope": "assigned_to_me"
+      },
+      {
+        "scope": "all",
+        "state": "closed",
+        "created_after": "2025-09-01T00:00:00Z",
+        "labels": [
+          "feature"
+        ],
+        "search": "authentication"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "milestone": "v2.0",
+        "issue_type": "incident",
+        "with_labels_details": true,
+        "per_page": 50
+      }
+    ],
+    "notes": "scope: 'created_by_me' (default), 'assigned_to_me', 'all'; assignee_id accepts user ID, 'none', or 'any'; dates in ISO 8601 format; issue_type: issue, incident, test_case, task"
+  },
+  "gitlab_publish_draft_note": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "state": "opened",
+        "labels": [
+          "bug"
+        ]
+      },
+      {
+        "state": "all",
+        "milestone": "Sprint 23",
+        "search": "login",
+        "per_page": 50
+      }
+    ],
+    "notes": "Returns issues assigned to authenticated user; state defaults to 'opened'; shorthand for list_issues with assignee filter"
+  },
+  "gitlab_bulk_publish_draft_notes": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "issue_iid": "42"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "issue_iid": "123"
+      }
+    ],
+    "notes": "issue_iid is internal project issue ID (not global ID); returns full issue details including comments count, time stats, related MRs"
+  },
+  "gitlab_update_issue_note": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "issue_iid": "42",
+        "title": "Updated: Fix critical login bug",
+        "description": "## Updated Description\nAdded OAuth2 support",
+        "labels": [
+          "bug",
+          "security",
+          "reviewed"
+        ],
+        "state_event": "close",
+        "issue_type": "incident"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "issue_iid": "56",
+        "assignee_ids": [
+          42,
+          56
+        ],
+        "milestone_id": "milestone-123",
+        "due_date": "2025-11-01",
+        "weight": 5,
+        "issue_type": "task"
+      }
+    ],
+    "notes": "issue_type REQUIRED; state_event: 'close' or 'reopen'; weight 0-9 for issue sizing; due_date in YYYY-MM-DD format"
+  },
+  "gitlab_create_issue_note": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "issue_iid": "42"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "issue_iid": "999"
+      }
+    ],
+    "notes": "Permanently deletes issue; cannot be undone; requires maintainer/owner permissions"
+  },
+  "gitlab_list_issues": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "issue_iid": "42"
+      }
+    ],
+    "notes": "Returns all linked issues; link types: relates_to, blocks, is_blocked_by"
+  },
+  "gitlab_my_issues": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "issue_iid": "42",
+        "page": 1,
+        "per_page": 20
+      }
+    ],
+    "notes": "Returns all discussion threads on issue; includes notes, system notes, timestamps; paginated"
+  },
+  "gitlab_get_issue": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "issue_iid": "42",
+        "issue_link_id": "link789"
+      }
+    ],
+    "notes": "Gets specific issue link relationship; returns source, target, link_type"
+  },
+  "gitlab_update_issue": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "issue_iid": "42",
+        "state_event": "closed",
+        "issue_type": "issue"
+      },
+      {
+        "project_id": "my-group/project-a",
+        "issue_iid": "10",
+        "state_event": "open",
+        "issue_type": "closed"
+      }
+    ],
+    "notes": "link_type: 'relates_to' (default), 'blocks', 'is_blocked_by'; can link across projects; creates bidirectional relationship"
+  },
+  "gitlab_delete_issue": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "issue_iid": "42",
+        "issue_link_id": "link789"
+      }
+    ],
+    "notes": "Removes issue link relationship; does not delete issues themselves"
+  },
+  "gitlab_list_issue_links": {
+    "examples": [
+      {
+        "search": "my-group",
+        "owned": true,
+        "page": 1,
+        "per_page": 20
+      },
+      {
+        "owned": false,
+        "per_page": 50
+      }
+    ],
+    "notes": "Namespaces are users and groups; owned=true filters to your namespaces; search matches name/path"
+  },
+  "gitlab_list_issue_discussions": {
+    "examples": [
+      {
+        "namespace_id": "12345"
+      },
+      {
+        "namespace_id": "my-group/my-subgroup"
+      }
+    ],
+    "notes": "namespace_id can be numeric ID or full path; returns namespace type (user/group), visibility, member count"
+  },
+  "gitlab_get_issue_link": {
+    "examples": [
+      {
+        "path": "my-new-project"
+      },
+      {
+        "path": "my-group/my-new-subgroup"
+      }
+    ],
+    "notes": "Checks if namespace path is available; useful before creating projects/groups; returns exists: true/false"
+  },
+  "gitlab_create_issue_link": {
+    "examples": [
+      {
+        "project_id": "12345"
+      },
+      {
+        "project_id": "my-group/my-project"
+      }
+    ],
+    "notes": "Returns full project details: visibility, default_branch, statistics, permissions, settings"
+  },
+  "gitlab_delete_issue_link": {
+    "examples": [
+      {
+        "search": "api",
+        "owned": true,
+        "visibility": "private",
+        "order_by": "updated_at",
+        "sort": "desc",
+        "per_page": 20
+      },
+      {
+        "membership": true,
+        "archived": false,
+        "with_issues_enabled": true,
+        "with_merge_requests_enabled": true,
+        "min_access_level": 30
+      }
+    ],
+    "notes": "order_by: id, name, path, created_at, updated_at, last_activity_at; min_access_level: 10=Guest, 20=Reporter, 30=Developer, 40=Maintainer, 50=Owner"
+  },
+  "gitlab_list_namespaces": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "query": "john",
+        "per_page": 20
+      },
+      {
+        "project_id": "my-group/my-project",
+        "user_ids": [
+          42,
+          56,
+          78
+        ],
+        "skip_users": [
+          99
+        ]
+      }
+    ],
+    "notes": "query searches name and username; user_ids filters specific users; skip_users excludes users; returns access level and role"
+  },
+  "gitlab_get_namespace": {
+    "examples": [
+      {
+        "group_id": "my-group",
+        "include_subgroups": true,
+        "search": "api",
+        "order_by": "last_activity_at",
+        "sort": "desc",
+        "archived": false,
+        "per_page": 20
+      },
+      {
+        "group_id": "12345",
+        "visibility": "internal",
+        "with_issues_enabled": true,
+        "starred": true,
+        "statistics": true
+      }
+    ],
+    "notes": "include_subgroups traverses group hierarchy; with_programming_language filters by language; starred filters user-starred projects"
+  },
+  "gitlab_verify_namespace": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "path": "src",
+        "ref": "main",
+        "recursive": false
+      },
+      {
+        "project_id": "my-group/my-project",
+        "path": "",
+        "ref": "development",
+        "recursive": true,
+        "per_page": 100
+      }
+    ],
+    "notes": "path='' for root directory; recursive=true for nested directories; returns type (tree/blob), name, path, mode for each entry"
+  },
+  "gitlab_get_project": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "state": "opened",
+        "labels": [
+          "bug",
+          "urgent"
+        ],
+        "assignee_username": "john.doe",
+        "scope": "assigned_to_me"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "state": "merged",
+        "target_branch": "main",
+        "created_after": "2025-09-01T00:00:00Z",
+        "order_by": "updated_at",
+        "sort": "desc"
+      },
+      {
+        "state": "all",
+        "reviewer_username": "jane.smith",
+        "wip": "no",
+        "per_page": 50
+      }
+    ],
+    "notes": "state: opened, closed, locked, merged, all; wip: yes/no for draft MRs; scope: created_by_me, assigned_to_me, all; assignee/reviewer accepts ID or username"
+  },
+  "gitlab_list_projects": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "ref_name": "main",
+        "since": "2025-09-01T00:00:00Z",
+        "until": "2025-10-01T00:00:00Z",
+        "per_page": 20
+      },
+      {
+        "project_id": "my-group/my-project",
+        "path": "src/auth",
+        "author": "john.doe@example.com",
+        "with_stats": true
+      },
+      {
+        "project_id": "12345",
+        "all": true,
+        "order": "topo",
+        "trailers": true
+      }
+    ],
+    "notes": "ref_name: branch, tag, or range (e.g., 'main..development'); since/until in ISO 8601; path filters commits affecting specific file/directory; with_stats adds insertions/deletions; order: default or topo (topological)"
+  },
+  "gitlab_list_project_members": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "sha": "abc123def456",
+        "stats": true
+      },
+      {
+        "project_id": "my-group/my-project",
+        "sha": "main"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "sha": "v1.0.0",
+        "stats": false
+      }
+    ],
+    "notes": "sha can be commit SHA, branch name, or tag; stats=true includes file change statistics; returns full commit details, author, message, parent commits"
+  },
+  "gitlab_list_labels": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "sha": "abc123def456",
+        "full_diff": true
+      },
+      {
+        "project_id": "my-group/my-project",
+        "sha": "feature-branch",
+        "full_diff": false
+      }
+    ],
+    "notes": "full_diff=true returns complete diff (may be large); full_diff=false returns first page only; shows file changes with context"
+  },
+  "gitlab_get_label": {
+    "examples": [
+      {
+        "group_id": "my-group",
+        "state": "current",
+        "include_ancestors": true,
+        "per_page": 20
+      },
+      {
+        "group_id": "12345",
+        "state": "opened",
+        "search": "Sprint",
+        "search_in": [
+          "title",
+          "cadence_title"
+        ],
+        "include_descendants": true
+      }
+    ],
+    "notes": "state: opened, upcoming, current, closed, all; iterations are time-boxed periods for planning; include_ancestors/descendants traverse group hierarchy"
+  },
+  "gitlab_create_label": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "file_path": "/home/user/screenshot.png"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "file_path": "./docs/diagram.svg"
+      }
+    ],
+    "notes": "Uploads file for use in Markdown (issues, MRs, comments); returns Markdown link format; file stored in project uploads directory"
+  },
+  "gitlab_update_label": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "secret": "abc123def456789012345678901234",
+        "filename": "screenshot.png",
+        "local_path": "/home/user/downloads"
+      },
+      {
+        "project_id": "my-group/my-project",
+        "secret": "xyz789uvw456rst123abc456def789",
+        "filename": "diagram.svg"
+      }
+    ],
+    "notes": "secret is 32-character upload ID from Markdown link; filename must match original; local_path optional (defaults to current directory)"
+  },
+  "gitlab_delete_label": {
+    "examples": [
+      {
+        "action": "pushed",
+        "target_type": "merge_request",
+        "after": "2025-10-01",
+        "before": "2025-10-31",
+        "sort": "desc",
+        "per_page": 20
+      },
+      {
+        "target_type": "issue",
+        "scope": "all",
+        "per_page": 50
+      }
+    ],
+    "notes": "Returns activity feed for current user; target_type: epic, issue, merge_request, milestone, note, project, snippet, user; dates in YYYY-MM-DD format; before/after are exclusive"
+  },
+  "gitlab_list_group_projects": {
+    "examples": [
+      {
+        "project_id": "12345",
+        "action": "commented",
+        "target_type": "issue",
+        "after": "2025-10-01",
+        "per_page": 50
+      },
+      {
+        "project_id": "my-group/my-project",
+        "target_type": "merge_request",
+        "sort": "asc"
+      }
+    ],
+    "notes": "Returns activity feed for specific project; similar to list_events but project-scoped; visible events only (respects permissions)"
+  }
+}

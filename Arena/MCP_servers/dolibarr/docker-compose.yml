@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  dolibarr-mcp:
+    build: .
+    container_name: dolibarr-mcp-server
+    ports:
+      - "12000:12000"
+    environment:
+      - DOLIBARR_BASE_URL=http://host.docker.internal:8082
+      - DOLIBARR_API_KEY=9f68ccea83e23f5951cc6057df7c9e45f7363051
+
+    restart: unless-stopped

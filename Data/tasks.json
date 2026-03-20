@@ -1,0 +1,302 @@
+[
+  {
+    "query": "Hey, could you handle the updates for the MCP_test_issue? Specifically, I need you to ensure it reflects the bug reproduced on staging and the title should be aligned with the model context protocol."
+  },
+  {
+    "query": "I need to set up a work cycle and ensure any pending issues are moved into the next available sprint."
+  },
+  {
+    "query": "I need to understand the current issues in the Sprint 3 cycle of 'test_project' to analyze the workflow states. Could you provide this information for me?"
+  },
+  {
+    "query": "I need a comprehensive list of all issues in the current project across sprints 2 and 3 cycles. Please provide the issue details including their ID, name, description, and any additional attributes."
+  },
+  {
+    "query": "Could you please provide me with a comprehensive overview of the Payment Gateway module, including its current status and any existing issues?"
+  },
+  {
+    "query": "Can you give me an overview of the 'Payment Gateway' module, including any issues?"
+  },
+  {
+    "query": "Hi there! Could you provide me with the current issues in both Sprint 2 and Sprint 3 of the test_project? I'm keen to see any new developments regarding MCP-adapters creation."
+  },
+  {
+    "query": "I need to update the cycle schedules for the test project. First, remove the existing cycle named 'test_cycle,' and then create a new cycle called 'Sprint 3' starting today with a one-week duration."
+  },
+  {
+    "query": "I need to find out which sprint cycles are currently active in the 'test_project' and also list the issues associated with Sprint 3 in that project. Can you assist me with this?"
+  },
+  {
+    "query": "I want to update the timeline for 'test_cycle' in the 'test_project'. Ensure that the previous cycle is replaced with a new one starting today and lasting for one week."
+  },
+  {
+    "query": "I need you to replace the existing 'Payment_Gate' module in the 'test_project' with a freshly created one."
+  },
+  {
+    "query": "I would like to set up a new project called 'test_project' and ensure that it's ready without the 'Payment_Gate' module."
+  },
+  {
+    "query": "I need assistance reviewing the status of issues in the payment and billing modules of our project. Could you provide me with an update on any current issues associated with these modules?"
+  },
+  {
+    "query": "Can you give me a summary of all active cycles and their issues in the 'test_project', specifically focusing on 'Sprint 2'?"
+  },
+  {
+    "query": "Can you provide an overview of the current setup in the test_project, including any existing labels and workflow states?"
+  },
+  {
+    "query": "I need detailed information about the Payment Gateway module, including its issues."
+  },
+  {
+    "query": "Can you check the Payment Gateway module for any existing issues?"
+  },
+  {
+    "query": "I want to see all the modules in my 'test_project', but it seems there are none. Could you please add a new module called 'Payment_Gate'? Then, confirm that this module has been successfully added."
+  },
+  {
+    "query": "I want to organize my workspace better. Can you ensure I have a label called Security with color #FF0000 in the 'test_project'? Also, let me know if there are any existing labels and their details."
+  },
+  {
+    "query": "I've set up a new project named 'test_project'. Can you check for existing issues within the Payment Gateway module?"
+  },
+  {
+    "query": "Can you check the modules for 'test_project' and list the issues within the 'Payment Gateway' module?"
+  },
+  {
+    "query": "Can you provide an overview of the Policy documents folder and identify any files related to Insurance within it?"
+  },
+  {
+    "query": "I need you to prepare an environment for a coding project and inform the team about the readiness of our agent. It's crucial that the project files are properly organized and updated in our system, and the team knows that the MCP agent is active and ready for collaboration."
+  },
+  {
+    "query": "Let's initiate our presence by sending a warm greeting to the team and kick off a new project called 'test_project'."
+  },
+  {
+    "query": "Set up a test environment and announce its readiness to the team."
+  },
+  {
+    "query": "Hi team! I've just initiated a new project named test_project. Let's make sure this project is ready to go and everyone is aware of our new initiative. \ud83d\ude80"
+  },
+  {
+    "query": "Could you verify the files in the 'My_data' folder and ensure this information is shared with the team via the #general channel?"
+  },
+  {
+    "query": "I just created a new module called 'Payment Gateway' in the test_project. Could you let the team know that the MCP agent is now online?"
+  },
+  {
+    "query": "Hi there! Could you set up our project repository and update the team with the new developments? Let me know once everything is in place!"
+  },
+  {
+    "query": "Locate all repositories that contain the keyword 'keystone', and then check the contents of the 'keystone/common/kvs.py' file within one of those repositories."
+  },
+  {
+    "query": "I just created an invoice for Apple for $30,000. Can you let the team know that we've successfully done this and that our MCP agent is online to assist them?"
+  },
+  {
+    "query": "Hey, can you check if the file named 'osworld_test.py' exists? If not, just let the team know we're up and running in the #general channel."
+  },
+  {
+    "query": "I'm preparing to review the Payment Gateway module scheduled for our project. Can you update the team on its status while ensuring they're informed that the MCP agent is active?"
+  },
+  {
+    "query": "Can you please update the team in the #general channel about our partner company, Apple, being active with operations in India?"
+  },
+  {
+    "query": "I'd like to organize my directory. Could you check what's currently in 'My_data' and prepare a space for some testing files?"
+  },
+  {
+    "query": "I've just established a new company, TechNova Solutions. Could you help me introduce this development to the team in our #general channel?"
+  },
+  {
+    "query": "I need to review the file keystone/common/kvs.py in the keystone repository and confirm it's being used properly. Then, I want to ensure everyone in the #general channel knows the MCP agent is online. Could you assist with this?"
+  },
+  {
+    "query": "Can you check if there are any repositories associated with 'keystone' and then let the team know the MCP agent is active?"
+  },
+  {
+    "query": "Can you provide me comprehensive information about the Payment Gateway module, including current issues?"
+  },
+  {
+    "query": "Could you please review the details for \"Sprint 3\" cycle issues and check the availability of any modules in the 'test_project'? I want to ensure everything is being tracked effectively."
+  },
+  {
+    "query": "Can you provide me with the details of Sprint 2, including all the issues currently associated with it?"
+  },
+  {
+    "query": "I need the label 'Security' updated in the 'test_project' to have the color #FF0000. Can you ensure it's properly organized?"
+  },
+  {
+    "query": "Could you check the modules in my project and see if 'Payment_Gate' has been removed?"
+  },
+  {
+    "query": "Can you make sure the Payment Gateway module is created in the test_project and then give me an overview of all current modules in that project?"
+  },
+  {
+    "query": "I recently created a project named 'test_project' in my workspace. Could you please check if there are any modules within it and provide details if available?"
+  },
+  {
+    "query": "I need an overview of all modules associated with my projects. Can you check both the 'test_project' and my other modules to provide a detailed status update?"
+  },
+  {
+    "query": "I've created a project named 'test_project'. Could you show me the workflow states within it?"
+  },
+  {
+    "query": "Could you ensure the issue is tracked in the test project? I've noticed a bug on staging, so it might need documentation."
+  },
+  {
+    "query": "Can you give me detailed information on the Payment Gateway module? Also, could you list all the modules under my project?"
+  },
+  {
+    "query": "Could you give me a summary of the modules and active cycles in the 'test_project'?"
+  },
+  {
+    "query": "I need an overview of the current status of the test_project. Can you let me know if there are any active cycles and if the project contains any modules?"
+  },
+  {
+    "query": "I'm examining the 'test_project' and need an overview of its components. Could you help me find out what labels and modules it currently includes? I need to assess if there are any elements defined or if we need to create some."
+  },
+  {
+    "query": "Hello Team! Can you ensure the channel has the latest updates and no outdated or unnecessary labels?"
+  },
+  {
+    "query": "Can you give me a detailed overview of the 'test_project'? I'd like to know both the workflow states and the modules currently set up."
+  },
+  {
+    "query": "Could you kindly review the modules under 'test_project' and if there are none, initiate the creation of a new module termed 'Payment Gateway'?"
+  },
+  {
+    "query": "Can you provide an overview of the current status in the test_project, including active cycles and any existing modules?"
+  },
+  {
+    "query": "Could you provide me with a list of all modules in the project 'test_project', and then give me details of any issues that currently exist within the 'Payment Gateway' module?"
+  },
+  {
+    "query": "I want to create a new company named TechNova Solutions and ensure it's listed among my active companies."
+  },
+  {
+    "query": "I need to understand more about TechNova Solutions, the company linked to Invoice ID 1. Could you provide me with detailed information on them?"
+  },
+  {
+    "query": "Check the current modules in test_project and add a new module named Payment_Gate."
+  },
+  {
+    "query": "Make sure the team knows MCP agent is active and get an update on the sprint 2 cycle issues."
+  },
+  {
+    "query": "I need a comprehensive overview of the project 'test_project'. Start by telling me about the modules it contains, specifically focusing on the 'Payment Gateway' module. Then, detail any existing issues within it."
+  },
+  {
+    "query": "I need to verify if there are any issues with the Billing Gateway module after reallocating it from Payment Gateway."
+  },
+  {
+    "query": "Could you give me an overview of the modules and active cycles in the 'test_project'? I'd like to understand the current structure and activities within the project."
+  },
+  {
+    "query": "I need to manage the modules for test_project. Could you ensure all existing modules are accounted for and add a module named Payment Gateway if necessary?"
+  },
+  {
+    "query": "Could you check the modules present in the 'test_project'? If none exist, please create a new module named 'Payment Gateway'."
+  },
+  {
+    "query": "I'd like to know the current modules available in the test_project. If the Payment Gateway module isn't there, could you add it for me?"
+  },
+  {
+    "query": "I'm working on the 'test_project'. Could you provide me with an overview of the project's workflow, including any modules and their current states?"
+  },
+  {
+    "query": "I need to start working with a new project called 'test_project'. Can you show me its workflow states in Plane?"
+  },
+  {
+    "query": "I'd like to check the modules in the 'test_project' and ensure the 'Payment_Gate' module is removed if it exists."
+  },
+  {
+    "query": "Can you give me a detailed overview of the Payment Gateway module, including its current issues?"
+  },
+  {
+    "query": "In the 'test_project', I want to ensure the 'Payment Gateway' module is listed and, if not, create it."
+  },
+  {
+    "query": "I need to ensure the Payment_Gate module has been created in the test_project and then verify the list of modules present."
+  },
+  {
+    "query": "Could you give me an overview of all modules in the test_project, focusing on the Payment Gateway module and its status? I'd like to understand how it's progressing and its current details."
+  },
+  {
+    "query": "I just created a new module in my test project called Payment_Gate. Can you confirm it's all set up and show me all the modules I have in my projects?"
+  },
+  {
+    "query": "I've started a new project called 'test_project' on Plane. Could you show me all the modules associated with this project?"
+  },
+  {
+    "query": "Hi there! Could you inform the team in #general channel about the MCP agent's status, and also check if there are any outstanding issues in the Billing Gateway module?"
+  },
+  {
+    "query": "Can you update the team on the status of issues in the Payment Gateway module? Let's ensure everyone is informed, especially about the new MCP agents."
+  },
+  {
+    "query": "Hey, I'd like to send a quick message to the team and then proceed with some maintenance work. Could you let everyone know that the MCP agent is online and take care of the test cycle removal? Thanks!"
+  },
+  {
+    "query": "I need you to clear a phase and then inform the team about an update."
+  },
+  {
+    "query": "Can you check the details for the cycle 'Sprint 2' and then announce to the team that the MCP agent is online? Thanks!"
+  },
+  {
+    "query": "I need to set up a new cycle for our project starting today and let everyone know that the MCP agent is online."
+  },
+  {
+    "query": "I need an update on the current workflow states of the test_project, and also ensure that the team knows MCP agent is active. Please proceed with these tasks."
+  },
+  {
+    "query": "I need an issue created in our test project called 'MCP_test_issue' and for it to be associated with the Payment Gateway module. Can you ensure everything is set up properly?"
+  },
+  {
+    "query": "I need to ensure that the Payment Gateway module in test_project is set up correctly and is free from any issues. Could you verify this for me?"
+  },
+  {
+    "query": "Can you handle the issues in 'Sprint 2' and migrate them to the upcoming 'Sprint 3'? Let me know if there are any updates or actions required."
+  },
+  {
+    "query": "I'd like to add a new issue called 'test_issue' to the project 'test_project' in 'Sprint 2', and then I want a list of all issues currently in that cycle."
+  },
+  {
+    "query": "Hey, can you create a new project named \"test_project\" and once it's set up, check the status of cycle \"Sprint 2\" within that project?"
+  },
+  {
+    "query": "I need to add a new issue named 'test_issue' to the Payment Gateway module of my project and then see all the existing issues in that module."
+  },
+  {
+    "query": "Could you make a project named 'test_project' in my workspace and let me know if there are any labels associated with it once it's set up?"
+  },
+  {
+    "query": "Could you please find out what active cycles are running in the test_project and add the issue 'MCP-adapters creation' to the necessary cycle?"
+  },
+  {
+    "query": "Can you ensure that all issues from Sprint 2 are in Sprint 3 and then provide me with a detailed list of current issues in Sprint 3 for the 'test_project'? I'm looking for any new updates."
+  },
+  {
+    "query": "I'd like to start a new project called 'test_project' and add an issue named 'plane-mcp' to it. Could you please help with this?"
+  },
+  {
+    "query": "Can you provide me with all issues related to the Payment Gateway module that overlap with Sprint 2?"
+  },
+  {
+    "query": "I need a new project titled 'test_project' in my workspace, and I'd like to understand the specifics of the 'In Progress' state within it. Could you assist with that?"
+  },
+  {
+    "query": "I'd like to initiate a new project titled 'test_project' and proceed by scheduling a cycle named 'Sprint 2' within it, starting today and lasting for two weeks."
+  },
+  {
+    "query": "I need to set up a project named 'test_project' and add a module called 'Payment Gateway' to it."
+  },
+  {
+    "query": "I'd like to start working on a new project named 'test_project'. Please prepare everything necessary in our workspace and let me know the current workflow states."
+  },
+  {
+    "query": "In 'Sprint 2', check the existing issues. Also, create and add a new 'test_issue' to the cycle."
+  },
+  {
+    "query": "I need to setup a new cycle named Sprint 3 that spans a week, commencing today within a newly created project called 'test_project'."
+  }
+]

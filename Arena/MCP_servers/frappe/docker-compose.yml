@@ -1,0 +1,11 @@
+services:
+  frappe-mcp:
+    build: .
+    container_name: frappe-mcp
+    ports:
+      - "12013:12013"
+    environment:
+      - FRAPPE_URL=http://host.docker.internal:8084
+      - FRAPPE_API_KEY=71f6e1bb8d5851b
+      - FRAPPE_API_SECRET=4754019131a21ec
+    restart: unless-stopped
