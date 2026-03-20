@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  gitlab-mcp:
+    image: iwakitakuma/gitlab-mcp
+    container_name: gitlab-mcp-server
+    environment:
+      - GITLAB_PERSONAL_ACCESS_TOKEN=glpat-7DR62qtF3j1P1c74lk6lFG86MQp1OjUH.01.0w10605u1
+      - GITLAB_API_URL=http://localhost:8080/api/v4
+      - STREAMABLE_HTTP=true
+      - DEBUG=mcp:*
+    ports:
+      - "8008:3002"
+    restart: unless-stopped
+    networks:
+      - mcp-network
+
+networks:
+  mcp-network:
+    driver: bridge

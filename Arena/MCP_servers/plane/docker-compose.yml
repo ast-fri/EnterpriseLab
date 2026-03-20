@@ -1,0 +1,9 @@
+services:
+  plane-mcp-server:
+    build: .
+    network_mode: host
+    environment:
+      - PLANE_API_KEY=plane_api_769c05cb19ce42008423b71ad72c51d7
+      - PLANE_API_HOST_URL=http://localhost:3001
+      - PLANE_WORKSPACE_SLUG=mycompany
+    restart: unless-stopped

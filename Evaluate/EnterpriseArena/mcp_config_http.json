@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+            "owncloud": {
+                "transport": "streamable_http",
+                "url": "http://localhost:12001/mcp"
+            },
+            "gitlab": {
+                "transport": "streamable_http",
+                "url": "http://localhost:8008/mcp"
+            },
+            "plane": {
+                "transport": "streamable_http",
+                "url": "http://localhost:12023/mcp"
+            },
+            "dolibarr": {
+                "transport": "streamable_http",
+                "url": "http://localhost:12000/mcp"
+            },
+            "rocketchat": {
+                "transport": "streamable_http",
+                "url": "http://localhost:12004/mcp"
+            },
+            "Zammad": {
+                "transport": "streamable_http",
+                "url": "http://localhost:12010/mcp"    
+            },
+            "frappe_hrms": {
+                "transport": "streamable_http",
+                "url": "http://localhost:12021/mcp/"
+            }
+        }
+}

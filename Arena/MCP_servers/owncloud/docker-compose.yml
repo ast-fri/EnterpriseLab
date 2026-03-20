@@ -1,0 +1,15 @@
+services:
+  owncloud-mcp:
+    build: .
+    ports:
+      - "12001:12001"
+    environment:
+      - OWNCLOUD_URL=http://host.docker.internal:8081
+      - OWNCLOUD_USERNAME=admin
+      - OWNCLOUD_PASSWORD=admin
+      - PORT=12001
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./projects:/app/projects
+    restart: unless-stopped

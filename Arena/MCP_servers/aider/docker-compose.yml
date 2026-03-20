@@ -1,0 +1,15 @@
+services:
+  aider-mcp:
+    build: .
+    container_name: aider-mcp
+    ports:
+      - "12011:12011"
+    volumes:
+      - ./projects:/app/projects
+      - ./.env:/app/.env
+    environment:
+      - AZURE_API_KEY=${AZURE_API_KEY}
+      - AZURE_API_BASE=${AZURE_API_BASE}
+      - AZURE_API_VERSION=${AZURE_API_VERSION}
+      - AIDER_MODEL=${AIDER_MODEL}
+    restart: unless-stopped
