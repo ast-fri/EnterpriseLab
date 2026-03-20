@@ -1,0 +1,13 @@
+services:
+  playwright-mcp:
+    image: mcr.microsoft.com/playwright/mcp
+    container_name: playwright-mcp
+    entrypoint: node
+    command: cli.js --headless --browser chromium --no-sandbox --port 12012
+    ports:
+      - "12012:12012"
+    restart: unless-stopped
+    init: true
+    stdin_open: true
+    tty: false
+    pull_policy: always

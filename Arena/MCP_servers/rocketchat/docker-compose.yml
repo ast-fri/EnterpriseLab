@@ -1,0 +1,11 @@
+services:
+  rocketchat-mcp:
+    build: .
+    container_name: rocketchat-mcp-server
+    ports:
+      - "12004:12004"
+    environment:
+      - ROCKETCHAT_URL=http://localhost:3000
+      - ROCKETCHAT_USER_ID=6BBQsLK5LRchYAM8f
+      - ROCKETCHAT_AUTH_TOKEN=aW0jNxkyBfig7PaJ_FTcNE5nElwbbfEVRt6-WTKQSut
+    restart: unless-stopped
