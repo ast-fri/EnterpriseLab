@@ -3,6 +3,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from typing import List, Dict
 from tqdm import tqdm
+import argparse
 
 class SemanticDeduplicator:
     """
@@ -171,42 +172,19 @@ class SemanticDeduplicator:
 # ============================================================================
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Filter and deduplicate training data")
+    parser.add_argument('--input_path', required=True, help='Path to input raw data JSON')
+    parser.add_argument('--output_path', required=True, help='Path to save filtered data JSON')
+    parser.add_argument('--min_quality_score', type=float, default=0.7, help='Minimum quality score (similarity threshold)')
     
-    # Example 1: Basic deduplication
-    print("="*80)
-    print("EXAMPLE 1: Basic Deduplication")
-    print("="*80)
+    args = parser.parse_args()
     
     deduplicator = SemanticDeduplicator(
-        model_name="all-MiniLM-L6-v2",  # Fast and good quality
-        similarity_threshold=0.5  # Adjust based on your needs
+        model_name="all-MiniLM-L6-v2",
+        similarity_threshold=args.min_quality_score
     )
-       
     
-    # # Example 2: Try different thresholds
-    print("\n" + "="*80)
-    print("EXAMPLE 2: Testing Different Thresholds")
-    print("="*80)
-    
-    for threshold in [0.5, 0.55, 0.60, 0.65]:
-        print(f"\n--- Threshold: {threshold} ---")
-        dedup = SemanticDeduplicator(
-            model_name="all-MiniLM-L6-v2",
-            similarity_threshold=threshold
-        )
-        unique = dedup.deduplicate(
-            input_file="path/to/your/input/final_arena_data.json",  # Replace with your input file path
-            output_file=f"deduplicated_arena_data_t{threshold}.json"
-        )
-    
-    
-    # Example 3: Analyze similar pairs (for debugging)
-    print("\n" + "="*80)
-    print("EXAMPLE 3: Find Most Similar Pairs")
-    print("="*80)
-    
-    analyzer = SemanticDeduplicator()
-    similar_pairs = analyzer.find_similar_pairs(
-        input_file="final_arena_data.json",
-        top_k=10
+    unique = deduplicator.deduplicate(
+        input_file=args.input_path,
+        output_file=args.output_path
     )

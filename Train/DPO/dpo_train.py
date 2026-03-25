@@ -10,12 +10,25 @@ from datasets import Dataset
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from trl import DPOTrainer, DPOConfig
 import json
+import argparse
 
+
+# Parse arguments
+parser = argparse.ArgumentParser(description="Train DPO model")
+parser.add_argument('--model_name_or_path', required=True, help='Path or name of the base model')
+parser.add_argument('--preference_data_path', required=True, help='Path to preference data JSON')
+parser.add_argument('--output_dir', required=True, help='Output directory for checkpoints')
+parser.add_argument('--num_train_epochs', type=int, default=1, help='Number of training epochs')
+parser.add_argument('--beta', type=float, default=0.1, help='Beta parameter for DPO')
+
+args = parser.parse_args()
 
 # Config
-base_model = "path/to/your/models/qwen3-8b"  # Your base model
-data_path = "path/to/your/dpo_dataset.json"  # Your DPO dataset in the new format
-output_dir = "./dpo_output/dpo_chkpt_v5"
+base_model = args.model_name_or_path
+data_path = args.preference_data_path
+output_dir = args.output_dir
+epochs = args.num_train_epochs
+beta = args.beta
 
 print(output_dir)
 
@@ -69,7 +82,6 @@ print(f"Loaded {len(dataset)} DPO pairs")
 num_gpus = 4
 per_device_batch = 1
 grad_accum = 4
-epochs = 2
 
 # Steps per GPU per epoch
 steps_per_epoch = len(dataset) // (num_gpus * per_device_batch * grad_accum)
@@ -98,7 +110,7 @@ training_args = DPOConfig(
     warmup_steps=12,
     
     # DPO specific - Can handle longer context now
-    beta=0.1,
+    beta=beta,
     max_length=32768,             
     max_prompt_length=28000,      
     max_completion_length=4768,   

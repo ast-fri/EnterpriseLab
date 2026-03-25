@@ -10,6 +10,7 @@ import json
 import logging
 from typing import List, Dict, Any
 from datetime import datetime
+import argparse
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -77,6 +78,39 @@ WANDB_RUN_NAME = f"grpo_enterprise_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
 
 def main():
     """Main training loop."""
+    
+    parser = argparse.ArgumentParser(description="Train Agentic-GRPO model")
+    parser.add_argument('--model_name_or_path', required=True, help='Path or name of the model')
+    parser.add_argument('--task_config', required=True, help='Path to task config JSON')
+    parser.add_argument('--output_dir', required=True, help='Output directory for checkpoints')
+    parser.add_argument('--num_rollouts', type=int, default=100, help='Number of rollouts')
+    
+    args = parser.parse_args()
+    
+    # Set variables from args
+    MODEL_NAME = args.model_name_or_path
+    DATASET_PATH = args.task_config
+    CHECKPOINT_DIR = args.output_dir
+    NUM_EPOCHS = args.num_rollouts  # Assuming num_rollouts is the number of epochs
+    
+    # Set other constants
+    MODEL_CACHE_DIR = None
+    GROUP_SIZE = 2
+    BATCH_SIZE = 1
+    LEARNING_RATE = 1e-6
+    KL_COEFF = 0.1
+    MAX_TURNS = 10
+    MAX_TOOL_OUTPUT_TOKENS = 500
+    USE_GROUND_TRUTH_REWARD = True
+    USE_LLM_JUDGE = False
+    JUDGE_MODEL = "gpt-4"
+    DIFFICULTY_FILTER = None
+    DOMAIN_FILTER = None
+    MIN_STEPS = None
+    MAX_STEPS = None
+    USE_WANDB = True
+    WANDB_PROJECT = "EnterpriseBench-GRPO"
+    WANDB_RUN_NAME = f"grpo_enterprise_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
 
     logger.info("="*80)
     logger.info("GRPO Training for EnterpriseBench")
