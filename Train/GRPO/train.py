@@ -13,6 +13,7 @@ from transformers import pipeline, TextStreamer
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_huggingface import HuggingFacePipeline, ChatHuggingFace
 from FineTuning.GRPO.reward import Reward
+import argparse
 class GRPODataset(Dataset):
     def __init__(self, raw_data):
         self.data = raw_data
@@ -1211,12 +1212,19 @@ class ARTIST_ExGRPO_Trainer:
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Train GRPO model")
+    parser.add_argument('--model_name_or_path', required=True, help='Path or name of the model')
+    parser.add_argument('--trajectory_path', required=True, help='Path to trajectory data JSON')
+    parser.add_argument('--output_dir', required=True, help='Output directory for trained model')
+    parser.add_argument('--num_train_epochs', type=int, default=2, help='Number of training epochs')
+    
+    args = parser.parse_args()
     
     # Paths to model checkpoint, training data, and output directory
-    model_path = "path_to_your_pretrained_model_checkpoint"  # Replace with your model path
-    train_data_path = "path_to_your_training_data.json"  # Replace with your training data path
-    tools_path = "path_to_your_tools_metadata.json"  # Replace with your tools metadata path
-    output_dir = "path_to_save_trained_model"  # Replace with your desired output directory
+    model_path = args.model_name_or_path
+    train_data_path = args.trajectory_path
+    output_dir = args.output_dir
+    num_epochs = args.num_train_epochs
     
     # Load dataset (you'll implement your own Dataset class or JSON loader)
     import json
@@ -1256,7 +1264,7 @@ if __name__ == "__main__":
     )
     
     # Run training loop for some epochs
-    trainer.train(epochs=10, batch_size=4)
+    trainer.train(epochs=num_epochs, batch_size=4)
     
     # Save trained model
     model.save_pretrained(output_dir)

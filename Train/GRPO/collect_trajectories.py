@@ -8,6 +8,7 @@ from Task_Generation_sft_batch2_copy.Factories.llm_factory import LLM_factory
 import os
 import random
 from typing import List, Dict, Any
+import argparse
 import re
 class TracjDataset(Dataset):
     def __init__(self, raw_data):
@@ -898,12 +899,19 @@ class TrajectoryCollector:
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Collect trajectories for RL training")
+    parser.add_argument('--model_name_or_path', required=True, help='Path or name of the model')
+    parser.add_argument('--task_file', required=True, help='Path to task file JSON')
+    parser.add_argument('--output_path', required=True, help='Output path for trajectories')
+    parser.add_argument('--num_episodes', type=int, default=1000, help='Number of episodes')
+    
+    args = parser.parse_args()
     
     # Paths to model checkpoint, training data, and output directory
-    model_path = "path/to/your/model/checkpoint"  # <-- UPDATE THIS to your model checkpoint path
-    train_data_path = "path/to/your/training/data.json"  # <-- UPDATE THIS to your training data path
-    tools_path = "path/to/your/tools/config.json"  # <-- UPDATE THIS to your tools configuration path
-    output_dir = "path/to/save/collected/trajectories"  # <-- UPDATE THIS to your desired output directory
+    model_path = args.model_name_or_path
+    train_data_path = args.task_file
+    output_dir = args.output_path
+    num_episodes = args.num_episodes  # Perhaps use for n_samples or something
     
     # Load dataset
     with open(train_data_path, "r") as f:
@@ -923,7 +931,7 @@ if __name__ == "__main__":
         tools=tools_instance,
         max_rollout_steps=10,
         max_steps_to_explore=3,
-        n_samples=3,  # Monte Carlo samples (N in paper)
+        n_samples=num_episodes,  # Use num_episodes for n_samples
         reward_threshold=0.1  # τ threshold for filtering actions
     )
     

@@ -2,11 +2,20 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 import torch
+import argparse
+
+# Parse arguments
+parser = argparse.ArgumentParser(description="Merge LoRA adapters into base model")
+parser.add_argument('--base_model_path', required=True, help='Path to base model')
+parser.add_argument('--adapter_path', required=True, help='Path to LoRA adapter')
+parser.add_argument('--output_path', required=True, help='Output path for merged model')
+
+args = parser.parse_args()
 
 # Your paths
-base_model_path = "path/to/your/base/model"  # Replace with your base model path or name
-sft_adapter_path = "path/to/your/sft/adapter"  # Replace with your SFT adapter path
-merged_output_path = "path/to/save/merged/model"  # Replace with your desired output directory for the merged model
+base_model_path = args.base_model_path
+sft_adapter_path = args.adapter_path
+merged_output_path = args.output_path
 
 print("=" * 50)
 print("Merging SFT LoRA adapters into base model...")
