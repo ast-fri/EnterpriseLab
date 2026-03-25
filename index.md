@@ -30,6 +30,7 @@ title: EnterpriseLab - Full-Stack Platform for Enterprise AI Agents
     <a href="#" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">📄 Paper (Coming Soon)</a>
     <a href="https://github.com/ast-fri/EnterpriseLab" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">💻 GitHub</a>
     <a href="#" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">📊 Dataset</a>
+    <a href="https://agentbeats.dev/VishwakarmaHarsh03/enterpriseplatform" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">🏆 Leaderboard</a>
   </div>
 </header>
 
@@ -575,5 +576,4 @@ If you use EnterpriseLab or EnterpriseArena in your research, please cite our wo
     © 2026 EnterpriseLab. Preliminary work under review.
   </p>
 </div>
-
 
