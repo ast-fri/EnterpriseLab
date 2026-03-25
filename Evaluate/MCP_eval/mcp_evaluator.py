@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from datetime import datetime
 from llm_evaluator import MultiAspectLLMJudge, TrajectoryAdapter 
 from tool_evaluation import TrajectoryAdapter as ToolAdapter
+import argparse
 
 
 def run_evaluations(gold_path, pred_path, output_prefix):
@@ -57,10 +58,16 @@ def run_evaluations(gold_path, pred_path, output_prefix):
 if __name__ == "__main__":
     load_dotenv()
     
-    # Set your paths here
-    gold_path = "path_to_gold_trajectories.json"
-    pred_path = "path_to_predicted_trajectories.json"
-    output_prefix = "agrpo_entarena_100_tasks"  # Customize this prefix for your output files
+    parser = argparse.ArgumentParser(description="Evaluate trajectories against gold standard")
+    parser.add_argument('--output_trajectories', required=True, help='Path to output trajectories JSONL')
+    parser.add_argument('--gold_trajectories', required=True, help='Path to gold trajectories JSON')
+    parser.add_argument('--output_results', required=True, help='Output path for evaluation results')
+    
+    args = parser.parse_args()
+    
+    gold_path = args.gold_trajectories
+    pred_path = args.output_trajectories
+    output_prefix = args.output_results  # Use as prefix
     
     tool_out, llm_out = run_evaluations(gold_path, pred_path, output_prefix)
     print(f"\nBoth evaluations complete:")

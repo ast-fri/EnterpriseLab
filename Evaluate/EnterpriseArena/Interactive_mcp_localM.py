@@ -16,6 +16,7 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain_mcp_adapters.tools import load_mcp_tools
 from langchain_core.messages import RemoveMessage
 from langgraph.graph.message import REMOVE_ALL_MESSAGES
+import argparse
 
 from graph_final_localM import build_react_agent_graph, AgentState, get_base_prompt
 # from graph_llama import build_react_agent_graph, AgentState, get_base_prompt
@@ -292,10 +293,22 @@ async def interactive_mode(graph, config: dict, tools: list, tools_count: int):
 
 async def main():
     """Main batch execution function"""
+    parser = argparse.ArgumentParser(description="Generate trajectories for evaluation")
+    parser.add_argument('--model_path', help='Path to model checkpoint (for future use)')
+    parser.add_argument('--mcp_config', default='./mcp_config_http.json', help='Path to MCP config JSON')
+    parser.add_argument('--tasks', default='../../Data/tasks.json', help='Path to tasks JSON')
+    parser.add_argument('--output_trajectories', help='Output path for trajectories')
+    parser.add_argument('--interactive', '-i', action='store_true', help='Run in interactive mode')
+    
+    args = parser.parse_args()
+    
+    # Set global variables from args
+    global TASKS_FILE, MCP_CONFIG_PATH
+    TASKS_FILE = args.tasks
+    MCP_CONFIG_PATH = args.mcp_config
+    
     # Check for interactive mode
-    interactive = False
-    if len(sys.argv) > 1 and sys.argv[1] in ['--interactive', '-i']:
-        interactive = True
+    interactive = args.interactive
     
     print(f"{Colors.CYAN}{Colors.BOLD}")
     print("╔═══════════════════════════════════════════════════════════╗")

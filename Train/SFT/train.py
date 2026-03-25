@@ -24,11 +24,14 @@ import os
 
 
 class SFT:
-    def __init__(self, model_path, train_data_path=None, eval_data_path=None, output_dir=None):
+    def __init__(self, model_path, train_data_path=None, eval_data_path=None, output_dir=None, num_train_epochs=1.2, per_device_train_batch_size=16, learning_rate=5e-5):
         self.model_path = model_path
         self.train_data_path = train_data_path
         self.eval_data_path = eval_data_path
         self.output_dir = output_dir
+        self.num_train_epochs = num_train_epochs
+        self.per_device_train_batch_size = per_device_train_batch_size
+        self.learning_rate = learning_rate
         self.model = None
         self.tokenizer = None
         self.setup_model(self.model_path)
@@ -76,8 +79,11 @@ class SFT:
         # Load data (your existing code)
         with open(self.train_data_path, "r") as file:
             train_data = json.load(file)
-        with open(self.eval_data_path, "r") as file:
-            eval_data = json.load(file)
+        if self.eval_data_path:
+            with open(self.eval_data_path, "r") as file:
+                eval_data = json.load(file)
+        else:
+            eval_data = []
         
         random.shuffle(train_data)
         
@@ -103,13 +109,13 @@ class SFT:
         # ===== CORRECTED Training Config =====
         training_args = SFTConfig(
             # ===== BATCH SIZE (CRITICAL FIX) =====
-            per_device_train_batch_size=16,     # ✅ INCREASED from 4
+            per_device_train_batch_size=self.per_device_train_batch_size,     # ✅ INCREASED from 4
             # per_device_eval_batch_size=8,
             gradient_accumulation_steps=4,      # ✅ INCREASED from 2
             # Effective batch = 8 * 4 * 4 = 128 ✅
             
             # ===== LEARNING RATE (CRITICAL FIX) =====
-            learning_rate=5e-5,                 # ✅ REDUCED from 5e-5 (5x reduction!)
+            learning_rate=self.learning_rate,                 # ✅ REDUCED from 5e-5 (5x reduction!)
             warmup_ratio=0.2,                   # ✅ INCREASED warmup (more gradual)
             
             # ===== REGULARIZATION =====
@@ -117,7 +123,7 @@ class SFT:
             max_grad_norm=1.0,                  # ✅ REDUCED from 10.0 (standard clipping)
             
             # ===== TRAINING DURATION =====
-            num_train_epochs=1.2,
+            num_train_epochs=self.num_train_epochs,
             
             # ===== EVALUATION & CHECKPOINTING =====
             # eval_strategy="steps",
@@ -238,9 +244,24 @@ class SFT:
 
 
 if __name__ == "__main__":
-    model_path = "path/to/base/model/checkpoint"  # Replace with your model checkpoint path
-    train_data_path = "path/to/your/training/data.json"  # Replace with your training data path
-    eval_data_path = "path/to/your/evaluation/data.json"  # Replace with your evaluation data path
-    output_dir = "path/to/save/trained/model"  # Replace with your desired output directory
-    sft = SFT(model_path, train_data_path, eval_data_path, output_dir)
+    parser = argparse.ArgumentParser(description="Train SFT model")
+    parser.add_argument('--model_name_or_path', required=True, help='Path or name of the model')
+    parser.add_argument('--data_path', required=True, help='Path to training data JSON')
+    parser.add_argument('--eval_data_path', help='Path to evaluation data JSON (optional)')
+    parser.add_argument('--output_dir', required=True, help='Output directory for checkpoints')
+    parser.add_argument('--num_train_epochs', type=float, default=1.2, help='Number of training epochs')
+    parser.add_argument('--per_device_train_batch_size', type=int, default=16, help='Batch size per device')
+    parser.add_argument('--learning_rate', type=float, default=5e-5, help='Learning rate')
+    
+    args = parser.parse_args()
+    
+    sft = SFT(
+        model_path=args.model_name_or_path,
+        train_data_path=args.data_path,
+        eval_data_path=args.eval_data_path,
+        output_dir=args.output_dir,
+        num_train_epochs=args.num_train_epochs,
+        per_device_train_batch_size=args.per_device_train_batch_size,
+        learning_rate=args.learning_rate
+    )
     sft.train()
