@@ -18,7 +18,8 @@ title: EnterpriseLab - Full-Stack Platform for Enterprise AI Agents
   <strong>
     Ankush Agarwal<sup>1,*</sup>, 
     Harsh Vishwakarma<sup>1,*</sup>, 
-    Suraj Nagaje<sup>1,*</sup>
+    Suraj Nagaje<sup>1,*</sup>,
+    Chaitanya Devaguptapu<sup>1</sup>
   </strong><br>
   <span style="font-size: 0.95em; opacity: 0.85;">
     <sup>1</sup>Fujitsu Research India<br>
@@ -541,7 +542,7 @@ If you use EnterpriseLab or EnterpriseArena in your research, please cite our wo
 ```bibtex
 @article{enterpriselab2026,
   title = {{EnterpriseLab}: A Full-Stack Platform for Developing and Deploying Agents in Enterprises},
-  author = {Nagaje, Suraj and Vishwakarma, Harsh and Agarwal, Ankush},
+  author = {Nagaje, Suraj and Vishwakarma, Harsh and Agarwal, Ankush and Devaguptapu, Chaitanya},
   journal = {arXiv preprint arXiv:XXXX.XXXXX},
   year = {2026}
 }
