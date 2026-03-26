@@ -27,7 +27,7 @@ title: EnterpriseLab - Full-Stack Platform for Enterprise AI Agents
 </p>
 
   <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
-    <a href="#" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">📄 Paper (Coming Soon)</a>
+    <a href="https://arxiv.org/abs/2603.21630" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">📄 Paper</a>
     <a href="https://github.com/ast-fri/EnterpriseLab" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">💻 GitHub</a>
     <a href="#" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">📊 Dataset</a>
     <a href="https://agentbeats.dev/VishwakarmaHarsh03/enterpriseplatform" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">🏆 Leaderboard</a>
@@ -38,11 +38,11 @@ title: EnterpriseLab - Full-Stack Platform for Enterprise AI Agents
 <div class="nav-menu" style="background: white; padding: 20px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;">
   <ul style="list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 0; margin: 0;">
     <li><a href="#abstract" style="color: #667eea; text-decoration: none; font-weight: 500;">📄 Abstract</a></li>
+    <li><a href="#demos" style="color: #667eea; text-decoration: none; font-weight: 500;">🎥 Demos</a></li>
     <li><a href="#introduction" style="color: #667eea; text-decoration: none; font-weight: 500;">💡 Introduction</a></li>
     <li><a href="#platform" style="color: #667eea; text-decoration: none; font-weight: 500;">⚙️ Platform</a></li>
     <li><a href="#enterprisearena" style="color: #667eea; text-decoration: none; font-weight: 500;">🏢 EnterpriseArena</a></li>
     <li><a href="#results" style="color: #667eea; text-decoration: none; font-weight: 500;">📊 Results</a></li>
-    <li><a href="#demos" style="color: #667eea; text-decoration: none; font-weight: 500;">🎥 Demos</a></li>
     <li><a href="#citation" style="color: #667eea; text-decoration: none; font-weight: 500;">📖 Citation</a></li>
   </ul>
 </div>
@@ -102,6 +102,47 @@ We introduce **EnterpriseLab**, a full-stack platform that unifies tool integrat
       Improvement on Benchmarks
     </div>
   </div>
+</div>
+
+---
+
+## Interactive Demos
+{: #demos}
+
+Watch EnterpriseLab agents in action performing complex enterprise workflows:
+
+<div style="background: #f8f9fa; padding: 40px; border-radius: 8px; margin: 30px 0; border: 2px solid #e0e0e0;">
+  <h3 style="color: #667eea; text-align: center; margin-bottom: 30px;">🎥 Task Demonstration Videos</h3>
+  
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-top: 30px;">
+    
+    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <h4 style="color: #764ba2; margin-top: 0; margin-bottom: 15px;">📋 Task Demo 1</h4>
+      <p style="color: #666; margin-bottom: 20px;">Multi-step enterprise workflow demonstration showing agent orchestration across HR, document management, and communication systems.</p>
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                src="https://www.youtube.com/embed/m2QUq_p2D7o" 
+                allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+    
+    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <h4 style="color: #764ba2; margin-top: 0; margin-bottom: 15px;">📋 Task Demo 2</h4>
+      <p style="color: #666; margin-bottom: 20px;">Complex cross-functional workflow demonstrating integration of version control, project management, and notification systems.</p>
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                src="https://www.youtube.com/embed/_KgV8-q-Hwc" 
+                allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+    
+  </div>
+  
+  <p style="text-align: center; margin-top: 30px; color: #666;">
+    <em>These demonstrations showcase EnterpriseLab's ability to handle realistic enterprise scenarios involving multiple tools and stateful decision-making.</em>
+  </p>
 </div>
 
 ---
@@ -491,47 +532,6 @@ EnterpriseLab and EnterpriseArena uniquely address multi-application enterprise 
 
 ---
 
-## Interactive Demos
-{: #demos}
-
-Watch EnterpriseLab agents in action performing complex enterprise workflows:
-
-<div style="background: #f8f9fa; padding: 40px; border-radius: 8px; margin: 30px 0; border: 2px solid #e0e0e0;">
-  <h3 style="color: #667eea; text-align: center; margin-bottom: 30px;">🎥 Task Demonstration Videos</h3>
-  
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-top: 30px;">
-    
-    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-      <h4 style="color: #764ba2; margin-top: 0; margin-bottom: 15px;">📋 Task Demo 1</h4>
-      <p style="color: #666; margin-bottom: 20px;">Multi-step enterprise workflow demonstration showing agent orchestration across HR, document management, and communication systems.</p>
-      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-                src="https://www.youtube.com/embed/m2QUq_p2D7o" 
-                allowfullscreen>
-        </iframe>
-      </div>
-    </div>
-    
-    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-      <h4 style="color: #764ba2; margin-top: 0; margin-bottom: 15px;">📋 Task Demo 2</h4>
-      <p style="color: #666; margin-bottom: 20px;">Complex cross-functional workflow demonstrating integration of version control, project management, and notification systems.</p>
-      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-                src="https://www.youtube.com/embed/_KgV8-q-Hwc" 
-                allowfullscreen>
-        </iframe>
-      </div>
-    </div>
-    
-  </div>
-  
-  <p style="text-align: center; margin-top: 30px; color: #666;">
-    <em>These demonstrations showcase EnterpriseLab's ability to handle realistic enterprise scenarios involving multiple tools and stateful decision-making.</em>
-  </p>
-</div>
-
----
-
 ## Citation
 {: #citation}
 
@@ -566,7 +566,7 @@ If you use EnterpriseLab or EnterpriseArena in your research, please cite our wo
   <h3>EnterpriseLab</h3>
   <p>Full-Stack Platform for Enterprise AI Agents</p>
   <div style="margin: 20px 0;">
-    <a href="#" style="color: #667eea; margin: 0 15px;">Paper (Coming Soon)</a>
+    <a href="https://arxiv.org/abs/2603.21630" style="color: #667eea; margin: 0 15px;">Paper</a>
     <a href="https://github.com/ast-fri/EnterpriseLab" style="color: #667eea; margin: 0 15px;">GitHub</a>
     <a href="#" style="color: #667eea; margin: 0 15px;">Dataset</a>
     <a href="#" style="color: #667eea; margin: 0 15px;">Documentation</a>
@@ -576,4 +576,3 @@ If you use EnterpriseLab or EnterpriseArena in your research, please cite our wo
     © 2026 EnterpriseLab. Preliminary work under review.
   </p>
 </div>
-
