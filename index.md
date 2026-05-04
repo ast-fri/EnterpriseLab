@@ -15,23 +15,15 @@ title: EnterpriseLab - Full-Stack Platform for Enterprise AI Agents
   </div>
 
   <p style="margin: 25px 0 10px; font-size: 1.1em; line-height: 1.6;">
-  <strong>
-    Ankush Agarwal<sup>1,*</sup>, 
-    Harsh Vishwakarma<sup>1,*</sup>, 
-    Suraj Nagaje<sup>1,*</sup>,
-    Chaitanya Devaguptapu<sup>1</sup>
-  </strong><br>
-  <span style="font-size: 0.95em; opacity: 0.85;">
-    <sup>1</sup>Fujitsu Research India<br>
-    <sup>*</sup>Equal contribution
-  </span>
+  <strong>Anonymous Authors</strong><br>
+  <span style="font-size: 0.95em; opacity: 0.85;">Institution omitted for anonymous review</span>
 </p>
 
   <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
-    <a href="https://arxiv.org/abs/2603.21630" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">📄 Paper</a>
-    <a href="https://github.com/ast-fri/EnterpriseLab" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">💻 GitHub</a>
+    <a href="#" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">📄 Paper</a>
+    <a href="#" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">💻 GitHub</a>
     <a href="#" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">📊 Dataset</a>
-    <a href="https://agentbeats.dev/VishwakarmaHarsh03/enterpriseplatform" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">🏆 Leaderboard</a>
+    <a href="#" style="background: white; color: #667eea; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: 600;">🏆 Leaderboard</a>
   </div>
 </header>
 
@@ -542,8 +534,8 @@ If you use EnterpriseLab or EnterpriseArena in your research, please cite our wo
 ```bibtex
 @article{enterpriselab2026,
   title = {{EnterpriseLab}: A Full-Stack Platform for Developing and Deploying Agents in Enterprises},
-  author = {Nagaje, Suraj and Vishwakarma, Harsh and Agarwal, Ankush and Devaguptapu, Chaitanya},
-  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  author = {Anonymous Authors},
+  journal = {Under anonymous review},
   year = {2026}
 }
 ```
@@ -558,7 +550,7 @@ If you use EnterpriseLab or EnterpriseArena in your research, please cite our wo
     <li>On-premises deployment for data sovereignty</li>
     <li>Continuous evaluation and adaptation</li>
   </ul>
-  <p style="margin-top: 20px;"><strong>Visit our <a href="https://github.com/ast-fri/EnterpriseLab" style="color: #667eea;">GitHub repository</a> to get started!</strong></p>
+  <p style="margin-top: 20px;"><strong>Repository link omitted for anonymous review.</strong></p>
 </div>
 
 ---
@@ -567,13 +559,13 @@ If you use EnterpriseLab or EnterpriseArena in your research, please cite our wo
   <h3>EnterpriseLab</h3>
   <p>Full-Stack Platform for Enterprise AI Agents</p>
   <div style="margin: 20px 0;">
-    <a href="https://arxiv.org/abs/2603.21630" style="color: #667eea; margin: 0 15px;">Paper</a>
-    <a href="https://github.com/ast-fri/EnterpriseLab" style="color: #667eea; margin: 0 15px;">GitHub</a>
+    <a href="#" style="color: #667eea; margin: 0 15px;">Paper</a>
+    <a href="#" style="color: #667eea; margin: 0 15px;">GitHub</a>
     <a href="#" style="color: #667eea; margin: 0 15px;">Dataset</a>
     <a href="#" style="color: #667eea; margin: 0 15px;">Documentation</a>
   </div>
   <p style="margin-top: 30px; opacity: 0.8;">
-    Contact: suraj.nagaje@fujitsu.com<br>
-    © 2026 EnterpriseLab. Preliminary work under review.
+    Contact omitted for anonymous review.<br>
+    2026 EnterpriseLab. Preliminary work under review.
   </p>
 </div>

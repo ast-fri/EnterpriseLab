@@ -1,15 +1,13 @@
 title: EnterpriseLab
 description: Full-Stack Platform for Developing and Deploying Agents in Enterprises
-url: "https://ast-fri.github.io/EnterpriseLab"
+url: ""
 baseurl: ""
 
 # Theme - remove minima, we're using custom CSS
 # theme: minima  # Comment this out or remove it
 
 author:
-  - name: Suraj Nagaje
-  - name: Harsh Vishwakarma
-  - name: Ankush Agarwal
+  - name: Anonymous Authors
 
 # Build settings
 markdown: kramdown
