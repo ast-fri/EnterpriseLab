@@ -6,6 +6,7 @@ ReAct Graph with LOCAL MODEL Support + vLLM SERVER Support + ROBUST Tool Parsing
 import json
 import asyncio
 import ast
+import ipaddress
 from langchain_huggingface import ChatHuggingFace, HuggingFacePipeline
 from langchain_openai import OpenAI as LangChainOpenAI
 from langchain_openai import AzureChatOpenAI
@@ -19,28 +20,113 @@ from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.agents import AgentAction, AgentFinish
 from pydantic import BaseModel, ValidationError
 # from langchain_core.messages import RemoveMessage
+from langchain_google_genai import ChatGoogleGenerativeAI
 
+import boto3
+from langchain_aws import ChatBedrock
+import time
 from typing import List, Annotated, Literal, Dict, Any, Optional
 import os
 import json
 import re
 import uuid
 from datetime import datetime
+from pathlib import Path
+from urllib.parse import urlparse, urlunparse
 from dotenv import load_dotenv
 import torch
 from openai import OpenAI
 
-load_dotenv()
+DOTENV_PATH = Path(__file__).with_name(".env")
+load_dotenv(dotenv_path=DOTENV_PATH, override=True)
 
 # Configuration
+LOCAL_MODEL_PATH = os.getenv("LOCAL_MODEL_PATH", "")
 TOOL_EXAMPLES_PATH = os.getenv("TOOL_EXAMPLES_PATH", "tool_examples.json")
 # NEW: vLLM Server Configuration
-VLLM_BASE_URL = os.getenv("VLLM_BASE_URL", "http://localhost:8000/v1")
-VLLM_API_KEY = os.getenv("VLLM_API_KEY", "your_vllm_api_key_here")
+VLLM_BASE_URL = os.getenv("VLLM_BASE_URL", "")
+VLLM_API_KEY = os.getenv("VLLM_API_KEY", "")
 
 # Modes: "local" or "vllm"
-MODEL_MODE = os.getenv("MODEL_MODE", "vllm")  # gpt/vllm/local
+MODEL_MODE = os.getenv("MODEL_MODE", "vllm")  # azure/vllm/local/bedrock/gemini
 DEBUG_MODE = os.getenv("DEBUG_MODE", "True").lower() == "true"
+
+
+def _is_internal_or_private_host(hostname: Optional[str]) -> bool:
+    """Detect hosts that should bypass corporate HTTP proxies."""
+    if not hostname:
+        return False
+
+    if hostname in {"localhost", "127.0.0.1", "::1"}:
+        return True
+
+    try:
+        ip = ipaddress.ip_address(hostname)
+        return ip.is_private or ip.is_loopback or ip.is_link_local
+    except ValueError:
+        # Cluster-style short hostnames like "gpu03" should not go through proxies.
+        return "." not in hostname
+
+
+def _add_host_to_no_proxy(hostname: Optional[str]) -> None:
+    """Ensure internal model hosts bypass proxy environment variables."""
+    if not hostname or not _is_internal_or_private_host(hostname):
+        return
+
+    updated = False
+    for env_name in ("NO_PROXY", "no_proxy"):
+        current = os.getenv(env_name, "")
+        entries = [entry.strip() for entry in current.split(",") if entry.strip()]
+        if hostname not in entries:
+            entries.append(hostname)
+            os.environ[env_name] = ",".join(entries)
+            updated = True
+
+    if updated:
+        print(f"🌐 Added {hostname} to NO_PROXY for direct vLLM access")
+
+
+def _normalize_vllm_base_url(base_url: str) -> str:
+    """Normalize user-provided vLLM URLs to the OpenAI client base URL."""
+    normalized = (base_url or "").strip().strip('"').strip("'")
+    if not normalized:
+        return normalized
+
+    parsed = urlparse(normalized)
+    path = parsed.path.rstrip("/")
+
+    # The OpenAI client expects the API root, not a collection endpoint.
+    for suffix in ("/models", "/chat/completions", "/completions"):
+        if path.endswith(suffix):
+            path = path[: -len(suffix)]
+            break
+
+    if not path:
+        path = "/v1"
+
+    normalized_url = urlunparse(parsed._replace(path=path, params="", query="", fragment=""))
+    if normalized_url != normalized:
+        print(f"🔧 Normalized VLLM_BASE_URL from {normalized} to {normalized_url}")
+    return normalized_url
+
+
+def _get_vllm_candidate_urls(base_url: str) -> List[str]:
+    """Try the configured host first, then localhost for SSH-forwarded setups."""
+    normalized_base_url = _normalize_vllm_base_url(base_url)
+    candidates = [normalized_base_url]
+    parsed = urlparse(normalized_base_url)
+    hostname = parsed.hostname
+
+    if not hostname or hostname in {"localhost", "127.0.0.1", "::1"}:
+        return candidates
+
+    if _is_internal_or_private_host(hostname):
+        localhost_netloc = f"localhost:{parsed.port}" if parsed.port else "localhost"
+        localhost_url = urlunparse(parsed._replace(netloc=localhost_netloc))
+        if localhost_url not in candidates:
+            candidates.append(localhost_url)
+
+    return candidates
 
 class TrajectoryStep(BaseModel):
     step_number: int
@@ -66,6 +152,9 @@ class AgentState(BaseModel):
     subtasks_completed: List[str] = []
     pending_subtasks: List[str] = []
 
+
+EXPERIMENTAL_FIRST_STEP_HEADER = "[EXPERIMENTAL FIRST-STEP CONSTRAINT]"
+
 def save_trajectory_to_file(trajectory: List[TrajectoryStep], query: str, final_answer: str = ""):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"trajectory_{timestamp}.json"
@@ -83,6 +172,115 @@ def save_trajectory_to_file(trajectory: List[TrajectoryStep], query: str, final_
     print(f"📁 Trajectory saved to: {filepath}")
     return filepath
 
+
+def _split_experimental_constraint(query: str) -> tuple[str, str]:
+    if EXPERIMENTAL_FIRST_STEP_HEADER not in query:
+        return query.strip(), ""
+    base_query, _, constraint = query.partition(EXPERIMENTAL_FIRST_STEP_HEADER)
+    return base_query.rstrip(), constraint.strip()
+
+
+def _effective_query(query: str) -> str:
+    base_query, _ = _split_experimental_constraint(query)
+    return base_query or query
+
+
+def _extract_balanced_json_object(text: str, start: int) -> tuple[str, int]:
+    if start >= len(text) or text[start] != "{":
+        return "", -1
+
+    depth = 0
+    in_string = False
+    escape_next = False
+    for index in range(start, len(text)):
+        char = text[index]
+        if escape_next:
+            escape_next = False
+            continue
+        if char == "\\":
+            escape_next = True
+            continue
+        if char == '"':
+            in_string = not in_string
+            continue
+        if in_string:
+            continue
+        if char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+            if depth == 0:
+                return text[start:index + 1], index + 1
+
+    return "", -1
+
+
+def _parse_json_like_dict(text: str) -> Optional[Dict[str, Any]]:
+    try:
+        parsed = json.loads(text)
+    except json.JSONDecodeError:
+        try:
+            parsed = ast.literal_eval(text)
+        except (ValueError, SyntaxError):
+            return None
+
+    return parsed if isinstance(parsed, dict) else None
+
+
+def _extract_enforced_first_tool_call(query: str) -> Optional[Dict[str, Any]]:
+    _, constraint = _split_experimental_constraint(query)
+    if not constraint:
+        return None
+
+    match = re.search(r"([A-Za-z_][A-Za-z0-9_]*)\(", constraint)
+    if not match:
+        return None
+
+    tool_name = match.group(1)
+    brace_start = constraint.find("{", match.end())
+    if brace_start == -1:
+        return {"name": tool_name, "args": {}}
+
+    args_json, _ = _extract_balanced_json_object(constraint, brace_start)
+    if not args_json:
+        return None
+
+    parsed_args = _parse_json_like_dict(args_json)
+    if parsed_args is None:
+        return None
+
+    return {"name": tool_name, "args": parsed_args}
+
+
+def _has_executed_tool_action(state: AgentState) -> bool:
+    return any(step.step_type == "action" and step.tool_used for step in state.trajectory)
+
+
+def _format_enforced_tool_call(tool_name: str, tool_args: Dict[str, Any]) -> str:
+    return f"{tool_name}({json.dumps(tool_args, ensure_ascii=False)})"
+def load_bedrock_model():
+        AWS_REGION = os.getenv("AWS_REGION", "us-west-2")
+        AWS_KEY = os.getenv("AWS_ACCESS_KEY_ID")
+        AWS_SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+        session = boto3.Session(region_name=AWS_REGION)
+        bedrock_client = session.client(
+            "bedrock-runtime",
+            endpoint_url=f"https://bedrock-runtime.{AWS_REGION}.amazonaws.com"
+        )
+        llm = ChatBedrock(
+   
+            model_id = "",
+            client=bedrock_client,
+            model_kwargs={
+                "temperature": 0,
+                "max_tokens": 8192   #change to 10000 for claude 4.5
+            },
+            beta_use_converse_api=True,
+            disable_streaming=False
+        )
+        llm = llm.bind()
+        # llm_with_tools = llm.bind_tools(tools) if tools else llm
+        return llm
 def load_local_model(model_path: str, device: str = "auto"):
     """Load model locally via HuggingFace"""
     print(f"🔄 Loading local model from: {model_path}")
@@ -118,60 +316,75 @@ def load_local_model(model_path: str, device: str = "auto"):
     chat_model = ChatHuggingFace(llm=hf_pipeline)
     print(f"✅ Local model loaded successfully")
     return chat_model
-
+def load_gemini_model():
+    llm = ChatGoogleGenerativeAI(
+            model="gemini-2.5-pro",  # or "gemini-2.0-flash-exp"
+            project="genai-gemini-testing",
+            location="global",  # or "us-central1"
+            temperature=0,
+            max_output_tokens=65536,
+        )
+    llm = llm.bind(
+            response_format={"type": "json_object"}
+        )
+    # llm_with_tools = llm.bind_tools(tools) if tools else llm
+    return llm
 def load_vllm_model(base_url: str, api_key: str):
     """✅ NEW: Load model via vLLM OpenAI-compatible server"""
-    print(f"🔄 Connecting to vLLM server at: {base_url}")
-    
-    # Test connection and get model name
-    try:
-        client = OpenAI(base_url=base_url, api_key=api_key)
-        models = client.models.list()
-        # print("Available models from vLLM server:", [m.id for m in models.data])
-        # print("Model details:", models)
-        # exit()
-        if not models.data:
-            raise ValueError("No models available from vLLM server")
-        
-        model_name = models.data[0].id
-        print(f"✅ Connected to vLLM server")
-        print(f"📋 Available model: {model_name}")
-        
-        # Create LangChain-compatible wrapper
-        from langchain_openai import ChatOpenAI
-        
-        chat_model = ChatOpenAI(
-            model=model_name,
-            openai_api_base=base_url,
-            openai_api_key=api_key,
-            temperature=0,
-            max_tokens=1024,
-            extra_body={
-                "chat_template_kwargs": {"enable_thinking": False}
-            }
-        )
-        
-        print(f"✅ vLLM model wrapper created")
-        return chat_model, model_name
-        
-    except Exception as e:
-        print(f"❌ Failed to connect to vLLM server: {e}")
-        print(f"   Make sure vLLM is running on {base_url}")
-        raise
+    errors = []
+
+    for candidate_url in _get_vllm_candidate_urls(base_url):
+        print(f"🔄 Connecting to vLLM server at: {candidate_url}")
+
+        hostname = urlparse(candidate_url).hostname
+        _add_host_to_no_proxy(hostname)
+
+        try:
+            client = OpenAI(base_url=candidate_url, api_key=api_key)
+            models = client.models.list()
+            if not models.data:
+                raise ValueError("No models available from vLLM server")
+
+            model_name = models.data[0].id
+            print(f"✅ Connected to vLLM server")
+            print(f"📋 Available model: {model_name}")
+
+            # Create LangChain-compatible wrapper
+            from langchain_openai import ChatOpenAI
+
+            chat_model = ChatOpenAI(
+                model=model_name,
+                openai_api_base=candidate_url,
+                openai_api_key=api_key,
+                temperature=0.1,
+                max_tokens=8192,
+                extra_body={
+                    "chat_template_kwargs": {"enable_thinking": False}
+                }
+            )
+
+            print(f"✅ vLLM model wrapper created")
+            return chat_model, model_name
+
+        except Exception as e:
+            errors.append((candidate_url, e))
+            print(f"❌ Failed to connect to vLLM server via {candidate_url}: {e}")
+
+    print(f"   Make sure vLLM is running on {base_url}")
+    if len(errors) > 1:
+        tried_urls = ", ".join(url for url, _ in errors)
+        print(f"   Tried endpoints: {tried_urls}")
+    raise errors[-1][1]
 def load_gpt_model():
-    api_key = os.getenv("AZURE_CHAT_API_KEY")
-    api_base = os.getenv("AZURE_CHAT_ENDPOINT")
+    api_key = os.getenv("AZURE_API_KEY")
+    api_base = os.getenv("AZURE_API_ENDPOINT")
+    azure_api_version = os.getenv("AZURE_API_VERSION")
     # ✅ FIX 1: Add timeout and max_tokens to prevent runaway context
     llm = AzureChatOpenAI(
         api_key=api_key,
         azure_endpoint=api_base,
-        azure_deployment="gpt-4o",
         api_version="2024-02-01",
         temperature=0.1,
-        timeout=60,           # ← Prevent hanging
-        request_timeout=60,   # ← HTTP timeout
-        max_retries=2,        # ← Don't retry too much
-        max_tokens=2048       # ← CRITICAL: Limit response size
     )
     llm = llm.bind(
             response_format={"type": "json_object"}
@@ -186,9 +399,9 @@ def get_tool_schema_description(tool: BaseTool) -> str:
     """Enhanced tool description with few-shot examples for ALL 83 tools"""
     # if(tool.name=="create_issue"):
     # print(tool)
-    with open(TOOL_EXAMPLES_PATH, 'r') as f:
-        TOOL_EXAMPLES = json.load(f)
-    # TOOL_EXAMPLES={}
+    # with open(TOOL_EXAMPLES_PATH, 'r') as f:
+    #     TOOL_EXAMPLES = json.load(f)
+    TOOL_EXAMPLES={}
     # Complete examples mapping for all 83 tools
      
     
@@ -451,6 +664,12 @@ def get_base_prompt(tool_descriptions: str):
         4. For multi-step tasks, call tools FIRST, answer AFTER seeing results
         5. NEVER guess - use tools to get information
         6: Provide the complete Final Answer when done, do not leave it incomplete and miss details
+        
+        JSON FORMATTING RULES:
+        - Escape all newlines as \\n (not literal newlines)
+        - Escape all quotes inside strings
+        - Use double quotes for all strings
+        - Ensure all braces are properly closed
         """
     return base_prompt
 def build_react_agent_graph(tools: List[BaseTool], enable_clarification: bool = True,
@@ -465,7 +684,7 @@ def build_react_agent_graph(tools: List[BaseTool], enable_clarification: bool = 
     """
     
     mode = MODEL_MODE
-    print(mode)
+    print("CURRENT MODE of EVALUATION", mode)
     if tools:
         print(f"\n📚 Loading {len(tools)} tools...")
         
@@ -532,9 +751,19 @@ CLARIFICATION MODE: ENABLED
         print(f"🤖 Using LOCAL model mode")
         llm_with_stop = llm.bind(stop=["\nObservation", "\nObservation:", "Observation:"])
         use_local_parser = True
-    elif mode == "gpt":
+    elif mode == "azure":
         llm = load_gpt_model()
         print(f"🤖 Using GPT model mode")
+        llm_with_stop = llm.bind(stop=["\nObservation", "\nObservation:", "Observation:"])
+        use_local_parser = False
+    elif mode == "bedrock":
+        llm = load_bedrock_model()
+        print(f"🤖 Using BEDROCK model mode")
+        llm_with_stop = llm.bind(stop=["\nObservation", "\nObservation:", "Observation:"])
+        use_local_parser = False
+    elif mode == "gemini":
+        llm = load_gemini_model()
+        print(f"🤖 Using GEMINI model mode")
         llm_with_stop = llm.bind(stop=["\nObservation", "\nObservation:", "Observation:"])
         use_local_parser = False
     else:
@@ -551,32 +780,57 @@ CLARIFICATION MODE: ENABLED
             return thinking, remainder
         return "", text
 
+   
     def parse_json(json_str):
+        """Enhanced JSON parser with robust error handling for LLM outputs"""
         # Remove code block markers
         if json_str.startswith("```"):
-            json_str = json_str[len("```json"):].strip()
+            json_str = json_str[len("```json"):].strip() if json_str.startswith("```json") else json_str[3:].strip()
         if json_str.endswith("```"):
             json_str = json_str[:-3].strip()
         if json_str.startswith("<tool_call>"):
             json_str = json_str[len("<tool_call>"):].strip()
         if json_str.endswith("</tool_call>"):
             json_str = json_str[:-len("</tool_call>")].strip()
+        
         try:
-            # First try standard JSON parsing
+            # Strategy 1: Standard JSON parsing
             return json.loads(json_str)
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as e:
+            # Strategy 2: Fix unescaped control characters
             try:
-                # Try parsing as Python dict with single quotes
-                data = ast.literal_eval(json_str)
-                return data
-            except (ValueError, SyntaxError):
+                fixed_str = json_str.replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t')
+                return json.loads(fixed_str)
+            except json.JSONDecodeError:
+                # Strategy 3: Handle truncated strings
                 try:
-                    # Last resort: replace single quotes with double quotes
-                    json_str_fixed = json_str.replace("'", '"')
-                    return json.loads(json_str_fixed)
-                except json.JSONDecodeError as e:
-                    print(f"Parsing failed for string {json_str} with error: {e}")
-                    return ""
+                    fixed_str = json_str.replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t')
+                    
+                    # Fix truncation
+                    if fixed_str.rstrip().endswith('\\'):
+                        fixed_str = fixed_str.rstrip('\\') + '"}'
+                    
+                    # Fix missing closing braces
+                    open_braces = fixed_str.count('{')
+                    close_braces = fixed_str.count('}')
+                    if open_braces > close_braces:
+                        fixed_str += '}' * (open_braces - close_braces)
+                    
+                    return json.loads(fixed_str)
+                except json.JSONDecodeError:
+                    # Strategy 4: Try Python dict syntax
+                    try:
+                        data = ast.literal_eval(json_str)
+                        return data
+                    except (ValueError, SyntaxError):
+                        # Strategy 5: Last resort
+                        try:
+                            json_str_fixed = json_str.replace("'", '"')
+                            return json.loads(json_str_fixed)
+                        except json.JSONDecodeError as final_error:
+                            print(f"Parsing failed for string {json_str[:200]}... with error: {final_error}")
+                            return {"action": "Tool Call failed", "action_input": {}}
+
 
     def filter_messages_for_local_model(messages: List, current_query: str = "", include_system_prompt: bool = True) -> List:
         """
@@ -587,6 +841,7 @@ CLARIFICATION MODE: ENABLED
         """
         filtered = []
         system_added = False
+        user_messages_added = 0
         
         for msg in messages:
             # Add System message only once
@@ -603,7 +858,9 @@ CLARIFICATION MODE: ENABLED
                     continue
                 else:
                     # Add all genuine user messages
-                    filtered.append(msg)
+                    content = current_query if user_messages_added == 0 and current_query else msg.content
+                    filtered.append(HumanMessage(content=content))
+                    user_messages_added += 1
             
             elif isinstance(msg, AIMessage):
                 if hasattr(msg, 'tool_calls') and msg.tool_calls:
@@ -668,6 +925,16 @@ CLARIFICATION MODE: ENABLED
             print(f"\n{'='*80}")
             print(f"🧠 THINK NODE - Step {step_num}")
             print(f"{'='*80}")
+
+        effective_query = _effective_query(state.current_query)
+        enforced_tool_call = None
+        if not _has_executed_tool_action(state):
+            enforced_tool_call = _extract_enforced_first_tool_call(state.current_query)
+            if enforced_tool_call and DEBUG_MODE:
+                print(
+                    "🧷 Enforcing first-step thought:",
+                    _format_enforced_tool_call(enforced_tool_call["name"], enforced_tool_call["args"]),
+                )
         
         if state.subtasks_identified:
             progress = f"Completed: {len(state.subtasks_completed)}/{len(state.subtasks_identified)}"
@@ -677,8 +944,38 @@ CLARIFICATION MODE: ENABLED
         # Build conversation summary
         conversation_summary = build_conversation_summary(state)
         
+        if enforced_tool_call:
+            forced_thought = {
+                "thought": _format_enforced_tool_call(
+                    enforced_tool_call["name"],
+                    enforced_tool_call["args"],
+                )
+            }
+            thought_step = TrajectoryStep(
+                step_number=len(state.trajectory),
+                step_type="thought",
+                content=json.dumps(forced_thought, ensure_ascii=False),
+                timestamp=datetime.now().isoformat()
+            )
+            thought_message = AIMessage(content=json.dumps(forced_thought, ensure_ascii=False))
+            return AgentState(
+                messages=state.messages + [thought_message],
+                trajectory=state.trajectory + [thought_step],
+                current_step=state.current_step,
+                max_steps=state.max_steps,
+                task_completed=state.task_completed,
+                current_query=state.current_query,
+                final_answer=state.final_answer,
+                needs_clarification=state.needs_clarification,
+                clarification_question=state.clarification_question,
+                enable_clarification=state.enable_clarification,
+                subtasks_identified=state.subtasks_identified,
+                subtasks_completed=state.subtasks_completed,
+                pending_subtasks=state.pending_subtasks
+            )
+
         think_prompt = f"""
-            Current Query: {state.current_query}
+            Current Query: {effective_query}
             Conversation Summary: {conversation_summary}
 
             Status: {progress}
@@ -689,7 +986,7 @@ CLARIFICATION MODE: ENABLED
          # ✅ CRITICAL FIX: Handle messages differently for GPT vs Local
         if use_local_parser:
             # Local/vLLM mode: filter and convert ToolMessages
-            filtered_messages = filter_messages_for_local_model(state.messages, state.current_query)
+            filtered_messages = filter_messages_for_local_model(state.messages, effective_query)
             messages = filtered_messages + [HumanMessage(content=think_prompt)]
         else:
             # ✅ GPT mode: Keep ALL messages intact for OpenAI API
@@ -697,8 +994,16 @@ CLARIFICATION MODE: ENABLED
         # print("Think Node Conversation: ", messages)
         if DEBUG_MODE:
             print(f"📊 Message count: {len(messages)}")
-        
-        response = llm.invoke(messages)
+        # print("Thinking message: ",messages)
+        steps=0
+        while(steps<5):
+            steps+=1
+            try:
+                response = llm.invoke(messages)
+            except Exception as e:
+                time.sleep(15*steps)
+                print(f"Retrying due to error: {e}")
+                continue
         thinking, _remainder = parse_thinking(response.content)
         parsed_thought = _remainder
         
@@ -740,11 +1045,21 @@ CLARIFICATION MODE: ENABLED
         print(f"\n{'='*80}")
         print(f"⚡ ACTION NODE - Step {step_num}/{state.max_steps}")
         print(f"{'='*80}")
+
+        effective_query = _effective_query(state.current_query)
+        enforced_tool_call = None
+        if not _has_executed_tool_action(state):
+            enforced_tool_call = _extract_enforced_first_tool_call(state.current_query)
+            if enforced_tool_call:
+                print(
+                    "🧷 Enforcing first-step action:",
+                    _format_enforced_tool_call(enforced_tool_call["name"], enforced_tool_call["args"]),
+                )
         
         # Build conversation summary
         conversation_summary = build_conversation_summary(state)
         
-        action_prompt = f"""Current Query: {state.current_query}
+        action_prompt = f"""Current Query: {effective_query}
     Conversation Summary:   
     {conversation_summary}
 
@@ -764,7 +1079,7 @@ CLARIFICATION MODE: ENABLED
         # ✅ CRITICAL FIX: Handle messages differently for GPT vs Local
         if use_local_parser:
             # Local/vLLM mode: filter and convert ToolMessages
-            filtered_messages = filter_messages_for_local_model(state.messages, state.current_query)
+            filtered_messages = filter_messages_for_local_model(state.messages, effective_query)
             messages = filtered_messages + [HumanMessage(content=action_prompt)]
         else:
             # ✅ GPT mode: Keep ALL messages intact for OpenAI API
@@ -773,11 +1088,28 @@ CLARIFICATION MODE: ENABLED
         if DEBUG_MODE:
             print(f"📊 Message count: {len(messages)}")
         # print("Action Node Message: ", messages)
-        response = llm_with_stop.invoke(messages)
-        thinking, _remainder = parse_thinking(response.content)
-        # Handle response content
-        parsed_action = parse_json(_remainder)
-        print("Action Output: ", parsed_action)
+        if enforced_tool_call:
+            parsed_action = {
+                "action": enforced_tool_call["name"],
+                "action_input": enforced_tool_call["args"],
+            }
+            print("Action Output: ", parsed_action)
+        else:
+            steps=0
+            while(steps<5):
+                steps+=1
+                try:
+                    response = llm_with_stop.invoke(messages)
+                except Exception as e:
+                    time.sleep(15*steps)
+                    print(f"Retrying due to error: {e}")
+            if len(response.content) > 400 and not response.content.rstrip().endswith('}'):
+                print(f"⚠️ WARNING: Response appears truncated!")
+                print(f"Last 100 chars: {response.content[-100:]}")
+            thinking, _remainder = parse_thinking(response.content)
+            # Handle response content
+            parsed_action = parse_json(_remainder)
+            print("Action Output: ", parsed_action)
         # ✅ Check for clarification action
         if isinstance(parsed_action, dict) and parsed_action.get('action') == 'clarify':
             clarification_q = parsed_action.get('action_input', {}).get('question', 'Could you clarify?')
@@ -842,6 +1174,7 @@ CLARIFICATION MODE: ENABLED
                     print(f"📥 Arguments: {validated_args}")
                 else:
                     # Validation failed due to missing required fields
+                    print(f"❌ Enforced/selected tool validation failed: {validated_args}")
                     ai_message = AIMessage(content=str(validated_args))
                                        
         

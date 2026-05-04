@@ -1,14 +1,19 @@
+
+
 """
-Core data structures for Agentic GRPO training - COMPLETE & IMPROVED
+Core data structures for Agentic GRPO training.
 
-This module contains all the fundamental data types used throughout the training pipeline.
-Critical: The is_trainable flag is what prevents the model from learning to hallucinate tool outputs.
+Trajectory format (mirrors example):
+  - Assistant turns: plain prose reasoning + JSON array tool call
+        [{"name": "toolName", "args": {...}}]
+  - System turns:   observation injected by executor
+        ["Function Call {'name': ..., 'args': ...} Succeeded. Result: {...}"]
+        ["Function Call {'name': ..., 'args': ...} Failed during execution. Error: {...}"]
+  - Final turn:     assistant prose ending with <TASK_FINISHED>
 
-IMPROVEMENTS:
-- Unified ToolExecutionResult with ToolExecutionStatus enum
-- Improved loop detection using brace-matching JSON extraction
-- Split validation into structure vs training checks
-- Better error messages and debugging utilities
+is_trainable flag:
+  True  → model-generated tokens (reasoning + tool calls + final answer)
+  False → system prompts, user query, observations (environment outputs)
 """
 
 from dataclasses import dataclass, field
@@ -18,13 +23,30 @@ import json
 import re
 
 
+# ---------------------------------------------------------------------------
+# Enums
+# ---------------------------------------------------------------------------
+
 class ToolExecutionStatus(Enum):
-    """Status codes for tool execution results."""
-    SUCCESS = "success"
-    INVALID_ARGS = "invalid_args"
-    TIMEOUT = "timeout"
+    SUCCESS       = "success"
+    INVALID_ARGS  = "invalid_args"
+    TIMEOUT       = "timeout"
     RUNTIME_ERROR = "runtime_error"
     TOOL_NOT_FOUND = "tool_not_found"
+
+
+# ---------------------------------------------------------------------------
+# Tool execution primitives
+# ---------------------------------------------------------------------------
+
+@dataclass
+class ExecutedToolCall:
+    tool_name:        str
+    args:             Dict[str, Any]
+    status:           str          # stringified ToolExecutionStatus
+    output:           str
+    error_message:    Optional[str] = None
+    execution_time_ms: float = 0.0
 
 
 @dataclass
@@ -32,378 +54,327 @@ class ToolExecutionResult:
     """
     Result of a single tool execution.
 
-    Critical Design: We separate status from output because we need to handle failures
-    differently in the training loop (some failures are the model's fault, some aren't).
+    Attribution:
+      - INVALID_ARGS / TOOL_NOT_FOUND → model's fault → penalise
+      - TIMEOUT / RUNTIME_ERROR       → environment issue → do not penalise
     """
-    status: ToolExecutionStatus
-    output: str
+    status:           ToolExecutionStatus
+    output:           str
     execution_time_ms: float
-    error_message: Optional[str] = None
+    error_message:    Optional[str] = None
 
     def should_penalize_model(self) -> bool:
-        """
-        Determine if this failure should count against the model's reward.
+        return self.status in (
+            ToolExecutionStatus.INVALID_ARGS,
+            ToolExecutionStatus.TOOL_NOT_FOUND,
+        )
 
-        Attribution Logic:
-        - INVALID_ARGS: YES (model failed to generate valid JSON)
-        - TOOL_NOT_FOUND: YES (model hallucinated a non-existent tool)
-        - TIMEOUT: NO (environment issue, not model's fault)
-        - RUNTIME_ERROR: NO (could be environment or edge case)
-        """
-        return self.status in [
-            ToolExecutionStatus.INVALID_ARGS, 
-            ToolExecutionStatus.TOOL_NOT_FOUND
-        ]
 
+# ---------------------------------------------------------------------------
+# Trajectory segments
+# ---------------------------------------------------------------------------
 
 @dataclass
 class TrajectorySegment:
     """
-    A single segment of a ReAct trajectory.
+    One segment of a trajectory.
 
-    Critical: The is_trainable flag determines which tokens get gradients.
-    - is_trainable=True: Model-generated tokens (thoughts, actions)
-    - is_trainable=False: Environment outputs (observations), user queries, system prompts
+    segment_type values
+    -------------------
+    'system'              – planner system prompt (not trainable)
+    'user'                – user query (not trainable)
+    'thought_and_action'  – assistant turn: prose + optional tool-call array (TRAINABLE)
+    'observation'         – system-injected tool result (not trainable)
 
-    If we train on tool outputs, the model learns to hallucinate results instead of calling tools.
+    Invariant: observation / user / system segments must never be trainable.
     """
-    text: str
+    text:         str
     is_trainable: bool
-    segment_type: str  # 'system', 'user', 'thought', 'action', 'observation', 'final_answer'
-    token_count: int = 0  # Filled by tokenizer during collation
+    segment_type: str
+    token_count:  int = 0   # filled in by tokenizer during collation
+
+    _NON_TRAINABLE_TYPES = frozenset({"observation", "user", "system"})
 
     def __post_init__(self):
-        # Validation: Certain segment types must NEVER be trainable
-        if self.segment_type in ['observation', 'user', 'system']:
-            if self.is_trainable:
-                raise ValueError(
-                    f"{self.segment_type} segments must have is_trainable=False. "
-                    f"Training on environment outputs causes hallucination."
-                )
+        if self.segment_type in self._NON_TRAINABLE_TYPES and self.is_trainable:
+            raise ValueError(
+                f"segment_type '{self.segment_type}' must have is_trainable=False. "
+                "Training on environment outputs causes hallucination."
+            )
 
+
+# ---------------------------------------------------------------------------
+# JSON extraction helper (brace-matching)
+# ---------------------------------------------------------------------------
 
 def _extract_json_with_brace_matching(text: str, start_pos: int) -> Tuple[str, int]:
     """
-    Extract a complete JSON object using brace counting.
-    
-    IMPROVED: Handles nested JSON properly (regex cannot do this reliably).
-    
-    Args:
-        text: Full text containing JSON
-        start_pos: Index of the opening '{'
-        
-    Returns:
-        (json_string, end_pos) or ("", -1) if parsing fails
+    Extract a complete JSON object/array using brace/bracket counting.
+    Returns (json_string, end_pos) or ("", -1) on failure.
     """
-    if start_pos >= len(text) or text[start_pos] != '{':
+    if start_pos >= len(text) or text[start_pos] not in ('{', '['):
         return "", -1
-    
-    brace_count = 0
-    in_string = False
-    escape_next = False
-    
+
+    open_ch  = text[start_pos]
+    close_ch = '}' if open_ch == '{' else ']'
+    depth    = 0
+    in_str   = False
+    escape   = False
+
     for i in range(start_pos, len(text)):
-        char = text[i]
-        
-        # Handle string escaping
-        if escape_next:
-            escape_next = False
+        ch = text[i]
+        if escape:
+            escape = False
             continue
-        
-        if char == '\\':
-            escape_next = True
+        if ch == '\\':
+            escape = True
             continue
-        
-        # Track if we're inside a string
-        if char == '"':
-            in_string = not in_string
+        if ch == '"':
+            in_str = not in_str
             continue
-        
-        # Only count braces outside of strings
-        if not in_string:
-            if char == '{':
-                brace_count += 1
-            elif char == '}':
-                brace_count -= 1
-                
-                # Found matching closing brace
-                if brace_count == 0:
-                    json_str = text[start_pos:i+1]
-                    return json_str, i+1
-    
-    # Incomplete JSON
+        if not in_str:
+            if ch == open_ch:
+                depth += 1
+            elif ch == close_ch:
+                depth -= 1
+                if depth == 0:
+                    return text[start_pos: i + 1], i + 1
+
     return "", -1
 
+
+# ---------------------------------------------------------------------------
+# Completed trajectory
+# ---------------------------------------------------------------------------
 
 @dataclass
 class CompletedTrajectory:
     """
-    A complete ReAct trajectory with metadata for training.
+    A complete multi-turn trajectory ready for reward assignment and training.
 
-    This object stores both the structured segments (for precise loss masking)
-    and cached full text (for the LLM judge).
+    Termination reasons
+    -------------------
+    'success'                – <TASK_FINISHED> found in last assistant turn
+    'no_tool_call'           – assistant produced neither a tool call nor TASK_FINISHED
+    'invalid_tool_call_json' – tool-call array was malformed JSON
+    'invalid_action'         – tool name missing or null
+    'invalid_args'           – args was not a dict
+    'max_turns_reached'      – loop hit max_turns without finishing
+    'generation_error'       – LLM threw an exception
+    'exception'              – outer catch-all in batch runner
+    'unknown'                – default / uninitialised
     """
-    query_id: str
-    segments: List[TrajectorySegment]
-    reward: Optional[float] = None
-    advantage: Optional[float] = None
 
-    # Metadata for debugging and analysis
-    num_tool_calls: int = 0
-    total_tokens: int = 0
+    query_id:          str
+    segments:          List[TrajectorySegment]
+    reward:            Optional[float] = None
+    advantage:         Optional[float] = None
+
+    # Metadata
+    num_tool_calls:    int   = 0
+    total_tokens:      int   = 0
     generation_time_ms: float = 0.0
-    termination_reason: str = "unknown"  # 'success', 'max_turns', 'timeout', 'error', 'context_overflow'
+    termination_reason: str  = "unknown"
 
-    # Cached properties (lazy evaluation to save memory)
-    _full_text: Optional[str] = None
-    _trainable_text: Optional[str] = None
+    # Lazy cache
+    _full_text:        Optional[str] = field(default=None, repr=False)
+    _trainable_text:   Optional[str] = field(default=None, repr=False)
+    executed_tool_calls: List[ExecutedToolCall] = field(default_factory=list)
+
+    # ------------------------------------------------------------------
+    # Properties
+    # ------------------------------------------------------------------
 
     @property
     def full_text(self) -> str:
-        """Get the complete trajectory as a single string."""
         if self._full_text is None:
-            self._full_text = "".join([seg.text for seg in self.segments])
+            self._full_text = "".join(s.text for s in self.segments)
         return self._full_text
 
     @property
     def trainable_text(self) -> str:
-        """Get only the portions the model should be trained on."""
         if self._trainable_text is None:
-            self._trainable_text = "".join([
-                seg.text for seg in self.segments if seg.is_trainable
-            ])
+            self._trainable_text = "".join(
+                s.text for s in self.segments if s.is_trainable
+            )
         return self._trainable_text
 
-    def _extract_action_info(self, action_segment: TrajectorySegment) -> Optional[Tuple[str, Dict]]:
+    # ------------------------------------------------------------------
+    # Tool-call extraction from 'thought_and_action' segments
+    # ------------------------------------------------------------------
+
+    def _extract_tool_calls_from_segment(
+        self, segment: TrajectorySegment
+    ) -> List[Tuple[str, str]]:
         """
-        IMPROVED: Extract tool name and arguments from action segment.
-        Uses brace-matching instead of regex for nested JSON.
-        
-        Returns:
-            (tool_name, args_dict) or None if parsing fails
+        Extract (tool_name, args_json) pairs from the JSON-array tool call
+        embedded in an assistant segment.
+
+        Expected pattern inside the text:
+            [{"name": "toolName", "args": {...}}]
         """
-        text = action_segment.text.strip()
-        
-        # Extract tool name
-        tool_match = re.search(r"Action:\s*([^\n\r]+)", text)
-        if not tool_match:
-            return None
-        
-        tool_name = tool_match.group(1).strip()
-        # Remove trailing () if present
-        if tool_name.endswith('()'):
-            tool_name = tool_name[:-2].strip()
-        
-        # Extract arguments using brace-matching
-        args_match = re.search(r"Action Input:\s*", text, re.IGNORECASE)
-        if not args_match:
-            return (tool_name, {})
-        
-        # Find first '{' after "Action Input:"
-        start_search = args_match.end()
-        first_brace = text.find('{', start_search)
-        
-        if first_brace == -1:
-            return (tool_name, {})
-        
-        # Use brace-matching extraction
-        json_str, _ = _extract_json_with_brace_matching(text, first_brace)
-        
-        if not json_str:
-            return (tool_name, {})
-        
-        try:
-            args_dict = json.loads(json_str)
-            return (tool_name, args_dict)
-        except json.JSONDecodeError:
-            return (tool_name, {})
+        text = segment.text
+        results: List[Tuple[str, str]] = []
+
+        # Find the opening bracket of a top-level JSON array
+        for i, ch in enumerate(text):
+            if ch == '[':
+                arr_str, _ = _extract_json_with_brace_matching(text, i)
+                if not arr_str:
+                    continue
+                try:
+                    calls = json.loads(arr_str)
+                    if not isinstance(calls, list):
+                        continue
+                    for call in calls:
+                        if isinstance(call, dict):
+                            name = str(call.get("name", "")).strip()
+                            args = call.get("args", {})
+                            if name:
+                                results.append((name, json.dumps(args)))
+                    if results:
+                        break   # stop after first valid array
+                except (json.JSONDecodeError, TypeError):
+                    continue
+
+        return results
+
+    # ------------------------------------------------------------------
+    # Validation
+    # ------------------------------------------------------------------
+
+    _VALID_SEGMENT_TYPES = frozenset({
+        "system", "user", "thought_and_action", "observation",
+        # legacy names kept for backward compat
+        "thought", "action", "final_answer", "malformed_output",
+    })
+
+    _VALID_TERMINATION_REASONS = frozenset({
+        "success", "no_tool_call", "invalid_tool_call_json",
+        "invalid_action", "invalid_args", "max_turns_reached",
+        "generation_error", "exception", "unknown",
+        # legacy
+        "max_turns", "context_overflow", "malformed_output",
+    })
 
     def validate_structure(self) -> Tuple[bool, str]:
-        """
-        IMPROVED: Validate trajectory structure (before reward assignment).
-
-        Checks:
-        1. Must have at least one trainable segment
-        2. Must not be empty
-        3. Segment types must be valid
-        4. Check for pathological patterns (infinite loops using brace-matched args)
-
-        Returns:
-            (is_valid, error_message)
-        """
-        # Check 1: Must have trainable content
-        if not any(seg.is_trainable for seg in self.segments):
-            return False, "No trainable segments in trajectory"
-
-        # Check 2: Must not be empty
-        if len(self.segments) == 0:
+        """Validate trajectory structure (before reward assignment)."""
+        if not self.query_id:
+            return False, "Missing query_id"
+        if not self.segments:
             return False, "Empty trajectory"
-
-        # Check 3: Validate segment types
-        valid_types = {'system', 'user', 'thought', 'action', 'observation', 'final_answer'}
+        if not any(s.is_trainable for s in self.segments):
+            return False, "No trainable segments"
         for seg in self.segments:
-            if seg.segment_type not in valid_types:
-                return False, f"Invalid segment_type: {seg.segment_type}"
+            if seg.segment_type not in self._VALID_SEGMENT_TYPES:
+                return False, f"Invalid segment_type: '{seg.segment_type}'"
+        if (self.termination_reason not in self._VALID_TERMINATION_REASONS
+                and not self.termination_reason.startswith("tool_")):
+            return False, f"Invalid termination_reason: '{self.termination_reason}'"
 
-        # Check 4: IMPROVED - Detect infinite loops by comparing (tool_name, args) using brace-matching
-        if self.num_tool_calls > 3:
-            action_segments = [seg for seg in self.segments if seg.segment_type == 'action']
-            
-            if len(action_segments) > 3:
-                # Extract (tool_name, args) pairs using improved extraction
-                action_infos = []
-                for seg in action_segments:
-                    info = self._extract_action_info(seg)
-                    if info:
-                        action_infos.append(info)
-                
-                # Check for repeated identical actions
-                if len(action_infos) >= 3:
-                    # Look for 3+ consecutive identical (tool, args) pairs
-                    for i in range(len(action_infos) - 2):
-                        if action_infos[i] == action_infos[i+1] == action_infos[i+2]:
-                            tool_name, args = action_infos[i]
-                            return False, f"Infinite loop detected: repeated action '{tool_name}' with same args (3 consecutive times)"
+        # Loop detection: 3+ consecutive identical tool calls
+        if self.num_tool_calls >= 3:
+            action_segs = [
+                s for s in self.segments if s.segment_type == "thought_and_action"
+            ]
+            call_signatures: List[str] = []
+            for seg in action_segs:
+                for name, args in self._extract_tool_calls_from_segment(seg):
+                    call_signatures.append(f"{name}::{args}")
+
+            for i in range(len(call_signatures) - 2):
+                if call_signatures[i] == call_signatures[i+1] == call_signatures[i+2]:
+                    return False, (
+                        f"Infinite loop: '{call_signatures[i]}' repeated 3× consecutively"
+                    )
 
         return True, ""
 
     def validate_for_training(self) -> Tuple[bool, str]:
-        """
-        IMPROVED: Validate trajectory is ready for training (after reward assignment).
-
-        Checks:
-        1. Structure is valid
-        2. Reward has been assigned
-
-        Returns:
-            (is_valid, error_message)
-        """
-        # First check structure
-        is_valid, error_msg = self.validate_structure()
-        if not is_valid:
-            return False, error_msg
-
-        # Check reward assignment
+        """Validate structure AND reward assignment."""
+        ok, msg = self.validate_structure()
+        if not ok:
+            return False, msg
         if self.reward is None:
             return False, "Reward not assigned"
-
         return True, ""
 
     def validate(self) -> Tuple[bool, str]:
-        """
-        Default validation (for backward compatibility).
-        
-        Uses validate_for_training() which includes all checks.
-        """
+        """Alias for validate_for_training (backward compat)."""
         return self.validate_for_training()
 
-    def get_stats(self) -> Dict[str, Any]:
-        """Get trajectory statistics for logging."""
-        trainable_tokens = sum(seg.token_count for seg in self.segments if seg.is_trainable)
-        total_tokens = sum(seg.token_count for seg in self.segments)
-
-        # Count segment types
-        segment_counts = {}
-        for seg in self.segments:
-            seg_type = seg.segment_type
-            segment_counts[seg_type] = segment_counts.get(seg_type, 0) + 1
-
-        return {
-            'query_id': self.query_id,
-            'num_segments': len(self.segments),
-            'segment_counts': segment_counts,
-            'num_tool_calls': self.num_tool_calls,
-            'total_tokens': total_tokens,
-            'trainable_tokens': trainable_tokens,
-            'trainable_ratio': trainable_tokens / max(total_tokens, 1),
-            'generation_time_ms': self.generation_time_ms,
-            'termination_reason': self.termination_reason,
-            'reward': self.reward,
-            'advantage': self.advantage
-        }
-
-    def get_action_sequence(self) -> List[str]:
-        """
-        IMPROVED: Get sequence of tool names used in this trajectory.
-        
-        Returns:
-            List of tool names in order
-        """
-        tools = []
-        for seg in self.segments:
-            if seg.segment_type == 'action':
-                info = self._extract_action_info(seg)
-                if info:
-                    tool_name, _ = info
-                    tools.append(tool_name)
-        return tools
-
-    def get_action_sequence_with_args(self) -> List[Tuple[str, Dict]]:
-        """
-        Get sequence of (tool_name, args) pairs used in this trajectory.
-        
-        Returns:
-            List of (tool_name, args_dict) tuples
-        """
-        actions = []
-        for seg in self.segments:
-            if seg.segment_type == 'action':
-                info = self._extract_action_info(seg)
-                if info:
-                    actions.append(info)
-        return actions
-
-    def count_segment_tokens(self, tokenizer: Any) -> None:
-        """
-        Fill in token_count for all segments using a tokenizer.
-        
-        Args:
-            tokenizer: Tokenizer to use for counting
-        """
-        for seg in self.segments:
-            if seg.token_count == 0:  # Only compute if not already set
-                seg.token_count = len(tokenizer.encode(seg.text, add_special_tokens=False))
+    # ------------------------------------------------------------------
+    # Convenience helpers
+    # ------------------------------------------------------------------
 
     def has_successful_completion(self) -> bool:
-        """Check if trajectory completed successfully."""
         return self.termination_reason == "success"
 
     def has_final_answer(self) -> bool:
-        """Check if trajectory contains a final answer segment."""
-        return any(seg.segment_type == 'final_answer' for seg in self.segments)
+        """True if any assistant segment ends with <TASK_FINISHED>."""
+        return any(
+            "<TASK_FINISHED>" in s.text
+            for s in self.segments
+            if s.segment_type == "thought_and_action"
+        )
 
     def get_final_answer(self) -> Optional[str]:
         """
-        Extract the final answer text from trajectory.
-        
-        Returns:
-            Final answer string or None if not found
+        Return the text of the last assistant segment that contains
+        <TASK_FINISHED>, stripped of the tag itself.
         """
-        for seg in self.segments:
-            if seg.segment_type == 'final_answer':
-                # Extract text after "Final Answer: "
-                text = seg.text.strip()
-                match = re.search(r"Final Answer:\s*(.+)", text, re.DOTALL)
-                if match:
-                    return match.group(1).strip()
-                return text
+        for seg in reversed(self.segments):
+            if seg.segment_type == "thought_and_action" and "<TASK_FINISHED>" in seg.text:
+                return seg.text.replace("<TASK_FINISHED>", "").strip()
         return None
 
+    def get_action_sequence(self) -> List[str]:
+        """Ordered list of tool names called in this trajectory."""
+        names: List[str] = []
+        for seg in self.segments:
+            if seg.segment_type == "thought_and_action":
+                for name, _ in self._extract_tool_calls_from_segment(seg):
+                    names.append(name)
+        return names
+
+    def count_segment_tokens(self, tokenizer: Any) -> None:
+        """Populate token_count for all segments."""
+        for seg in self.segments:
+            if seg.token_count == 0:
+                seg.token_count = len(
+                    tokenizer.encode(seg.text, add_special_tokens=False)
+                )
+
+    def get_stats(self) -> Dict[str, Any]:
+        trainable_tok = sum(s.token_count for s in self.segments if s.is_trainable)
+        total_tok     = sum(s.token_count for s in self.segments)
+        seg_counts: Dict[str, int] = {}
+        for s in self.segments:
+            seg_counts[s.segment_type] = seg_counts.get(s.segment_type, 0) + 1
+        return {
+            "query_id":         self.query_id,
+            "num_segments":     len(self.segments),
+            "segment_counts":   seg_counts,
+            "num_tool_calls":   self.num_tool_calls,
+            "total_tokens":     total_tok,
+            "trainable_tokens": trainable_tok,
+            "trainable_ratio":  trainable_tok / max(total_tok, 1),
+            "generation_time_ms": self.generation_time_ms,
+            "termination_reason": self.termination_reason,
+            "reward":           self.reward,
+            "advantage":        self.advantage,
+        }
+
     def summary(self) -> str:
-        """
-        Get a human-readable summary of the trajectory.
-        
-        Returns:
-            Summary string for logging/debugging
-        """
         action_seq = self.get_action_sequence()
-        final_ans = self.get_final_answer()
-        
-        summary = f"Trajectory {self.query_id}:\n"
-        summary += f"  Status: {self.termination_reason}\n"
-        summary += f"  Tools used ({len(action_seq)}): {' -> '.join(action_seq) if action_seq else 'None'}\n"
-        summary += f"  Final answer: {final_ans[:100] if final_ans else 'None'}...\n"
-        summary += f"  Reward: {self.reward:.3f if self.reward is not None else 'Not assigned'}\n"
-        summary += f"  Tokens: {self.total_tokens} ({sum(1 for s in self.segments if s.is_trainable)} trainable segments)\n"
-        
-        return summary
+        final      = self.get_final_answer()
+        lines = [
+            f"Trajectory {self.query_id}:",
+            f"  Status      : {self.termination_reason}",
+            f"  Tools used  : {' -> '.join(action_seq) if action_seq else 'None'}",
+            f"  Final answer: {(final[:100] + '...') if final else 'None'}",
+            f"  Reward      : {self.reward:.3f if self.reward is not None else 'Not assigned'}",
+            f"  Tokens      : {self.total_tokens} "
+            f"({sum(1 for s in self.segments if s.is_trainable)} trainable segments)",
+        ]
+        return "\n".join(lines)

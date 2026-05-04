@@ -1,60 +1,130 @@
 """
-Agentic Rollout Manager - COMPLETE & IMPROVED
+AgenticRolloutManager — Multi-Turn LLM Calls + Deterministic Executor Loop
 
-Combines all fixes + full functionality:
-- enable_thinking=False for Qwen3
-- No dangerous post-truncation on "\nFinal Answer:"
-- Optional HF StoppingCriteria (safe, doesn't delete markers)
-- Sequential generation (no threading)
-- Observations as system messages
-- All helper methods included
+Trajectory format
+─────────────────
+Each assistant turn contains:
+  1. Free-form reasoning prose.
+  2. (Optional) A JSON array with a single tool call:
+         [{"name": "toolName", "args": {"param": "value"}}]
+
+Each observation is injected as a system message:
+  ["Function Call {'name': ..., 'args': ...} Succeeded. Result: {...}"]
+  or
+  ["Function Call {'name': ..., 'args': ...} Failed during execution. Error: {...}. ..."]
+
+Task completion is signalled by the model appending <TASK_FINISHED> to its
+final assistant turn (no tool call in that same turn).
+
+Termination conditions
+──────────────────────
+  <TASK_FINISHED> in turn      → "success"
+  No tool call *and* no tag    → "no_tool_call"      (implicit finish; logged as warning)
+  Malformed JSON array         → "invalid_tool_call_json"
+  Missing / null tool name     → "invalid_action"
+  args not a dict              → "invalid_args"
+  max_turns reached            → "max_turns_reached"
+  Generation exception         → "generation_error"
 """
 
-import time
-import logging
-from typing import Any, Callable, List, Dict, Optional
-import torch
 import json
+import logging
+import time
+from typing import Any, Callable, Dict, List, Optional
+
+import torch
 
 from data_structures import (
     CompletedTrajectory,
-    TrajectorySegment,
+    ExecutedToolCall,
     ToolExecutionResult,
-    ToolExecutionStatus
+    ToolExecutionStatus,
+    TrajectorySegment,
 )
-from react_parser import ReActParser
 from prompt_builder import PromptBuilder
 
 logger = logging.getLogger(__name__)
 
 
-class SubstringStoppingCriteria:
-    """
-    Custom stopping criteria that stops when any substring appears.
-    Does NOT remove the substring (safe for parsing).
-    """
-    def __init__(self, tokenizer, stop_strings: List[str], start_length: int):
-        self.tokenizer = tokenizer
-        self.stop_strings = stop_strings
-        self.start_length = start_length
+# ---------------------------------------------------------------------------
+# System prompt template
+# ---------------------------------------------------------------------------
 
-    def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
-        # Decode only the newly generated portion
-        generated_ids = input_ids[0, self.start_length:]
-        generated_text = self.tokenizer.decode(generated_ids, skip_special_tokens=True)
-        
-        # Check if any stop string appears
-        for stop_str in self.stop_strings:
-            if stop_str in generated_text:
-                return True
-        return False
+PLANNER_SYSTEM_PROMPT = """{tool_descriptions}"""
+# The full prompt is built by PromptBuilder.build_react_prompt(); we just
+# insert it verbatim.  The template variable is kept for callers that pass
+# a custom system prompt via custom_system_prompt.
 
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def _extract_task_finished(text: str) -> bool:
+    """Return True if the assistant turn signals task completion."""
+    return "<TASK_FINISHED>" in text
+
+
+def _extract_tool_call_array(text: str) -> Optional[str]:
+    """
+    Find the first top-level JSON array in the text that looks like a tool
+    call list: [{"name": ..., "args": ...}].
+
+    Returns the raw array string, or None if none found.
+    """
+    # Walk through the text looking for '[' that starts a top-level array.
+    depth    = 0
+    in_str   = False
+    escape   = False
+    start    = None
+
+    for i, ch in enumerate(text):
+        if escape:
+            escape = False
+            continue
+        if ch == '\\':
+            escape = True
+            continue
+        if ch == '"':
+            in_str = not in_str
+            continue
+        if in_str:
+            continue
+
+        if ch == '[':
+            if depth == 0:
+                start = i
+            depth += 1
+        elif ch == ']':
+            depth -= 1
+            if depth == 0 and start is not None:
+                candidate = text[start: i + 1]
+                # Quick heuristic: must contain "name"
+                if '"name"' in candidate:
+                    return candidate
+                start = None   # reset and keep looking
+
+
+    return None
+
+
+# ---------------------------------------------------------------------------
+# Main class
+# ---------------------------------------------------------------------------
 
 class AgenticRolloutManager:
     """
-    Manages trajectory generation with real-time tool execution.
-    
-    COMPLETE implementation with all features.
+    Generates multi-turn trajectories by interleaving LLM planner calls with
+    deterministic tool execution.
+
+    Each turn:
+      1. Build a prompt from the growing conversation history.
+      2. Call the LLM → get assistant text with optional tool-call array.
+      3. Append the assistant turn as a TRAINABLE segment.
+      4. If <TASK_FINISHED> → done.
+      5. If a JSON tool-call array is present → execute → inject observation
+         as a NON-TRAINABLE system segment → loop.
+      6. Otherwise → terminate with "no_tool_call".
     """
 
     def __init__(
@@ -62,444 +132,615 @@ class AgenticRolloutManager:
         model: Any,
         tokenizer: Any,
         tool_env_factory: Callable,
-        max_turns: int = 10,
-        max_tool_output_tokens: int = 500,
-        tool_timeout_seconds: float = 30.0,
-        max_context_length: int = 4096,
-        max_new_tokens_per_turn: int = 512,
-        temperature: float = 0.7,
-        stop_strings: Optional[List[str]] = None,
-        device: str = "cuda",
-        use_stopping_criteria: bool = False
+        max_tool_output_tokens: int = 1024,
+        tool_timeout_seconds:   float = 30.0,
+        max_context_length:     int   = 16_814,
+        max_new_tokens:         int   = 2048,
+        temperature:            float = 1.0,
+        device:                 str   = "cuda",
+        max_turns:              int   = 10,
     ):
-        """
-        Args:
-            model: Language model for generation
-            tokenizer: Tokenizer for the model
-            tool_env_factory: Factory function that returns a new tool environment
-            max_turns: Maximum number of ReAct turns per trajectory
-            max_tool_output_tokens: Max tokens to keep from tool outputs
-            tool_timeout_seconds: Timeout for individual tool executions
-            max_context_length: Maximum context window length
-            max_new_tokens_per_turn: Max tokens to generate per turn
-            temperature: Sampling temperature
-            stop_strings: Optional list of strings to stop generation (via StoppingCriteria)
-            device: Device to use for generation
-            use_stopping_criteria: Whether to use HF StoppingCriteria (safe stopping)
-        """
-        self.model = model
-        self.tokenizer = tokenizer
-        self.tool_env_factory = tool_env_factory
-        self.max_turns = max_turns
+        self.model                  = model
+        self.tokenizer              = tokenizer
+        self.tool_env_factory       = tool_env_factory
         self.max_tool_output_tokens = max_tool_output_tokens
-        self.tool_timeout_seconds = tool_timeout_seconds
-        self.max_context_length = max_context_length
-        self.max_new_tokens_per_turn = max_new_tokens_per_turn
-        self.temperature = temperature
-        self.device = device
+        self.tool_timeout_seconds   = tool_timeout_seconds
+        self.max_context_length     = max_context_length
+        self.max_new_tokens         = max_new_tokens
+        self.temperature            = temperature
+        self.device                 = device
+        self.max_turns              = max_turns
 
-        # IMPORTANT: Stop strings are used via StoppingCriteria (doesn't truncate)
-        # NOT via post-processing split (which would delete markers)
-        self.stop_strings = stop_strings or []
-        self.use_stopping_criteria = use_stopping_criteria
-
-        # Create prompt builder from tool schema
+        # Build tool descriptions once from a sample environment
         sample_env = tool_env_factory()
-        
-        # Try to get proper schema first, fallback to tool_methods
-        if hasattr(sample_env, 'get_tool_schema'):
+        if hasattr(sample_env, "get_tool_schema"):
             tools = sample_env.get_tool_schema()
-        elif hasattr(sample_env, 'tool_methods'):
+        elif hasattr(sample_env, "tool_methods"):
             tools = sample_env.tool_methods
         else:
             tools = []
             logger.warning("Could not find tools in environment")
 
-        self.prompt_builder = PromptBuilder(tools)
+        self.prompt_builder      = PromptBuilder(tools)
+        self._system_prompt_text = self.prompt_builder.build_react_prompt()
+        logger.info(
+            "AgenticRolloutManager initialised with %d tools, max_turns=%d",
+            len(tools), max_turns,
+        )
 
-        if isinstance(tools, (dict, list)):
-            logger.info(f"Initialized with {len(tools)} tools")
-        else:
-            logger.info(f"Initialized with tools")
+    # ------------------------------------------------------------------
+    # LLM generation
+    # ------------------------------------------------------------------
 
-    def _truncate_tool_output(self, output: str) -> str:
-        """Truncate tool output to prevent context window overflow."""
-        tokens = self.tokenizer.encode(output, add_special_tokens=False)
+    def _model_generate(self, prompt: str) -> str:
+        """Single forward pass; returns only the newly generated tokens."""
+        inputs       = self.tokenizer(prompt, return_tensors="pt", add_special_tokens=False)
+        input_ids    = inputs["input_ids"].to(self.device)
+        attn_mask    = inputs.get("attention_mask")
+        if attn_mask is not None:
+            attn_mask = attn_mask.to(self.device)
 
-        if len(tokens) > self.max_tool_output_tokens:
-            truncated_tokens = tokens[:self.max_tool_output_tokens]
-            truncated_text = self.tokenizer.decode(
-                truncated_tokens, 
-                skip_special_tokens=True
+        context_len = input_ids.shape[1]
+        remaining   = self.max_context_length - context_len
+        if remaining < 100:
+            raise ValueError(
+                f"Context too long before generation: {context_len} tokens "
+                f"(max {self.max_context_length})"
             )
-            logger.warning(
-                f"Tool output truncated: {len(tokens)} -> {self.max_tool_output_tokens} tokens"
-            )
-            return truncated_text + "\n[... output truncated ...]"
 
-        return output
+        max_gen = min(self.max_new_tokens, remaining - 10)
 
-    def _execute_tool_with_timeout(
-        self,
-        tool_env: Any,
-        tool_name: str,
-        args: Any
-    ) -> ToolExecutionResult:
-        """Execute tool with timeout protection."""
-        start_time = time.time()
+        was_gc = getattr(self.model, "is_gradient_checkpointing", False)
+        if was_gc:
+            self.model.gradient_checkpointing_disable()
 
-        if not isinstance(args, dict):
-            return ToolExecutionResult(
-                status=ToolExecutionStatus.INVALID_ARGS,
-                output=f"Error: Expected dict for action input, got {type(args).__name__}",
-                execution_time_ms=(time.time() - start_time) * 1000,
-                error_message="Arguments must be a JSON object"
-            )
+        t0 = time.time()
+        logger.info("Generating with %d input tokens …", context_len)
 
         try:
-            from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
-            
-            executor = ThreadPoolExecutor(max_workers=1)
-            future = executor.submit(tool_env.execute, tool_name, args)
-            result = future.result(timeout=self.tool_timeout_seconds)
-            result.execution_time_ms = (time.time() - start_time) * 1000
-            executor.shutdown(wait=False)
-            return result
+            with torch.inference_mode():
+                output_ids = self.model.generate(
+                    input_ids=input_ids,
+                    attention_mask=attn_mask,
+                    max_new_tokens=max_gen,
+                    do_sample=True,
+                    temperature=self.temperature,
+                    top_p=0.9,
+                    pad_token_id=self.tokenizer.pad_token_id or self.tokenizer.eos_token_id,
+                    eos_token_id=self.tokenizer.eos_token_id,
+                    use_cache=True,
+                )
+        finally:
+            if was_gc:
+                self.model.gradient_checkpointing_enable()
 
-        except FuturesTimeoutError:
-            logger.error(f"Tool '{tool_name}' timed out after {self.tool_timeout_seconds}s")
-            return ToolExecutionResult(
-                status=ToolExecutionStatus.TIMEOUT,
-                output=f"Error: Tool execution exceeded {self.tool_timeout_seconds}s timeout",
-                execution_time_ms=(time.time() - start_time) * 1000,
-                error_message="Timeout"
+        elapsed    = time.time() - t0
+        new_tokens = output_ids[0][context_len:]
+        n          = len(new_tokens)
+        logger.info("Generated %d tokens in %.1fs (%.1f tok/s)", n, elapsed, n / elapsed)
+
+        return self.tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
+
+    def _model_generate_batch(self, prompts: List[str]) -> List[str]:
+        """Batched forward pass; returns newly generated text for each prompt."""
+        if not prompts:
+            return []
+
+        original_padding_side = getattr(self.tokenizer, "padding_side", "right")
+        self.tokenizer.padding_side = "left"
+        try:
+            inputs = self.tokenizer(
+                prompts,
+                return_tensors="pt",
+                add_special_tokens=False,
+                padding=True,
+            )
+        finally:
+            self.tokenizer.padding_side = original_padding_side
+        input_ids = inputs["input_ids"].to(self.device)
+        attn_mask = inputs.get("attention_mask")
+        if attn_mask is not None:
+            attn_mask = attn_mask.to(self.device)
+
+        prompt_lengths = (
+            attn_mask.sum(dim=1).tolist()
+            if attn_mask is not None
+            else [input_ids.shape[1]] * input_ids.shape[0]
+        )
+        max_context_len = max(prompt_lengths)
+        remaining = self.max_context_length - max_context_len
+        if remaining < 100:
+            raise ValueError(
+                f"Context too long before generation: {max_context_len} tokens "
+                f"(max {self.max_context_length})"
             )
 
-        except Exception as e:
-            logger.error(f"Tool '{tool_name}' raised exception: {e}", exc_info=True)
+        max_gen = min(self.max_new_tokens, remaining - 10)
+
+        was_gc = getattr(self.model, "is_gradient_checkpointing", False)
+        if was_gc:
+            self.model.gradient_checkpointing_disable()
+
+        t0 = time.time()
+        logger.info(
+            "Generating batch of %d prompts with up to %d input tokens …",
+            len(prompts),
+            max_context_len,
+        )
+
+        try:
+            with torch.inference_mode():
+                output_ids = self.model.generate(
+                    input_ids=input_ids,
+                    attention_mask=attn_mask,
+                    max_new_tokens=max_gen,
+                    do_sample=True,
+                    temperature=self.temperature,
+                    top_p=0.9,
+                    pad_token_id=self.tokenizer.pad_token_id or self.tokenizer.eos_token_id,
+                    eos_token_id=self.tokenizer.eos_token_id,
+                    use_cache=True,
+                )
+        finally:
+            if was_gc:
+                self.model.gradient_checkpointing_enable()
+
+        elapsed = time.time() - t0
+        logger.info(
+            "Generated batch in %.1fs across %d prompts",
+            elapsed,
+            len(prompts),
+        )
+
+        responses: List[str] = []
+        padded_width = input_ids.shape[1]
+        for row_idx, prompt_len in enumerate(prompt_lengths):
+            new_tokens = output_ids[row_idx][padded_width:]
+            n = len(new_tokens)
+            logger.info(
+                "  Batch item %d generated %d tokens from %d prompt tokens (%.1f tok/s)",
+                row_idx,
+                n,
+                prompt_len,
+                n / elapsed if elapsed > 0 else 0.0,
+            )
+            responses.append(
+                self.tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
+            )
+
+        return responses
+
+    # ------------------------------------------------------------------
+    # Tool execution
+    # ------------------------------------------------------------------
+
+    def _truncate_tool_output(self, text: str) -> str:
+        tokens = self.tokenizer.encode(text, add_special_tokens=False)
+        if len(tokens) > self.max_tool_output_tokens:
+            truncated = self.tokenizer.decode(
+                tokens[: self.max_tool_output_tokens], skip_special_tokens=True
+            )
+            logger.warning(
+                "Tool output truncated: %d → %d tokens", len(tokens), self.max_tool_output_tokens
+            )
+            return truncated + "\n[... output truncated ...]"
+        return text
+
+    def _execute_tool(
+        self, tool_env: Any, tool_name: str, args: Dict[str, Any]
+    ) -> ToolExecutionResult:
+        try:
+            result = tool_env.execute(tool_name, args)
+
+            if isinstance(result, ToolExecutionResult):
+                return result
+
+            if isinstance(result, dict):
+                return ToolExecutionResult(
+                    status=(
+                        ToolExecutionStatus.SUCCESS
+                        if result.get("success")
+                        else ToolExecutionStatus.RUNTIME_ERROR
+                    ),
+                    output=str(result.get("output", result)),
+                    execution_time_ms=result.get("execution_time_ms", 0.0),
+                    error_message=result.get("error_message"),
+                )
+
+            return ToolExecutionResult(
+                status=ToolExecutionStatus.SUCCESS,
+                output=str(result),
+                execution_time_ms=0.0,
+            )
+
+        except Exception as exc:
+            logger.error("Tool execution error for '%s': %s", tool_name, exc)
             return ToolExecutionResult(
                 status=ToolExecutionStatus.RUNTIME_ERROR,
-                output=f"Error: {str(e)}",
-                execution_time_ms=(time.time() - start_time) * 1000,
-                error_message=str(e)
+                output=f"Error: {exc}",
+                execution_time_ms=0.0,
+                error_message=str(exc),
             )
 
-    def _model_generate(
-        self, 
-        prompt: str,
-        max_new_tokens: int
+    # ------------------------------------------------------------------
+    # Observation formatting
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _format_observation(
+        tool_name: str, args: Dict[str, Any], result: ToolExecutionResult
     ) -> str:
         """
-        Generate text from the model.
-        
-        FIXED: Use tokenizer(...) instead of tokenizer.encode()
-        FIXED: Optional StoppingCriteria (safe, doesn't truncate)
+        Produce the system-message observation string matching the trajectory format:
+
+        Success:
+          ["Function Call {'name': 'lockDoors', 'args': {...}} Succeeded. Result: {...}"]
+
+        Failure:
+          ["Function Call {'name': '...', 'args': {...}} Failed during execution.
+           Error: {...}. Function calls after this will not be executed."]
         """
-        # Use proper tokenization API
-        inputs = self.tokenizer(
-            prompt,
-            return_tensors="pt",
-            add_special_tokens=False  # Chat template already added special tokens
-        )
-        
-        input_ids = inputs["input_ids"].to(self.device)
-        attention_mask = inputs.get("attention_mask")
-        if attention_mask is not None:
-            attention_mask = attention_mask.to(self.device)
+        call_repr = f"{{'name': '{tool_name}', 'args': {args}}}"
 
-        # Build stopping criteria if enabled
-        stopping_criteria = None
-        if self.use_stopping_criteria and self.stop_strings:
-            try:
-                from transformers import StoppingCriteriaList
-                stopping_criteria = StoppingCriteriaList([
-                    SubstringStoppingCriteria(
-                        self.tokenizer, 
-                        self.stop_strings, 
-                        input_ids.shape[1]
-                    )
-                ])
-            except Exception as e:
-                logger.warning(f"Could not create stopping criteria: {e}")
-
-        # Generation with proper attention mask
-        with torch.inference_mode():
-            output_ids = self.model.generate(
-                input_ids=input_ids,
-                attention_mask=attention_mask,
-                max_new_tokens=max_new_tokens,
-                do_sample=True,
-                temperature=self.temperature,
-                top_p=0.9,
-                pad_token_id=self.tokenizer.pad_token_id or self.tokenizer.eos_token_id,
-                eos_token_id=self.tokenizer.eos_token_id,
-                stopping_criteria=stopping_criteria
+        if "success" in str(result.status).lower():
+            body = f"Function Call {call_repr} Succeeded. Result: {result.output}"
+        else:
+            err  = result.error_message or result.output
+            body = (
+                f"Function Call {call_repr} Failed during execution. "
+                f"Error: {err}. "
+                "Function calls after this will not be executed."
             )
 
-        # Decode only the new tokens
-        new_tokens = output_ids[0][input_ids.shape[1]:]
-        generated_text = self.tokenizer.decode(new_tokens, skip_special_tokens=True)
+        return json.dumps([body])
 
-        # IMPORTANT: Do NOT split/truncate on stop strings here!
-        # StoppingCriteria already stopped generation, and parser needs the full text
+    # ------------------------------------------------------------------
+    # Prompt assembly
+    # ------------------------------------------------------------------
 
-        return generated_text.strip()
+    def _build_prompt_from_history(self, history: List[Dict[str, str]]) -> str:
+        try:
+            return self.tokenizer.apply_chat_template(
+                history,
+                tokenize=False,
+                add_generation_prompt=True,
+                enable_thinking=False,   # Qwen3 compatibility
+            )
+        except TypeError:
+            return self.tokenizer.apply_chat_template(
+                history,
+                tokenize=False,
+                add_generation_prompt=True,
+            )
 
-    def _generate_single_trajectory(
+    # ------------------------------------------------------------------
+    # Single trajectory (multi-turn loop)
+    # ------------------------------------------------------------------
+
+    def _build_completed_trajectory(
         self,
         query_id: str,
-        system_prompt: str,
-        user_query: str,
-        tool_env: Any
+        segments: List[TrajectorySegment],
+        executed_calls: List[ExecutedToolCall],
+        termination_reason: str,
+        t_start: float,
     ) -> CompletedTrajectory:
-        """
-        Generate a single trajectory using the ReAct loop.
-
-        FIXED: enable_thinking=False for Qwen3
-        FIXED: Observations as system messages, not user
-        """
-        start_time = time.time()
-        segments = []
-
-        # Initialize messages list for chat template
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_query}
-        ]
-
-        # Store segments for trajectory tracking
-        segments.append(TrajectorySegment(
-            text=system_prompt,
-            is_trainable=False,
-            segment_type='system'
-        ))
-
-        segments.append(TrajectorySegment(
-            text=f"\n\nUser: {user_query}\n",
-            is_trainable=False,
-            segment_type='user'
-        ))
-
-        num_tool_calls = 0
-        termination_reason = "unknown"
-        assistant_response = ""  # Accumulate assistant's full response
-
-        # ReAct loop
-        for turn in range(self.max_turns):
-            # FIXED: Apply chat template with enable_thinking=False
-            try:
-                current_prompt = self.tokenizer.apply_chat_template(
-                    messages,
-                    tokenize=False,
-                    add_generation_prompt=True,
-                    enable_thinking=False  # CRITICAL FIX for Qwen3
-                )
-            except TypeError:
-                # Fallback for tokenizers that don't support enable_thinking
-                try:
-                    current_prompt = self.tokenizer.apply_chat_template(
-                        messages,
-                        tokenize=False,
-                        add_generation_prompt=True
-                    )
-                except Exception as e:
-                    logger.error(f"Chat template failed: {e}. Falling back to simple concatenation.")
-                    current_prompt = system_prompt + "\n\nUser: " + user_query + "\n\nAssistant: " + assistant_response
-
-            # Check context length
-            context_tokens = len(self.tokenizer.encode(current_prompt, add_special_tokens=False))
-            remaining_tokens = self.max_context_length - context_tokens
-
-            if remaining_tokens < 100:
-                logger.warning(
-                    f"Query {query_id}: Context overflow at turn {turn} "
-                    f"({context_tokens}/{self.max_context_length} tokens)"
-                )
-                termination_reason = "context_overflow"
-                break
-
-            # Generate next segment
-            try:
-                max_gen_tokens = min(self.max_new_tokens_per_turn, remaining_tokens - 10)
-                generated_text = self._model_generate(
-                    prompt=current_prompt,
-                    max_new_tokens=max_gen_tokens
-                )
-            except Exception as e:
-                logger.error(f"Query {query_id}: Generation failed at turn {turn}: {e}")
-                termination_reason = "generation_error"
-                break
-
-            # Parse the generated text
-            parsed = ReActParser.parse(generated_text)
-
-            # Add thought segment (trainable) if present
-            if parsed['thought']:
-                thought_text = f"Thought: {parsed['thought']}\n"
-                segments.append(TrajectorySegment(
-                    text=thought_text,
-                    is_trainable=True,
-                    segment_type='thought'
-                ))
-                assistant_response += thought_text
-
-            # Check for terminal state
-            if parsed['is_terminal'] and parsed['final_answer']:
-                final_text = f"Final Answer: {parsed['final_answer']}"
-                segments.append(TrajectorySegment(
-                    text=final_text,
-                    is_trainable=True,
-                    segment_type='final_answer'
-                ))
-                assistant_response += final_text
-
-                # Add to messages for proper context tracking
-                messages.append({"role": "assistant", "content": assistant_response})
-
-                termination_reason = "success"  # FIXED: use "success" not "final_answer"
-                break
-
-            # Execute tool if action present
-            if parsed['action']:
-                # Add action segment (trainable)
-                action_text = f"Action: {parsed['action']}\n"
-
-                if parsed['action_input']:
-                    if isinstance(parsed['action_input'], dict):
-                        action_text += f"Action Input: {json.dumps(parsed['action_input'])}\n"
-                    else:
-                        action_text += f"Action Input: {parsed['action_input']}\n"
-
-                segments.append(TrajectorySegment(
-                    text=action_text,
-                    is_trainable=True,
-                    segment_type='action'
-                ))
-                assistant_response += action_text
-
-                # Execute tool
-                tool_result = self._execute_tool_with_timeout(
-                    tool_env=tool_env,
-                    tool_name=parsed['action'],
-                    args=parsed['action_input'] if isinstance(parsed['action_input'], dict) else {}
-                )
-                num_tool_calls += 1
-
-                # Truncate output
-                observation_text = self._truncate_tool_output(tool_result.output)
-                observation = f"Observation: {observation_text}\n"
-
-                segments.append(TrajectorySegment(
-                    text=observation,
-                    is_trainable=False,  # NOT trainable - environment output
-                    segment_type='observation'
-                ))
-
-                # FIXED: Add assistant response to messages, then observation as SYSTEM
-                messages.append({"role": "assistant", "content": assistant_response})
-                messages.append({"role": "system", "content": observation})  # FIXED: system not user
-
-                # Reset assistant response for next turn
-                assistant_response = ""
-
-            else:
-                # Model generated text but no valid action or final answer
-                logger.warning(
-                    f"Query {query_id}: No valid action or final answer at turn {turn}. "
-                    f"Generated: {generated_text[:100]}"
-                )
-                termination_reason = "malformed_output"
-                break
-
-        # Check if we hit max turns
-        if turn == self.max_turns - 1 and termination_reason == "unknown":
-            termination_reason = "max_turns"
-
-        # Build full text for trajectory
-        full_text = "".join([seg.text for seg in segments])
-
-        trajectory = CompletedTrajectory(
+        full_text = "".join(s.text for s in segments)
+        return CompletedTrajectory(
             query_id=query_id,
             segments=segments,
-            num_tool_calls=num_tool_calls,
+            num_tool_calls=len(executed_calls),
             total_tokens=len(self.tokenizer.encode(full_text, add_special_tokens=False)),
-            generation_time_ms=(time.time() - start_time) * 1000,
-            termination_reason=termination_reason
+            generation_time_ms=(time.time() - t_start) * 1000,
+            termination_reason=termination_reason,
+            executed_tool_calls=executed_calls,
         )
 
-        return trajectory
+    # ------------------------------------------------------------------
+    # Batch entry point
+    # ------------------------------------------------------------------
 
     def generate_batch_trajectories(
         self,
-        queries: List[Dict[str, str]],
-        group_size: int = 4
+        queries:    List[Dict[str, str]],
+        group_size: int = 4,
     ) -> Dict[str, List[CompletedTrajectory]]:
         """
-        Generate G trajectories for each query in the batch.
+        Generate `group_size` independent trajectories for each query.
 
-        FIXED: Sequential generation per group (removed threading)
+        Query dict format:
+            {"id": "q1", "user": "What is the weather in Paris?"}
+            {"id": "q2", "user": "…", "system": "<optional system prompt override>"}
 
-        Supports formats:
-        1. {'id': ..., 'system': ..., 'user': ...}
-        2. {'id': ..., 'user': ...}  (auto-builds system prompt)
+        Each trajectory uses its own isolated tool environment.
+        Generation is batched turn-by-turn across active trajectories within
+        each query to improve throughput while keeping tool execution isolated.
         """
         logger.info(
-            f"Starting batch generation: {len(queries)} queries x {group_size} trajectories"
+            "Batch: %d queries × %d trajectories each", len(queries), group_size
         )
+        results: Dict[str, List[CompletedTrajectory]] = {}
 
-        results = {}
+        for q_idx, query in enumerate(queries):
+            qid = query["id"]
+            logger.info("[%d/%d] Query: %s", q_idx + 1, len(queries), qid)
 
-        for query_idx, query in enumerate(queries):
-            logger.info(f"Processing query {query_idx+1}/{len(queries)}: {query['id']}")
-
-            # Auto-build system prompt if not provided
-            if 'system' in query:
-                system_prompt = query['system']
-            else:
-                system_prompt = self.prompt_builder.build_react_prompt()
-                logger.debug(f"Auto-built system prompt")
-
-            # Create G isolated environments
             environments = [self.tool_env_factory() for _ in range(group_size)]
-
-            # FIXED: Generate G trajectories SEQUENTIALLY (not threaded)
-            trajectories = []
+            system_prompt = query.get("system") or self._system_prompt_text
+            states: List[Dict[str, Any]] = []
+            completed: Dict[int, CompletedTrajectory] = {}
 
             for g in range(group_size):
-                logger.info(f"  Generating trajectory {g+1}/{group_size}...")
-                
-                try:
-                    trajectory = self._generate_single_trajectory(
-                        query_id=f"{query['id']}_g{g}",
-                        system_prompt=system_prompt,
-                        user_query=query['user'],
-                        tool_env=environments[g]
+                logger.info("  Trajectory %d/%d …", g + 1, group_size)
+                states.append({
+                    "group_idx": g,
+                    "query_id": f"{qid}_g{g}",
+                    "history": [
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": query["user"]},
+                    ],
+                    "segments": [
+                        TrajectorySegment(
+                            text=system_prompt,
+                            is_trainable=False,
+                            segment_type="system",
+                        ),
+                        TrajectorySegment(
+                            text=query["user"],
+                            is_trainable=False,
+                            segment_type="user",
+                        ),
+                    ],
+                    "executed_calls": [],
+                    "termination_reason": "unknown",
+                    "done": False,
+                    "tool_env": environments[g],
+                    "t_start": time.time(),
+                })
+
+            for turn in range(self.max_turns):
+                active_states = [state for state in states if not state["done"]]
+                if not active_states:
+                    break
+
+                for state in active_states:
+                    logger.info(
+                        "[%s] Turn %d/%d",
+                        state["query_id"],
+                        turn + 1,
+                        self.max_turns,
                     )
-                    trajectories.append(trajectory)
+
+                prompts: List[str] = []
+                prompt_failed_states: List[Dict[str, Any]] = []
+                for state in active_states:
+                    try:
+                        prompts.append(self._build_prompt_from_history(state["history"]))
+                        prompt_failed_states.append(state)
+                    except Exception as exc:
+                        logger.error(
+                            "[%s] Prompt construction failed on turn %d: %s",
+                            state["query_id"],
+                            turn + 1,
+                            exc,
+                        )
+                        state["termination_reason"] = "generation_error"
+                        state["done"] = True
+                        completed[state["group_idx"]] = self._build_completed_trajectory(
+                            query_id=state["query_id"],
+                            segments=state["segments"],
+                            executed_calls=state["executed_calls"],
+                            termination_reason=state["termination_reason"],
+                            t_start=state["t_start"],
+                        )
+
+                if not prompts:
+                    continue
+
+                try:
+                    responses = self._model_generate_batch(prompts)
+                except Exception as exc:
+                    logger.error(
+                        "[%s] Batched generation failed on turn %d for %d active trajectories: %s",
+                        qid,
+                        turn + 1,
+                        len(prompts),
+                        exc,
+                    )
+                    for state in prompt_failed_states:
+                        state["termination_reason"] = "generation_error"
+                        state["done"] = True
+                        completed[state["group_idx"]] = self._build_completed_trajectory(
+                            query_id=state["query_id"],
+                            segments=state["segments"],
+                            executed_calls=state["executed_calls"],
+                            termination_reason=state["termination_reason"],
+                            t_start=state["t_start"],
+                        )
+                    continue
+
+                for state, response_text in zip(prompt_failed_states, responses):
+                    query_id = state["query_id"]
+                    history = state["history"]
+                    segments = state["segments"]
+                    executed_calls = state["executed_calls"]
 
                     logger.info(
-                        f"  Group {g+1}/{group_size} completed: "
-                        f"{trajectory.num_tool_calls} tools, "
-                        f"{trajectory.generation_time_ms:.0f}ms, "
-                        f"reason={trajectory.termination_reason}"
+                        "[%s] Turn %d (%d chars): %s…",
+                        query_id,
+                        turn + 1,
+                        len(response_text),
+                        response_text[:],
                     )
-                except Exception as e:
-                    logger.error(f"  Group {g+1} failed: {e}", exc_info=True)
-                    failed_trajectory = CompletedTrajectory(
-                        query_id=f"{query['id']}_g{g}",
-                        segments=[],
-                        termination_reason="exception",
-                        generation_time_ms=0
+
+                    history.append({"role": "assistant", "content": response_text})
+                    segments.append(TrajectorySegment(
+                        text=response_text,
+                        is_trainable=True,
+                        segment_type="thought_and_action",
+                    ))
+
+                    if _extract_task_finished(response_text):
+                        logger.info("[%s] <TASK_FINISHED> found on turn %d.", query_id, turn + 1)
+                        state["termination_reason"] = "success"
+                        state["done"] = True
+                        completed[state["group_idx"]] = self._build_completed_trajectory(
+                            query_id=query_id,
+                            segments=segments,
+                            executed_calls=executed_calls,
+                            termination_reason=state["termination_reason"],
+                            t_start=state["t_start"],
+                        )
+                        continue
+
+                    tool_call_raw = _extract_tool_call_array(response_text)
+                    if tool_call_raw is None:
+                        logger.warning(
+                            "[%s] Turn %d: no tool call and no <TASK_FINISHED>. Terminating.",
+                            query_id,
+                            turn + 1,
+                        )
+                        state["termination_reason"] = "no_tool_call"
+                        state["done"] = True
+                        completed[state["group_idx"]] = self._build_completed_trajectory(
+                            query_id=query_id,
+                            segments=segments,
+                            executed_calls=executed_calls,
+                            termination_reason=state["termination_reason"],
+                            t_start=state["t_start"],
+                        )
+                        continue
+
+                    try:
+                        calls = json.loads(tool_call_raw)
+                        if not isinstance(calls, list) or not calls:
+                            raise ValueError("Tool call must be a non-empty JSON array.")
+                        command = calls[0]
+                    except (json.JSONDecodeError, ValueError) as exc:
+                        logger.warning(
+                            "[%s] Invalid tool-call JSON on turn %d: %s",
+                            query_id,
+                            turn + 1,
+                            exc,
+                        )
+                        state["termination_reason"] = "invalid_tool_call_json"
+                        state["done"] = True
+                        completed[state["group_idx"]] = self._build_completed_trajectory(
+                            query_id=query_id,
+                            segments=segments,
+                            executed_calls=executed_calls,
+                            termination_reason=state["termination_reason"],
+                            t_start=state["t_start"],
+                        )
+                        continue
+
+                    tool_name = str(command.get("name", "")).strip()
+                    tool_args = command.get("args", {})
+
+                    if not tool_name or tool_name.lower() in ("none", "null"):
+                        logger.warning("[%s] Missing/null tool name: '%s'", query_id, tool_name)
+                        state["termination_reason"] = "invalid_action"
+                        state["done"] = True
+                        completed[state["group_idx"]] = self._build_completed_trajectory(
+                            query_id=query_id,
+                            segments=segments,
+                            executed_calls=executed_calls,
+                            termination_reason=state["termination_reason"],
+                            t_start=state["t_start"],
+                        )
+                        continue
+
+                    if not isinstance(tool_args, dict):
+                        logger.warning(
+                            "[%s] 'args' must be a dict, got %s",
+                            query_id,
+                            type(tool_args).__name__,
+                        )
+                        state["termination_reason"] = "invalid_args"
+                        state["done"] = True
+                        completed[state["group_idx"]] = self._build_completed_trajectory(
+                            query_id=query_id,
+                            segments=segments,
+                            executed_calls=executed_calls,
+                            termination_reason=state["termination_reason"],
+                            t_start=state["t_start"],
+                        )
+                        continue
+
+                    logger.info("[%s] Executing '%s' with args: %s", query_id, tool_name, tool_args)
+                    result = self._execute_tool(state["tool_env"], tool_name, tool_args)
+
+                    executed_calls.append(ExecutedToolCall(
+                        tool_name=tool_name,
+                        args=tool_args,
+                        status=str(result.status),
+                        output=result.output,
+                        error_message=getattr(result, "error_message", None),
+                        execution_time_ms=getattr(result, "execution_time_ms", 0.0),
+                    ))
+
+                    logger.info(
+                        "[%s] Tool result — status=%s, output=%.120s…",
+                        query_id, result.status, result.output,
                     )
-                    trajectories.append(failed_trajectory)
 
-            results[query['id']] = trajectories
+                    observation_text = self._truncate_tool_output(
+                        self._format_observation(tool_name, tool_args, result)
+                    )
+                    history.append({"role": "system", "content": observation_text})
+                    segments.append(TrajectorySegment(
+                        text=observation_text,
+                        is_trainable=False,
+                        segment_type="observation",
+                    ))
+            else:
+                for state in states:
+                    if state["done"]:
+                        continue
+                    logger.warning(
+                        "[%s] max_turns=%d reached without <TASK_FINISHED>.",
+                        state["query_id"],
+                        self.max_turns,
+                    )
+                    state["termination_reason"] = "max_turns_reached"
+                    state["done"] = True
+                    completed[state["group_idx"]] = self._build_completed_trajectory(
+                        query_id=state["query_id"],
+                        segments=state["segments"],
+                        executed_calls=state["executed_calls"],
+                        termination_reason=state["termination_reason"],
+                        t_start=state["t_start"],
+                    )
 
-            # Clean up environments
+            trajectories: List[CompletedTrajectory] = []
+            for g in range(group_size):
+                traj = completed.get(g)
+                if traj is None:
+                    state = states[g]
+                    traj = self._build_completed_trajectory(
+                        query_id=state["query_id"],
+                        segments=state["segments"],
+                        executed_calls=state["executed_calls"],
+                        termination_reason=state["termination_reason"],
+                        t_start=state["t_start"],
+                    )
+                trajectories.append(traj)
+                logger.info(
+                    "  g%d: turns=%d, reason=%s, time=%.0fms",
+                    g,
+                    traj.num_tool_calls,
+                    traj.termination_reason,
+                    traj.generation_time_ms,
+                )
+
+            results[qid] = trajectories
+
             for env in environments:
                 try:
                     env.reset()
-                except Exception as e:
-                    logger.warning(f"Failed to reset environment: {e}")
+                except Exception as exc:
+                    logger.warning("Env reset failed: %s", exc)
+
+            torch.cuda.empty_cache()
 
         return results

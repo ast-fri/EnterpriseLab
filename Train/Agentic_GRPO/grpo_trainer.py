@@ -13,6 +13,7 @@ FIXES APPLIED:
 """
 
 import os
+import random
 import torch
 import torch.nn.functional as F
 import logging
@@ -78,12 +79,139 @@ class GRPOTrainer:
         # Set models to appropriate modes
         self.model.train()
         self.ref_model.eval()
+        self.reward_ema = None
+        self.reward_ema_alpha = 0.1  # Smoothing factor
+        # =======================================
         
         # Freeze reference model
         for param in self.ref_model.parameters():
             param.requires_grad = False
-        
+
+        # Log reference model device
+        ref_device = next(self.ref_model.parameters()).device
+        logger.info(f"Reference model device: {ref_device} (CPU offload saves ~18GB GPU memory)")
+
         logger.info(f"GRPOTrainer initialized with beta={beta}, max_grad_norm={max_grad_norm}")
+
+    def _capture_rng_state(self) -> Dict[str, Any]:
+        state: Dict[str, Any] = {
+            "python_random_state": random.getstate(),
+            "numpy_random_state": np.random.get_state(),
+            "torch_random_state": torch.random.get_rng_state(),
+        }
+        if torch.cuda.is_available():
+            state["cuda_random_state_all"] = torch.cuda.get_rng_state_all()
+        return state
+
+    def _restore_rng_state(self, rng_state: Optional[Dict[str, Any]]) -> None:
+        if not rng_state:
+            return
+        if "python_random_state" in rng_state:
+            random.setstate(rng_state["python_random_state"])
+        if "numpy_random_state" in rng_state:
+            np.random.set_state(rng_state["numpy_random_state"])
+        if "torch_random_state" in rng_state:
+            torch.random.set_rng_state(rng_state["torch_random_state"])
+        if torch.cuda.is_available() and "cuda_random_state_all" in rng_state:
+            torch.cuda.set_rng_state_all(rng_state["cuda_random_state_all"])
+
+    def _save_checkpoint(
+        self,
+        checkpoint_path: str,
+        epoch: int,
+        next_batch_idx: int,
+        global_step: int,
+        update_step: int,
+        num_epochs: int,
+        batch_size: int,
+        group_size: int,
+        gradient_accumulation_steps: int,
+        shuffled_query_ids: List[str],
+        all_metrics: List[Dict[str, Any]],
+    ) -> None:
+        os.makedirs(checkpoint_path, exist_ok=True)
+        self.model.save_pretrained(checkpoint_path)
+        self.tokenizer.save_pretrained(checkpoint_path)
+        trainer_state = {
+            "epoch": epoch,
+            "next_batch_idx": next_batch_idx,
+            "global_step": global_step,
+            "update_step": update_step,
+            "reward_ema": self.reward_ema,
+            "optimizer_state_dict": self.optimizer.state_dict(),
+            "num_epochs": num_epochs,
+            "batch_size": batch_size,
+            "group_size": group_size,
+            "gradient_accumulation_steps": gradient_accumulation_steps,
+            "shuffled_query_ids": shuffled_query_ids,
+            "all_metrics": all_metrics,
+            "rng_state": self._capture_rng_state(),
+        }
+        torch.save(trainer_state, os.path.join(checkpoint_path, "trainer_state.pt"))
+
+    def _aggregate_accumulated_metrics(
+        self,
+        metrics_window: List[Dict[str, Any]]
+    ) -> Dict[str, float]:
+        """
+        Aggregate per-microbatch metrics into one update-step metrics dict.
+
+        During gradient accumulation, each train_step() returns metrics for a
+        single microbatch. Optimizer-step logging should reflect the full
+        accumulation window, not just the final microbatch.
+        """
+        if not metrics_window:
+            raise ValueError("metrics_window must not be empty")
+
+        reward_values: List[float] = []
+        advantage_values: List[float] = []
+        kl_values: List[float] = []
+
+        total_valid = 0
+        total_trajectories = 0
+        total_success = 0
+        total_errors = 0
+        loss_weighted_sum = 0.0
+        policy_logprob_sum = 0.0
+        ref_logprob_sum = 0.0
+
+        for metrics in metrics_window:
+            num_valid = int(metrics.get("num_valid", 0))
+            num_total = int(metrics.get("num_total", 0))
+
+            total_valid += num_valid
+            total_trajectories += num_total
+            total_success += int(metrics.get("num_success", 0))
+            total_errors += int(metrics.get("num_errors", 0))
+
+            loss_weighted_sum += float(metrics.get("_loss_weighted_sum", 0.0))
+            policy_logprob_sum += float(metrics.get("_policy_logprob_sum", 0.0))
+            ref_logprob_sum += float(metrics.get("_ref_logprob_sum", 0.0))
+
+            reward_values.extend(float(x) for x in metrics.get("_reward_values", []))
+            advantage_values.extend(float(x) for x in metrics.get("_advantage_values", []))
+            kl_values.extend(float(x) for x in metrics.get("_kl_values", []))
+
+        aggregated = {
+            "loss": loss_weighted_sum / max(total_valid, 1),
+            "avg_reward": float(np.mean(reward_values)) if reward_values else 0.0,
+            "std_reward": float(np.std(reward_values)) if reward_values else 0.0,
+            "min_reward": float(np.min(reward_values)) if reward_values else 0.0,
+            "max_reward": float(np.max(reward_values)) if reward_values else 0.0,
+            "median_reward": float(np.median(reward_values)) if reward_values else 0.0,
+            "avg_advantage": float(np.mean(advantage_values)) if advantage_values else 0.0,
+            "std_advantage": float(np.std(advantage_values)) if advantage_values else 0.0,
+            "avg_kl": float(np.mean(kl_values)) if kl_values else 0.0,
+            "max_kl": float(np.max(kl_values)) if kl_values else 0.0,
+            "min_kl": float(np.min(kl_values)) if kl_values else 0.0,
+            "num_valid": total_valid,
+            "num_total": total_trajectories,
+            "num_success": total_success,
+            "num_errors": total_errors,
+            "policy_logprob_mean": policy_logprob_sum / max(total_trajectories, 1),
+            "ref_logprob_mean": ref_logprob_sum / max(total_trajectories, 1),
+        }
+        return aggregated
 
     def _compute_token_logprobs_chunked(
         self,
@@ -164,15 +292,30 @@ class GRPOTrainer:
             use_cache=False
         )
         logits_policy = outputs_policy.logits  # [B, S, V]
-        
-        # Reference model (frozen)
+
+        # Reference model (frozen) - handle CPU offloading
         with torch.no_grad():
+            # Detect if ref_model is on CPU
+            ref_device = next(self.ref_model.parameters()).device
+
+            if ref_device.type == "cpu":
+                # Move inputs to CPU for reference model
+                input_ids_ref = input_ids.cpu()
+                attention_mask_ref = attention_mask.cpu()
+            else:
+                input_ids_ref = input_ids
+                attention_mask_ref = attention_mask
+
             outputs_ref = self.ref_model(
-                input_ids=input_ids,
-                attention_mask=attention_mask,
+                input_ids=input_ids_ref,
+                attention_mask=attention_mask_ref,
                 use_cache=False
             )
             logits_ref = outputs_ref.logits  # [B, S, V]
+
+            # Move logits back to GPU if ref_model was on CPU
+            if ref_device.type == "cpu":
+                logits_ref = logits_ref.to(logits_policy.device)
         
         # ============================================================
         # Step 2: Shift for next-token prediction
@@ -226,7 +369,8 @@ class GRPOTrainer:
     def train_step(
         self,
         batch_trajectories: Dict[str, List[CompletedTrajectory]],
-        collated_batch: Dict[str, torch.Tensor]
+        collated_batch: Dict[str, torch.Tensor],
+        loss_scale: float = 1.0
     ) -> Dict[str, float]:
         """
         Perform one GRPO training step.
@@ -262,25 +406,32 @@ class GRPOTrainer:
         # Validate trajectories first (before expensive reward computation)
         valid_mask = []
         for traj in all_trajectories:
-            is_valid, error_msg = traj.validate_structure()  # Use structure validation (no reward check)
+            is_valid, error_msg = traj.validate_structure()
             if not is_valid:
                 logger.warning(f"Invalid trajectory {traj.query_id}: {error_msg}")
             valid_mask.append(is_valid)
-        
-        # Compute rewards only for valid trajectories
+
+        # Compute rewards for ALL trajectories (valid and invalid)
         for i, traj in enumerate(all_trajectories):
-            if valid_mask[i] and traj.reward is None:
+            if traj.reward is None:  # ← REMOVED valid_mask check
                 # Extract base task_id (remove _g suffix)
                 task_id = traj.query_id.rsplit('_g', 1)[0] if '_g' in traj.query_id else traj.query_id
                 try:
                     traj.reward = self.reward_function(task_id, traj)
                 except Exception as e:
                     logger.error(f"Reward computation failed for {task_id}: {e}")
-                    traj.reward = 0.0
-                    valid_mask[i] = False
+                    # raise
+            
+            # ADDITIONAL CHECK: Ensure reward is never None
+            if traj.reward is None:
+                logger.error(f"Trajectory {traj.query_id} has None reward after computation!")
+                traj.reward = 0.0
+                valid_mask[i] = False
+        # ========== ADD REWARD NORMALIZATION HERE ==========
         
+        # ===================================================
         valid_mask = torch.tensor(valid_mask, dtype=torch.bool, device=self.device)
-        
+
         if valid_mask.sum() == 0:
             logger.error("No valid trajectories in batch!")
             return {
@@ -309,6 +460,11 @@ class GRPOTrainer:
         # Compute advantages within each group
         for base_id, group_trajs in groups.items():
             group_rewards = [t.reward for t in group_trajs]
+            # ← ADD THIS SAFETY CHECK
+            if any(r is None for r in group_rewards):
+                logger.error(f"Group {base_id} has None rewards: {group_rewards}")
+                # Replace None with 0.0
+                group_rewards = [r if r is not None else 0.0 for r in group_rewards]
             mean_reward = np.mean(group_rewards)
             std_reward = np.std(group_rewards) if len(group_rewards) > 1 else 1.0
             
@@ -333,7 +489,7 @@ class GRPOTrainer:
             dtype=torch.float32,
             device=self.device
         )  # [B]
-        
+        # advantages = advantages.detach()  # <--- ADD THIS
         # GRPO objective: maximize E[A * log π(τ) - β * KL(π || π_ref)]
         # Loss = -E[A * log π(τ) - β * KL]
         loss_per_traj = -(advantages * policy_traj_logprobs - self.beta * kl_per_traj)  # [B]
@@ -347,17 +503,19 @@ class GRPOTrainer:
         # ============================================================
         # Step 5: Backward pass and optimization
         # ============================================================
-        
-        self.optimizer.zero_grad()
+        # Store unscaled loss for logging
+        unscaled_loss = loss.item()  # <--- ADD THIS
+        loss = loss/loss_scale
+        # self.optimizer.zero_grad()
         loss.backward()
         
         # Gradient clipping
-        grad_norm = torch.nn.utils.clip_grad_norm_(
-            self.model.parameters(),
-            self.max_grad_norm
-        )
+        # grad_norm = torch.nn.utils.clip_grad_norm_(
+        #     self.model.parameters(),
+        #     self.max_grad_norm
+        # )
         
-        self.optimizer.step()
+        # self.optimizer.step()
         
         # ============================================================
         # Step 6: Logging metrics
@@ -374,17 +532,18 @@ class GRPOTrainer:
                 termination_reasons[reason] = termination_reasons.get(reason, 0) + 1
             
             metrics = {
-                'loss': loss.item(),
+                'loss': unscaled_loss,
                 'avg_reward': np.mean(rewards),
                 'std_reward': np.std(rewards),
                 'min_reward': np.min(rewards),
                 'max_reward': np.max(rewards),
+                'median_reward': np.median(rewards),  # <--- ADD THIS LINE
                 'avg_advantage': np.mean(advantages_np),
                 'std_advantage': np.std(advantages_np),
                 'avg_kl': kl_per_traj.mean().item(),
                 'max_kl': kl_per_traj.max().item(),
                 'min_kl': kl_per_traj.min().item(),
-                'grad_norm': grad_norm.item(),
+                # 'grad_norm': grad_norm.item(),
                 'num_valid': valid_mask.sum().item(),
                 'num_total': batch_size,
                 'policy_logprob_mean': policy_traj_logprobs.mean().item(),
@@ -393,8 +552,18 @@ class GRPOTrainer:
                 'num_max_turns': termination_reasons.get('max_turns', 0),
                 'num_errors': termination_reasons.get('malformed_output', 0) + 
                              termination_reasons.get('generation_error', 0),
+                '_loss_weighted_sum': unscaled_loss * valid_mask.sum().item(),
+                '_reward_values': list(rewards),
+                '_advantage_values': list(advantages_np),
+                '_kl_values': kl_per_traj.detach().cpu().tolist(),
+                '_policy_logprob_sum': policy_traj_logprobs.sum().item(),
+                '_ref_logprob_sum': ref_traj_logprobs.sum().item(),
             }
-        
+
+        # MEMORY: Clear CUDA cache to free fragmented memory
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+
         return metrics
 
     def train(
@@ -404,10 +573,12 @@ class GRPOTrainer:
         num_epochs: int = 1,
         group_size: int = 4,
         batch_size: int = 2,
+        gradient_accumulation_steps: int = 1,
         collator: Any = None,
         checkpoint_dir: Optional[str] = None,
         checkpoint_every: int = 100,
-        log_callback: Optional[Callable] = None
+        log_callback: Optional[Callable] = None,
+        resume_state: Optional[Dict[str, Any]] = None,
     ) -> List[Dict]:
         """
         Full training loop.
@@ -435,23 +606,52 @@ class GRPOTrainer:
             os.makedirs(checkpoint_dir, exist_ok=True)
             logger.info(f"Checkpoints will be saved to: {checkpoint_dir}")
         
-        global_step = 0
-        all_metrics = []
-        
-        for epoch in range(num_epochs):
+        train_queries_by_id = {query["id"]: query for query in train_queries}
+        global_step = int(resume_state.get("global_step", 0)) if resume_state else 0
+        update_step = int(resume_state.get("update_step", 0)) if resume_state else 0
+        all_metrics = list(resume_state.get("all_metrics", [])) if resume_state else []
+        accumulation_metrics: List[Dict[str, Any]] = []
+        start_epoch = int(resume_state.get("epoch", 0)) if resume_state else 0
+        resume_batch_idx = int(resume_state.get("next_batch_idx", 0)) if resume_state else 0
+        resume_shuffled_ids = list(resume_state.get("shuffled_query_ids", [])) if resume_state else []
+        if resume_state:
+            self.reward_ema = resume_state.get("reward_ema")
+            self._restore_rng_state(resume_state.get("rng_state"))
+            logger.info(
+                "Resuming training from epoch=%d, batch=%d, global_step=%d, update_step=%d",
+                start_epoch + 1,
+                resume_batch_idx + 1,
+                global_step,
+                update_step,
+            )
+        self.optimizer.zero_grad()
+        for epoch in range(start_epoch, num_epochs):
             logger.info(f"\n{'='*80}")
             logger.info(f"EPOCH {epoch + 1}/{num_epochs}")
             logger.info(f"{'='*80}\n")
             
             # Shuffle queries
-            import random
-            queries_shuffled = train_queries.copy()
-            random.shuffle(queries_shuffled)
+            if epoch == start_epoch and resume_shuffled_ids:
+                queries_shuffled = [
+                    train_queries_by_id[qid] for qid in resume_shuffled_ids
+                    if qid in train_queries_by_id
+                ]
+                if len(queries_shuffled) != len(train_queries):
+                    missing_ids = [
+                        query["id"] for query in train_queries
+                        if query["id"] not in {q["id"] for q in queries_shuffled}
+                    ]
+                    queries_shuffled.extend(train_queries_by_id[qid] for qid in missing_ids)
+                batch_start_idx = resume_batch_idx
+            else:
+                queries_shuffled = train_queries.copy()
+                random.shuffle(queries_shuffled)
+                batch_start_idx = 0
             
             # Process in batches
             num_batches = (len(queries_shuffled) + batch_size - 1) // batch_size
             
-            for batch_idx in tqdm(range(num_batches), desc=f"Epoch {epoch+1}"):
+            for batch_idx in tqdm(range(batch_start_idx, num_batches), desc=f"Epoch {epoch+1}"):
                 start_idx = batch_idx * batch_size
                 end_idx = min((batch_idx + 1) * batch_size, len(queries_shuffled))
                 batch_queries = queries_shuffled[start_idx:end_idx]
@@ -475,48 +675,136 @@ class GRPOTrainer:
                 collated_batch = collator.collate(all_trajs)
                 
                 # Training step
-                metrics = self.train_step(batch_trajectories, collated_batch)
+                metrics = self.train_step(batch_trajectories, collated_batch, gradient_accumulation_steps)
+                accumulation_metrics.append(metrics)
                 
+                # 4. Optimizer Step (only every N batches)
+                if (batch_idx + 1) % gradient_accumulation_steps == 0 or (batch_idx + 1) == num_batches:
+                    aggregated_metrics = self._aggregate_accumulated_metrics(accumulation_metrics)
+                    
+                    # Gradient clipping
+                    grad_norm = torch.nn.utils.clip_grad_norm_(
+                        self.model.parameters(), self.max_grad_norm
+                    )
+                    aggregated_metrics['grad_norm'] = grad_norm.item()
+                    
+                    self.optimizer.step()
+                    self.optimizer.zero_grad()
+                    update_step += 1
+                    
+                    # Update exponential moving average of rewards
+                    current_reward = aggregated_metrics['avg_reward']
+                    if self.reward_ema is None:
+                        self.reward_ema = current_reward
+                    else:
+                        self.reward_ema = (
+                            self.reward_ema_alpha * current_reward + 
+                            (1 - self.reward_ema_alpha) * self.reward_ema
+                        )
+                    aggregated_metrics['reward_ema'] = self.reward_ema
+                    # =========================================
+                    # Log only on update steps
+                    global_step += 1 # Or use update_step
+                    
+                    # Add standard logging fields
+                    aggregated_metrics['epoch'] = epoch + 1
+                    aggregated_metrics['global_step'] = global_step
+                    all_metrics.append(aggregated_metrics)
+                    
+                    logger.info(
+                        f"Step {global_step} | Loss: {aggregated_metrics['loss']:.4f} | "
+                        f"Reward: {aggregated_metrics['avg_reward']:.3f} (EMA: {self.reward_ema:.3f}) | "
+                        f"KL: {aggregated_metrics['avg_kl']:.4f} | "
+                        f"Success: {aggregated_metrics['num_success']}/{aggregated_metrics['num_total']} | "
+                        f"Valid: {aggregated_metrics['num_valid']}/{aggregated_metrics['num_total']}"
+                    )
+                    
+                    if log_callback:
+                        log_callback(aggregated_metrics, global_step)
+                    
+                    # # Checkpointing
+                    if checkpoint_dir and global_step % checkpoint_every == 0:
+                        checkpoint_path = os.path.join(checkpoint_dir, f"checkpoint_step_{global_step}")
+                        logger.info(f"Saving checkpoint to {checkpoint_path}")
+                        self._save_checkpoint(
+                            checkpoint_path=checkpoint_path,
+                            epoch=epoch,
+                            next_batch_idx=batch_idx + 1,
+                            global_step=global_step,
+                            update_step=update_step,
+                            num_epochs=num_epochs,
+                            batch_size=batch_size,
+                            group_size=group_size,
+                            gradient_accumulation_steps=gradient_accumulation_steps,
+                            shuffled_query_ids=[query["id"] for query in queries_shuffled],
+                            all_metrics=all_metrics,
+                        )
+                    accumulation_metrics = []
+            resume_batch_idx = 0
+            resume_shuffled_ids = []
+                        
                 # Add step tracking
-                global_step += 1
-                metrics['epoch'] = epoch + 1
-                metrics['global_step'] = global_step
-                all_metrics.append(metrics)
+                # global_step += 1
+                # metrics['epoch'] = epoch + 1
+                # metrics['global_step'] = global_step
+                # all_metrics.append(metrics)
                 
                 # Logging
-                logger.info(
-                    f"Step {global_step} | Loss: {metrics['loss']:.4f} | "
-                    f"Reward: {metrics['avg_reward']:.3f}±{metrics['std_reward']:.3f} | "
-                    f"KL: {metrics['avg_kl']:.4f} | "
-                    f"Success: {metrics['num_success']}/{metrics['num_total']} | "
-                    f"Valid: {metrics['num_valid']}/{metrics['num_total']}"
-                )
+                # logger.info(
+                #     f"Step {global_step} | Loss: {metrics['loss']:.4f} | "
+                #     f"Reward: {metrics['avg_reward']:.3f}±{metrics['std_reward']:.3f} | "
+                #     f"KL: {metrics['avg_kl']:.4f} | "
+                #     f"Success: {metrics['num_success']}/{metrics['num_total']} | "
+                #     f"Valid: {metrics['num_valid']}/{metrics['num_total']}"
+                # )
                 
                 # Callback logging (e.g., wandb)
-                if log_callback:
-                    log_callback(metrics, global_step)
+                # if log_callback:
+                #     log_callback(metrics, global_step)
                 
                 # Periodic checkpointing
-                if checkpoint_dir and global_step % checkpoint_every == 0:
-                    checkpoint_path = os.path.join(checkpoint_dir, f"checkpoint_step_{global_step}")
-                    logger.info(f"Saving checkpoint to {checkpoint_path}")
-                    self.model.save_pretrained(checkpoint_path)
-                    self.tokenizer.save_pretrained(checkpoint_path)
+            if checkpoint_dir and global_step % checkpoint_every == 0:
+                checkpoint_path = os.path.join(checkpoint_dir, f"checkpoint_step_{global_step}")
+                logger.info(f"Saving checkpoint to {checkpoint_path}")
+                self._save_checkpoint(
+                    checkpoint_path=checkpoint_path,
+                    epoch=epoch,
+                    next_batch_idx=num_batches,
+                    global_step=global_step,
+                    update_step=update_step,
+                    num_epochs=num_epochs,
+                    batch_size=batch_size,
+                    group_size=group_size,
+                    gradient_accumulation_steps=gradient_accumulation_steps,
+                    shuffled_query_ids=[query["id"] for query in queries_shuffled],
+                    all_metrics=all_metrics,
+                )
         
         # Final checkpoint
         if checkpoint_dir:
             final_path = os.path.join(checkpoint_dir, "final_model")
             logger.info(f"\nTraining complete! Saving final model to {final_path}")
-            self.model.save_pretrained(final_path)
-            self.tokenizer.save_pretrained(final_path)
+            self._save_checkpoint(
+                checkpoint_path=final_path,
+                epoch=num_epochs,
+                next_batch_idx=0,
+                global_step=global_step,
+                update_step=update_step,
+                num_epochs=num_epochs,
+                batch_size=batch_size,
+                group_size=group_size,
+                gradient_accumulation_steps=gradient_accumulation_steps,
+                shuffled_query_ids=[],
+                all_metrics=all_metrics,
+            )
         
         # Finish wandb if used
-        if self.use_wandb:
-            try:
-                import wandb
-                wandb.finish()
-            except ImportError:
-                logger.warning("wandb not available but use_wandb=True")
+        # if self.use_wandb:
+        #     try:
+        #         import wandb
+        #         wandb.finish()
+        #     except ImportError:
+        #         logger.warning("wandb not available but use_wandb=True")
         
         logger.info(f"\n{'='*80}")
         logger.info(f"TRAINING COMPLETE")

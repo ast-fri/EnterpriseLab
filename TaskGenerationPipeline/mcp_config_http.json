@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+            "owncloud": {
+                "transport": "streamable_http",
+                "url": "http://localhost:12001/mcp"
+            },
+            "gitlab": {
+                "transport": "streamable_http",
+                "url": "http://localhost:8008/mcp"
+            },
+            "rocktchat": {
+                "transport": "streamable_http",
+                "url": "http://localhost:12004/mcp"
+            },
+            "email": {
+                "transport": "streamable_http",
+                "url": "http://localhost:12005/mcp"
+            },
+            "calendar": {
+                "transport": "streamable_http",
+                "url": "http://localhost:12006/mcp"
+            },
+            "Zammad": {
+                "transport": "streamable_http",
+                "url": "http://localhost:12010/mcp"
+            },
+            "frappe_hrms": {
+                "transport": "streamable_http",
+                "url": "http://localhost:12013/mcp"
+            }
+        }
+}
