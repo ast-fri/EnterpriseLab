@@ -1,273 +1,299 @@
-"""
-PromptBuilder - Builds ReAct-style system prompts from tool descriptions.
 
-FIXED: 
-- Uses proper tool schema instead of bound methods
-- Examples use real EnterpriseBench tool names
-- Clear format requirements, no XML tags allowed
+
+
+"""
+PromptBuilder - Builds system prompts matching the new trajectory format.
+
+Trajectory format contract
+--------------------------
+Assistant turns contain:
+  1. Free-form reasoning prose.
+  2. (Optional) A single JSON *array* containing the tool call(s):
+         [{"name": "toolName", "args": {"param": "value"}}]
+  3. If the task is complete, the turn ends with:
+         <TASK_FINISHED>
+
+System turns contain the executor-injected observation:
+  ["Function Call {'name': '...', 'args': {...}} Succeeded. Result: {...}"]
+  ["Function Call {'name': '...', 'args': {...}} Failed during execution. Error: {...}"]
+
+No XML action tags (<think>, <tool_call>, etc.) are used.
 """
 
 import json
-from typing import List, Dict, Any, Union
+from typing import Any, Dict, List, Union
 
 
 class PromptBuilder:
     """
-    Builds ReAct-style system prompts with strict format requirements.
-    
-    FIXED: Works with tool schemas, not bound methods
+    Builds planner system prompts for the new trajectory format.
+
+    Tool schema formats accepted
+    ----------------------------
+    - List[Dict]  with keys 'name', 'description', 'parameters'  (OpenAI-style)
+    - Dict[str, Dict] mapping name → {description, args_schema}
+    - List[str]   of bare tool names (minimal descriptions)
     """
 
-    def __init__(self, tool_methods: Union[List[Dict[str, Any]], List[str], Dict[str, Any]]):
-        """
-        Args:
-            tool_methods: Tools in various formats:
-                - Dict[str, Dict]: {tool_name: {description: ..., args_schema: ...}}
-                - List[Dict]: [{name: ..., description: ..., args_schema: ...}]
-                - List[str]: [tool_name1, tool_name2, ...]
-        """
-        # Normalize to list of dicts with proper schema
+    def __init__(
+        self,
+        tool_methods: Union[List[Dict[str, Any]], Dict[str, Any], List[str]],
+    ):
         self.tool_methods = self._normalize_tools(tool_methods)
 
-    def _normalize_tools(self, tool_methods: Any) -> List[Dict[str, Any]]:
-        """
-        FIXED: Normalize various tool formats to standard schema.
-        
-        Returns:
-            List of dicts with: name, description, args_schema
-        """
-        normalized = []
-        
-        if isinstance(tool_methods, dict):
-            # Dict format: {tool_name: {description: ..., args_schema: ...}}
-            for name, info in tool_methods.items():
-                if isinstance(info, dict):
-                    tool_dict = {'name': name}
-                    
-                    # Extract description
-                    if 'description' in info:
-                        tool_dict['description'] = info['description']
-                    else:
-                        tool_dict['description'] = f"Tool: {name}"
-                    
-                    # Extract args schema
-                    if 'args_schema' in info:
-                        tool_dict['args_schema'] = info['args_schema']
-                    else:
-                        tool_dict['args_schema'] = {}
-                    
-                    normalized.append(tool_dict)
-                elif isinstance(info, str):
-                    # Simple string description
-                    normalized.append({
-                        'name': name,
-                        'description': info,
-                        'args_schema': {}
-                    })
-                else:
-                    # Bound method or other - FIXED: don't use str() on it
-                    normalized.append({
-                        'name': name,
-                        'description': f"Tool: {name}",
-                        'args_schema': {}
-                    })
+    # ------------------------------------------------------------------
+    # Normalisation
+    # ------------------------------------------------------------------
 
-        elif isinstance(tool_methods, list):
-            for tool in tool_methods:
-                if isinstance(tool, dict):
-                    # Already in dict format
-                    if 'name' in tool:
-                        normalized.append(tool)
-                    else:
-                        # Has keys but no 'name' - skip or warn
+    def _normalize_tools(self, raw: Any) -> List[Dict[str, Any]]:
+        normalized: List[Dict[str, Any]] = []
+
+        if isinstance(raw, dict):
+            for name, info in raw.items():
+                entry: Dict[str, Any] = {"name": name}
+                if isinstance(info, dict):
+                    entry["description"] = info.get("description", f"Tool: {name}")
+                    entry["args_schema"]  = info.get("args_schema", info.get("parameters", {}))
+                else:
+                    entry["description"] = str(info) if info else f"Tool: {name}"
+                    entry["args_schema"]  = {}
+                normalized.append(entry)
+
+        elif isinstance(raw, list):
+            for item in raw:
+                if isinstance(item, dict):
+                    if "name" not in item:
                         continue
-                elif isinstance(tool, str):
-                    # Just a tool name
+                    # OpenAI-style: parameters.properties → args_schema
+                    params = item.get("parameters", {})
+                    if isinstance(params, dict):
+                        args_schema = params.get("properties", params)
+                        required    = params.get("required", [])
+                        # Annotate each property with required flag
+                        for pname, pinfo in args_schema.items():
+                            if isinstance(pinfo, dict):
+                                pinfo["required"] = pname in required
+                    else:
+                        args_schema = {}
                     normalized.append({
-                        'name': tool,
-                        'description': f'Tool: {tool}',
-                        'args_schema': {}
+                        "name":        item["name"],
+                        "description": item.get("description", f"Tool: {item['name']}"),
+                        "args_schema": args_schema,
+                    })
+                elif isinstance(item, str):
+                    normalized.append({
+                        "name":        item,
+                        "description": f"Tool: {item}",
+                        "args_schema": {},
                     })
                 else:
                     normalized.append({
-                        'name': str(tool),
-                        'description': 'No description',
-                        'args_schema': {}
+                        "name":        str(item),
+                        "description": "No description",
+                        "args_schema": {},
                     })
         else:
-            # Single tool
             normalized.append({
-                'name': str(tool_methods),
-                'description': 'No description',
-                'args_schema': {}
+                "name":        str(raw),
+                "description": "No description",
+                "args_schema": {},
             })
-        
+
         return normalized
+
+    # ------------------------------------------------------------------
+    # Main prompt builder
+    # ------------------------------------------------------------------
 
     def build_react_prompt(self) -> str:
         """
-        Build a ReAct-style system prompt with STRICT format requirements.
+        Build the system prompt that governs the new trajectory format.
 
-        FIXED: Tool descriptions include argument schemas
-        FIXED: Examples use real EnterpriseBench tool names
-
-        Returns:
-            Formatted system prompt string
+        Key conventions enforced
+        ------------------------
+        • Reasoning is plain prose (no XML tags).
+        • Tool calls are a JSON array: [{"name": "...", "args": {...}}]
+        • Observations arrive as system messages; the model never writes them.
+        • Task completion is signalled by appending <TASK_FINISHED> to the
+          final assistant turn.
+        • At most ONE tool call per turn.
         """
-        # Header
-        prompt = """You are an AI assistant that helps users by using tools. You MUST follow the ReAct format exactly.
+        lines = [
+            "You are an Enterprise Agent with access to APIs exposed as tools.",
+            "",
+            "═" * 60,
+            "AVAILABLE TOOLS",
+            "═" * 60,
+            "",
+        ]
 
-AVAILABLE TOOLS:
+        for i, tool in enumerate(self.tool_methods, 1):
+            name   = tool.get("name", "unknown")
+            desc   = tool.get("description", "")
+            schema = tool.get("args_schema", {})
 
-"""
+            lines.append(f"{i}. {name}")
+            lines.append(f"   {desc}")
 
-        # Tool descriptions with argument schemas
-        tools_to_show = self.tool_methods[:20]  # Limit to 20 tools to save context
-        
-        for i, tool in enumerate(tools_to_show):
-            tool_name = tool.get('name', 'unknown')
-            tool_desc = tool.get('description', 'No description')
-            args_schema = tool.get('args_schema', {})
+            if schema:
+                lines.append("   Parameters:")
+                for pname, pinfo in schema.items():
+                    if isinstance(pinfo, dict):
+                        ptype   = pinfo.get("type", "any")
+                        pdesc   = pinfo.get("description", "")
+                        req     = pinfo.get("required", False)
+                        req_str = " [required]" if req else " [optional]"
+                        lines.append(f"     • {pname} ({ptype}{req_str}): {pdesc}")
+                    else:
+                        lines.append(f"     • {pname}: {pinfo}")
+            lines.append("")
 
-            prompt += f"{i+1}. {tool_name}\n"
-            prompt += f"   Description: {tool_desc}\n"
-            
-            # Add argument information if available
-            if args_schema:
-                prompt += f"   Arguments:\n"
-                for arg_name, arg_info in args_schema.items():
-                    arg_type = arg_info.get('type', 'string')
-                    arg_desc = arg_info.get('description', '')
-                    required = arg_info.get('required', False)
-                    req_str = " (required)" if required else " (optional)"
-                    prompt += f"     - {arg_name}: {arg_type}{req_str} - {arg_desc}\n"
-            
-            prompt += "\n"
+        lines += [
+            "═" * 60,
+            "RESPONSE FORMAT — follow exactly, in order, every turn",
+            "═" * 60,
+            "",
+            "1.  Write your reasoning as free-form prose.",
+            "",
+            "2.  If you need to call a tool, emit a JSON array on its own",
+            "    line (at most ONE call per turn):",
+            "",
+            '    [{"name": "toolName", "args": {"param1": value1, "param2": value2}}]',
+            "",
+            "    Argument rules:",
+            "    • \"args\" must be a JSON object — never a string or list.",
+            "    • Every key must match the tool's declared parameter name exactly.",
+            "    • String values use double quotes; numbers/booleans are unquoted.",
+            "    • Omit optional parameters you don't need; never pass null.",
+            "",
+            "3.  The executor will inject the result as a system message:",
+            "    [\"Function Call {'name': '...', 'args': {...}} Succeeded. Result: {...}\"]",
+            "    or",
+            "    [\"Function Call {'name': '...', 'args': {...}} Failed during execution."
+            " Error: {...}\"]",
+            "",
+            "4.  After receiving the observation, write your next reasoning",
+            "    step and optionally call another tool (repeat steps 1-3).",
+            "",
+            "5.  When the task is fully complete, write your final prose",
+            "    explanation and append <TASK_FINISHED> on the same turn.",
+            "    Do NOT call any tool in the same turn as <TASK_FINISHED>.",
+            "",
+            "═" * 60,
+            "RULES",
+            "═" * 60,
+            "",
+            "• Never emit XML tags such as <think>, <tool_call>, <observe>, etc.",
+            "• Never emit more than one JSON tool-call array per turn.",
+            "• Never fabricate tool results — wait for the executor observation.",
+            "• If a tool fails, reason about the error and try an alternative",
+            "  (e.g., press the brake before starting the engine).",
+            "• If no tool is needed, answer directly and append <TASK_FINISHED>.",
+            "• Your answer must be grounded in the actual tool observations.",
+            "",
+            "═" * 60,
+            "EXAMPLES",
+            "═" * 60,
+            "",
+            "─── Example 1: single tool call ───",
+            "",
+            "User: Lock all car doors.",
+            "",
+            "Assistant:",
+            "I will lock all car doors now.",
+            "",
+            '[{"name": "lockDoors", "args": {"unlock": false,'
+            ' "door": ["driver", "passenger", "rear_left", "rear_right"]}}]',
+            "",
+            "System (executor):",
+            '[\"Function Call {\'name\': \'lockDoors\', \'args\': {\'unlock\': False,'
+            " 'door': ('driver', 'passenger', 'rear_left', 'rear_right')}}"
+            " Succeeded. Result: {'lockStatus': 'locked', 'remainingUnlockedDoors': 0}\"]",
+            "",
+            "Assistant:",
+            "All car doors are now locked. <TASK_FINISHED>",
+            "",
+            "─── Example 2: multi-turn with error recovery ───",
+            "",
+            "User: Start the engine in START mode.",
+            "",
+            "Assistant:",
+            "I will start the engine in START mode.",
+            "",
+            '[{"name": "startEngine", "args": {"ignitionMode": "START"}}]',
+            "",
+            "System (executor):",
+            '[\"Function Call {\'name\': \'startEngine\', \'args\': {\'ignitionMode\': \'START\'}}'
+            " Failed during execution. Error: {'error': 'Brake pedal needs to be pressed"
+            " when starting the engine.'}\"]",
+            "",
+            "Assistant:",
+            "The engine requires the brake pedal to be pressed first. I will press it now.",
+            "",
+            '[{"name": "pressBrakePedal", "args": {"pedalPosition": 1.0}}]',
+            "",
+            "System (executor):",
+            '[\"Function Call {\'name\': \'pressBrakePedal\', \'args\': {\'pedalPosition\': 1.0}}'
+            " Succeeded. Result: {'brakePedalStatus': 'pressed', 'brakePedalForce': 1000.0}\"]",
+            "",
+            "Assistant:",
+            "Brake pedal is pressed. Retrying engine start.",
+            "",
+            '[{"name": "startEngine", "args": {"ignitionMode": "START"}}]',
+            "",
+            "System (executor):",
+            '[\"Function Call {\'name\': \'startEngine\', \'args\': {\'ignitionMode\': \'START\'}}'
+            " Succeeded. Result: {'engineState': 'running', 'fuelLevel': 15.5,"
+            " 'batteryVoltage': 12.8}\"]",
+            "",
+            "Assistant:",
+            "The engine is now running. You are primed to set off! <TASK_FINISHED>",
+            "",
+        ]
 
-        if len(self.tool_methods) > 20:
-            prompt += f"... and {len(self.tool_methods) - 20} more tools available.\n\n"
+        return "\n".join(lines)
 
-        # Strict format instructions
-        prompt += """
-STRICT FORMAT REQUIREMENTS:
-
-You MUST use this EXACT format for every response:
-
-Thought: [Your reasoning about what to do next]
-Action: [The tool name to use]
-Action Input: {"param1": "value1", "param2": "value2"}
-
-After the tool executes, you will see:
-
-Observation: [Tool output]
-
-Then continue with another Thought/Action cycle, OR provide final answer:
-
-Final Answer: [Your final response to the user]
-
-CRITICAL RULES:
-1. ALWAYS start with "Thought:" (capital T, colon, space)
-2. Action name must EXACTLY match a tool name from the list above
-3. Action Input MUST be valid JSON with double quotes
-4. Do NOT use XML tags like <think>, <action>, etc.
-5. Do NOT add extra formatting or markdown
-6. Each line starts with the keyword (Thought:, Action:, etc.)
-
-EXAMPLE 1 - Reading an email:
-
-User: Read email with ID email_123
-
-Thought: I need to retrieve the email content using the read_email tool.
-Action: read_email
-Action Input: {"email_id": "email_123"}
-Observation: {"subject": "Meeting Update", "body": "The meeting is at 3pm", "sender": "alice@company.com"}
-
-Thought: I have retrieved the email content successfully.
-Final Answer: The email with ID email_123 has subject "Meeting Update" from alice@company.com. The body says: "The meeting is at 3pm"
-
-EXAMPLE 2 - Multi-step GitHub task:
-
-User: List all issues in the repository called "myproject"
-
-Thought: I need to get the list of issues for the repository named "myproject".
-Action: github_list_issues_of_repository
-Action Input: {"repo_name": "myproject"}
-Observation: [{"id": "issue_1", "title": "Bug in login", "status": "Open"}, {"id": "issue_2", "title": "Add feature", "status": "Closed"}]
-
-Thought: I have retrieved the list of issues. There are 2 issues total.
-Final Answer: The repository "myproject" has 2 issues:
-1. Issue issue_1: "Bug in login" (Open)
-2. Issue issue_2: "Add feature" (Closed)
-
-EXAMPLE 3 - Creating and updating a record:
-
-User: Create a product called "Widget Pro" with ID prod_123, then update its price to $29.99
-
-Thought: First I need to create the product with the given details.
-Action: create_product
-Action Input: {"product_id": "prod_123", "product_name": "Widget Pro"}
-Observation: Product created successfully with ID prod_123
-
-Thought: Now I need to update the product's price to $29.99.
-Action: update_product
-Action Input: {"product_id": "prod_123", "actual_price": "29.99"}
-Observation: Product prod_123 updated successfully
-
-Thought: Both steps completed successfully.
-Final Answer: I created the product "Widget Pro" with ID prod_123 and updated its price to $29.99.
-
-Now, follow this format exactly for all tasks!"""
-
-        return prompt
+    # ------------------------------------------------------------------
+    # Compact / utility variants
+    # ------------------------------------------------------------------
 
     def build_compact_prompt(self) -> str:
-        """
-        Compact version for limited context scenarios.
-        
-        Returns:
-            Compact prompt string
-        """
-        prompt = "Tools: "
-        tool_names = [t.get('name', 'unknown') for t in self.tool_methods]
-        prompt += ", ".join(tool_names[:30])
-        
-        if len(tool_names) > 30:
-            prompt += f" (and {len(tool_names) - 30} more)"
-        
-        prompt += "\n\nFormat:\nThought: [reasoning]\nAction: [tool_name]\nAction Input: {\"arg\": \"value\"}\nObservation: [result]\nFinal Answer: [response]"
-        
-        return prompt
+        """Minimal prompt for tight-context scenarios."""
+        names = ", ".join(t.get("name", "?") for t in self.tool_methods)
+        return (
+            f"Tools: {names}\n\n"
+            "Format:\n"
+            "  <reasoning prose>\n"
+            '  [{"name": "toolName", "args": {"arg": "value"}}]   ← omit if no tool needed\n'
+            "  <reasoning prose after observation>\n"
+            "  … repeat …\n"
+            "  <final prose> <TASK_FINISHED>"
+        )
 
     def build_tool_list_only(self) -> str:
-        """
-        Build just the tool list (useful for custom prompts).
-
-        Returns:
-            Tool list string
-        """
-        tools_text = ""
-        for tool in self.tool_methods:
-            tool_name = tool.get('name', 'unknown')
-            tool_desc = tool.get('description', '')
-            args_schema = tool.get('args_schema', {})
-            
-            tools_text += f"- {tool_name}: {tool_desc}"
-            
-            if args_schema:
+        """Return just the formatted tool list."""
+        lines: List[str] = []
+        for t in self.tool_methods:
+            name   = t.get("name", "?")
+            desc   = t.get("description", "")
+            schema = t.get("args_schema", {})
+            entry  = f"• {name}: {desc}"
+            if schema:
                 args_list = []
-                for arg_name, arg_info in args_schema.items():
-                    req = "(required)" if arg_info.get('required', False) else "(optional)"
-                    args_list.append(f"{arg_name} {req}")
-                tools_text += f" | Args: {', '.join(args_list)}"
-            
-            tools_text += "\n"
-        
-        return tools_text
+                for pname, pinfo in schema.items():
+                    req = (pinfo.get("required", False)
+                           if isinstance(pinfo, dict) else False)
+                    args_list.append(f"{pname}{'*' if req else ''}")
+                entry += f"  [{', '.join(args_list)}]"
+            lines.append(entry)
+        return "\n".join(lines)
+
+    # ------------------------------------------------------------------
+    # Accessors
+    # ------------------------------------------------------------------
 
     def get_tool_count(self) -> int:
-        """Get number of available tools."""
         return len(self.tool_methods)
 
     def get_tool_names(self) -> List[str]:
-        """Get list of tool names."""
-        return [t.get('name', 'unknown') for t in self.tool_methods]
+        return [t.get("name", "?") for t in self.tool_methods]

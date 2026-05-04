@@ -25,7 +25,7 @@ class TrajectoryCollator:
     def __init__(
         self,
         tokenizer: Any,
-        max_length: int = 4096,
+        max_length: int = 16000,
         padding_side: str = "right"
     ):
         """
