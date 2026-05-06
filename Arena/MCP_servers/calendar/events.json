@@ -1,0 +1,51 @@
+[
+  {
+    "event_id": "evt_a16a6f045cf4",
+    "title": "Meeting",
+    "start_time": "2025-10-31T11:30:00",
+    "end_time": "2025-10-31T12:30:00",
+    "description": "",
+    "location": "Meeting Room",
+    "organizer_email": "harsh@abc.com",
+    "attendees": [
+      "Chaitanya@abc.com"
+    ],
+    "color": "blue",
+    "created_at": "2025-10-31T04:02:07.717253",
+    "updated_at": "2025-10-31T04:02:07.717280",
+    "status": "scheduled"
+  },
+  {
+    "event_id": "evt_72fae6b61ae7",
+    "title": "Meeting",
+    "start_time": "2025-10-31T11:30:00",
+    "end_time": "2025-10-31T12:30:00",
+    "description": "",
+    "location": "Meeting room",
+    "organizer_email": "harsh@abc.com",
+    "attendees": [
+      "Ankush@abc.com"
+    ],
+    "color": "blue",
+    "created_at": "2025-10-31T07:51:52.770190",
+    "updated_at": "2025-10-31T07:51:52.770218",
+    "status": "scheduled"
+  },
+  {
+    "event_id": "evt_6f145237b342",
+    "title": "Project Kickoff Meeting",
+    "start_time": "2025-10-30T10:00:00",
+    "end_time": "2025-10-30T11:00:00",
+    "description": "Initial meeting with the project team to discuss objectives and timelines.",
+    "location": "Conference Room 1B",
+    "organizer_email": "organizer@example.com",
+    "attendees": [
+      "attendee1@example.com",
+      "attendee2@example.com"
+    ],
+    "color": "green",
+    "created_at": "2025-11-04T23:58:37.516821",
+    "updated_at": "2025-11-04T23:58:37.516847",
+    "status": "scheduled"
+  }
+]

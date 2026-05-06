@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  calendar-mcp:
+    build: .
+    container_name: calendar-mcp-server
+    ports:
+      - "12006:12006"
+    environment:
+      - CALENDAR_BASE_URL=http://host.docker.internal:3002
+
+    restart: unless-stopped
