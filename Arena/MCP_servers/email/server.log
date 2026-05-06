@@ -1,0 +1,723 @@
+2025-10-30 23:06:53,040 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:07:13,425 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:07:16,721 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:07:20,309 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:07:20,411 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:07:20,411 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:07:20,411 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:07:26,565 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:07:26,670 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-30 23:07:26,670 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:07:26,671 - INFO - ✅ Found 1 matching emails
+2025-10-30 23:07:39,261 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:07:39,366 - INFO - 🔍 Searching emails with query: 'Hello (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-30 23:07:39,366 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:07:39,366 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:08:10,061 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:08:10,167 - INFO - 🔍 Searching emails with query: 'blah (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-30 23:08:10,167 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:08:10,167 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:10:57,296 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:10:57,402 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-30 23:10:57,402 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:10:57,402 - INFO - ✅ Found 1 matching emails
+2025-10-30 23:11:03,122 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:11:26,783 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:11:26,886 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:11:26,887 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:11:26,887 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:11:28,024 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:11:28,127 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-30 23:11:28,127 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:11:28,127 - INFO - ✅ Found 1 matching emails
+2025-10-30 23:11:30,859 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:11:30,964 - INFO - 🔍 Searching emails with query: 'Hello'
+2025-10-30 23:11:30,964 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:11:30,964 - INFO - ✅ Found 1 matching emails
+2025-10-30 23:11:32,404 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:11:45,911 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:11:46,016 - INFO - 🔍 Searching emails with query: 'testing'
+2025-10-30 23:11:46,016 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:11:46,016 - INFO - ✅ Found 1 matching emails
+2025-10-30 23:11:48,305 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:11:51,430 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:11:51,512 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:11:56,160 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:11:56,265 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:11:56,265 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:11:56,265 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:21:00,272 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:21:10,892 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:21:10,995 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:21:10,995 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:21:10,995 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:21:14,157 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:21:14,248 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:21:17,377 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:21:17,482 - INFO - 🔍 Searching emails with query: 'DRAFT from:harsh@abc.com'
+2025-10-30 23:21:17,482 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:21:17,483 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:21:18,148 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:21:18,253 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-30 23:21:18,254 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:21:18,254 - INFO - ✅ Found 1 matching emails
+2025-10-30 23:21:18,726 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:21:18,831 - INFO - 🔍 Searching emails with query: 'STARRED (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-30 23:21:18,831 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:21:18,831 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:21:20,524 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:21:20,629 - INFO - 🔍 Searching emails with query: 'TRASH (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-30 23:21:20,630 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:21:20,630 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:21:48,732 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:21:48,838 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:21:48,838 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:21:48,838 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:22:05,005 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:22:05,110 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:22:05,111 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:22:05,111 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:22:42,624 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:22:42,730 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-30 23:22:42,731 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:22:42,731 - INFO - ✅ Found 1 matching emails
+2025-10-30 23:22:43,320 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:31:14,342 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:31:22,162 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:31:22,264 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:31:22,264 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:31:22,264 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:34:44,433 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:34:51,069 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:34:51,172 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:34:51,172 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:34:51,172 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:37:51,718 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:37:51,824 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:37:51,825 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:37:51,825 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:38:36,825 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:38:56,244 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:38:56,348 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:38:56,348 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:38:56,348 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:40:53,280 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:41:19,798 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:41:19,901 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:41:19,901 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:41:19,901 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:42:36,348 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:42:36,454 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:42:36,454 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:42:36,455 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:43:22,895 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:43:23,001 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:43:23,001 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:43:23,001 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:47:08,237 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:47:15,553 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:47:15,655 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:47:15,656 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:47:15,656 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:50:11,540 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:50:23,007 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:50:23,110 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:50:23,110 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:50:23,111 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:53:09,453 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:53:19,037 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:53:19,140 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:53:19,140 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:53:19,140 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:55:00,104 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:55:00,210 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:55:00,210 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:55:00,210 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:55:34,507 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:55:51,019 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:55:51,122 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:55:51,122 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:55:51,122 - INFO - ✅ Found 0 matching emails
+2025-10-30 23:58:57,328 - INFO - Processing request of type CallToolRequest
+2025-10-30 23:58:57,431 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-30 23:58:57,431 - INFO - 📊 Total emails in storage: 1
+2025-10-30 23:58:57,431 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:00:41,509 - INFO - Processing request of type ListToolsRequest
+2025-10-31 00:00:56,407 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:00:56,512 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 00:00:56,512 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:00:56,512 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:02:25,456 - INFO - Processing request of type ListToolsRequest
+2025-10-31 00:02:31,328 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:02:31,430 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 00:02:31,430 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:02:31,430 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:02:34,483 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:02:34,588 - INFO - 🔍 Searching emails with query: 'STARRED (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-31 00:02:34,588 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:02:34,588 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:02:35,128 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:02:35,233 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-31 00:02:35,233 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:02:35,233 - INFO - ✅ Found 1 matching emails
+2025-10-31 00:02:36,813 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:02:36,918 - INFO - 🔍 Searching emails with query: 'DRAFT from:harsh@abc.com'
+2025-10-31 00:02:36,918 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:02:36,918 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:02:37,492 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:02:37,597 - INFO - 🔍 Searching emails with query: 'TRASH (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-31 00:02:37,597 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:02:37,597 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:02:39,110 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:02:39,181 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:02:43,769 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:02:43,875 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 00:02:43,875 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:02:43,875 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:05:15,761 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:05:15,864 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 00:05:15,864 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:05:15,864 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:05:38,356 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:05:38,462 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 00:05:38,462 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:05:38,462 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:05:44,359 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:05:44,465 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 00:05:44,465 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:05:44,465 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:05:48,306 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:05:48,411 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 00:05:48,411 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:05:48,411 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:06:36,991 - INFO - Processing request of type ListToolsRequest
+2025-10-31 00:06:48,207 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:06:48,309 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 00:06:48,310 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:06:48,310 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:06:54,557 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:06:54,662 - INFO - 🔍 Searching emails with query: 'TRASH (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-31 00:06:54,662 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:06:54,662 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:08:38,118 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:08:38,224 - INFO - 🔍 Searching emails with query: 'TRASH (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-31 00:08:38,225 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:08:38,225 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:08:38,805 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:08:38,910 - INFO - 🔍 Searching emails with query: 'DRAFT from:harsh@abc.com'
+2025-10-31 00:08:38,911 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:08:38,911 - INFO - ✅ Found 0 matching emails
+2025-10-31 00:08:58,074 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:08:58,179 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 00:08:58,179 - INFO - 📊 Total emails in storage: 1
+2025-10-31 00:08:58,179 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:37:45,386 - INFO - Processing request of type ListToolsRequest
+2025-10-31 03:38:20,905 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:38:21,009 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 03:38:21,009 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:38:21,009 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:38:25,046 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:38:25,151 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 03:38:25,151 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:38:25,152 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:38:27,333 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:38:27,439 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-31 03:38:27,439 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:38:27,439 - INFO - ✅ Found 1 matching emails
+2025-10-31 03:40:58,740 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:40:58,846 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 03:40:58,846 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:40:58,846 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:40:59,509 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:40:59,614 - INFO - 🔍 Searching emails with query: 'STARRED (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-31 03:40:59,614 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:40:59,614 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:40:59,983 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:41:00,088 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-31 03:41:00,088 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:41:00,088 - INFO - ✅ Found 1 matching emails
+2025-10-31 03:42:22,681 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:42:22,791 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 03:42:22,791 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:42:22,791 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:42:55,241 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:42:55,347 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 03:42:55,347 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:42:55,347 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:43:02,718 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:43:02,823 - INFO - 🔍 Searching emails with query: 'STARRED (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-31 03:43:02,823 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:43:02,823 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:43:03,386 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:43:03,491 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-31 03:43:03,491 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:43:03,492 - INFO - ✅ Found 1 matching emails
+2025-10-31 03:43:03,971 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:43:04,076 - INFO - 🔍 Searching emails with query: 'DRAFT from:harsh@abc.com'
+2025-10-31 03:43:04,077 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:43:04,077 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:43:04,818 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:43:04,923 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-31 03:43:04,923 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:43:04,924 - INFO - ✅ Found 1 matching emails
+2025-10-31 03:43:06,364 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:43:06,469 - INFO - 🔍 Searching emails with query: 'DRAFT from:harsh@abc.com'
+2025-10-31 03:43:06,469 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:43:06,469 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:43:07,408 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:43:07,513 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-31 03:43:07,513 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:43:07,513 - INFO - ✅ Found 1 matching emails
+2025-10-31 03:45:47,840 - INFO - Processing request of type ListToolsRequest
+2025-10-31 03:45:54,839 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:45:54,941 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 03:45:54,941 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:45:54,941 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:50:06,494 - INFO - Processing request of type ListToolsRequest
+2025-10-31 03:50:12,314 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:50:12,417 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 03:50:12,417 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:50:12,417 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:50:43,852 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:50:43,958 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 03:50:43,958 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:50:43,958 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:55:10,010 - INFO - Processing request of type ListToolsRequest
+2025-10-31 03:55:13,964 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:55:14,066 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 03:55:14,066 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:55:14,066 - INFO - ✅ Found 0 matching emails
+2025-10-31 03:58:58,211 - INFO - Processing request of type ListToolsRequest
+2025-10-31 03:59:01,787 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:59:01,889 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 03:59:01,889 - INFO - 📊 Total emails in storage: 1
+2025-10-31 03:59:01,889 - INFO - ✅ Found 0 matching emails
+2025-10-31 04:01:39,196 - INFO - Processing request of type ListToolsRequest
+2025-10-31 04:01:43,672 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:01:43,774 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 04:01:43,774 - INFO - 📊 Total emails in storage: 1
+2025-10-31 04:01:43,774 - INFO - ✅ Found 0 matching emails
+2025-10-31 04:04:03,533 - INFO - Processing request of type ListToolsRequest
+2025-10-31 04:04:07,234 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:04:07,338 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 04:04:07,338 - INFO - 📊 Total emails in storage: 1
+2025-10-31 04:04:07,338 - INFO - ✅ Found 0 matching emails
+2025-10-31 04:05:42,138 - INFO - Processing request of type ListToolsRequest
+2025-10-31 04:05:54,835 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:05:54,937 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 04:05:54,937 - INFO - 📊 Total emails in storage: 1
+2025-10-31 04:05:54,937 - INFO - ✅ Found 0 matching emails
+2025-10-31 04:07:55,172 - INFO - Processing request of type ListToolsRequest
+2025-10-31 04:08:06,261 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:08:06,364 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 04:08:06,364 - INFO - 📊 Total emails in storage: 1
+2025-10-31 04:08:06,364 - INFO - ✅ Found 0 matching emails
+2025-10-31 07:31:07,552 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:31:29,030 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:31:29,137 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 07:31:29,137 - INFO - 📊 Total emails in storage: 1
+2025-10-31 07:31:29,137 - INFO - ✅ Found 0 matching emails
+2025-10-31 07:38:06,290 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:38:06,396 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 07:38:06,396 - INFO - 📊 Total emails in storage: 1
+2025-10-31 07:38:06,396 - INFO - ✅ Found 0 matching emails
+2025-10-31 07:43:41,612 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:43:51,607 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:43:51,711 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 07:43:51,711 - INFO - 📊 Total emails in storage: 1
+2025-10-31 07:43:51,711 - INFO - ✅ Found 0 matching emails
+2025-10-31 07:44:06,266 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:44:06,371 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 07:44:06,371 - INFO - 📊 Total emails in storage: 1
+2025-10-31 07:44:06,372 - INFO - ✅ Found 0 matching emails
+2025-10-31 07:50:40,358 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:50:46,712 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:50:46,814 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 07:50:46,815 - INFO - 📊 Total emails in storage: 1
+2025-10-31 07:50:46,815 - INFO - ✅ Found 0 matching emails
+2025-10-31 07:51:10,483 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:51:10,587 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 07:51:10,588 - INFO - 📊 Total emails in storage: 1
+2025-10-31 07:51:10,588 - INFO - ✅ Found 0 matching emails
+2025-10-31 07:52:03,563 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:52:03,667 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 07:52:03,667 - INFO - 📊 Total emails in storage: 1
+2025-10-31 07:52:03,667 - INFO - ✅ Found 0 matching emails
+2025-10-31 07:52:46,722 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:52:46,829 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 07:52:46,829 - INFO - 📊 Total emails in storage: 1
+2025-10-31 07:52:46,829 - INFO - ✅ Found 0 matching emails
+2025-10-31 07:54:22,646 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:54:22,751 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 07:54:22,752 - INFO - 📊 Total emails in storage: 1
+2025-10-31 07:54:22,752 - INFO - ✅ Found 0 matching emails
+2025-10-31 07:55:08,738 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:55:08,844 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 07:55:08,844 - INFO - 📊 Total emails in storage: 1
+2025-10-31 07:55:08,844 - INFO - ✅ Found 0 matching emails
+2025-10-31 07:56:57,609 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:56:57,715 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 07:56:57,715 - INFO - 📊 Total emails in storage: 1
+2025-10-31 07:56:57,715 - INFO - ✅ Found 0 matching emails
+2025-10-31 07:58:29,633 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:58:29,739 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 07:58:29,739 - INFO - 📊 Total emails in storage: 1
+2025-10-31 07:58:29,739 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:00:20,751 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:00:20,857 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 08:00:20,857 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:00:20,857 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:00:29,502 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:00:29,604 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 08:00:29,604 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:00:29,605 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:01:23,581 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:01:23,687 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 08:01:23,687 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:01:23,688 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:02:17,485 - INFO - Processing request of type ListToolsRequest
+2025-10-31 08:02:22,687 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:02:22,789 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 08:02:22,789 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:02:22,789 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:03:11,759 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:03:11,865 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 08:03:11,865 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:03:11,866 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:05:33,384 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:05:33,490 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 08:05:33,490 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:05:33,490 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:05:42,430 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:05:42,535 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 08:05:42,536 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:05:42,536 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:06:51,124 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:06:51,230 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 08:06:51,230 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:06:51,231 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:08:51,598 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:08:51,704 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 08:08:51,704 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:08:51,704 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:10:05,427 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:10:05,533 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 08:10:05,533 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:10:05,534 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:21:10,660 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:10,766 - INFO - 🔍 Searching emails with query: 'STARRED (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-31 08:21:10,766 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:21:10,767 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:21:11,719 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:11,824 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 08:21:11,824 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:21:11,825 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:21:14,902 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:15,007 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-31 08:21:15,008 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:21:15,008 - INFO - ✅ Found 1 matching emails
+2025-10-31 08:21:15,842 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:15,947 - INFO - 🔍 Searching emails with query: 'DRAFT from:harsh@abc.com'
+2025-10-31 08:21:15,948 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:21:15,948 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:21:54,355 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:54,461 - INFO - 🔍 Searching emails with query: 'TRASH (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-31 08:21:54,461 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:21:54,462 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:21:55,422 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:55,524 - INFO - 🔍 Searching emails with query: 'DRAFT from:harsh@abc.com'
+2025-10-31 08:21:55,524 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:21:55,525 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:21:56,425 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:56,530 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-31 08:21:56,531 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:21:56,531 - INFO - ✅ Found 1 matching emails
+2025-10-31 08:21:57,455 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:57,560 - INFO - 🔍 Searching emails with query: 'STARRED (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-31 08:21:57,561 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:21:57,561 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:21:58,482 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:58,588 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 08:21:58,588 - INFO - 📊 Total emails in storage: 1
+2025-10-31 08:21:58,588 - INFO - ✅ Found 0 matching emails
+2025-10-31 08:52:27,329 - INFO - Processing request of type ListToolsRequest
+2025-10-31 19:18:31,806 - INFO - Processing request of type ListToolsRequest
+2025-10-31 19:19:29,546 - INFO - Processing request of type CallToolRequest
+2025-10-31 19:19:29,651 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 19:19:29,652 - INFO - 📊 Total emails in storage: 1
+2025-10-31 19:19:29,652 - INFO - ✅ Found 0 matching emails
+2025-10-31 19:21:23,658 - INFO - Processing request of type CallToolRequest
+2025-10-31 19:21:23,764 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-31 19:21:23,764 - INFO - 📊 Total emails in storage: 1
+2025-10-31 19:21:23,764 - INFO - ✅ Found 1 matching emails
+2025-10-31 19:21:25,165 - INFO - Processing request of type CallToolRequest
+2025-10-31 19:21:48,677 - INFO - Processing request of type CallToolRequest
+2025-10-31 19:21:48,783 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-10-31 19:21:48,783 - INFO - 📊 Total emails in storage: 1
+2025-10-31 19:21:48,783 - INFO - ✅ Found 0 matching emails
+2025-10-31 19:21:50,414 - INFO - Processing request of type CallToolRequest
+2025-10-31 19:21:50,519 - INFO - 🔍 Searching emails with query: 'STARRED (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-10-31 19:21:50,519 - INFO - 📊 Total emails in storage: 1
+2025-10-31 19:21:50,519 - INFO - ✅ Found 0 matching emails
+2025-10-31 19:21:51,099 - INFO - Processing request of type CallToolRequest
+2025-10-31 19:21:51,207 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-31 19:21:51,207 - INFO - 📊 Total emails in storage: 1
+2025-10-31 19:21:51,207 - INFO - ✅ Found 1 matching emails
+2025-10-31 19:21:51,935 - INFO - Processing request of type CallToolRequest
+2025-10-31 19:21:52,037 - INFO - 🔍 Searching emails with query: 'DRAFT from:harsh@abc.com'
+2025-10-31 19:21:52,037 - INFO - 📊 Total emails in storage: 1
+2025-10-31 19:21:52,037 - INFO - ✅ Found 0 matching emails
+2025-10-31 19:21:52,888 - INFO - Processing request of type CallToolRequest
+2025-10-31 19:21:52,990 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-10-31 19:21:52,991 - INFO - 📊 Total emails in storage: 1
+2025-10-31 19:21:52,991 - INFO - ✅ Found 1 matching emails
+2025-10-31 19:21:54,250 - INFO - Processing request of type CallToolRequest
+2025-11-03 18:49:28,504 - INFO - Processing request of type ListToolsRequest
+2025-11-03 18:49:43,840 - INFO - Processing request of type CallToolRequest
+2025-11-03 18:49:43,943 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-11-03 18:49:43,943 - INFO - 📊 Total emails in storage: 1
+2025-11-03 18:49:43,943 - INFO - ✅ Found 0 matching emails
+2025-11-03 18:49:46,875 - INFO - Processing request of type CallToolRequest
+2025-11-03 18:49:46,979 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-11-03 18:49:46,980 - INFO - 📊 Total emails in storage: 1
+2025-11-03 18:49:46,980 - INFO - ✅ Found 1 matching emails
+2025-11-03 18:49:47,968 - INFO - Processing request of type CallToolRequest
+2025-11-03 18:49:48,074 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-11-03 18:49:48,074 - INFO - 📊 Total emails in storage: 1
+2025-11-03 18:49:48,074 - INFO - ✅ Found 0 matching emails
+2025-11-03 23:05:06,350 - INFO - Processing request of type ListToolsRequest
+2025-11-03 23:06:07,811 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:07,914 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-11-03 23:06:07,914 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:06:07,914 - INFO - ✅ Found 0 matching emails
+2025-11-03 23:06:08,749 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:08,854 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-11-03 23:06:08,855 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:06:08,855 - INFO - ✅ Found 1 matching emails
+2025-11-03 23:06:09,718 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:09,823 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-11-03 23:06:09,824 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:06:09,824 - INFO - ✅ Found 0 matching emails
+2025-11-03 23:06:29,450 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:29,556 - INFO - 🔍 Searching emails with query: 'STARRED (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-11-03 23:06:29,557 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:06:29,557 - INFO - ✅ Found 0 matching emails
+2025-11-03 23:06:30,688 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:30,794 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-11-03 23:06:30,794 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:06:30,794 - INFO - ✅ Found 1 matching emails
+2025-11-03 23:06:30,920 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:31,026 - INFO - 🔍 Searching emails with query: 'DRAFT from:harsh@abc.com'
+2025-11-03 23:06:31,026 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:06:31,026 - INFO - ✅ Found 0 matching emails
+2025-11-03 23:06:32,209 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:32,312 - INFO - 🔍 Searching emails with query: 'TRASH (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-11-03 23:06:32,312 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:06:32,312 - INFO - ✅ Found 0 matching emails
+2025-11-03 23:06:35,513 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:35,618 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-11-03 23:06:35,619 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:06:35,619 - INFO - ✅ Found 0 matching emails
+2025-11-03 23:06:42,966 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:43,072 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-11-03 23:06:43,072 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:06:43,072 - INFO - ✅ Found 1 matching emails
+2025-11-03 23:06:44,988 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:55,866 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:55,972 - INFO - 🔍 Searching emails with query: 'to:harsh@abc.com'
+2025-11-03 23:06:55,972 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:06:55,972 - INFO - ✅ Found 0 matching emails
+2025-11-03 23:08:09,791 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:08:09,897 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-11-03 23:08:09,898 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:08:09,898 - INFO - ✅ Found 1 matching emails
+2025-11-03 23:08:13,959 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:08:14,062 - INFO - 🔍 Searching emails with query: 'hello'
+2025-11-03 23:08:14,062 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:08:14,063 - INFO - ✅ Found 1 matching emails
+2025-11-03 23:08:15,365 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:08:15,731 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:08:25,099 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:08:25,204 - INFO - 🔍 Searching emails with query: 'from:harsh@abc.com'
+2025-11-03 23:08:25,204 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:08:25,205 - INFO - ✅ Found 1 matching emails
+2025-11-03 23:16:03,921 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:16:04,028 - INFO - 🔍 Searching emails with query: 'STARRED (to:harsh@abc.com OR from:harsh@abc.com)'
+2025-11-03 23:16:04,028 - INFO - 📊 Total emails in storage: 1
+2025-11-03 23:16:04,028 - INFO - ✅ Found 0 matching emails
+2025-11-04 00:21:06,273 - INFO - StreamableHTTP session manager started
+2025-11-04 00:21:06,273 - INFO - StreamableHTTP session manager shutting down
+2025-11-04 00:21:42,893 - INFO - StreamableHTTP session manager started
+2025-11-04 00:22:17,127 - INFO - Created new transport with session ID: 246a18e3b7444330897cc5cbd103811b
+2025-11-04 00:22:17,152 - INFO - Processing request of type ListToolsRequest
+2025-11-04 00:26:04,134 - INFO - Terminating session: 246a18e3b7444330897cc5cbd103811b
+2025-11-04 00:26:14,312 - INFO - Created new transport with session ID: 3411989370164a9da5a24358f8829f22
+2025-11-04 00:26:14,326 - INFO - Processing request of type ListToolsRequest
+2025-11-04 00:26:27,841 - INFO - Terminating session: 3411989370164a9da5a24358f8829f22
+2025-11-04 00:44:47,122 - INFO - StreamableHTTP session manager shutting down
+2025-11-04 19:55:41,376 - INFO - StreamableHTTP session manager started
+2025-11-04 19:55:56,377 - INFO - Created new transport with session ID: f31a624097c74cd38214d2e8dede0ce1
+2025-11-04 19:55:56,401 - INFO - Processing request of type ListToolsRequest
+2025-11-04 19:55:58,356 - INFO - Terminating session: f31a624097c74cd38214d2e8dede0ce1
+2025-11-04 20:39:49,627 - INFO - Created new transport with session ID: 68739ca6f84d40489d91746d9a76f57a
+2025-11-04 20:39:49,649 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:16:10,697 - INFO - Terminating session: 68739ca6f84d40489d91746d9a76f57a
+2025-11-04 22:16:23,596 - INFO - Created new transport with session ID: c86f3f53f5d444bc8b8c4a4686898b95
+2025-11-04 22:16:23,616 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:17:20,815 - INFO - Terminating session: c86f3f53f5d444bc8b8c4a4686898b95
+2025-11-04 22:24:16,676 - INFO - Created new transport with session ID: 4c9340cc34634179b3a77733340bd0b9
+2025-11-04 22:24:16,697 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:24:35,370 - INFO - Terminating session: 4c9340cc34634179b3a77733340bd0b9
+2025-11-04 22:26:51,607 - INFO - Created new transport with session ID: f562676ba1ca47d888455bf6da77a05b
+2025-11-04 22:26:51,626 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:29:31,790 - INFO - Terminating session: f562676ba1ca47d888455bf6da77a05b
+2025-11-04 22:30:05,284 - INFO - Created new transport with session ID: fd94cf4cdffa429695f36ca7d03b1f6c
+2025-11-04 22:30:05,304 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:30:54,190 - INFO - Terminating session: fd94cf4cdffa429695f36ca7d03b1f6c
+2025-11-04 22:31:06,392 - INFO - Created new transport with session ID: 173a512ec6a9482a9ae936409747a0ce
+2025-11-04 22:31:06,413 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:33:29,868 - INFO - Terminating session: 173a512ec6a9482a9ae936409747a0ce
+2025-11-04 22:33:40,860 - INFO - Created new transport with session ID: 95eacbd20b354b6893dd2f7229d42cc0
+2025-11-04 22:33:40,880 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:33:51,025 - INFO - Terminating session: 95eacbd20b354b6893dd2f7229d42cc0
+2025-11-04 22:34:00,909 - INFO - Created new transport with session ID: d57aab1998e04c5ebc78e730c9b57265
+2025-11-04 22:34:00,928 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:08:54,906 - INFO - Created new transport with session ID: 6c7f9c121a9744f085929ba1fb170b16
+2025-11-04 23:08:54,925 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:21:20,088 - INFO - Terminating session: d57aab1998e04c5ebc78e730c9b57265
+2025-11-04 23:22:17,571 - INFO - Terminating session: 6c7f9c121a9744f085929ba1fb170b16
+2025-11-04 23:23:48,482 - INFO - Created new transport with session ID: 24f49cb17ba341768e94c356d68b2783
+2025-11-04 23:23:48,502 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:23:48,548 - INFO - Terminating session: 24f49cb17ba341768e94c356d68b2783
+2025-11-04 23:26:06,647 - INFO - Created new transport with session ID: 69ce1fc7df0a4eed8c3256c6ab09fb35
+2025-11-04 23:26:06,667 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:26:06,714 - INFO - Terminating session: 69ce1fc7df0a4eed8c3256c6ab09fb35
+2025-11-04 23:31:16,229 - INFO - Created new transport with session ID: b4361ed6cc60426bacaed91440d8807b
+2025-11-04 23:31:16,249 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:31:16,293 - INFO - Terminating session: b4361ed6cc60426bacaed91440d8807b
+2025-11-04 23:36:40,552 - INFO - Created new transport with session ID: 6708082279b440e1b7af28603f74068e
+2025-11-04 23:36:40,573 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:36:46,825 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:46,848 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:46,863 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:46,872 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:46,885 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:46,989 - INFO - 🔍 Searching emails with query: 'test'
+2025-11-04 23:36:46,989 - INFO - 📊 Total emails in storage: 1
+2025-11-04 23:36:46,989 - INFO - ✅ Found 1 matching emails
+2025-11-04 23:36:47,004 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/emails/search'
+2025-11-04 23:36:47,010 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,030 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,046 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,066 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,080 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,097 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,100 - INFO - 🗑️ Label deleted: test-id-123
+2025-11-04 23:36:47,104 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/labels/test-id-123'
+2025-11-04 23:36:47,113 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,124 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,142 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,146 - INFO - 🗑️ Batch deleted 0 emails
+2025-11-04 23:36:47,150 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/emails/batch-delete'
+2025-11-04 23:36:47,158 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,162 - INFO - ✅ Filter created: ANe1Bmj0b7cc0f190
+2025-11-04 23:36:47,166 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/filters'
+2025-11-04 23:36:47,174 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,189 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,201 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,203 - INFO - 🗑️ Filter deleted: test-id-123
+2025-11-04 23:36:47,206 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/filters/test-id-123'
+2025-11-04 23:36:47,215 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,538 - INFO - Terminating session: 6708082279b440e1b7af28603f74068e
+2025-11-04 23:47:53,358 - INFO - Created new transport with session ID: 93ab5ae6794946f68e8e337d87e4d54c
+2025-11-04 23:47:53,385 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:47:57,708 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:57,748 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:57,775 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:57,793 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:57,814 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:57,921 - INFO - 🔍 Searching emails with query: 'test-value'
+2025-11-04 23:47:57,921 - INFO - 📊 Total emails in storage: 1
+2025-11-04 23:47:57,921 - INFO - ✅ Found 0 matching emails
+2025-11-04 23:47:57,927 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/emails/search'
+2025-11-04 23:47:57,931 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:57,942 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:57,953 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:57,962 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:57,968 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:57,977 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:57,978 - INFO - 🗑️ Label deleted: test-id-123
+2025-11-04 23:47:57,981 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/labels/test-id-123'
+2025-11-04 23:47:57,985 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:57,993 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,002 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,005 - INFO - 🗑️ Batch deleted 0 emails
+2025-11-04 23:47:58,007 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/emails/batch-delete'
+2025-11-04 23:47:58,012 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,017 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,024 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,030 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,032 - INFO - 🗑️ Filter deleted: test-id-123
+2025-11-04 23:47:58,034 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/filters/test-id-123'
+2025-11-04 23:47:58,038 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,135 - INFO - Terminating session: 93ab5ae6794946f68e8e337d87e4d54c
+2025-11-04 23:48:36,022 - INFO - Created new transport with session ID: 52201b46932c4d7598a72b7af0ea6aa0
+2025-11-04 23:48:36,041 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:48:45,787 - INFO - Terminating session: 52201b46932c4d7598a72b7af0ea6aa0
+2025-11-04 23:49:38,882 - INFO - Created new transport with session ID: 01bea28aa251440e929e6c1c71dc0c31
+2025-11-04 23:49:38,901 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:49:46,884 - INFO - Terminating session: 01bea28aa251440e929e6c1c71dc0c31
+2025-11-04 23:51:24,718 - INFO - Created new transport with session ID: c8c0b743db4f4a84aa51457dee7dca9f
+2025-11-04 23:51:24,737 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:57:53,273 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:57:53,426 - INFO - ✅ Email sent: 3607ff57648643f7 to ['recipient1@example.com', 'recipient2@example.com']
+2025-11-04 23:57:53,437 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/emails/send'
+2025-11-04 23:57:56,054 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:57:56,092 - INFO - ✅ Draft created: 3c3eba1642ba4f90
+2025-11-04 23:57:56,098 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/emails/draft'
+2025-11-04 23:57:58,205 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:00,667 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:02,921 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:03,026 - INFO - 🔍 Searching emails with query: 'from:example@gmail.com subject:test'
+2025-11-04 23:58:03,026 - INFO - 📊 Total emails in storage: 3
+2025-11-04 23:58:03,027 - INFO - ✅ Found 0 matching emails
+2025-11-04 23:58:03,036 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/emails/search'
+2025-11-04 23:58:05,451 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:07,677 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:07,695 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:09,972 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:09,978 - INFO - ✅ Label created: Label_bcf83f6b94 - Important
+2025-11-04 23:58:09,987 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/labels'
+2025-11-04 23:58:12,207 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:12,218 - INFO - ✏️ Label updated: 12345abc -> Important
+2025-11-04 23:58:12,224 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/labels/12345abc'
+2025-11-04 23:58:14,354 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:14,357 - INFO - 🗑️ Label deleted: label_12345
+2025-11-04 23:58:14,364 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/labels/label_12345'
+2025-11-04 23:58:16,575 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:16,581 - INFO - ✅ Label created: Label_538235810b - Project Updates
+2025-11-04 23:58:16,587 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/labels/get-or-create'
+2025-11-04 23:58:18,931 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:18,947 - INFO - ✏️ Batch modified 0 emails
+2025-11-04 23:58:18,953 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/emails/batch-modify'
+2025-11-04 23:58:26,270 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:26,276 - INFO - 🗑️ Batch deleted 0 emails
+2025-11-04 23:58:26,285 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/emails/batch-delete'
+2025-11-04 23:58:28,941 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:28,950 - INFO - ✅ Filter created: ANe1Bmj7742977ec2
+2025-11-04 23:58:28,955 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/filters'
+2025-11-04 23:58:28,968 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:30,070 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:32,493 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:32,497 - INFO - 🗑️ Filter deleted: filter_12345ABC
+2025-11-04 23:58:32,502 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/filters/filter_12345ABC'
+2025-11-04 23:58:34,761 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:34,766 - INFO - ✅ Filter created from template: ANe1Bmjb76d89dcd0
+2025-11-04 23:58:34,773 - WARNING - API sync failed: 404, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url='http://localhost:12005/api/filters/template'
+2025-11-04 23:58:50,639 - INFO - Terminating session: c8c0b743db4f4a84aa51457dee7dca9f
+2025-11-05 00:48:52,831 - INFO - Created new transport with session ID: 124b0518651f402681af500ebc4c6791
+2025-11-05 00:48:52,862 - INFO - Processing request of type ListToolsRequest
+2025-11-05 00:48:56,585 - INFO - Terminating session: 124b0518651f402681af500ebc4c6791
+2025-11-05 00:49:28,909 - INFO - Created new transport with session ID: 20ab448a4fe0441cb62dada78f094805
+2025-11-05 00:49:28,928 - INFO - Processing request of type ListToolsRequest
+2025-11-05 01:05:16,524 - INFO - Terminating session: 20ab448a4fe0441cb62dada78f094805

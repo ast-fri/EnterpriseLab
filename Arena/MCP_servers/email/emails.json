@@ -1,0 +1,77 @@
+[
+  {
+    "message_id": "af8b8e270fc64aef",
+    "thread_id": "thread_cc7d0fd06992",
+    "date": "2025-10-30T22:24:49.689993",
+    "from": "harsh@abc.com",
+    "to": [
+      "chaitanya@abc.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "Testing",
+    "body": "Hello",
+    "html_body": null,
+    "mime_type": "text/plain",
+    "status": "sent",
+    "labels": [
+      "INBOX",
+      "STARRED",
+      "SENT"
+    ],
+    "attachments": [],
+    "importance": "Normal"
+  },
+  {
+    "message_id": "3607ff57648643f7",
+    "thread_id": "thread_b9be33a59fc9",
+    "date": "2025-11-04T23:57:53.407849",
+    "from": "sender@example.com",
+    "to": [
+      "recipient1@example.com",
+      "recipient2@example.com"
+    ],
+    "cc": [
+      "cc1@example.com"
+    ],
+    "bcc": [
+      "bcc1@example.com",
+      "bcc2@example.com"
+    ],
+    "subject": "Test Email Subject",
+    "body": "This is a test email body content.",
+    "html_body": null,
+    "mime_type": "text/plain",
+    "status": "sent",
+    "labels": [
+      "SENT",
+      "INBOX"
+    ],
+    "attachments": [],
+    "importance": "Normal"
+  },
+  {
+    "message_id": "3c3eba1642ba4f90",
+    "thread_id": "thread_d4ced86ce94d",
+    "date": "2025-11-04T23:57:56.090404",
+    "from": "sender@example.com",
+    "to": [
+      "recipient1@example.com",
+      "recipient2@example.com"
+    ],
+    "cc": [
+      "manager@example.com"
+    ],
+    "bcc": [],
+    "subject": "Meeting Agenda",
+    "body": "Please find attached the agenda for our upcoming meeting. Let me know if you have any questions.",
+    "html_body": null,
+    "mime_type": "text/plain",
+    "status": "draft",
+    "labels": [
+      "DRAFT"
+    ],
+    "attachments": [],
+    "importance": "Normal"
+  }
+]

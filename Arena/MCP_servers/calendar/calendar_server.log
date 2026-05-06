@@ -1,0 +1,599 @@
+2025-10-30 23:37:39,461 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-30 23:37:39,481 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:38:34,128 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-30 23:38:34,148 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:40:14,993 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-30 23:40:15,016 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:40:16,426 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-30 23:40:16,445 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:40:43,128 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-30 23:40:43,149 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:45:19,326 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-30 23:45:19,345 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:47:05,338 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-30 23:47:05,359 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:50:08,302 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-30 23:50:08,322 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:52:52,156 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-30 23:52:52,176 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:53:03,737 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-30 23:53:03,758 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:54:04,303 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-30 23:54:04,324 - INFO - Processing request of type ListToolsRequest
+2025-10-30 23:55:31,372 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-30 23:55:31,392 - INFO - Processing request of type ListToolsRequest
+2025-10-31 00:00:37,687 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 00:00:37,707 - INFO - Processing request of type ListToolsRequest
+2025-10-31 00:02:03,645 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 00:02:03,664 - INFO - Processing request of type ListToolsRequest
+2025-10-31 00:02:10,301 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 00:02:10,321 - INFO - Processing request of type ListToolsRequest
+2025-10-31 00:02:13,414 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 00:02:13,434 - INFO - Processing request of type ListToolsRequest
+2025-10-31 00:02:22,729 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 00:02:22,749 - INFO - Processing request of type ListToolsRequest
+2025-10-31 00:06:33,672 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 00:06:33,691 - INFO - Processing request of type ListToolsRequest
+2025-10-31 00:06:52,832 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:06:52,834 - WARNING - ❌ Event not found: list
+2025-10-31 00:06:55,489 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:06:55,491 - WARNING - ❌ Event not found: list
+2025-10-31 00:08:26,227 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:08:26,251 - INFO - ✅ Event created: evt_657855c61e23 - Meeting
+2025-10-31 00:08:26,391 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:08:26,395 - WARNING - ❌ Event not found: list
+2025-10-31 00:08:39,744 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:08:39,748 - WARNING - ❌ Event not found: list
+2025-10-31 00:08:59,939 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:08:59,943 - WARNING - ❌ Event not found: list
+2025-10-31 00:09:04,796 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:09:04,800 - WARNING - ❌ Event not found: list
+2025-10-31 00:09:07,276 - INFO - Processing request of type CallToolRequest
+2025-10-31 00:09:07,280 - WARNING - ❌ Event not found: list
+2025-10-31 03:37:48,691 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 03:37:48,710 - INFO - Processing request of type ListToolsRequest
+2025-10-31 03:38:23,620 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:38:23,622 - WARNING - ❌ Event not found: list
+2025-10-31 03:39:10,894 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:39:10,899 - WARNING - ❌ Event not found: list
+2025-10-31 03:42:23,933 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:42:23,937 - WARNING - ❌ Event not found: list
+2025-10-31 03:43:09,127 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:43:09,132 - WARNING - ❌ Event not found: list
+2025-10-31 03:45:45,714 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 03:45:45,735 - INFO - Processing request of type ListToolsRequest
+2025-10-31 03:45:52,311 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:45:52,313 - WARNING - ❌ Event not found: list
+2025-10-31 03:45:56,673 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:45:56,677 - WARNING - ❌ Event not found: list
+2025-10-31 03:47:05,918 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:47:05,942 - INFO - ✅ Event created: evt_87966f113167 - Meeting
+2025-10-31 03:47:06,102 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:47:06,106 - WARNING - ❌ Event not found: list
+2025-10-31 03:47:16,488 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:47:16,490 - WARNING - ❌ Event not found: list
+2025-10-31 03:47:19,436 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:47:19,438 - WARNING - ❌ Event not found: list
+2025-10-31 03:50:03,645 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 03:50:03,665 - INFO - Processing request of type ListToolsRequest
+2025-10-31 03:50:11,117 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:50:11,119 - WARNING - ❌ Event not found: list
+2025-10-31 03:50:13,712 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:50:13,716 - WARNING - ❌ Event not found: list
+2025-10-31 03:50:45,605 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:50:45,608 - WARNING - ❌ Event not found: list
+2025-10-31 03:55:07,657 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 03:55:07,677 - INFO - Processing request of type ListToolsRequest
+2025-10-31 03:55:18,546 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:55:18,551 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 03:55:52,877 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:55:52,888 - INFO - 📅 Found 2 events between 2025-10-31 and 2025-11-29
+2025-10-31 03:55:54,021 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:55:54,025 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 03:55:57,160 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:55:57,171 - INFO - 📅 Found 2 events between 2025-10-31 and 2025-11-29
+2025-10-31 03:56:04,266 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:56:04,277 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 03:58:55,218 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 03:58:55,237 - INFO - Processing request of type ListToolsRequest
+2025-10-31 03:59:00,770 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:59:00,776 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 03:59:03,255 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:59:03,267 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 03:59:12,534 - INFO - Processing request of type CallToolRequest
+2025-10-31 03:59:12,546 - INFO - 📅 Found 2 events between 2025-10-31 and 2025-11-29
+2025-10-31 04:00:29,958 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:00:29,970 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 04:00:40,711 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:00:40,722 - INFO - 📅 Found 2 events between 2025-10-31 and 2025-11-29
+2025-10-31 04:01:34,346 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 04:01:34,366 - INFO - Processing request of type ListToolsRequest
+2025-10-31 04:01:34,791 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:01:34,796 - INFO - 📅 Found 0 events between 2025-10-31 and 2025-11-29
+2025-10-31 04:01:44,780 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:01:44,791 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 04:02:07,695 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:02:07,718 - INFO - ✅ Event created: evt_a16a6f045cf4 - Meeting
+2025-10-31 04:02:07,874 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:02:07,885 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 04:04:00,853 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 04:04:00,873 - INFO - Processing request of type ListToolsRequest
+2025-10-31 04:04:06,333 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:04:06,337 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 04:04:08,678 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:04:08,685 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 04:05:17,712 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:05:17,724 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 04:05:39,091 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 04:05:39,111 - INFO - Processing request of type ListToolsRequest
+2025-10-31 04:05:56,367 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:05:56,372 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 04:07:52,552 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 04:07:52,571 - INFO - Processing request of type ListToolsRequest
+2025-10-31 04:08:09,374 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:08:09,378 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 04:08:22,002 - INFO - Processing request of type CallToolRequest
+2025-10-31 04:08:22,013 - INFO - 📅 Found 1 events between 2025-10-31 and 2025-11-29
+2025-10-31 07:31:01,160 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:31:01,180 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:31:05,198 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:31:05,203 - INFO - 📅 Found 1 events between 2025-10-31 and 2025-11-29
+2025-10-31 07:31:49,618 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:31:49,628 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:35:47,953 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:35:47,965 - INFO - 📅 Found 1 events between 2025-10-31 and 2025-11-29
+2025-10-31 07:38:08,139 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:38:08,151 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:42:38,037 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:42:38,049 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:42:38,200 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:42:38,212 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:42:38,357 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:42:38,368 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:42:38,514 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:42:38,526 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:42:43,038 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:42:43,050 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:42:43,200 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:42:43,212 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:42:57,959 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:42:57,971 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:42:58,111 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:42:58,123 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:42:58,271 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:42:58,282 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:42:58,427 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:42:58,438 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:43:21,113 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:43:21,125 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:43:21,271 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:43:21,282 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:43:36,718 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:43:36,738 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:43:53,954 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:43:53,959 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:43:54,107 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:43:54,118 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:43:54,261 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:43:54,272 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:43:54,414 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:43:54,425 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:44:08,127 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:44:08,139 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:44:08,291 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:44:08,302 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:44:08,462 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:44:08,473 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:44:08,615 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:44:08,620 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:44:14,058 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:44:14,069 - INFO - 📅 Found 1 events between 2025-10-31 and 2025-11-29
+2025-10-31 07:44:16,714 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:44:16,725 - INFO - 📅 Found 0 events between 2025-09-30 and 2025-10-30
+2025-10-31 07:50:10,007 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:50:10,024 - INFO - 📅 Found 1 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:50:10,168 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:50:10,179 - INFO - 📅 Found 1 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:50:15,041 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:50:15,052 - INFO - 📅 Found 1 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:50:15,205 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:50:15,216 - INFO - 📅 Found 1 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:50:36,941 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:50:36,961 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:50:48,299 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:50:48,305 - INFO - 📅 Found 1 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:50:48,449 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:50:48,460 - INFO - 📅 Found 1 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:50:48,609 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:50:48,620 - INFO - 📅 Found 1 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:50:48,773 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:50:48,784 - INFO - 📅 Found 1 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:51:14,865 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:51:14,870 - INFO - 📅 Found 1 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:51:15,001 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:51:15,012 - INFO - 📅 Found 1 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:51:15,159 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:51:15,170 - INFO - 📅 Found 1 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:51:15,311 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:51:15,318 - INFO - 📅 Found 1 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:51:52,748 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:51:52,772 - INFO - ✅ Event created: evt_72fae6b61ae7 - Meeting
+2025-10-31 07:51:52,922 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:51:52,933 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:52:04,944 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:52:04,955 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:52:05,356 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:52:05,368 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:52:05,510 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:52:05,521 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:52:05,666 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:52:05,677 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:52:52,420 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:52:52,432 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:52:52,719 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:52:52,736 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:52:52,990 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:52:53,002 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:52:53,143 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:52:53,154 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:53:53,660 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:53:53,679 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:53:55,043 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:53:55,063 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:54:03,753 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:54:03,773 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:54:06,951 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:54:06,972 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:54:13,974 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:54:13,994 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:54:19,170 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:54:19,190 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:54:24,063 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:54:24,067 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:54:24,211 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:54:24,216 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:54:24,363 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:54:24,374 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:54:24,515 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:54:24,526 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:54:52,019 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:54:52,039 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:54:54,814 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:54:54,833 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:55:04,750 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:55:04,770 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:55:09,416 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:55:09,420 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:55:09,556 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:55:09,561 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:55:09,699 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:55:09,704 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:55:09,851 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:55:09,862 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:55:31,638 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:55:31,658 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:56:16,668 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:56:16,687 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:56:20,376 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:56:20,395 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:56:33,453 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:56:33,473 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:56:39,600 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:56:39,620 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:56:46,496 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:56:46,515 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:56:53,465 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:56:53,487 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:56:58,966 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:56:58,970 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:56:59,119 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:56:59,128 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:56:59,277 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:56:59,288 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:56:59,440 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:56:59,451 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:57:30,506 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:57:30,527 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:57:31,915 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:57:31,935 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:57:44,443 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:57:44,463 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:57:48,368 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:57:48,389 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:58:03,185 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:58:03,204 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:58:16,190 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:58:16,210 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:58:18,502 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:58:18,521 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:58:27,578 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 07:58:27,597 - INFO - Processing request of type ListToolsRequest
+2025-10-31 07:58:30,874 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:58:30,878 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:58:31,020 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:58:31,026 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:58:31,187 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:58:31,196 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 07:58:31,364 - INFO - Processing request of type CallToolRequest
+2025-10-31 07:58:31,375 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:00:26,779 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 08:00:26,800 - INFO - Processing request of type ListToolsRequest
+2025-10-31 08:00:30,683 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:00:30,687 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:00:30,834 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:00:30,843 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:00:31,002 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:00:31,013 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:00:31,164 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:00:31,175 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:01:18,002 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:01:18,014 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:01:18,170 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:01:18,180 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:01:25,431 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:01:25,442 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:01:25,593 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:01:25,604 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:01:25,753 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:01:25,757 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:01:25,901 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:01:25,905 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:02:13,606 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 08:02:13,628 - INFO - Processing request of type ListToolsRequest
+2025-10-31 08:02:24,134 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:02:24,138 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:02:24,274 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:02:24,277 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:02:24,428 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:02:24,438 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:02:24,594 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:02:24,605 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:02:57,029 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:02:57,039 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:02:57,187 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:02:57,199 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:03:12,988 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:03:12,993 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:03:13,137 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:03:13,149 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:03:13,295 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:03:13,306 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:03:13,460 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:03:13,471 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:05:21,035 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:05:21,040 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:05:21,233 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:05:21,244 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:05:34,956 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:05:34,961 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:05:35,117 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:05:35,128 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:05:35,270 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:05:35,282 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:05:35,428 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:05:35,439 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:05:44,528 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:05:44,540 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:05:44,689 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:05:44,700 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:05:44,853 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:05:44,865 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:05:45,010 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:05:45,021 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:06:53,277 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:06:53,294 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:06:53,469 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:06:53,480 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:06:53,841 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:06:53,853 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:06:54,000 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:06:54,011 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:08:26,409 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:08:26,421 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:08:27,105 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:08:27,116 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:10:07,076 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:10:07,089 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:10:07,237 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:10:07,248 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:10:07,392 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:10:07,404 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:10:07,549 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:10:07,560 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:10:31,172 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:10:31,183 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-10-31 08:10:32,383 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:10:32,394 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:10:53,338 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:10:53,345 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-10-31 08:10:56,143 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:10:56,154 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:21:33,408 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:33,420 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:21:33,574 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:33,585 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:21:33,732 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:33,743 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:21:33,893 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:33,905 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 08:21:50,713 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:50,724 - INFO - 📅 Found 0 events between 2025-09-01 and 2025-09-30
+2025-10-31 08:21:51,633 - INFO - Processing request of type CallToolRequest
+2025-10-31 08:21:51,644 - INFO - 📅 Found 0 events between 2025-08-01 and 2025-08-31
+2025-10-31 08:52:23,588 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 08:52:23,607 - INFO - Processing request of type ListToolsRequest
+2025-10-31 19:18:28,777 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-10-31 19:18:28,798 - INFO - Processing request of type ListToolsRequest
+2025-10-31 19:21:29,112 - INFO - Processing request of type CallToolRequest
+2025-10-31 19:21:29,117 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 19:21:29,280 - INFO - Processing request of type CallToolRequest
+2025-10-31 19:21:29,287 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 19:21:29,419 - INFO - Processing request of type CallToolRequest
+2025-10-31 19:21:29,431 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-10-31 19:21:29,565 - INFO - Processing request of type CallToolRequest
+2025-10-31 19:21:29,577 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-11-03 18:45:28,857 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-11-03 18:45:28,876 - INFO - Processing request of type ListToolsRequest
+2025-11-03 18:48:07,715 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-11-03 18:48:07,737 - INFO - Processing request of type ListToolsRequest
+2025-11-03 18:50:04,159 - INFO - Processing request of type CallToolRequest
+2025-11-03 18:50:04,165 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 18:50:04,293 - INFO - Processing request of type CallToolRequest
+2025-11-03 18:50:04,306 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 18:50:04,437 - INFO - Processing request of type CallToolRequest
+2025-11-03 18:50:04,449 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 18:50:04,582 - INFO - Processing request of type CallToolRequest
+2025-11-03 18:50:04,594 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 18:50:06,392 - INFO - Processing request of type CallToolRequest
+2025-11-03 18:50:06,404 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-11-03 18:50:08,289 - INFO - Processing request of type CallToolRequest
+2025-11-03 18:50:08,300 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:05:31,976 - INFO - 🚀 Starting Enterprise Calendar MCP Server
+2025-11-03 23:05:31,997 - INFO - Processing request of type ListToolsRequest
+2025-11-03 23:06:32,586 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:32,590 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:06:33,144 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:33,152 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:06:33,712 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:33,723 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:06:34,284 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:34,295 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:06:58,745 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:58,749 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:06:59,005 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:59,017 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:06:59,554 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:06:59,565 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:07:00,121 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:07:00,132 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:07:00,940 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:07:00,952 - INFO - 📅 Found 2 events between 2025-10-01 and 2025-10-31
+2025-11-03 23:08:20,632 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:08:20,645 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:08:21,218 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:08:21,229 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:08:21,824 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:08:21,835 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:08:22,058 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:08:22,070 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:16:00,281 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:16:00,293 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:16:00,833 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:16:00,844 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:16:01,386 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:16:01,397 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-03 23:16:01,635 - INFO - Processing request of type CallToolRequest
+2025-11-03 23:16:01,641 - INFO - 📅 Found 0 events between 2025-11-01 and 2025-11-30
+2025-11-04 00:25:54,305 - INFO - StreamableHTTP session manager started
+2025-11-04 00:26:14,344 - INFO - Created new transport with session ID: dcfda767014d4db9abd9b52d794bcb7d
+2025-11-04 00:26:14,366 - INFO - Processing request of type ListToolsRequest
+2025-11-04 00:26:27,835 - INFO - Terminating session: dcfda767014d4db9abd9b52d794bcb7d
+2025-11-04 00:44:44,744 - INFO - StreamableHTTP session manager shutting down
+2025-11-04 19:55:45,602 - INFO - StreamableHTTP session manager started
+2025-11-04 19:55:56,416 - INFO - Created new transport with session ID: 93428561d27442e8b9723d7ad5510572
+2025-11-04 19:55:56,438 - INFO - Processing request of type ListToolsRequest
+2025-11-04 19:55:58,348 - INFO - Terminating session: 93428561d27442e8b9723d7ad5510572
+2025-11-04 20:39:49,673 - INFO - Created new transport with session ID: 44c6428bc3894a30acd508fe6e47c8a2
+2025-11-04 20:39:49,695 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:16:10,691 - INFO - Terminating session: 44c6428bc3894a30acd508fe6e47c8a2
+2025-11-04 22:16:23,634 - INFO - Created new transport with session ID: 7468a8adcb1c4337b48c7041ea8251e1
+2025-11-04 22:16:23,654 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:17:20,807 - INFO - Terminating session: 7468a8adcb1c4337b48c7041ea8251e1
+2025-11-04 22:24:16,714 - INFO - Created new transport with session ID: ad4414b486b742a9a358fc44394b3f8c
+2025-11-04 22:24:16,735 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:24:35,362 - INFO - Terminating session: ad4414b486b742a9a358fc44394b3f8c
+2025-11-04 22:26:51,642 - INFO - Created new transport with session ID: e1239d86a65f4565a17d4a8fde3dbd33
+2025-11-04 22:26:51,661 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:29:31,783 - INFO - Terminating session: e1239d86a65f4565a17d4a8fde3dbd33
+2025-11-04 22:30:05,324 - INFO - Created new transport with session ID: 06bedd52033e4d6ab4ec4b13504af1e4
+2025-11-04 22:30:05,344 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:30:54,183 - INFO - Terminating session: 06bedd52033e4d6ab4ec4b13504af1e4
+2025-11-04 22:31:06,430 - INFO - Created new transport with session ID: e292abdfefc84b989e589352d2fd304a
+2025-11-04 22:31:06,450 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:33:29,860 - INFO - Terminating session: e292abdfefc84b989e589352d2fd304a
+2025-11-04 22:33:40,898 - INFO - Created new transport with session ID: cb50b6c3c6ff43e48a1e9fa6cc217086
+2025-11-04 22:33:40,918 - INFO - Processing request of type ListToolsRequest
+2025-11-04 22:33:51,017 - INFO - Terminating session: cb50b6c3c6ff43e48a1e9fa6cc217086
+2025-11-04 22:34:00,946 - INFO - Created new transport with session ID: dada459487db49e1b9284e1e740f6747
+2025-11-04 22:34:00,965 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:08:54,940 - INFO - Created new transport with session ID: df715ebe4fb24dc689187aa7a2d25b56
+2025-11-04 23:08:54,959 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:21:20,084 - INFO - Terminating session: dada459487db49e1b9284e1e740f6747
+2025-11-04 23:22:17,568 - INFO - Terminating session: df715ebe4fb24dc689187aa7a2d25b56
+2025-11-04 23:23:48,519 - INFO - Created new transport with session ID: 29a21b53932147fbb15511282bc68c1e
+2025-11-04 23:23:48,539 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:23:48,545 - INFO - Terminating session: 29a21b53932147fbb15511282bc68c1e
+2025-11-04 23:26:06,685 - INFO - Created new transport with session ID: b0466f203a8346faa3cf6487a15db4f3
+2025-11-04 23:26:06,704 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:26:06,710 - INFO - Terminating session: b0466f203a8346faa3cf6487a15db4f3
+2025-11-04 23:31:16,265 - INFO - Created new transport with session ID: 1c31d253557e4389846fb429a615263f
+2025-11-04 23:31:16,284 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:31:16,289 - INFO - Terminating session: 1c31d253557e4389846fb429a615263f
+2025-11-04 23:36:40,593 - INFO - Created new transport with session ID: 3c594e743d8f4bbb99dcc4b961adbc23
+2025-11-04 23:36:40,613 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:36:47,226 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,255 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,260 - WARNING - ❌ Event not found: test-id-123
+2025-11-04 23:36:47,272 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,296 - WARNING - ❌ Event not found for update: test-id-123
+2025-11-04 23:36:47,306 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,309 - WARNING - ❌ Event not found for deletion: test-id-123
+2025-11-04 23:36:47,319 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,458 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,460 - INFO - 🔍 Found 0 events matching 'test'
+2025-11-04 23:36:47,465 - WARNING - API sync failed: Cannot connect to host localhost:6000 ssl:default [Connect call failed ('127.0.0.1', 6000)]
+2025-11-04 23:36:47,480 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:36:47,484 - INFO - 📅 Retrieved 0 events for test@example.com
+2025-11-04 23:36:47,487 - WARNING - API sync failed: Cannot connect to host localhost:6000 ssl:default [Connect call failed ('127.0.0.1', 6000)]
+2025-11-04 23:36:47,533 - INFO - Terminating session: 3c594e743d8f4bbb99dcc4b961adbc23
+2025-11-04 23:47:53,412 - INFO - Created new transport with session ID: 9700d0acddbe45e6ba2dba0a10c8bc31
+2025-11-04 23:47:53,438 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:47:58,045 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,064 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,066 - WARNING - ❌ Event not found: test-id-123
+2025-11-04 23:47:58,071 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,081 - WARNING - ❌ Event not found for update: test-id-123
+2025-11-04 23:47:58,086 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,088 - WARNING - ❌ Event not found for deletion: test-id-123
+2025-11-04 23:47:58,093 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,097 - ERROR - Invalid date format: test-value or test-value
+2025-11-04 23:47:58,104 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,106 - INFO - 🔍 Found 0 events matching 'test-value'
+2025-11-04 23:47:58,109 - WARNING - API sync failed: Cannot connect to host localhost:6000 ssl:default [Connect call failed ('127.0.0.1', 6000)]
+2025-11-04 23:47:58,113 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:47:58,115 - INFO - 📅 Retrieved 0 events for test-value
+2025-11-04 23:47:58,118 - WARNING - API sync failed: Cannot connect to host localhost:6000 ssl:default [Connect call failed ('127.0.0.1', 6000)]
+2025-11-04 23:47:58,133 - INFO - Terminating session: 9700d0acddbe45e6ba2dba0a10c8bc31
+2025-11-04 23:48:36,055 - INFO - Created new transport with session ID: fe8d155845a3416e87e9413f179618f3
+2025-11-04 23:48:36,074 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:48:45,779 - INFO - Terminating session: fe8d155845a3416e87e9413f179618f3
+2025-11-04 23:49:38,915 - INFO - Created new transport with session ID: 0a03c56377414a11a21032a798b578c7
+2025-11-04 23:49:38,934 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:49:46,877 - INFO - Terminating session: 0a03c56377414a11a21032a798b578c7
+2025-11-04 23:51:24,751 - INFO - Created new transport with session ID: 4068fd2d3433456fb70b4fb7ebaaeedc
+2025-11-04 23:51:24,772 - INFO - Processing request of type ListToolsRequest
+2025-11-04 23:58:37,492 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:37,538 - INFO - ✅ Event created: evt_6f145237b342 - Project Kickoff Meeting
+2025-11-04 23:58:37,546 - WARNING - API sync failed: Cannot connect to host localhost:6000 ssl:default [Connect call failed ('127.0.0.1', 6000)]
+2025-11-04 23:58:39,729 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:39,734 - WARNING - ❌ Event not found: abc123XYZ
+2025-11-04 23:58:42,530 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:42,558 - WARNING - ❌ Event not found for update: abc123
+2025-11-04 23:58:44,767 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:44,771 - WARNING - ❌ Event not found for deletion: abc123-event
+2025-11-04 23:58:46,042 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:46,053 - INFO - 📅 Found 0 events between 2025-10-30 and 2025-10-31
+2025-11-04 23:58:46,059 - WARNING - API sync failed: Cannot connect to host localhost:6000 ssl:default [Connect call failed ('127.0.0.1', 6000)]
+2025-11-04 23:58:48,320 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:48,325 - INFO - 🔍 Found 3 events matching 'meeting'
+2025-11-04 23:58:48,334 - WARNING - API sync failed: Cannot connect to host localhost:6000 ssl:default [Connect call failed ('127.0.0.1', 6000)]
+2025-11-04 23:58:50,582 - INFO - Processing request of type CallToolRequest
+2025-11-04 23:58:50,589 - INFO - 📅 Retrieved 0 events for jane.doe@example.com
+2025-11-04 23:58:50,595 - WARNING - API sync failed: Cannot connect to host localhost:6000 ssl:default [Connect call failed ('127.0.0.1', 6000)]
+2025-11-04 23:58:50,633 - INFO - Terminating session: 4068fd2d3433456fb70b4fb7ebaaeedc
+2025-11-05 00:48:52,883 - INFO - Created new transport with session ID: 16d1f702f54c49f3ab66d4435892b1e3
+2025-11-05 00:48:52,914 - INFO - Processing request of type ListToolsRequest
+2025-11-05 00:48:56,577 - INFO - Terminating session: 16d1f702f54c49f3ab66d4435892b1e3
+2025-11-05 00:49:28,943 - INFO - Created new transport with session ID: 6b4c9818b86341b3ab057e14633deabb
+2025-11-05 00:49:28,963 - INFO - Processing request of type ListToolsRequest
+2025-11-05 01:05:16,514 - INFO - Terminating session: 6b4c9818b86341b3ab057e14633deabb
