@@ -48,8 +48,33 @@ find_compose_files() {
 }
 
 
+restore_data_if_needed() {
+    # Check if this is first run and restore volumes if backups exist
+    local marker_file="$ROOT_DIR/.volumes_restored"
+
+    if [ -f "$marker_file" ]; then
+        echo "✅ Volumes already restored (delete .volumes_restored to force restore)"
+        return
+    fi
+
+    if [ -f "$ROOT_DIR/restore_volumes.sh" ]; then
+        echo "🔄 First run detected - restoring pre-filled data..."
+        echo ""
+        bash "$ROOT_DIR/restore_volumes.sh"
+        echo ""
+        # Mark as restored
+        touch "$marker_file"
+        echo "✅ Data restoration complete!"
+        echo ""
+    fi
+}
+
 start_all() {
     echo "🚀 Starting all enterprise servers..."
+
+    # Restore volumes on first run
+    restore_data_if_needed
+
     for compose_file in "${COMPOSE_FILES[@]}"; do
         APP_DIR=$(dirname "$compose_file")
         APP_NAME=$(basename "$APP_DIR")

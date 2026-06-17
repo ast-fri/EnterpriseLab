@@ -1,0 +1,24 @@
+👤 Candidate 4: Neha Kulkarni
+
+Experience: 4 years
+Current Role: Full Stack Developer
+
+Skills:
+
+Python, Flask
+
+JavaScript, React
+
+MySQL, Git
+
+Experience Summary:
+
+Worked on both frontend and backend components
+
+Built small-scale REST APIs using Flask
+
+Limited experience with cloud and Docker
+
+Education:
+
+B.Tech in Computer Engineering

@@ -1,0 +1,13 @@
+FROM docker:27.3.1-cli
+
+# Install MongoDB tools
+RUN apk add --no-cache mongodb-tools curl
+
+# Copy database dump
+COPY rocketchat.dump /data/rocketchat.dump
+COPY restore.sh /restore.sh
+
+# Make script executable
+RUN chmod +x /restore.sh
+
+ENTRYPOINT ["/restore.sh"]
