@@ -85,6 +85,16 @@ echo -e "${GREEN}======================================${NC}"
 echo -e "${GREEN}Backup Complete!${NC}"
 echo -e "${GREEN}======================================${NC}"
 echo ""
+
+# Fix ownership of all backup files at once
+echo "Fixing ownership of backup files..."
+uid=$(id -u)
+gid=$(id -g)
+docker run --rm \
+    -v "$(pwd)/volume_backups":/backup \
+    alpine chown -R "${uid}:${gid}" /backup
+
+echo ""
 echo "Backups saved to: $(pwd)/volume_backups/"
 echo ""
 ls -lh volume_backups/
