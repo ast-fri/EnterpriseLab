@@ -1,0 +1,24 @@
+👤 Candidate 5: Amit Deshpande
+
+Experience: 2.5 years
+Current Role: Junior Software Engineer
+
+Skills:
+
+Python, Django
+
+SQLite, MySQL
+
+Git
+
+Experience Summary:
+
+Assisted in backend development tasks
+
+Basic experience with REST APIs
+
+Learning Docker and cloud fundamentals
+
+Education:
+
+B.Sc. in Computer Science

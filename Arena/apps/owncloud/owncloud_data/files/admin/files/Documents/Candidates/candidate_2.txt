@@ -1,0 +1,24 @@
+👤 Candidate 2: Anjali Verma
+
+Experience: 3.5 years
+Current Role: Software Engineer
+
+Skills:
+
+Python, Django
+
+MySQL, PostgreSQL
+
+REST APIs, Git
+
+Experience Summary:
+
+Developed backend services using Django REST Framework
+
+Worked closely with frontend teams to integrate APIs
+
+Implemented role-based access control systems
+
+Education:
+
+B.E. in Information Technology

@@ -1,0 +1,24 @@
+👤 Candidate 3: Suresh Patil
+
+Experience: 6 years
+Current Role: Senior Backend Developer
+
+Skills:
+
+Python, FastAPI
+
+PostgreSQL, MongoDB
+
+Docker, Kubernetes, AWS
+
+Experience Summary:
+
+Led backend architecture for high-traffic applications
+
+Designed microservices deployed on Kubernetes
+
+Mentored junior engineers and reviewed code
+
+Education:
+
+M.Tech in Software Engineering

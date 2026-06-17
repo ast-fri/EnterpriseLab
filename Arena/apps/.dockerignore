@@ -1,0 +1,13 @@
+# Ignore unnecessary files during Docker build
+*.md
+*.log
+*.tmp
+.git
+.github
+__pycache__
+*.pyc
+.DS_Store
+node_modules
+.env
+.vscode
+.idea

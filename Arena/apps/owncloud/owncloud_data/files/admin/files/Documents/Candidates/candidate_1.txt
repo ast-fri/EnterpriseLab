@@ -1,0 +1,26 @@
+Candidate 1: Rahul Sharma
+
+Experience: 5 years
+Current Role: Backend Engineer
+
+Skills:
+
+Python, FastAPI, Django
+
+PostgreSQL, Redis
+
+Docker, Git, AWS (EC2, S3)
+
+
+Experience Summary:
+
+Built scalable REST APIs using FastAPI
+
+Designed microservices for user authentication and payments
+
+Improved API response times by 30% using Redis caching
+
+
+Education:
+
+B.Tech in Computer Science
