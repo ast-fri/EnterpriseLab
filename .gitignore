@@ -8,7 +8,7 @@ __pycache__/
 dist/
 build/
 *.egg
-
+/mnt/home-ldap/vkharsh_ldap/Research/EnterpriseLab/Arena/apps/database_management/fetched_data/gitlab.json
 # Virtual environments
 venv/
 env/
