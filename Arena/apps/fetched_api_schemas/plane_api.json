@@ -1,0 +1,456 @@
+{
+  "service": "plane",
+  "url": "http://localhost:80",
+  "api_base": "/api/v1",
+  "auth_type": "Bearer Token",
+  "auth_headers": {
+    "Authorization": {
+      "type": "string",
+      "required": true,
+      "pattern": "^Bearer .+$"
+    }
+  },
+  "documentation": "https://docs.plane.so/api-reference",
+  "openapi_version": "3.0",
+  "endpoints": [
+    {
+      "name": "workspaces.list",
+      "method": "GET",
+      "route": "/api/v1/workspaces/",
+      "description": "List all workspaces user has access to",
+      "input": {
+        "query": {
+          "page": {
+            "type": "integer",
+            "required": false,
+            "default": 1
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false,
+            "default": 10,
+            "maximum": 100
+          }
+        }
+      },
+      "output": {
+        "results": {
+          "type": "array",
+          "items": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "required": true
+            },
+            "name": {
+              "type": "string",
+              "required": true,
+              "maxLength": 80
+            },
+            "slug": {
+              "type": "string",
+              "required": true,
+              "pattern": "^[a-z0-9-]+$",
+              "maxLength": 48
+            },
+            "owner": {
+              "type": "string",
+              "format": "uuid",
+              "required": true
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "required": true
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time",
+              "required": true
+            }
+          }
+        },
+        "count": {
+          "type": "integer",
+          "required": true
+        },
+        "next": {
+          "type": "string",
+          "format": "uri",
+          "required": false
+        },
+        "previous": {
+          "type": "string",
+          "format": "uri",
+          "required": false
+        }
+      },
+      "target_table": "workspaces",
+      "auth_required": true
+    },
+    {
+      "name": "workspaces.create",
+      "method": "POST",
+      "route": "/api/v1/workspaces/",
+      "description": "Create a new workspace",
+      "input": {
+        "body": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "maxLength": 80,
+            "minLength": 1
+          },
+          "slug": {
+            "type": "string",
+            "required": true,
+            "pattern": "^[a-z0-9-]+$",
+            "maxLength": 48
+          }
+        }
+      },
+      "output": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "owner": {
+          "type": "string",
+          "format": "uuid",
+          "required": true
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "required": true
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "required": true
+        }
+      },
+      "target_table": "workspaces",
+      "auth_required": true,
+      "permissions": [
+        "workspace:create"
+      ]
+    },
+    {
+      "name": "projects.list",
+      "method": "GET",
+      "route": "/api/v1/workspaces/{workspace_slug}/projects/",
+      "description": "List all projects in a workspace",
+      "input": {
+        "path": {
+          "workspace_slug": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "query": {
+          "page": {
+            "type": "integer",
+            "required": false
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false
+          }
+        }
+      },
+      "output": {
+        "results": {
+          "type": "array",
+          "items": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "required": true
+            },
+            "name": {
+              "type": "string",
+              "required": true,
+              "maxLength": 255
+            },
+            "description": {
+              "type": "string",
+              "required": false,
+              "maxLength": 500
+            },
+            "network": {
+              "type": "integer",
+              "enum": [
+                0,
+                2
+              ],
+              "required": true,
+              "description": "0=private, 2=public"
+            },
+            "workspace_id": {
+              "type": "string",
+              "format": "uuid",
+              "required": true
+            },
+            "project_lead": {
+              "type": "string",
+              "format": "uuid",
+              "required": false
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "required": true
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time",
+              "required": true
+            }
+          }
+        }
+      },
+      "target_table": "projects",
+      "auth_required": true
+    },
+    {
+      "name": "projects.create",
+      "method": "POST",
+      "route": "/api/v1/workspaces/{workspace_slug}/projects/",
+      "description": "Create a new project",
+      "input": {
+        "path": {
+          "workspace_slug": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "body": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "required": false,
+            "maxLength": 500
+          },
+          "network": {
+            "type": "integer",
+            "enum": [
+              0,
+              2
+            ],
+            "required": false,
+            "default": 0
+          },
+          "project_lead": {
+            "type": "string",
+            "format": "uuid",
+            "required": false
+          },
+          "identifier": {
+            "type": "string",
+            "required": true,
+            "pattern": "^[A-Z0-9]+$",
+            "maxLength": 12
+          }
+        }
+      },
+      "output": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "target_table": "projects",
+      "auth_required": true
+    },
+    {
+      "name": "issues.list",
+      "method": "GET",
+      "route": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/",
+      "description": "List all issues in a project",
+      "input": {
+        "path": {
+          "workspace_slug": {
+            "type": "string",
+            "required": true
+          },
+          "project_id": {
+            "type": "string",
+            "format": "uuid",
+            "required": true
+          }
+        },
+        "query": {
+          "state_id": {
+            "type": "string",
+            "format": "uuid",
+            "required": false
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "urgent",
+              "high",
+              "medium",
+              "low",
+              "none"
+            ],
+            "required": false
+          },
+          "assignees": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "required": false
+          }
+        }
+      },
+      "output": {
+        "results": {
+          "type": "array",
+          "items": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "required": true
+            },
+            "name": {
+              "type": "string",
+              "required": true
+            },
+            "description": {
+              "type": "object",
+              "required": false
+            },
+            "state_id": {
+              "type": "string",
+              "format": "uuid",
+              "required": true
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "urgent",
+                "high",
+                "medium",
+                "low",
+                "none"
+              ],
+              "required": false
+            },
+            "project_id": {
+              "type": "string",
+              "format": "uuid",
+              "required": true
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "required": true
+            }
+          }
+        }
+      },
+      "target_table": "issues",
+      "auth_required": true
+    },
+    {
+      "name": "issues.create",
+      "method": "POST",
+      "route": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/",
+      "description": "Create a new issue",
+      "input": {
+        "path": {
+          "workspace_slug": {
+            "type": "string",
+            "required": true
+          },
+          "project_id": {
+            "type": "string",
+            "format": "uuid",
+            "required": true
+          }
+        },
+        "body": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "description": {
+            "type": "object",
+            "required": false
+          },
+          "state_id": {
+            "type": "string",
+            "format": "uuid",
+            "required": true
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "urgent",
+              "high",
+              "medium",
+              "low",
+              "none"
+            ],
+            "required": false,
+            "default": "none"
+          },
+          "assignees": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": false
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": false
+          }
+        }
+      },
+      "output": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "target_table": "issues",
+      "auth_required": true
+    }
+  ],
+  "total_endpoints": 6,
+  "timestamp": "2026-06-18T14:10:29+05:30"
+}

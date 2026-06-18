@@ -1,0 +1,189 @@
+{
+  "service": "zammad",
+  "url": "http://localhost:8083",
+  "api_base": "/api/v1",
+  "auth_type": "Bearer Token (Authorization: Bearer <token>) or HTTP Basic",
+  "documentation": "https://docs.zammad.org/en/latest/api/intro.html",
+  "endpoints": [
+    {
+      "name": "tickets.list",
+      "method": "GET",
+      "route": "/api/v1/tickets",
+      "input": {
+        "query": {
+          "page": "number",
+          "per_page": "number"
+        }
+      },
+      "output": {
+        "tickets": "array"
+      },
+      "target_table": "tickets"
+    },
+    {
+      "name": "tickets.get",
+      "method": "GET",
+      "route": "/api/v1/tickets/{id}",
+      "input": {
+        "path": {
+          "id": "number"
+        }
+      },
+      "output": {
+        "ticket": "object"
+      },
+      "target_table": "tickets"
+    },
+    {
+      "name": "tickets.create",
+      "method": "POST",
+      "route": "/api/v1/tickets",
+      "input": {
+        "body": {
+          "title": "string",
+          "group_id": "number",
+          "customer_id": "number",
+          "article": "object"
+        }
+      },
+      "output": {
+        "ticket": "object"
+      },
+      "target_table": "tickets"
+    },
+    {
+      "name": "tickets.update",
+      "method": "PUT",
+      "route": "/api/v1/tickets/{id}",
+      "input": {
+        "path": {
+          "id": "number"
+        },
+        "body": {
+          "title": "string",
+          "state_id": "number"
+        }
+      },
+      "output": {
+        "ticket": "object"
+      },
+      "target_table": "tickets"
+    },
+    {
+      "name": "ticket_articles.list",
+      "method": "GET",
+      "route": "/api/v1/ticket_articles/by_ticket/{ticket_id}",
+      "input": {
+        "path": {
+          "ticket_id": "number"
+        }
+      },
+      "output": {
+        "articles": "array"
+      },
+      "target_table": "ticket_articles"
+    },
+    {
+      "name": "ticket_articles.create",
+      "method": "POST",
+      "route": "/api/v1/ticket_articles",
+      "input": {
+        "body": {
+          "ticket_id": "number",
+          "body": "string",
+          "type": "string"
+        }
+      },
+      "output": {
+        "article": "object"
+      },
+      "target_table": "ticket_articles"
+    },
+    {
+      "name": "users.list",
+      "method": "GET",
+      "route": "/api/v1/users",
+      "input": {
+        "query": {
+          "page": "number",
+          "per_page": "number"
+        }
+      },
+      "output": {
+        "users": "array"
+      },
+      "target_table": "users"
+    },
+    {
+      "name": "users.get",
+      "method": "GET",
+      "route": "/api/v1/users/{id}",
+      "input": {
+        "path": {
+          "id": "number"
+        }
+      },
+      "output": {
+        "user": "object"
+      },
+      "target_table": "users"
+    },
+    {
+      "name": "users.create",
+      "method": "POST",
+      "route": "/api/v1/users",
+      "input": {
+        "body": {
+          "login": "string",
+          "firstname": "string",
+          "lastname": "string",
+          "email": "string"
+        }
+      },
+      "output": {
+        "user": "object"
+      },
+      "target_table": "users"
+    },
+    {
+      "name": "organizations.list",
+      "method": "GET",
+      "route": "/api/v1/organizations",
+      "input": {
+        "query": {
+          "page": "number"
+        }
+      },
+      "output": {
+        "organizations": "array"
+      },
+      "target_table": "organizations"
+    },
+    {
+      "name": "organizations.get",
+      "method": "GET",
+      "route": "/api/v1/organizations/{id}",
+      "input": {
+        "path": {
+          "id": "number"
+        }
+      },
+      "output": {
+        "organization": "object"
+      },
+      "target_table": "organizations"
+    },
+    {
+      "name": "groups.list",
+      "method": "GET",
+      "route": "/api/v1/groups",
+      "input": {},
+      "output": {
+        "groups": "array"
+      },
+      "target_table": "groups"
+    }
+  ],
+  "total_endpoints": 12,
+  "timestamp": "2026-06-18T14:06:03+05:30"
+}

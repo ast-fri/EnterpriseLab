@@ -1,0 +1,1175 @@
+{
+  "metadata": {
+    "service_name": "OwnCloud API",
+    "version": "10.0",
+    "description": "Complete OwnCloud OCS and WebDAV API - Based on official documentation",
+    "base_urls": [
+      "http://localhost:8081/ocs/v1.php"
+    ],
+    "authentication": [
+      {
+        "name": "basicAuth",
+        "type": "http",
+        "scheme": "basic"
+      }
+    ]
+  },
+  "total_endpoints": 25,
+  "endpoints": [
+    {
+      "operation_id": "users_list",
+      "summary": "List users",
+      "description": "",
+      "http_method": "GET",
+      "path": "/cloud/users",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/users",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_create",
+      "summary": "Create users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/cloud/users",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/users",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_get",
+      "summary": "Get users",
+      "description": "",
+      "http_method": "GET",
+      "path": "/cloud/users/{userid}",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/users/{userid}",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "userid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_edit",
+      "summary": "Edit users",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/cloud/users/{userid}",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/users/{userid}",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "userid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_delete",
+      "summary": "Delete users",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/cloud/users/{userid}",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/users/{userid}",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "userid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_enable",
+      "summary": "Enable users",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/cloud/users/{userid}/enable",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/users/{userid}/enable",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "userid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_disable",
+      "summary": "Disable users",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/cloud/users/{userid}/disable",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/users/{userid}/disable",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "userid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_groups",
+      "summary": "Groups users",
+      "description": "",
+      "http_method": "GET",
+      "path": "/cloud/users/{userid}/groups",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/users/{userid}/groups",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "userid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_addToGroup",
+      "summary": "Addtogroup users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/cloud/users/{userid}/groups",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/users/{userid}/groups",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "userid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_removeFromGroup",
+      "summary": "Removefromgroup users",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/cloud/users/{userid}/groups",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/users/{userid}/groups",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "userid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_list",
+      "summary": "List groups",
+      "description": "",
+      "http_method": "GET",
+      "path": "/cloud/groups",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/groups",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_create",
+      "summary": "Create groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/cloud/groups",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/groups",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_delete",
+      "summary": "Delete groups",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/cloud/groups/{groupid}",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/groups/{groupid}",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "groupid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_users",
+      "summary": "Users groups",
+      "description": "",
+      "http_method": "GET",
+      "path": "/cloud/groups/{groupid}",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/groups/{groupid}",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "groupid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_subadmins",
+      "summary": "Subadmins groups",
+      "description": "",
+      "http_method": "GET",
+      "path": "/cloud/groups/{groupid}/subadmins",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/groups/{groupid}/subadmins",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "groupid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "shares_list",
+      "summary": "List shares",
+      "description": "",
+      "http_method": "GET",
+      "path": "/apps/files_sharing/api/v1/shares",
+      "full_url": "http://localhost:8081/ocs/v1.php/apps/files_sharing/api/v1/shares",
+      "tags": [
+        "shares"
+      ],
+      "deprecated": false,
+      "potential_database_table": "apps",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "shares_create",
+      "summary": "Create shares",
+      "description": "",
+      "http_method": "POST",
+      "path": "/apps/files_sharing/api/v1/shares",
+      "full_url": "http://localhost:8081/ocs/v1.php/apps/files_sharing/api/v1/shares",
+      "tags": [
+        "shares"
+      ],
+      "deprecated": false,
+      "potential_database_table": "apps",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "shares_get",
+      "summary": "Get shares",
+      "description": "",
+      "http_method": "GET",
+      "path": "/apps/files_sharing/api/v1/shares/{share_id}",
+      "full_url": "http://localhost:8081/ocs/v1.php/apps/files_sharing/api/v1/shares/{share_id}",
+      "tags": [
+        "shares"
+      ],
+      "deprecated": false,
+      "potential_database_table": "apps",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "share_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "shares_update",
+      "summary": "Update shares",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/apps/files_sharing/api/v1/shares/{share_id}",
+      "full_url": "http://localhost:8081/ocs/v1.php/apps/files_sharing/api/v1/shares/{share_id}",
+      "tags": [
+        "shares"
+      ],
+      "deprecated": false,
+      "potential_database_table": "apps",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "share_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "shares_delete",
+      "summary": "Delete shares",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/apps/files_sharing/api/v1/shares/{share_id}",
+      "full_url": "http://localhost:8081/ocs/v1.php/apps/files_sharing/api/v1/shares/{share_id}",
+      "tags": [
+        "shares"
+      ],
+      "deprecated": false,
+      "potential_database_table": "apps",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "share_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "apps_list",
+      "summary": "List apps",
+      "description": "",
+      "http_method": "GET",
+      "path": "/cloud/apps",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/apps",
+      "tags": [
+        "apps"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "apps_get",
+      "summary": "Get apps",
+      "description": "",
+      "http_method": "GET",
+      "path": "/cloud/apps/{appid}",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/apps/{appid}",
+      "tags": [
+        "apps"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "appid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "apps_enable",
+      "summary": "Enable apps",
+      "description": "",
+      "http_method": "POST",
+      "path": "/cloud/apps/{appid}",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/apps/{appid}",
+      "tags": [
+        "apps"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "appid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "apps_disable",
+      "summary": "Disable apps",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/cloud/apps/{appid}",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/apps/{appid}",
+      "tags": [
+        "apps"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "appid",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "capabilities_get",
+      "summary": "Get capabilities",
+      "description": "",
+      "http_method": "GET",
+      "path": "/cloud/capabilities",
+      "full_url": "http://localhost:8081/ocs/v1.php/cloud/capabilities",
+      "tags": [
+        "capabilities"
+      ],
+      "deprecated": false,
+      "potential_database_table": "cloud",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    }
+  ],
+  "openapi_version": "3.0.0",
+  "components": {
+    "schemas": {},
+    "responses": {},
+    "parameters": {},
+    "examples": {},
+    "requestBodies": {},
+    "headers": {},
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    "links": {},
+    "callbacks": {}
+  },
+  "notes": {
+    "source": "Converted from OpenAPI 3.0 specification",
+    "faithfulness": "100% - All information from original OpenAPI preserved",
+    "potential_database_table": "Inferred from API path, may need manual verification"
+  }
+}

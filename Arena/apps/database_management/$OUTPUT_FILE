@@ -1,0 +1,402 @@
+{
+  "service": "Plane",
+  "base_url": "http://localhost:3001/api/v1",
+  "authentication": {
+    "type": "Bearer Token",
+    "header": "Authorization",
+    "format": "Bearer <token>"
+  },
+  "total_api_groups": 5,
+  "total_endpoints": 10,
+  "api_groups": [
+    {
+      "api_name": "workspaces",
+      "database_table": "workspaces",
+      "database_columns": [],
+      "endpoints": [
+        {
+          "function_name": "workspaces_list",
+          "http_method": "GET",
+          "route": "/workspaces",
+          "full_url": "http://localhost:3001/api/v1/workspaces",
+          "action": "list",
+          "input_arguments": {
+            "query_params": {
+              "per_page": {
+                "type": "integer",
+                "required": false,
+                "default": 20
+              },
+              "cursor": {
+                "type": "string",
+                "required": false
+              },
+              "fields": {
+                "type": "string",
+                "required": false,
+                "description": "Comma-separated column names"
+              }
+            },
+            "path_params": {},
+            "body": null
+          },
+          "output_arguments": {
+            "type": "object",
+            "fields": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "fields": {}
+                }
+              },
+              "next_cursor": {
+                "type": "string"
+              },
+              "prev_cursor": {
+                "type": "string"
+              },
+              "total_count": {
+                "type": "integer"
+              }
+            }
+          },
+          "field_to_column_mapping": {}
+        },
+        {
+          "function_name": "workspaces_create",
+          "http_method": "POST",
+          "route": "/workspaces",
+          "full_url": "http://localhost:3001/api/v1/workspaces",
+          "action": "create",
+          "input_arguments": {
+            "query_params": {},
+            "path_params": {},
+            "body": {
+              "type": "object",
+              "required": true,
+              "fields": {}
+            }
+          },
+          "output_arguments": {
+            "type": "object",
+            "fields": {}
+          },
+          "field_to_column_mapping": {}
+        }
+      ]
+    },
+    {
+      "api_name": "projects",
+      "database_table": "projects",
+      "database_columns": [],
+      "endpoints": [
+        {
+          "function_name": "projects_list",
+          "http_method": "GET",
+          "route": "/workspaces/{workspace_slug}/projects",
+          "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects",
+          "action": "list",
+          "input_arguments": {
+            "query_params": {
+              "per_page": {
+                "type": "integer",
+                "required": false,
+                "default": 20
+              },
+              "cursor": {
+                "type": "string",
+                "required": false
+              },
+              "fields": {
+                "type": "string",
+                "required": false,
+                "description": "Comma-separated column names"
+              }
+            },
+            "path_params": {},
+            "body": null
+          },
+          "output_arguments": {
+            "type": "object",
+            "fields": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "fields": {}
+                }
+              },
+              "next_cursor": {
+                "type": "string"
+              },
+              "prev_cursor": {
+                "type": "string"
+              },
+              "total_count": {
+                "type": "integer"
+              }
+            }
+          },
+          "field_to_column_mapping": {}
+        },
+        {
+          "function_name": "projects_create",
+          "http_method": "POST",
+          "route": "/workspaces/{workspace_slug}/projects",
+          "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects",
+          "action": "create",
+          "input_arguments": {
+            "query_params": {},
+            "path_params": {},
+            "body": {
+              "type": "object",
+              "required": true,
+              "fields": {}
+            }
+          },
+          "output_arguments": {
+            "type": "object",
+            "fields": {}
+          },
+          "field_to_column_mapping": {}
+        }
+      ]
+    },
+    {
+      "api_name": "issues",
+      "database_table": "issues",
+      "database_columns": [],
+      "endpoints": [
+        {
+          "function_name": "issues_list",
+          "http_method": "GET",
+          "route": "/workspaces/{workspace_slug}/projects/{project_id}/issues",
+          "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues",
+          "action": "list",
+          "input_arguments": {
+            "query_params": {
+              "per_page": {
+                "type": "integer",
+                "required": false,
+                "default": 20
+              },
+              "cursor": {
+                "type": "string",
+                "required": false
+              },
+              "fields": {
+                "type": "string",
+                "required": false,
+                "description": "Comma-separated column names"
+              }
+            },
+            "path_params": {},
+            "body": null
+          },
+          "output_arguments": {
+            "type": "object",
+            "fields": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "fields": {}
+                }
+              },
+              "next_cursor": {
+                "type": "string"
+              },
+              "prev_cursor": {
+                "type": "string"
+              },
+              "total_count": {
+                "type": "integer"
+              }
+            }
+          },
+          "field_to_column_mapping": {}
+        },
+        {
+          "function_name": "issues_create",
+          "http_method": "POST",
+          "route": "/workspaces/{workspace_slug}/projects/{project_id}/issues",
+          "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues",
+          "action": "create",
+          "input_arguments": {
+            "query_params": {},
+            "path_params": {},
+            "body": {
+              "type": "object",
+              "required": true,
+              "fields": {}
+            }
+          },
+          "output_arguments": {
+            "type": "object",
+            "fields": {}
+          },
+          "field_to_column_mapping": {}
+        }
+      ]
+    },
+    {
+      "api_name": "cycles",
+      "database_table": "cycles",
+      "database_columns": [],
+      "endpoints": [
+        {
+          "function_name": "cycles_list",
+          "http_method": "GET",
+          "route": "/workspaces/{workspace_slug}/projects/{project_id}/cycles",
+          "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles",
+          "action": "list",
+          "input_arguments": {
+            "query_params": {
+              "per_page": {
+                "type": "integer",
+                "required": false,
+                "default": 20
+              },
+              "cursor": {
+                "type": "string",
+                "required": false
+              },
+              "fields": {
+                "type": "string",
+                "required": false,
+                "description": "Comma-separated column names"
+              }
+            },
+            "path_params": {},
+            "body": null
+          },
+          "output_arguments": {
+            "type": "object",
+            "fields": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "fields": {}
+                }
+              },
+              "next_cursor": {
+                "type": "string"
+              },
+              "prev_cursor": {
+                "type": "string"
+              },
+              "total_count": {
+                "type": "integer"
+              }
+            }
+          },
+          "field_to_column_mapping": {}
+        },
+        {
+          "function_name": "cycles_create",
+          "http_method": "POST",
+          "route": "/workspaces/{workspace_slug}/projects/{project_id}/cycles",
+          "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles",
+          "action": "create",
+          "input_arguments": {
+            "query_params": {},
+            "path_params": {},
+            "body": {
+              "type": "object",
+              "required": true,
+              "fields": {}
+            }
+          },
+          "output_arguments": {
+            "type": "object",
+            "fields": {}
+          },
+          "field_to_column_mapping": {}
+        }
+      ]
+    },
+    {
+      "api_name": "modules",
+      "database_table": "modules",
+      "database_columns": [],
+      "endpoints": [
+        {
+          "function_name": "modules_list",
+          "http_method": "GET",
+          "route": "/workspaces/{workspace_slug}/projects/{project_id}/modules",
+          "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules",
+          "action": "list",
+          "input_arguments": {
+            "query_params": {
+              "per_page": {
+                "type": "integer",
+                "required": false,
+                "default": 20
+              },
+              "cursor": {
+                "type": "string",
+                "required": false
+              },
+              "fields": {
+                "type": "string",
+                "required": false,
+                "description": "Comma-separated column names"
+              }
+            },
+            "path_params": {},
+            "body": null
+          },
+          "output_arguments": {
+            "type": "object",
+            "fields": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "fields": {}
+                }
+              },
+              "next_cursor": {
+                "type": "string"
+              },
+              "prev_cursor": {
+                "type": "string"
+              },
+              "total_count": {
+                "type": "integer"
+              }
+            }
+          },
+          "field_to_column_mapping": {}
+        },
+        {
+          "function_name": "modules_create",
+          "http_method": "POST",
+          "route": "/workspaces/{workspace_slug}/projects/{project_id}/modules",
+          "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules",
+          "action": "create",
+          "input_arguments": {
+            "query_params": {},
+            "path_params": {},
+            "body": {
+              "type": "object",
+              "required": true,
+              "fields": {}
+            }
+          },
+          "output_arguments": {
+            "type": "object",
+            "fields": {}
+          },
+          "field_to_column_mapping": {}
+        }
+      ]
+    }
+  ],
+  "notes": {
+    "field_mapping": "API uses database column names directly",
+    "snake_case": "All fields are in snake_case matching database columns"
+  }
+}

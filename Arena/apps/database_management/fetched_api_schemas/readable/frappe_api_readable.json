@@ -1,0 +1,3955 @@
+{
+  "metadata": {
+    "service_name": "Frappe API",
+    "version": "1.0.0",
+    "description": "Complete Frappe REST API with all HR/ERP DocTypes",
+    "base_urls": [
+      "http://localhost:8000"
+    ],
+    "authentication": []
+  },
+  "total_endpoints": 92,
+  "endpoints": [
+    {
+      "operation_id": "listAppraisal",
+      "summary": "List all Appraisal",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Appraisal",
+      "full_url": "http://localhost:8000/Appraisal",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Appraisal",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createAppraisal",
+      "summary": "Create Appraisal",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Appraisal",
+      "full_url": "http://localhost:8000/Appraisal",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Appraisal",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getAppraisal",
+      "summary": "Get Appraisal by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Appraisal/{name}",
+      "full_url": "http://localhost:8000/Appraisal/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Appraisal",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateAppraisal",
+      "summary": "Update Appraisal",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Appraisal/{name}",
+      "full_url": "http://localhost:8000/Appraisal/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Appraisal",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteAppraisal",
+      "summary": "Delete Appraisal",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Appraisal/{name}",
+      "full_url": "http://localhost:8000/Appraisal/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Appraisal",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listAttendance",
+      "summary": "List all Attendance",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Attendance",
+      "full_url": "http://localhost:8000/Attendance",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Attendance",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createAttendance",
+      "summary": "Create Attendance",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Attendance",
+      "full_url": "http://localhost:8000/Attendance",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Attendance",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getAttendance",
+      "summary": "Get Attendance by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Attendance/{name}",
+      "full_url": "http://localhost:8000/Attendance/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Attendance",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateAttendance",
+      "summary": "Update Attendance",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Attendance/{name}",
+      "full_url": "http://localhost:8000/Attendance/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Attendance",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteAttendance",
+      "summary": "Delete Attendance",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Attendance/{name}",
+      "full_url": "http://localhost:8000/Attendance/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Attendance",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listCompany",
+      "summary": "List all Company",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Company",
+      "full_url": "http://localhost:8000/Company",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Company",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createCompany",
+      "summary": "Create Company",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Company",
+      "full_url": "http://localhost:8000/Company",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Company",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getCompany",
+      "summary": "Get Company by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Company/{name}",
+      "full_url": "http://localhost:8000/Company/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Company",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateCompany",
+      "summary": "Update Company",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Company/{name}",
+      "full_url": "http://localhost:8000/Company/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Company",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteCompany",
+      "summary": "Delete Company",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Company/{name}",
+      "full_url": "http://localhost:8000/Company/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Company",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listDepartment",
+      "summary": "List all Department",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Department",
+      "full_url": "http://localhost:8000/Department",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Department",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createDepartment",
+      "summary": "Create Department",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Department",
+      "full_url": "http://localhost:8000/Department",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Department",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getDepartment",
+      "summary": "Get Department by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Department/{name}",
+      "full_url": "http://localhost:8000/Department/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Department",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateDepartment",
+      "summary": "Update Department",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Department/{name}",
+      "full_url": "http://localhost:8000/Department/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Department",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteDepartment",
+      "summary": "Delete Department",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Department/{name}",
+      "full_url": "http://localhost:8000/Department/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Department",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listDesignation",
+      "summary": "List all Designation",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Designation",
+      "full_url": "http://localhost:8000/Designation",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Designation",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createDesignation",
+      "summary": "Create Designation",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Designation",
+      "full_url": "http://localhost:8000/Designation",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Designation",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getDesignation",
+      "summary": "Get Designation by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Designation/{name}",
+      "full_url": "http://localhost:8000/Designation/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Designation",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateDesignation",
+      "summary": "Update Designation",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Designation/{name}",
+      "full_url": "http://localhost:8000/Designation/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Designation",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteDesignation",
+      "summary": "Delete Designation",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Designation/{name}",
+      "full_url": "http://localhost:8000/Designation/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Designation",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listEmployee",
+      "summary": "List all Employee",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee",
+      "full_url": "http://localhost:8000/Employee",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createEmployee",
+      "summary": "Create Employee",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Employee",
+      "full_url": "http://localhost:8000/Employee",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getEmployee",
+      "summary": "Get Employee by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee/{name}",
+      "full_url": "http://localhost:8000/Employee/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateEmployee",
+      "summary": "Update Employee",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Employee/{name}",
+      "full_url": "http://localhost:8000/Employee/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteEmployee",
+      "summary": "Delete Employee",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Employee/{name}",
+      "full_url": "http://localhost:8000/Employee/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listEmployeeCheckin",
+      "summary": "List all Employee Checkin",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee%20Checkin",
+      "full_url": "http://localhost:8000/Employee%20Checkin",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Checkin",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createEmployeeCheckin",
+      "summary": "Create Employee Checkin",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Employee%20Checkin",
+      "full_url": "http://localhost:8000/Employee%20Checkin",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Checkin",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getEmployeeCheckin",
+      "summary": "Get Employee Checkin by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee%20Checkin/{name}",
+      "full_url": "http://localhost:8000/Employee%20Checkin/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Checkin",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateEmployeeCheckin",
+      "summary": "Update Employee Checkin",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Employee%20Checkin/{name}",
+      "full_url": "http://localhost:8000/Employee%20Checkin/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Checkin",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteEmployeeCheckin",
+      "summary": "Delete Employee Checkin",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Employee%20Checkin/{name}",
+      "full_url": "http://localhost:8000/Employee%20Checkin/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Checkin",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listEmployeeOnboarding",
+      "summary": "List all Employee Onboarding",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee%20Onboarding",
+      "full_url": "http://localhost:8000/Employee%20Onboarding",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Onboarding",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createEmployeeOnboarding",
+      "summary": "Create Employee Onboarding",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Employee%20Onboarding",
+      "full_url": "http://localhost:8000/Employee%20Onboarding",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Onboarding",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getEmployeeOnboarding",
+      "summary": "Get Employee Onboarding by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee%20Onboarding/{name}",
+      "full_url": "http://localhost:8000/Employee%20Onboarding/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Onboarding",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateEmployeeOnboarding",
+      "summary": "Update Employee Onboarding",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Employee%20Onboarding/{name}",
+      "full_url": "http://localhost:8000/Employee%20Onboarding/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Onboarding",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteEmployeeOnboarding",
+      "summary": "Delete Employee Onboarding",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Employee%20Onboarding/{name}",
+      "full_url": "http://localhost:8000/Employee%20Onboarding/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Onboarding",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listEmployeeSeparation",
+      "summary": "List all Employee Separation",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee%20Separation",
+      "full_url": "http://localhost:8000/Employee%20Separation",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Separation",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createEmployeeSeparation",
+      "summary": "Create Employee Separation",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Employee%20Separation",
+      "full_url": "http://localhost:8000/Employee%20Separation",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Separation",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getEmployeeSeparation",
+      "summary": "Get Employee Separation by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee%20Separation/{name}",
+      "full_url": "http://localhost:8000/Employee%20Separation/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Separation",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateEmployeeSeparation",
+      "summary": "Update Employee Separation",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Employee%20Separation/{name}",
+      "full_url": "http://localhost:8000/Employee%20Separation/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Separation",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteEmployeeSeparation",
+      "summary": "Delete Employee Separation",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Employee%20Separation/{name}",
+      "full_url": "http://localhost:8000/Employee%20Separation/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Employee%20Separation",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listExpenseClaim",
+      "summary": "List all Expense Claim",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Expense%20Claim",
+      "full_url": "http://localhost:8000/Expense%20Claim",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Expense%20Claim",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createExpenseClaim",
+      "summary": "Create Expense Claim",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Expense%20Claim",
+      "full_url": "http://localhost:8000/Expense%20Claim",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Expense%20Claim",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getExpenseClaim",
+      "summary": "Get Expense Claim by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Expense%20Claim/{name}",
+      "full_url": "http://localhost:8000/Expense%20Claim/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Expense%20Claim",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateExpenseClaim",
+      "summary": "Update Expense Claim",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Expense%20Claim/{name}",
+      "full_url": "http://localhost:8000/Expense%20Claim/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Expense%20Claim",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteExpenseClaim",
+      "summary": "Delete Expense Claim",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Expense%20Claim/{name}",
+      "full_url": "http://localhost:8000/Expense%20Claim/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Expense%20Claim",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listHolidayList",
+      "summary": "List all Holiday List",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Holiday%20List",
+      "full_url": "http://localhost:8000/Holiday%20List",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Holiday%20List",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createHolidayList",
+      "summary": "Create Holiday List",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Holiday%20List",
+      "full_url": "http://localhost:8000/Holiday%20List",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Holiday%20List",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getHolidayList",
+      "summary": "Get Holiday List by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Holiday%20List/{name}",
+      "full_url": "http://localhost:8000/Holiday%20List/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Holiday%20List",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateHolidayList",
+      "summary": "Update Holiday List",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Holiday%20List/{name}",
+      "full_url": "http://localhost:8000/Holiday%20List/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Holiday%20List",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteHolidayList",
+      "summary": "Delete Holiday List",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Holiday%20List/{name}",
+      "full_url": "http://localhost:8000/Holiday%20List/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Holiday%20List",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listLeaveApplication",
+      "summary": "List all Leave Application",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Leave%20Application",
+      "full_url": "http://localhost:8000/Leave%20Application",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Leave%20Application",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createLeaveApplication",
+      "summary": "Create Leave Application",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Leave%20Application",
+      "full_url": "http://localhost:8000/Leave%20Application",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Leave%20Application",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getLeaveApplication",
+      "summary": "Get Leave Application by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Leave%20Application/{name}",
+      "full_url": "http://localhost:8000/Leave%20Application/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Leave%20Application",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateLeaveApplication",
+      "summary": "Update Leave Application",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Leave%20Application/{name}",
+      "full_url": "http://localhost:8000/Leave%20Application/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Leave%20Application",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteLeaveApplication",
+      "summary": "Delete Leave Application",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Leave%20Application/{name}",
+      "full_url": "http://localhost:8000/Leave%20Application/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Leave%20Application",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listLeaveType",
+      "summary": "List all Leave Type",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Leave%20Type",
+      "full_url": "http://localhost:8000/Leave%20Type",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Leave%20Type",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createLeaveType",
+      "summary": "Create Leave Type",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Leave%20Type",
+      "full_url": "http://localhost:8000/Leave%20Type",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Leave%20Type",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getLeaveType",
+      "summary": "Get Leave Type by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Leave%20Type/{name}",
+      "full_url": "http://localhost:8000/Leave%20Type/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Leave%20Type",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateLeaveType",
+      "summary": "Update Leave Type",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Leave%20Type/{name}",
+      "full_url": "http://localhost:8000/Leave%20Type/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Leave%20Type",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteLeaveType",
+      "summary": "Delete Leave Type",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Leave%20Type/{name}",
+      "full_url": "http://localhost:8000/Leave%20Type/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Leave%20Type",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listSalarySlip",
+      "summary": "List all Salary Slip",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Salary%20Slip",
+      "full_url": "http://localhost:8000/Salary%20Slip",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Salary%20Slip",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createSalarySlip",
+      "summary": "Create Salary Slip",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Salary%20Slip",
+      "full_url": "http://localhost:8000/Salary%20Slip",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Salary%20Slip",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getSalarySlip",
+      "summary": "Get Salary Slip by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Salary%20Slip/{name}",
+      "full_url": "http://localhost:8000/Salary%20Slip/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Salary%20Slip",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateSalarySlip",
+      "summary": "Update Salary Slip",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Salary%20Slip/{name}",
+      "full_url": "http://localhost:8000/Salary%20Slip/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Salary%20Slip",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteSalarySlip",
+      "summary": "Delete Salary Slip",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Salary%20Slip/{name}",
+      "full_url": "http://localhost:8000/Salary%20Slip/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Salary%20Slip",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listSalaryStructure",
+      "summary": "List all Salary Structure",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Salary%20Structure",
+      "full_url": "http://localhost:8000/Salary%20Structure",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Salary%20Structure",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createSalaryStructure",
+      "summary": "Create Salary Structure",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Salary%20Structure",
+      "full_url": "http://localhost:8000/Salary%20Structure",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Salary%20Structure",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getSalaryStructure",
+      "summary": "Get Salary Structure by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Salary%20Structure/{name}",
+      "full_url": "http://localhost:8000/Salary%20Structure/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Salary%20Structure",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateSalaryStructure",
+      "summary": "Update Salary Structure",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Salary%20Structure/{name}",
+      "full_url": "http://localhost:8000/Salary%20Structure/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Salary%20Structure",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteSalaryStructure",
+      "summary": "Delete Salary Structure",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Salary%20Structure/{name}",
+      "full_url": "http://localhost:8000/Salary%20Structure/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Salary%20Structure",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listShiftType",
+      "summary": "List all Shift Type",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Shift%20Type",
+      "full_url": "http://localhost:8000/Shift%20Type",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Shift%20Type",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createShiftType",
+      "summary": "Create Shift Type",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Shift%20Type",
+      "full_url": "http://localhost:8000/Shift%20Type",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Shift%20Type",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getShiftType",
+      "summary": "Get Shift Type by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Shift%20Type/{name}",
+      "full_url": "http://localhost:8000/Shift%20Type/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Shift%20Type",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateShiftType",
+      "summary": "Update Shift Type",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Shift%20Type/{name}",
+      "full_url": "http://localhost:8000/Shift%20Type/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Shift%20Type",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteShiftType",
+      "summary": "Delete Shift Type",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Shift%20Type/{name}",
+      "full_url": "http://localhost:8000/Shift%20Type/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Shift%20Type",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listTrainingEvent",
+      "summary": "List all Training Event",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Training%20Event",
+      "full_url": "http://localhost:8000/Training%20Event",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Training%20Event",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createTrainingEvent",
+      "summary": "Create Training Event",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Training%20Event",
+      "full_url": "http://localhost:8000/Training%20Event",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Training%20Event",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getTrainingEvent",
+      "summary": "Get Training Event by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Training%20Event/{name}",
+      "full_url": "http://localhost:8000/Training%20Event/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Training%20Event",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateTrainingEvent",
+      "summary": "Update Training Event",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Training%20Event/{name}",
+      "full_url": "http://localhost:8000/Training%20Event/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Training%20Event",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteTrainingEvent",
+      "summary": "Delete Training Event",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Training%20Event/{name}",
+      "full_url": "http://localhost:8000/Training%20Event/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "Training%20Event",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "listUser",
+      "summary": "List all User",
+      "description": "",
+      "http_method": "GET",
+      "path": "/User",
+      "full_url": "http://localhost:8000/User",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "User",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "array"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "createUser",
+      "summary": "Create User",
+      "description": "",
+      "http_method": "POST",
+      "path": "/User",
+      "full_url": "http://localhost:8000/User",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "User",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "201": {
+          "status_code": "201",
+          "description": "Created",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "getUser",
+      "summary": "Get User by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/User/{name}",
+      "full_url": "http://localhost:8000/User/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "User",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "updateUser",
+      "summary": "Update User",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/User/{name}",
+      "full_url": "http://localhost:8000/User/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "User",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "deleteUser",
+      "summary": "Delete User",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/User/{name}",
+      "full_url": "http://localhost:8000/User/{name}",
+      "tags": [
+        "document"
+      ],
+      "deprecated": false,
+      "potential_database_table": "User",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "204": {
+          "status_code": "204",
+          "description": "Deleted"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "method_call",
+      "summary": "Call method",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/method/{method_name}",
+      "full_url": "http://localhost:8000/api/method/{method_name}",
+      "tags": [
+        "method"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "method_name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "method_get",
+      "summary": "Get method",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/method/{method_name}",
+      "full_url": "http://localhost:8000/api/method/{method_name}",
+      "tags": [
+        "method"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "method_name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    }
+  ],
+  "openapi_version": "3.0.0",
+  "components": {
+    "schemas": {},
+    "responses": {},
+    "parameters": {},
+    "examples": {},
+    "requestBodies": {},
+    "headers": {},
+    "securitySchemes": {},
+    "links": {},
+    "callbacks": {}
+  },
+  "notes": {
+    "source": "Converted from OpenAPI 3.0 specification",
+    "faithfulness": "100% - All information from original OpenAPI preserved",
+    "potential_database_table": "Inferred from API path, may need manual verification"
+  }
+}

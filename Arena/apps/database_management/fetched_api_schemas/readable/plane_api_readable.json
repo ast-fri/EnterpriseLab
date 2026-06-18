@@ -1,0 +1,3246 @@
+{
+  "metadata": {
+    "service_name": "Plane API",
+    "version": "1.0",
+    "description": "Complete Plane REST API - Based on official documentation (https://docs.plane.so/api-reference)",
+    "base_urls": [
+      "http://localhost:3001"
+    ],
+    "authentication": [
+      {
+        "name": "bearer",
+        "type": "http",
+        "scheme": "bearer"
+      }
+    ]
+  },
+  "total_endpoints": 52,
+  "endpoints": [
+    {
+      "operation_id": "workspaces_list",
+      "summary": "List workspaces",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/",
+      "tags": [
+        "workspaces"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "workspaces_create",
+      "summary": "Create workspaces",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/v1/workspaces/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/",
+      "tags": [
+        "workspaces"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "workspaces_get",
+      "summary": "Get workspaces",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{slug}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{slug}/",
+      "tags": [
+        "workspaces"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "workspaces_update",
+      "summary": "Update workspaces",
+      "description": "",
+      "http_method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{slug}/",
+      "tags": [
+        "workspaces"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "workspaces_delete",
+      "summary": "Delete workspaces",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{slug}/",
+      "tags": [
+        "workspaces"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "projects_list",
+      "summary": "List projects",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/",
+      "tags": [
+        "projects"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "projects_create",
+      "summary": "Create projects",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/",
+      "tags": [
+        "projects"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "projects_get",
+      "summary": "Get projects",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/",
+      "tags": [
+        "projects"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "projects_update",
+      "summary": "Update projects",
+      "description": "",
+      "http_method": "PATCH",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/",
+      "tags": [
+        "projects"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "projects_delete",
+      "summary": "Delete projects",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/",
+      "tags": [
+        "projects"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "projects_members",
+      "summary": "Members projects",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/members/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/members/",
+      "tags": [
+        "projects"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "projects_add_member",
+      "summary": "Add Member projects",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/members/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/members/",
+      "tags": [
+        "projects"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "projects_remove_member",
+      "summary": "Remove Member projects",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/members/{member_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/members/{member_id}/",
+      "tags": [
+        "projects"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "member_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "issues_list",
+      "summary": "List issues",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/",
+      "tags": [
+        "issues"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "issues_create",
+      "summary": "Create issues",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/",
+      "tags": [
+        "issues"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "issues_get",
+      "summary": "Get issues",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/",
+      "tags": [
+        "issues"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "issue_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "issues_update",
+      "summary": "Update issues",
+      "description": "",
+      "http_method": "PATCH",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/",
+      "tags": [
+        "issues"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "issue_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "issues_delete",
+      "summary": "Delete issues",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/",
+      "tags": [
+        "issues"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "issue_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "issues_bulk_create",
+      "summary": "Bulk Create issues",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/bulk/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/bulk/",
+      "tags": [
+        "issues"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "issues_bulk_update",
+      "summary": "Bulk Update issues",
+      "description": "",
+      "http_method": "PATCH",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/bulk/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/bulk/",
+      "tags": [
+        "issues"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "issues_bulk_delete",
+      "summary": "Bulk Delete issues",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/bulk/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/bulk/",
+      "tags": [
+        "issues"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "cycles_list",
+      "summary": "List cycles",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/",
+      "tags": [
+        "cycles"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "cycles_create",
+      "summary": "Create cycles",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/",
+      "tags": [
+        "cycles"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "cycles_get",
+      "summary": "Get cycles",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/",
+      "tags": [
+        "cycles"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "cycle_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "cycles_update",
+      "summary": "Update cycles",
+      "description": "",
+      "http_method": "PATCH",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/",
+      "tags": [
+        "cycles"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "cycle_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "cycles_delete",
+      "summary": "Delete cycles",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/",
+      "tags": [
+        "cycles"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "cycle_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "cycles_issues",
+      "summary": "Issues cycles",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/issues/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/cycles/{cycle_id}/issues/",
+      "tags": [
+        "cycles"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "cycle_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "modules_list",
+      "summary": "List modules",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/",
+      "tags": [
+        "modules"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "modules_create",
+      "summary": "Create modules",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/",
+      "tags": [
+        "modules"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "modules_get",
+      "summary": "Get modules",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/{module_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/{module_id}/",
+      "tags": [
+        "modules"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "module_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "modules_update",
+      "summary": "Update modules",
+      "description": "",
+      "http_method": "PATCH",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/{module_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/{module_id}/",
+      "tags": [
+        "modules"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "module_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "modules_delete",
+      "summary": "Delete modules",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/{module_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/{module_id}/",
+      "tags": [
+        "modules"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "module_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "modules_issues",
+      "summary": "Issues modules",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/{module_id}/issues/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/modules/{module_id}/issues/",
+      "tags": [
+        "modules"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "module_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "states_list",
+      "summary": "List states",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/states/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/states/",
+      "tags": [
+        "states"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "states_create",
+      "summary": "Create states",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/states/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/states/",
+      "tags": [
+        "states"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "states_get",
+      "summary": "Get states",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/states/{state_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/states/{state_id}/",
+      "tags": [
+        "states"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "state_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "states_update",
+      "summary": "Update states",
+      "description": "",
+      "http_method": "PATCH",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/states/{state_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/states/{state_id}/",
+      "tags": [
+        "states"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "state_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "states_delete",
+      "summary": "Delete states",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/states/{state_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/states/{state_id}/",
+      "tags": [
+        "states"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "state_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "labels_list",
+      "summary": "List labels",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/labels/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/labels/",
+      "tags": [
+        "labels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "labels_create",
+      "summary": "Create labels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/labels/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/labels/",
+      "tags": [
+        "labels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "labels_get",
+      "summary": "Get labels",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/labels/{label_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/labels/{label_id}/",
+      "tags": [
+        "labels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "label_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "labels_update",
+      "summary": "Update labels",
+      "description": "",
+      "http_method": "PATCH",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/labels/{label_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/labels/{label_id}/",
+      "tags": [
+        "labels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "label_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "labels_delete",
+      "summary": "Delete labels",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/labels/{label_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/labels/{label_id}/",
+      "tags": [
+        "labels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "label_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "estimates_list",
+      "summary": "List estimates",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/estimates/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/estimates/",
+      "tags": [
+        "estimates"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "estimates_create",
+      "summary": "Create estimates",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/estimates/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/estimates/",
+      "tags": [
+        "estimates"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "estimates_get",
+      "summary": "Get estimates",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/estimates/{estimate_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/estimates/{estimate_id}/",
+      "tags": [
+        "estimates"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "estimate_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "estimates_update",
+      "summary": "Update estimates",
+      "description": "",
+      "http_method": "PATCH",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/estimates/{estimate_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/estimates/{estimate_id}/",
+      "tags": [
+        "estimates"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "estimate_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "estimates_delete",
+      "summary": "Delete estimates",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/estimates/{estimate_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/estimates/{estimate_id}/",
+      "tags": [
+        "estimates"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "estimate_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "comments_list",
+      "summary": "List comments",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/comments/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/comments/",
+      "tags": [
+        "comments"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "issue_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "comments_create",
+      "summary": "Create comments",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/comments/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/comments/",
+      "tags": [
+        "comments"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "issue_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "comments_update",
+      "summary": "Update comments",
+      "description": "",
+      "http_method": "PATCH",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/comments/{comment_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/comments/{comment_id}/",
+      "tags": [
+        "comments"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "issue_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "comment_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "comments_delete",
+      "summary": "Delete comments",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/comments/{comment_id}/",
+      "full_url": "http://localhost:3001/api/v1/workspaces/{workspace_slug}/projects/{project_id}/issues/{issue_id}/comments/{comment_id}/",
+      "tags": [
+        "comments"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "workspace_slug",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "project_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "issue_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "comment_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    }
+  ],
+  "openapi_version": "3.0.0",
+  "components": {
+    "schemas": {},
+    "responses": {},
+    "parameters": {},
+    "examples": {},
+    "requestBodies": {},
+    "headers": {},
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "links": {},
+    "callbacks": {}
+  },
+  "notes": {
+    "source": "Converted from OpenAPI 3.0 specification",
+    "faithfulness": "100% - All information from original OpenAPI preserved",
+    "potential_database_table": "Inferred from API path, may need manual verification"
+  }
+}

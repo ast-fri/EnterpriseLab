@@ -1,0 +1,211 @@
+{
+  "service": "frappe_hrms",
+  "url": "http://localhost:8084",
+  "api_base": "/api/resource",
+  "auth_type": "API Key (Authorization: token <api_key>:<api_secret>)",
+  "documentation": "https://frappeframework.com/docs/user/en/api/rest",
+  "note": "Frappe auto-generates REST APIs for ALL DocTypes. Pattern: /api/resource/{DocType}",
+  "endpoints": [
+    {
+      "name": "user.list",
+      "method": "GET",
+      "route": "/api/resource/User",
+      "input": {
+        "query": {
+          "fields": "json",
+          "filters": "json",
+          "limit_page_length": "number"
+        }
+      },
+      "output": {
+        "data": "array"
+      },
+      "target_table": "tabUser"
+    },
+    {
+      "name": "user.get",
+      "method": "GET",
+      "route": "/api/resource/User/{name}",
+      "input": {
+        "path": {
+          "name": "string"
+        }
+      },
+      "output": {
+        "data": "object"
+      },
+      "target_table": "tabUser"
+    },
+    {
+      "name": "user.create",
+      "method": "POST",
+      "route": "/api/resource/User",
+      "input": {
+        "body": {
+          "email": "string",
+          "first_name": "string",
+          "enabled": "number"
+        }
+      },
+      "output": {
+        "data": "object"
+      },
+      "target_table": "tabUser"
+    },
+    {
+      "name": "user.update",
+      "method": "PUT",
+      "route": "/api/resource/User/{name}",
+      "input": {
+        "path": {
+          "name": "string"
+        },
+        "body": {
+          "field": "value"
+        }
+      },
+      "output": {
+        "data": "object"
+      },
+      "target_table": "tabUser"
+    },
+    {
+      "name": "employee.list",
+      "method": "GET",
+      "route": "/api/resource/Employee",
+      "input": {
+        "query": {
+          "fields": "json",
+          "filters": "json"
+        }
+      },
+      "output": {
+        "data": "array"
+      },
+      "target_table": "tabEmployee"
+    },
+    {
+      "name": "employee.get",
+      "method": "GET",
+      "route": "/api/resource/Employee/{name}",
+      "input": {
+        "path": {
+          "name": "string"
+        }
+      },
+      "output": {
+        "data": "object"
+      },
+      "target_table": "tabEmployee"
+    },
+    {
+      "name": "employee.create",
+      "method": "POST",
+      "route": "/api/resource/Employee",
+      "input": {
+        "body": {
+          "employee_name": "string",
+          "company": "string",
+          "designation": "string"
+        }
+      },
+      "output": {
+        "data": "object"
+      },
+      "target_table": "tabEmployee"
+    },
+    {
+      "name": "department.list",
+      "method": "GET",
+      "route": "/api/resource/Department",
+      "input": {
+        "query": {
+          "fields": "json"
+        }
+      },
+      "output": {
+        "data": "array"
+      },
+      "target_table": "tabDepartment"
+    },
+    {
+      "name": "attendance.list",
+      "method": "GET",
+      "route": "/api/resource/Attendance",
+      "input": {
+        "query": {
+          "fields": "json",
+          "filters": "json"
+        }
+      },
+      "output": {
+        "data": "array"
+      },
+      "target_table": "tabAttendance"
+    },
+    {
+      "name": "attendance.create",
+      "method": "POST",
+      "route": "/api/resource/Attendance",
+      "input": {
+        "body": {
+          "employee": "string",
+          "attendance_date": "date",
+          "status": "string"
+        }
+      },
+      "output": {
+        "data": "object"
+      },
+      "target_table": "tabAttendance"
+    },
+    {
+      "name": "leave_application.list",
+      "method": "GET",
+      "route": "/api/resource/Leave Application",
+      "input": {
+        "query": {
+          "fields": "json",
+          "filters": "json"
+        }
+      },
+      "output": {
+        "data": "array"
+      },
+      "target_table": "tabLeave Application"
+    },
+    {
+      "name": "leave_application.create",
+      "method": "POST",
+      "route": "/api/resource/Leave Application",
+      "input": {
+        "body": {
+          "employee": "string",
+          "from_date": "date",
+          "to_date": "date",
+          "leave_type": "string"
+        }
+      },
+      "output": {
+        "data": "object"
+      },
+      "target_table": "tabLeave Application"
+    },
+    {
+      "name": "company.list",
+      "method": "GET",
+      "route": "/api/resource/Company",
+      "input": {
+        "query": {
+          "fields": "json"
+        }
+      },
+      "output": {
+        "data": "array"
+      },
+      "target_table": "tabCompany"
+    }
+  ],
+  "total_endpoints": 13,
+  "timestamp": "2026-06-18T14:06:03+05:30"
+}

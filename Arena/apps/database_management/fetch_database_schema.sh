@@ -551,50 +551,94 @@ fetch_gitlab_schema() {
     local OUTPUT_FILE="$OUTPUT_DIR/gitlab_schema.json"
 
     # Check if GitLab container is running
-    if ! docker ps | grep -q "gitlab$"; then
+    if ! docker ps --format "{{.Names}}" | grep -q "^gitlab$"; then
         log_warn "GitLab container is not running"
         echo '{"error": "Container not running", "service": "gitlab"}' > "$OUTPUT_FILE"
         return 1
     fi
 
-    # GitLab uses internal PostgreSQL, requires exec into main container
-    local TABLES=$(docker exec gitlab gitlab-psql -d gitlabhq_production -t -c "
-        SELECT json_agg(tablename)
-        FROM pg_tables
-        WHERE schemaname = 'public';
-    " 2>/dev/null || echo '[]')
+    # Use Python to properly group schema by table (same format as other apps)
+    python3 << 'PYEOF' > "$OUTPUT_FILE"
+import subprocess
+import json
+from datetime import datetime
+import sys
 
-    if [ "$TABLES" = "[]" ]; then
-        log_warn "Could not access GitLab database (container may be initializing)"
-        echo '{"error": "Database not accessible", "service": "gitlab"}' > "$OUTPUT_FILE"
-        return 1
-    fi
+def run_sql(sql):
+    """Execute SQL in GitLab PostgreSQL"""
+    cmd = ['docker', 'exec', 'gitlab', 'gitlab-psql', '-d', 'gitlabhq_production', '-t', '-A', '-c', sql]
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+        if result.returncode == 0:
+            output = result.stdout.strip()
+            if output:
+                return json.loads(output)
+        return None
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        return None
 
-    # Get detailed schema
-    local SCHEMA=$(docker exec gitlab gitlab-psql -d gitlabhq_production -t -c "
-        SELECT json_agg(row_to_json(t))
+# Get all table names
+table_names = run_sql("""
+    SELECT json_agg(tablename ORDER BY tablename)
+    FROM pg_tables
+    WHERE schemaname = 'public';
+""")
+
+if not table_names:
+    print(json.dumps({"error": "Could not fetch tables"}))
+    exit(1)
+
+print(f"Fetching schema for {len(table_names)} tables...", file=sys.stderr)
+
+# Build schema in same format as other apps: list of {name, columns}
+tables = []
+for i, table_name in enumerate(table_names):
+    if (i + 1) % 100 == 0:
+        print(f"  Processing {i+1}/{len(table_names)}...", file=sys.stderr)
+
+    # Get columns for this table
+    columns = run_sql(f"""
+        SELECT COALESCE(json_agg(row_to_json(t) ORDER BY ordinal_position), '[]'::json)
         FROM (
             SELECT
-                c.table_name,
-                c.column_name,
-                c.data_type,
-                c.is_nullable,
-                c.column_default
-            FROM information_schema.columns c
-            WHERE c.table_schema = 'public'
-            ORDER BY c.table_name, c.ordinal_position
+                column_name,
+                ordinal_position,
+                column_default,
+                is_nullable,
+                data_type,
+                character_maximum_length,
+                character_octet_length,
+                numeric_precision,
+                numeric_precision_radix,
+                numeric_scale,
+                datetime_precision,
+                character_set_name,
+                collation_name,
+                udt_name,
+                is_updatable
+            FROM information_schema.columns
+            WHERE table_schema = 'public' AND table_name = '{table_name}'
         ) t;
-    " 2>/dev/null || echo '[]')
+    """)
 
-    echo "{
-        \"service\": \"gitlab\",
-        \"database_type\": \"postgresql\",
-        \"database_name\": \"gitlabhq_production\",
-        \"url\": \"http://localhost:8080\",
-        \"tables\": $TABLES,
-        \"schema\": $SCHEMA,
-        \"timestamp\": \"$(date -Iseconds)\"
-    }" | format_json > "$OUTPUT_FILE"
+    tables.append({
+        "name": table_name,
+        "columns": columns if columns else []
+    })
+
+# Build final schema (same format as other apps)
+schema = {
+    "service": "gitlab",
+    "database_type": "postgresql",
+    "database_name": "gitlabhq_production",
+    "url": "http://localhost:8080",
+    "tables": tables,
+    "timestamp": datetime.now().isoformat()
+}
+
+print(json.dumps(schema, indent=2))
+PYEOF
 
     log_info "GitLab schema saved to $OUTPUT_FILE"
 }

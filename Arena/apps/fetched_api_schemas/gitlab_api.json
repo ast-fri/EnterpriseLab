@@ -1,0 +1,149 @@
+{
+  "service": "gitlab",
+  "url": "http://localhost:8080",
+  "api_base": "/api/v4 (REST) and /api/graphql (GraphQL)",
+  "auth_type": "Personal Access Token (Private-Token header)",
+  "documentation": "https://docs.gitlab.com/ee/api/",
+  "note": "GitLab has both REST and GraphQL APIs. GraphQL recommended for complex queries.",
+  "endpoints": [
+    {
+      "name": "users.list",
+      "method": "GET",
+      "route": "/api/v4/users",
+      "input": {
+        "query": {
+          "per_page": "number",
+          "page": "number"
+        }
+      },
+      "output": {
+        "users": "array"
+      },
+      "target_table": "users"
+    },
+    {
+      "name": "users.get",
+      "method": "GET",
+      "route": "/api/v4/users/{id}",
+      "input": {
+        "path": {
+          "id": "number"
+        }
+      },
+      "output": {
+        "user": "object"
+      },
+      "target_table": "users"
+    },
+    {
+      "name": "projects.list",
+      "method": "GET",
+      "route": "/api/v4/projects",
+      "input": {
+        "query": {
+          "per_page": "number"
+        }
+      },
+      "output": {
+        "projects": "array"
+      },
+      "target_table": "projects"
+    },
+    {
+      "name": "projects.get",
+      "method": "GET",
+      "route": "/api/v4/projects/{id}",
+      "input": {
+        "path": {
+          "id": "number"
+        }
+      },
+      "output": {
+        "project": "object"
+      },
+      "target_table": "projects"
+    },
+    {
+      "name": "projects.create",
+      "method": "POST",
+      "route": "/api/v4/projects",
+      "input": {
+        "body": {
+          "name": "string",
+          "description": "string"
+        }
+      },
+      "output": {
+        "project": "object"
+      },
+      "target_table": "projects"
+    },
+    {
+      "name": "issues.list",
+      "method": "GET",
+      "route": "/api/v4/projects/{id}/issues",
+      "input": {
+        "path": {
+          "id": "number"
+        }
+      },
+      "output": {
+        "issues": "array"
+      },
+      "target_table": "issues"
+    },
+    {
+      "name": "issues.create",
+      "method": "POST",
+      "route": "/api/v4/projects/{id}/issues",
+      "input": {
+        "path": {
+          "id": "number"
+        },
+        "body": {
+          "title": "string",
+          "description": "string"
+        }
+      },
+      "output": {
+        "issue": "object"
+      },
+      "target_table": "issues"
+    },
+    {
+      "name": "merge_requests.list",
+      "method": "GET",
+      "route": "/api/v4/projects/{id}/merge_requests",
+      "input": {
+        "path": {
+          "id": "number"
+        }
+      },
+      "output": {
+        "merge_requests": "array"
+      },
+      "target_table": "merge_requests"
+    },
+    {
+      "name": "merge_requests.create",
+      "method": "POST",
+      "route": "/api/v4/projects/{id}/merge_requests",
+      "input": {
+        "path": {
+          "id": "number"
+        },
+        "body": {
+          "source_branch": "string",
+          "target_branch": "string",
+          "title": "string"
+        }
+      },
+      "output": {
+        "merge_request": "object"
+      },
+      "target_table": "merge_requests"
+    }
+  ],
+  "total_endpoints": 9,
+  "timestamp": "2026-06-18T14:06:03+05:30"
+}

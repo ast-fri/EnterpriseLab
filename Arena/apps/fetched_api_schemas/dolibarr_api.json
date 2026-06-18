@@ -1,0 +1,224 @@
+{
+  "service": "dolibarr",
+  "url": "http://localhost:8082",
+  "api_base": "/api/index.php",
+  "auth_type": "API Key (DOLAPIKEY header)",
+  "documentation": "https://www.dolibarr.org/api-explorer/",
+  "endpoints": [
+    {
+      "name": "users.list",
+      "method": "GET",
+      "route": "/api/index.php/users",
+      "input": {
+        "query": {
+          "sortfield": "string",
+          "sortorder": "string",
+          "limit": "number"
+        }
+      },
+      "output": {
+        "users": "array"
+      },
+      "target_table": "llx_user"
+    },
+    {
+      "name": "users.get",
+      "method": "GET",
+      "route": "/api/index.php/users/{id}",
+      "input": {
+        "path": {
+          "id": "number"
+        }
+      },
+      "output": {
+        "user": "object"
+      },
+      "target_table": "llx_user"
+    },
+    {
+      "name": "users.create",
+      "method": "POST",
+      "route": "/api/index.php/users",
+      "input": {
+        "body": {
+          "login": "string",
+          "password": "string",
+          "lastname": "string",
+          "firstname": "string"
+        }
+      },
+      "output": {
+        "id": "number"
+      },
+      "target_table": "llx_user"
+    },
+    {
+      "name": "thirdparties.list",
+      "method": "GET",
+      "route": "/api/index.php/thirdparties",
+      "input": {
+        "query": {
+          "sortfield": "string",
+          "limit": "number"
+        }
+      },
+      "output": {
+        "thirdparties": "array"
+      },
+      "target_table": "llx_societe"
+    },
+    {
+      "name": "thirdparties.get",
+      "method": "GET",
+      "route": "/api/index.php/thirdparties/{id}",
+      "input": {
+        "path": {
+          "id": "number"
+        }
+      },
+      "output": {
+        "thirdparty": "object"
+      },
+      "target_table": "llx_societe"
+    },
+    {
+      "name": "thirdparties.create",
+      "method": "POST",
+      "route": "/api/index.php/thirdparties",
+      "input": {
+        "body": {
+          "name": "string",
+          "client": "number",
+          "email": "string"
+        }
+      },
+      "output": {
+        "id": "number"
+      },
+      "target_table": "llx_societe"
+    },
+    {
+      "name": "products.list",
+      "method": "GET",
+      "route": "/api/index.php/products",
+      "input": {
+        "query": {
+          "sortfield": "string",
+          "limit": "number"
+        }
+      },
+      "output": {
+        "products": "array"
+      },
+      "target_table": "llx_product"
+    },
+    {
+      "name": "products.get",
+      "method": "GET",
+      "route": "/api/index.php/products/{id}",
+      "input": {
+        "path": {
+          "id": "number"
+        }
+      },
+      "output": {
+        "product": "object"
+      },
+      "target_table": "llx_product"
+    },
+    {
+      "name": "products.create",
+      "method": "POST",
+      "route": "/api/index.php/products",
+      "input": {
+        "body": {
+          "ref": "string",
+          "label": "string",
+          "price": "number",
+          "type": "number"
+        }
+      },
+      "output": {
+        "id": "number"
+      },
+      "target_table": "llx_product"
+    },
+    {
+      "name": "invoices.list",
+      "method": "GET",
+      "route": "/api/index.php/invoices",
+      "input": {
+        "query": {
+          "sortfield": "string",
+          "limit": "number"
+        }
+      },
+      "output": {
+        "invoices": "array"
+      },
+      "target_table": "llx_facture"
+    },
+    {
+      "name": "invoices.get",
+      "method": "GET",
+      "route": "/api/index.php/invoices/{id}",
+      "input": {
+        "path": {
+          "id": "number"
+        }
+      },
+      "output": {
+        "invoice": "object"
+      },
+      "target_table": "llx_facture"
+    },
+    {
+      "name": "invoices.create",
+      "method": "POST",
+      "route": "/api/index.php/invoices",
+      "input": {
+        "body": {
+          "socid": "number",
+          "date": "timestamp",
+          "type": "number"
+        }
+      },
+      "output": {
+        "id": "number"
+      },
+      "target_table": "llx_facture"
+    },
+    {
+      "name": "orders.list",
+      "method": "GET",
+      "route": "/api/index.php/orders",
+      "input": {
+        "query": {
+          "sortfield": "string",
+          "limit": "number"
+        }
+      },
+      "output": {
+        "orders": "array"
+      },
+      "target_table": "llx_commande"
+    },
+    {
+      "name": "projects.list",
+      "method": "GET",
+      "route": "/api/index.php/projects",
+      "input": {
+        "query": {
+          "sortfield": "string",
+          "limit": "number"
+        }
+      },
+      "output": {
+        "projects": "array"
+      },
+      "target_table": "llx_projet"
+    }
+  ],
+  "total_endpoints": 14,
+  "timestamp": "2026-06-18T14:06:03+05:30"
+}

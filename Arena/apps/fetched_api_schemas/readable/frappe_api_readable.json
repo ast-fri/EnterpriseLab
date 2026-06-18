@@ -1,0 +1,4636 @@
+{
+  "metadata": {
+    "service_name": "Frappe HRMS API",
+    "version": "1.0.0",
+    "description": "Auto-generated REST API for all Frappe DocTypes",
+    "base_urls": [
+      "http://localhost:8084/api/resource"
+    ],
+    "authentication": [
+      {
+        "name": "APIKeyAuth",
+        "type": "apiKey",
+        "in": "header",
+        "header_name": "Authorization",
+        "description": "Format: token api_key:api_secret"
+      }
+    ]
+  },
+  "total_endpoints": 90,
+  "endpoints": [
+    {
+      "operation_id": "listUser",
+      "summary": "List User",
+      "description": "",
+      "http_method": "GET",
+      "path": "/User",
+      "full_url": "http://localhost:8084/api/resource/User",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "User",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of User",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createUser",
+      "summary": "Create User",
+      "description": "",
+      "http_method": "POST",
+      "path": "/User",
+      "full_url": "http://localhost:8084/api/resource/User",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "User",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getUser",
+      "summary": "Get User by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/User/{name}",
+      "full_url": "http://localhost:8084/api/resource/User/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "User",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "User document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateUser",
+      "summary": "Update User",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/User/{name}",
+      "full_url": "http://localhost:8084/api/resource/User/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "User",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteUser",
+      "summary": "Delete User",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/User/{name}",
+      "full_url": "http://localhost:8084/api/resource/User/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "User",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listEmployee",
+      "summary": "List Employee",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee",
+      "full_url": "http://localhost:8084/api/resource/Employee",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Employee",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createEmployee",
+      "summary": "Create Employee",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Employee",
+      "full_url": "http://localhost:8084/api/resource/Employee",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getEmployee",
+      "summary": "Get Employee by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee/{name}",
+      "full_url": "http://localhost:8084/api/resource/Employee/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Employee document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateEmployee",
+      "summary": "Update Employee",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Employee/{name}",
+      "full_url": "http://localhost:8084/api/resource/Employee/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteEmployee",
+      "summary": "Delete Employee",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Employee/{name}",
+      "full_url": "http://localhost:8084/api/resource/Employee/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listCompany",
+      "summary": "List Company",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Company",
+      "full_url": "http://localhost:8084/api/resource/Company",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Company",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Company",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createCompany",
+      "summary": "Create Company",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Company",
+      "full_url": "http://localhost:8084/api/resource/Company",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Company",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getCompany",
+      "summary": "Get Company by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Company/{name}",
+      "full_url": "http://localhost:8084/api/resource/Company/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Company",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Company document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateCompany",
+      "summary": "Update Company",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Company/{name}",
+      "full_url": "http://localhost:8084/api/resource/Company/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Company",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteCompany",
+      "summary": "Delete Company",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Company/{name}",
+      "full_url": "http://localhost:8084/api/resource/Company/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Company",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listDepartment",
+      "summary": "List Department",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Department",
+      "full_url": "http://localhost:8084/api/resource/Department",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Department",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Department",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createDepartment",
+      "summary": "Create Department",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Department",
+      "full_url": "http://localhost:8084/api/resource/Department",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Department",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getDepartment",
+      "summary": "Get Department by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Department/{name}",
+      "full_url": "http://localhost:8084/api/resource/Department/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Department",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Department document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateDepartment",
+      "summary": "Update Department",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Department/{name}",
+      "full_url": "http://localhost:8084/api/resource/Department/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Department",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteDepartment",
+      "summary": "Delete Department",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Department/{name}",
+      "full_url": "http://localhost:8084/api/resource/Department/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Department",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listAttendance",
+      "summary": "List Attendance",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Attendance",
+      "full_url": "http://localhost:8084/api/resource/Attendance",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Attendance",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Attendance",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createAttendance",
+      "summary": "Create Attendance",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Attendance",
+      "full_url": "http://localhost:8084/api/resource/Attendance",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Attendance",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getAttendance",
+      "summary": "Get Attendance by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Attendance/{name}",
+      "full_url": "http://localhost:8084/api/resource/Attendance/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Attendance",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Attendance document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateAttendance",
+      "summary": "Update Attendance",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Attendance/{name}",
+      "full_url": "http://localhost:8084/api/resource/Attendance/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Attendance",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteAttendance",
+      "summary": "Delete Attendance",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Attendance/{name}",
+      "full_url": "http://localhost:8084/api/resource/Attendance/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Attendance",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listLeaveApplication",
+      "summary": "List Leave Application",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Leave Application",
+      "full_url": "http://localhost:8084/api/resource/Leave Application",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Leave Application",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Leave Application",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createLeaveApplication",
+      "summary": "Create Leave Application",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Leave Application",
+      "full_url": "http://localhost:8084/api/resource/Leave Application",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Leave Application",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getLeaveApplication",
+      "summary": "Get Leave Application by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Leave Application/{name}",
+      "full_url": "http://localhost:8084/api/resource/Leave Application/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Leave Application",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Leave Application document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateLeaveApplication",
+      "summary": "Update Leave Application",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Leave Application/{name}",
+      "full_url": "http://localhost:8084/api/resource/Leave Application/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Leave Application",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteLeaveApplication",
+      "summary": "Delete Leave Application",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Leave Application/{name}",
+      "full_url": "http://localhost:8084/api/resource/Leave Application/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Leave Application",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listSalaryStructure",
+      "summary": "List Salary Structure",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Salary Structure",
+      "full_url": "http://localhost:8084/api/resource/Salary Structure",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Salary Structure",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Salary Structure",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createSalaryStructure",
+      "summary": "Create Salary Structure",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Salary Structure",
+      "full_url": "http://localhost:8084/api/resource/Salary Structure",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Salary Structure",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getSalaryStructure",
+      "summary": "Get Salary Structure by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Salary Structure/{name}",
+      "full_url": "http://localhost:8084/api/resource/Salary Structure/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Salary Structure",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Salary Structure document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateSalaryStructure",
+      "summary": "Update Salary Structure",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Salary Structure/{name}",
+      "full_url": "http://localhost:8084/api/resource/Salary Structure/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Salary Structure",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteSalaryStructure",
+      "summary": "Delete Salary Structure",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Salary Structure/{name}",
+      "full_url": "http://localhost:8084/api/resource/Salary Structure/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Salary Structure",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listSalarySlip",
+      "summary": "List Salary Slip",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Salary Slip",
+      "full_url": "http://localhost:8084/api/resource/Salary Slip",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Salary Slip",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Salary Slip",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createSalarySlip",
+      "summary": "Create Salary Slip",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Salary Slip",
+      "full_url": "http://localhost:8084/api/resource/Salary Slip",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Salary Slip",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getSalarySlip",
+      "summary": "Get Salary Slip by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Salary Slip/{name}",
+      "full_url": "http://localhost:8084/api/resource/Salary Slip/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Salary Slip",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Salary Slip document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateSalarySlip",
+      "summary": "Update Salary Slip",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Salary Slip/{name}",
+      "full_url": "http://localhost:8084/api/resource/Salary Slip/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Salary Slip",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteSalarySlip",
+      "summary": "Delete Salary Slip",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Salary Slip/{name}",
+      "full_url": "http://localhost:8084/api/resource/Salary Slip/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Salary Slip",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listShiftType",
+      "summary": "List Shift Type",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Shift Type",
+      "full_url": "http://localhost:8084/api/resource/Shift Type",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Shift Type",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Shift Type",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createShiftType",
+      "summary": "Create Shift Type",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Shift Type",
+      "full_url": "http://localhost:8084/api/resource/Shift Type",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Shift Type",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getShiftType",
+      "summary": "Get Shift Type by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Shift Type/{name}",
+      "full_url": "http://localhost:8084/api/resource/Shift Type/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Shift Type",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Shift Type document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateShiftType",
+      "summary": "Update Shift Type",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Shift Type/{name}",
+      "full_url": "http://localhost:8084/api/resource/Shift Type/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Shift Type",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteShiftType",
+      "summary": "Delete Shift Type",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Shift Type/{name}",
+      "full_url": "http://localhost:8084/api/resource/Shift Type/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Shift Type",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listHolidayList",
+      "summary": "List Holiday List",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Holiday List",
+      "full_url": "http://localhost:8084/api/resource/Holiday List",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Holiday List",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Holiday List",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createHolidayList",
+      "summary": "Create Holiday List",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Holiday List",
+      "full_url": "http://localhost:8084/api/resource/Holiday List",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Holiday List",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getHolidayList",
+      "summary": "Get Holiday List by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Holiday List/{name}",
+      "full_url": "http://localhost:8084/api/resource/Holiday List/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Holiday List",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Holiday List document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateHolidayList",
+      "summary": "Update Holiday List",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Holiday List/{name}",
+      "full_url": "http://localhost:8084/api/resource/Holiday List/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Holiday List",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteHolidayList",
+      "summary": "Delete Holiday List",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Holiday List/{name}",
+      "full_url": "http://localhost:8084/api/resource/Holiday List/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Holiday List",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listLeaveType",
+      "summary": "List Leave Type",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Leave Type",
+      "full_url": "http://localhost:8084/api/resource/Leave Type",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Leave Type",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Leave Type",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createLeaveType",
+      "summary": "Create Leave Type",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Leave Type",
+      "full_url": "http://localhost:8084/api/resource/Leave Type",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Leave Type",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getLeaveType",
+      "summary": "Get Leave Type by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Leave Type/{name}",
+      "full_url": "http://localhost:8084/api/resource/Leave Type/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Leave Type",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Leave Type document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateLeaveType",
+      "summary": "Update Leave Type",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Leave Type/{name}",
+      "full_url": "http://localhost:8084/api/resource/Leave Type/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Leave Type",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteLeaveType",
+      "summary": "Delete Leave Type",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Leave Type/{name}",
+      "full_url": "http://localhost:8084/api/resource/Leave Type/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Leave Type",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listDesignation",
+      "summary": "List Designation",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Designation",
+      "full_url": "http://localhost:8084/api/resource/Designation",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Designation",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Designation",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createDesignation",
+      "summary": "Create Designation",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Designation",
+      "full_url": "http://localhost:8084/api/resource/Designation",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Designation",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getDesignation",
+      "summary": "Get Designation by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Designation/{name}",
+      "full_url": "http://localhost:8084/api/resource/Designation/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Designation",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Designation document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateDesignation",
+      "summary": "Update Designation",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Designation/{name}",
+      "full_url": "http://localhost:8084/api/resource/Designation/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Designation",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteDesignation",
+      "summary": "Delete Designation",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Designation/{name}",
+      "full_url": "http://localhost:8084/api/resource/Designation/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Designation",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listAppraisal",
+      "summary": "List Appraisal",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Appraisal",
+      "full_url": "http://localhost:8084/api/resource/Appraisal",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Appraisal",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Appraisal",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createAppraisal",
+      "summary": "Create Appraisal",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Appraisal",
+      "full_url": "http://localhost:8084/api/resource/Appraisal",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Appraisal",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getAppraisal",
+      "summary": "Get Appraisal by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Appraisal/{name}",
+      "full_url": "http://localhost:8084/api/resource/Appraisal/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Appraisal",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Appraisal document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateAppraisal",
+      "summary": "Update Appraisal",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Appraisal/{name}",
+      "full_url": "http://localhost:8084/api/resource/Appraisal/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Appraisal",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteAppraisal",
+      "summary": "Delete Appraisal",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Appraisal/{name}",
+      "full_url": "http://localhost:8084/api/resource/Appraisal/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Appraisal",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listEmployeeCheckin",
+      "summary": "List Employee Checkin",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee Checkin",
+      "full_url": "http://localhost:8084/api/resource/Employee Checkin",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Checkin",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Employee Checkin",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createEmployeeCheckin",
+      "summary": "Create Employee Checkin",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Employee Checkin",
+      "full_url": "http://localhost:8084/api/resource/Employee Checkin",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Checkin",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getEmployeeCheckin",
+      "summary": "Get Employee Checkin by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee Checkin/{name}",
+      "full_url": "http://localhost:8084/api/resource/Employee Checkin/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Checkin",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Employee Checkin document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateEmployeeCheckin",
+      "summary": "Update Employee Checkin",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Employee Checkin/{name}",
+      "full_url": "http://localhost:8084/api/resource/Employee Checkin/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Checkin",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteEmployeeCheckin",
+      "summary": "Delete Employee Checkin",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Employee Checkin/{name}",
+      "full_url": "http://localhost:8084/api/resource/Employee Checkin/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Checkin",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listEmployeeOnboarding",
+      "summary": "List Employee Onboarding",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee Onboarding",
+      "full_url": "http://localhost:8084/api/resource/Employee Onboarding",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Onboarding",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Employee Onboarding",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createEmployeeOnboarding",
+      "summary": "Create Employee Onboarding",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Employee Onboarding",
+      "full_url": "http://localhost:8084/api/resource/Employee Onboarding",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Onboarding",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getEmployeeOnboarding",
+      "summary": "Get Employee Onboarding by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee Onboarding/{name}",
+      "full_url": "http://localhost:8084/api/resource/Employee Onboarding/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Onboarding",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Employee Onboarding document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateEmployeeOnboarding",
+      "summary": "Update Employee Onboarding",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Employee Onboarding/{name}",
+      "full_url": "http://localhost:8084/api/resource/Employee Onboarding/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Onboarding",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteEmployeeOnboarding",
+      "summary": "Delete Employee Onboarding",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Employee Onboarding/{name}",
+      "full_url": "http://localhost:8084/api/resource/Employee Onboarding/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Onboarding",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listEmployeeSeparation",
+      "summary": "List Employee Separation",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee Separation",
+      "full_url": "http://localhost:8084/api/resource/Employee Separation",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Separation",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Employee Separation",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createEmployeeSeparation",
+      "summary": "Create Employee Separation",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Employee Separation",
+      "full_url": "http://localhost:8084/api/resource/Employee Separation",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Separation",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getEmployeeSeparation",
+      "summary": "Get Employee Separation by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Employee Separation/{name}",
+      "full_url": "http://localhost:8084/api/resource/Employee Separation/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Separation",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Employee Separation document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateEmployeeSeparation",
+      "summary": "Update Employee Separation",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Employee Separation/{name}",
+      "full_url": "http://localhost:8084/api/resource/Employee Separation/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Separation",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteEmployeeSeparation",
+      "summary": "Delete Employee Separation",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Employee Separation/{name}",
+      "full_url": "http://localhost:8084/api/resource/Employee Separation/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Employee Separation",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listExpenseClaim",
+      "summary": "List Expense Claim",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Expense Claim",
+      "full_url": "http://localhost:8084/api/resource/Expense Claim",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Expense Claim",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Expense Claim",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createExpenseClaim",
+      "summary": "Create Expense Claim",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Expense Claim",
+      "full_url": "http://localhost:8084/api/resource/Expense Claim",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Expense Claim",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getExpenseClaim",
+      "summary": "Get Expense Claim by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Expense Claim/{name}",
+      "full_url": "http://localhost:8084/api/resource/Expense Claim/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Expense Claim",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Expense Claim document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateExpenseClaim",
+      "summary": "Update Expense Claim",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Expense Claim/{name}",
+      "full_url": "http://localhost:8084/api/resource/Expense Claim/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Expense Claim",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteExpenseClaim",
+      "summary": "Delete Expense Claim",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Expense Claim/{name}",
+      "full_url": "http://localhost:8084/api/resource/Expense Claim/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Expense Claim",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    },
+    {
+      "operation_id": "listTrainingEvent",
+      "summary": "List Training Event",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Training Event",
+      "full_url": "http://localhost:8084/api/resource/Training Event",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Training Event",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {
+            "name": "fields",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of field names",
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "location": "query",
+            "required": false,
+            "description": "JSON array of filters",
+            "type": "string"
+          },
+          {
+            "name": "limit_page_length",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 20
+          },
+          {
+            "name": "limit_start",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "order_by",
+            "location": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "List of Training Event",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "createTrainingEvent",
+      "summary": "Create Training Event",
+      "description": "",
+      "http_method": "POST",
+      "path": "/Training Event",
+      "full_url": "http://localhost:8084/api/resource/Training Event",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Training Event",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Created document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "getTrainingEvent",
+      "summary": "Get Training Event by name",
+      "description": "",
+      "http_method": "GET",
+      "path": "/Training Event/{name}",
+      "full_url": "http://localhost:8084/api/resource/Training Event/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Training Event",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Training Event document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "updateTrainingEvent",
+      "summary": "Update Training Event",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/Training Event/{name}",
+      "full_url": "http://localhost:8084/api/resource/Training Event/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Training Event",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Updated document",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "fields": {
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation_id": "deleteTrainingEvent",
+      "summary": "Delete Training Event",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/Training Event/{name}",
+      "full_url": "http://localhost:8084/api/resource/Training Event/{name}",
+      "tags": [],
+      "deprecated": false,
+      "potential_database_table": "Training Event",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "name",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "202": {
+          "status_code": "202",
+          "description": "Deleted successfully"
+        }
+      }
+    }
+  ],
+  "openapi_version": "3.0.0",
+  "components": {
+    "schemas": {},
+    "responses": {},
+    "parameters": {},
+    "examples": {},
+    "requestBodies": {},
+    "headers": {},
+    "securitySchemes": {
+      "APIKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Format: token api_key:api_secret"
+      }
+    },
+    "links": {},
+    "callbacks": {}
+  },
+  "notes": {
+    "source": "Converted from OpenAPI 3.0 specification",
+    "faithfulness": "100% - All information from original OpenAPI preserved",
+    "potential_database_table": "Inferred from API path, may need manual verification"
+  }
+}

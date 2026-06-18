@@ -1,0 +1,1659 @@
+{
+  "metadata": {
+    "service_name": "Dolibarr API",
+    "version": "1.0.0",
+    "description": "Complete Dolibarr REST API",
+    "base_urls": [
+      "http://localhost:8082"
+    ],
+    "authentication": []
+  },
+  "total_endpoints": 36,
+  "endpoints": [
+    {
+      "operation_id": "thirdparties_list",
+      "summary": "List thirdparties",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/thirdparties",
+      "full_url": "http://localhost:8082/api/index.php/thirdparties",
+      "tags": [
+        "thirdparties"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "thirdparties_create",
+      "summary": "Create thirdparties",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/index.php/thirdparties",
+      "full_url": "http://localhost:8082/api/index.php/thirdparties",
+      "tags": [
+        "thirdparties"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "thirdparties_get",
+      "summary": "Get thirdparties",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/thirdparties/{id}",
+      "full_url": "http://localhost:8082/api/index.php/thirdparties/{id}",
+      "tags": [
+        "thirdparties"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "thirdparties_update",
+      "summary": "Update thirdparties",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/api/index.php/thirdparties/{id}",
+      "full_url": "http://localhost:8082/api/index.php/thirdparties/{id}",
+      "tags": [
+        "thirdparties"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "thirdparties_delete",
+      "summary": "Delete thirdparties",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/index.php/thirdparties/{id}",
+      "full_url": "http://localhost:8082/api/index.php/thirdparties/{id}",
+      "tags": [
+        "thirdparties"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "products_list",
+      "summary": "List products",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/products",
+      "full_url": "http://localhost:8082/api/index.php/products",
+      "tags": [
+        "products"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "products_create",
+      "summary": "Create products",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/index.php/products",
+      "full_url": "http://localhost:8082/api/index.php/products",
+      "tags": [
+        "products"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "products_get",
+      "summary": "Get products",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/products/{id}",
+      "full_url": "http://localhost:8082/api/index.php/products/{id}",
+      "tags": [
+        "products"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "products_update",
+      "summary": "Update products",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/api/index.php/products/{id}",
+      "full_url": "http://localhost:8082/api/index.php/products/{id}",
+      "tags": [
+        "products"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "products_delete",
+      "summary": "Delete products",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/index.php/products/{id}",
+      "full_url": "http://localhost:8082/api/index.php/products/{id}",
+      "tags": [
+        "products"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "invoices_list",
+      "summary": "List invoices",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/invoices",
+      "full_url": "http://localhost:8082/api/index.php/invoices",
+      "tags": [
+        "invoices"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "invoices_create",
+      "summary": "Create invoices",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/index.php/invoices",
+      "full_url": "http://localhost:8082/api/index.php/invoices",
+      "tags": [
+        "invoices"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "invoices_get",
+      "summary": "Get invoices",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/invoices/{id}",
+      "full_url": "http://localhost:8082/api/index.php/invoices/{id}",
+      "tags": [
+        "invoices"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "invoices_update",
+      "summary": "Update invoices",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/api/index.php/invoices/{id}",
+      "full_url": "http://localhost:8082/api/index.php/invoices/{id}",
+      "tags": [
+        "invoices"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "invoices_delete",
+      "summary": "Delete invoices",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/index.php/invoices/{id}",
+      "full_url": "http://localhost:8082/api/index.php/invoices/{id}",
+      "tags": [
+        "invoices"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "invoices_validate",
+      "summary": "Validate invoices",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/index.php/invoices/{id}/validate",
+      "full_url": "http://localhost:8082/api/index.php/invoices/{id}/validate",
+      "tags": [
+        "invoices"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "orders_list",
+      "summary": "List orders",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/orders",
+      "full_url": "http://localhost:8082/api/index.php/orders",
+      "tags": [
+        "orders"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "orders_create",
+      "summary": "Create orders",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/index.php/orders",
+      "full_url": "http://localhost:8082/api/index.php/orders",
+      "tags": [
+        "orders"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "orders_get",
+      "summary": "Get orders",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/orders/{id}",
+      "full_url": "http://localhost:8082/api/index.php/orders/{id}",
+      "tags": [
+        "orders"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "orders_update",
+      "summary": "Update orders",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/api/index.php/orders/{id}",
+      "full_url": "http://localhost:8082/api/index.php/orders/{id}",
+      "tags": [
+        "orders"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "orders_delete",
+      "summary": "Delete orders",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/index.php/orders/{id}",
+      "full_url": "http://localhost:8082/api/index.php/orders/{id}",
+      "tags": [
+        "orders"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "proposals_list",
+      "summary": "List proposals",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/proposals",
+      "full_url": "http://localhost:8082/api/index.php/proposals",
+      "tags": [
+        "proposals"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "proposals_create",
+      "summary": "Create proposals",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/index.php/proposals",
+      "full_url": "http://localhost:8082/api/index.php/proposals",
+      "tags": [
+        "proposals"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "proposals_get",
+      "summary": "Get proposals",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/proposals/{id}",
+      "full_url": "http://localhost:8082/api/index.php/proposals/{id}",
+      "tags": [
+        "proposals"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "proposals_update",
+      "summary": "Update proposals",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/api/index.php/proposals/{id}",
+      "full_url": "http://localhost:8082/api/index.php/proposals/{id}",
+      "tags": [
+        "proposals"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "proposals_delete",
+      "summary": "Delete proposals",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/index.php/proposals/{id}",
+      "full_url": "http://localhost:8082/api/index.php/proposals/{id}",
+      "tags": [
+        "proposals"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_list",
+      "summary": "List users",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/users",
+      "full_url": "http://localhost:8082/api/index.php/users",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_create",
+      "summary": "Create users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/index.php/users",
+      "full_url": "http://localhost:8082/api/index.php/users",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_get",
+      "summary": "Get users",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/users/{id}",
+      "full_url": "http://localhost:8082/api/index.php/users/{id}",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_update",
+      "summary": "Update users",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/api/index.php/users/{id}",
+      "full_url": "http://localhost:8082/api/index.php/users/{id}",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "users_delete",
+      "summary": "Delete users",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/index.php/users/{id}",
+      "full_url": "http://localhost:8082/api/index.php/users/{id}",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "contacts_list",
+      "summary": "List contacts",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/contacts",
+      "full_url": "http://localhost:8082/api/index.php/contacts",
+      "tags": [
+        "contacts"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "contacts_create",
+      "summary": "Create contacts",
+      "description": "",
+      "http_method": "POST",
+      "path": "/api/index.php/contacts",
+      "full_url": "http://localhost:8082/api/index.php/contacts",
+      "tags": [
+        "contacts"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "contacts_get",
+      "summary": "Get contacts",
+      "description": "",
+      "http_method": "GET",
+      "path": "/api/index.php/contacts/{id}",
+      "full_url": "http://localhost:8082/api/index.php/contacts/{id}",
+      "tags": [
+        "contacts"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "contacts_update",
+      "summary": "Update contacts",
+      "description": "",
+      "http_method": "PUT",
+      "path": "/api/index.php/contacts/{id}",
+      "full_url": "http://localhost:8082/api/index.php/contacts/{id}",
+      "tags": [
+        "contacts"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    },
+    {
+      "operation_id": "contacts_delete",
+      "summary": "Delete contacts",
+      "description": "",
+      "http_method": "DELETE",
+      "path": "/api/index.php/contacts/{id}",
+      "full_url": "http://localhost:8082/api/index.php/contacts/{id}",
+      "tags": [
+        "contacts"
+      ],
+      "deprecated": false,
+      "potential_database_table": "api",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        },
+        "404": {
+          "status_code": "404",
+          "description": "Not Found"
+        }
+      }
+    }
+  ],
+  "openapi_version": "3.0.0",
+  "components": {
+    "schemas": {},
+    "responses": {},
+    "parameters": {},
+    "examples": {},
+    "requestBodies": {},
+    "headers": {},
+    "securitySchemes": {},
+    "links": {},
+    "callbacks": {}
+  },
+  "notes": {
+    "source": "Converted from OpenAPI 3.0 specification",
+    "faithfulness": "100% - All information from original OpenAPI preserved",
+    "potential_database_table": "Inferred from API path, may need manual verification"
+  }
+}

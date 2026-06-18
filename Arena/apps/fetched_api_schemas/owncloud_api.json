@@ -1,0 +1,153 @@
+{
+  "service": "owncloud",
+  "url": "http://localhost:8081",
+  "api_base": "/ocs/v1.php (OCS) and /remote.php/dav (WebDAV)",
+  "auth_type": "HTTP Basic Authentication",
+  "documentation": "https://doc.owncloud.com/server/developer_manual/core/apis/",
+  "note": "OwnCloud uses two API types: OCS (REST-like) for metadata, WebDAV for files",
+  "endpoints": [
+    {
+      "name": "users.list",
+      "method": "GET",
+      "route": "/ocs/v1.php/cloud/users",
+      "input": {},
+      "output": {
+        "ocs": {
+          "data": {
+            "users": "array"
+          }
+        }
+      },
+      "target_table": "oc_users"
+    },
+    {
+      "name": "users.get",
+      "method": "GET",
+      "route": "/ocs/v1.php/cloud/users/{userid}",
+      "input": {
+        "path": {
+          "userid": "string"
+        }
+      },
+      "output": {
+        "ocs": {
+          "data": "object"
+        }
+      },
+      "target_table": "oc_users"
+    },
+    {
+      "name": "users.create",
+      "method": "POST",
+      "route": "/ocs/v1.php/cloud/users",
+      "input": {
+        "body": {
+          "userid": "string",
+          "password": "string"
+        }
+      },
+      "output": {
+        "ocs": {
+          "data": "object"
+        }
+      },
+      "target_table": "oc_users"
+    },
+    {
+      "name": "files.list",
+      "method": "PROPFIND",
+      "route": "/remote.php/dav/files/{username}/",
+      "input": {
+        "path": {
+          "username": "string"
+        }
+      },
+      "output": {
+        "multistatus": "xml"
+      },
+      "target_table": "oc_filecache"
+    },
+    {
+      "name": "files.upload",
+      "method": "PUT",
+      "route": "/remote.php/dav/files/{username}/{path}",
+      "input": {
+        "path": {
+          "username": "string",
+          "path": "string"
+        },
+        "body": "binary"
+      },
+      "output": {
+        "status": "number"
+      },
+      "target_table": "oc_filecache"
+    },
+    {
+      "name": "files.download",
+      "method": "GET",
+      "route": "/remote.php/dav/files/{username}/{path}",
+      "input": {
+        "path": {
+          "username": "string",
+          "path": "string"
+        }
+      },
+      "output": {
+        "file": "binary"
+      },
+      "target_table": "oc_filecache"
+    },
+    {
+      "name": "shares.list",
+      "method": "GET",
+      "route": "/ocs/v1.php/apps/files_sharing/api/v1/shares",
+      "input": {
+        "query": {
+          "path": "string",
+          "reshares": "boolean"
+        }
+      },
+      "output": {
+        "ocs": {
+          "data": "array"
+        }
+      },
+      "target_table": "oc_share"
+    },
+    {
+      "name": "shares.create",
+      "method": "POST",
+      "route": "/ocs/v1.php/apps/files_sharing/api/v1/shares",
+      "input": {
+        "body": {
+          "path": "string",
+          "shareType": "number",
+          "shareWith": "string"
+        }
+      },
+      "output": {
+        "ocs": {
+          "data": "object"
+        }
+      },
+      "target_table": "oc_share"
+    },
+    {
+      "name": "groups.list",
+      "method": "GET",
+      "route": "/ocs/v1.php/cloud/groups",
+      "input": {},
+      "output": {
+        "ocs": {
+          "data": {
+            "groups": "array"
+          }
+        }
+      },
+      "target_table": "oc_groups"
+    }
+  ],
+  "total_endpoints": 9,
+  "timestamp": "2026-06-18T14:06:03+05:30"
+}

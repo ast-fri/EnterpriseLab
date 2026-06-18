@@ -1,0 +1,5024 @@
+{
+  "metadata": {
+    "service_name": "RocketChat REST API",
+    "version": "7.9",
+    "description": "Complete RocketChat REST API - Based on official documentation (https://developer.rocket.chat/reference/api/rest-api)",
+    "base_urls": [
+      "http://localhost:3000/api/v1"
+    ],
+    "authentication": [
+      {
+        "name": "authToken",
+        "type": "apiKey",
+        "in": "header",
+        "header_name": "X-Auth-Token"
+      },
+      {
+        "name": "userId",
+        "type": "apiKey",
+        "in": "header",
+        "header_name": "X-User-Id"
+      }
+    ]
+  },
+  "total_endpoints": 117,
+  "endpoints": [
+    {
+      "operation_id": "authentication_login",
+      "summary": "Login authentication",
+      "description": "",
+      "http_method": "POST",
+      "path": "/login",
+      "full_url": "http://localhost:3000/api/v1/login",
+      "tags": [
+        "authentication"
+      ],
+      "deprecated": false,
+      "potential_database_table": "login",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "authentication_logout",
+      "summary": "Logout authentication",
+      "description": "",
+      "http_method": "POST",
+      "path": "/logout",
+      "full_url": "http://localhost:3000/api/v1/logout",
+      "tags": [
+        "authentication"
+      ],
+      "deprecated": false,
+      "potential_database_table": "logout",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "authentication_me",
+      "summary": "Me authentication",
+      "description": "",
+      "http_method": "GET",
+      "path": "/me",
+      "full_url": "http://localhost:3000/api/v1/me",
+      "tags": [
+        "authentication"
+      ],
+      "deprecated": false,
+      "potential_database_table": "me",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_create",
+      "summary": "Create users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/users.create",
+      "full_url": "http://localhost:3000/api/v1/users.create",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.create",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_delete",
+      "summary": "Delete users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/users.delete",
+      "full_url": "http://localhost:3000/api/v1/users.delete",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.delete",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_deleteOwnAccount",
+      "summary": "Deleteownaccount users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/users.deleteOwnAccount",
+      "full_url": "http://localhost:3000/api/v1/users.deleteOwnAccount",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.deleteOwnAccount",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_getAvatar",
+      "summary": "Getavatar users",
+      "description": "",
+      "http_method": "GET",
+      "path": "/users.getAvatar",
+      "full_url": "http://localhost:3000/api/v1/users.getAvatar",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.getAvatar",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_getPresence",
+      "summary": "Getpresence users",
+      "description": "",
+      "http_method": "GET",
+      "path": "/users.getPresence",
+      "full_url": "http://localhost:3000/api/v1/users.getPresence",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.getPresence",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_info",
+      "summary": "Info users",
+      "description": "",
+      "http_method": "GET",
+      "path": "/users.info",
+      "full_url": "http://localhost:3000/api/v1/users.info",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.info",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_list",
+      "summary": "List users",
+      "description": "",
+      "http_method": "GET",
+      "path": "/users.list",
+      "full_url": "http://localhost:3000/api/v1/users.list",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.list",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_register",
+      "summary": "Register users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/users.register",
+      "full_url": "http://localhost:3000/api/v1/users.register",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.register",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_resetAvatar",
+      "summary": "Resetavatar users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/users.resetAvatar",
+      "full_url": "http://localhost:3000/api/v1/users.resetAvatar",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.resetAvatar",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_setAvatar",
+      "summary": "Setavatar users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/users.setAvatar",
+      "full_url": "http://localhost:3000/api/v1/users.setAvatar",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.setAvatar",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_update",
+      "summary": "Update users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/users.update",
+      "full_url": "http://localhost:3000/api/v1/users.update",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.update",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_updateOwnBasicInfo",
+      "summary": "Updateownbasicinfo users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/users.updateOwnBasicInfo",
+      "full_url": "http://localhost:3000/api/v1/users.updateOwnBasicInfo",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.updateOwnBasicInfo",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_createToken",
+      "summary": "Createtoken users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/users.createToken",
+      "full_url": "http://localhost:3000/api/v1/users.createToken",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.createToken",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_getPreferences",
+      "summary": "Getpreferences users",
+      "description": "",
+      "http_method": "GET",
+      "path": "/users.getPreferences",
+      "full_url": "http://localhost:3000/api/v1/users.getPreferences",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.getPreferences",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_setPreferences",
+      "summary": "Setpreferences users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/users.setPreferences",
+      "full_url": "http://localhost:3000/api/v1/users.setPreferences",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.setPreferences",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "users_forgotPassword",
+      "summary": "Forgotpassword users",
+      "description": "",
+      "http_method": "POST",
+      "path": "/users.forgotPassword",
+      "full_url": "http://localhost:3000/api/v1/users.forgotPassword",
+      "tags": [
+        "users"
+      ],
+      "deprecated": false,
+      "potential_database_table": "users.forgotPassword",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_addAll",
+      "summary": "Addall channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.addAll",
+      "full_url": "http://localhost:3000/api/v1/channels.addAll",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.addAll",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_addLeader",
+      "summary": "Addleader channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.addLeader",
+      "full_url": "http://localhost:3000/api/v1/channels.addLeader",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.addLeader",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_addModerator",
+      "summary": "Addmoderator channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.addModerator",
+      "full_url": "http://localhost:3000/api/v1/channels.addModerator",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.addModerator",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_addOwner",
+      "summary": "Addowner channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.addOwner",
+      "full_url": "http://localhost:3000/api/v1/channels.addOwner",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.addOwner",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_archive",
+      "summary": "Archive channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.archive",
+      "full_url": "http://localhost:3000/api/v1/channels.archive",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.archive",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_close",
+      "summary": "Close channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.close",
+      "full_url": "http://localhost:3000/api/v1/channels.close",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.close",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_create",
+      "summary": "Create channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.create",
+      "full_url": "http://localhost:3000/api/v1/channels.create",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.create",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_delete",
+      "summary": "Delete channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.delete",
+      "full_url": "http://localhost:3000/api/v1/channels.delete",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.delete",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_files",
+      "summary": "Files channels",
+      "description": "",
+      "http_method": "GET",
+      "path": "/channels.files",
+      "full_url": "http://localhost:3000/api/v1/channels.files",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.files",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_getIntegrations",
+      "summary": "Getintegrations channels",
+      "description": "",
+      "http_method": "GET",
+      "path": "/channels.getIntegrations",
+      "full_url": "http://localhost:3000/api/v1/channels.getIntegrations",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.getIntegrations",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_history",
+      "summary": "History channels",
+      "description": "",
+      "http_method": "GET",
+      "path": "/channels.history",
+      "full_url": "http://localhost:3000/api/v1/channels.history",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.history",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_info",
+      "summary": "Info channels",
+      "description": "",
+      "http_method": "GET",
+      "path": "/channels.info",
+      "full_url": "http://localhost:3000/api/v1/channels.info",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.info",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_invite",
+      "summary": "Invite channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.invite",
+      "full_url": "http://localhost:3000/api/v1/channels.invite",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.invite",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_kick",
+      "summary": "Kick channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.kick",
+      "full_url": "http://localhost:3000/api/v1/channels.kick",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.kick",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_leave",
+      "summary": "Leave channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.leave",
+      "full_url": "http://localhost:3000/api/v1/channels.leave",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.leave",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_list",
+      "summary": "List channels",
+      "description": "",
+      "http_method": "GET",
+      "path": "/channels.list",
+      "full_url": "http://localhost:3000/api/v1/channels.list",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.list",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_listJoined",
+      "summary": "Listjoined channels",
+      "description": "",
+      "http_method": "GET",
+      "path": "/channels.list.joined",
+      "full_url": "http://localhost:3000/api/v1/channels.list.joined",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.list.joined",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_members",
+      "summary": "Members channels",
+      "description": "",
+      "http_method": "GET",
+      "path": "/channels.members",
+      "full_url": "http://localhost:3000/api/v1/channels.members",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.members",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_messages",
+      "summary": "Messages channels",
+      "description": "",
+      "http_method": "GET",
+      "path": "/channels.messages",
+      "full_url": "http://localhost:3000/api/v1/channels.messages",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.messages",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_open",
+      "summary": "Open channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.open",
+      "full_url": "http://localhost:3000/api/v1/channels.open",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.open",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_rename",
+      "summary": "Rename channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.rename",
+      "full_url": "http://localhost:3000/api/v1/channels.rename",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.rename",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_setDescription",
+      "summary": "Setdescription channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.setDescription",
+      "full_url": "http://localhost:3000/api/v1/channels.setDescription",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.setDescription",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_setJoinCode",
+      "summary": "Setjoincode channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.setJoinCode",
+      "full_url": "http://localhost:3000/api/v1/channels.setJoinCode",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.setJoinCode",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_setPurpose",
+      "summary": "Setpurpose channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.setPurpose",
+      "full_url": "http://localhost:3000/api/v1/channels.setPurpose",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.setPurpose",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_setReadOnly",
+      "summary": "Setreadonly channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.setReadOnly",
+      "full_url": "http://localhost:3000/api/v1/channels.setReadOnly",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.setReadOnly",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_setTopic",
+      "summary": "Settopic channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.setTopic",
+      "full_url": "http://localhost:3000/api/v1/channels.setTopic",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.setTopic",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_setType",
+      "summary": "Settype channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.setType",
+      "full_url": "http://localhost:3000/api/v1/channels.setType",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.setType",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "channels_unarchive",
+      "summary": "Unarchive channels",
+      "description": "",
+      "http_method": "POST",
+      "path": "/channels.unarchive",
+      "full_url": "http://localhost:3000/api/v1/channels.unarchive",
+      "tags": [
+        "channels"
+      ],
+      "deprecated": false,
+      "potential_database_table": "channels.unarchive",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_addAll",
+      "summary": "Addall groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.addAll",
+      "full_url": "http://localhost:3000/api/v1/groups.addAll",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.addAll",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_addLeader",
+      "summary": "Addleader groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.addLeader",
+      "full_url": "http://localhost:3000/api/v1/groups.addLeader",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.addLeader",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_addModerator",
+      "summary": "Addmoderator groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.addModerator",
+      "full_url": "http://localhost:3000/api/v1/groups.addModerator",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.addModerator",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_addOwner",
+      "summary": "Addowner groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.addOwner",
+      "full_url": "http://localhost:3000/api/v1/groups.addOwner",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.addOwner",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_archive",
+      "summary": "Archive groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.archive",
+      "full_url": "http://localhost:3000/api/v1/groups.archive",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.archive",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_close",
+      "summary": "Close groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.close",
+      "full_url": "http://localhost:3000/api/v1/groups.close",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.close",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_create",
+      "summary": "Create groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.create",
+      "full_url": "http://localhost:3000/api/v1/groups.create",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.create",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_delete",
+      "summary": "Delete groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.delete",
+      "full_url": "http://localhost:3000/api/v1/groups.delete",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.delete",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_files",
+      "summary": "Files groups",
+      "description": "",
+      "http_method": "GET",
+      "path": "/groups.files",
+      "full_url": "http://localhost:3000/api/v1/groups.files",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.files",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_history",
+      "summary": "History groups",
+      "description": "",
+      "http_method": "GET",
+      "path": "/groups.history",
+      "full_url": "http://localhost:3000/api/v1/groups.history",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.history",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_info",
+      "summary": "Info groups",
+      "description": "",
+      "http_method": "GET",
+      "path": "/groups.info",
+      "full_url": "http://localhost:3000/api/v1/groups.info",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.info",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_invite",
+      "summary": "Invite groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.invite",
+      "full_url": "http://localhost:3000/api/v1/groups.invite",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.invite",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_kick",
+      "summary": "Kick groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.kick",
+      "full_url": "http://localhost:3000/api/v1/groups.kick",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.kick",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_leave",
+      "summary": "Leave groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.leave",
+      "full_url": "http://localhost:3000/api/v1/groups.leave",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.leave",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_list",
+      "summary": "List groups",
+      "description": "",
+      "http_method": "GET",
+      "path": "/groups.list",
+      "full_url": "http://localhost:3000/api/v1/groups.list",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.list",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_listAll",
+      "summary": "Listall groups",
+      "description": "",
+      "http_method": "GET",
+      "path": "/groups.listAll",
+      "full_url": "http://localhost:3000/api/v1/groups.listAll",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.listAll",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_members",
+      "summary": "Members groups",
+      "description": "",
+      "http_method": "GET",
+      "path": "/groups.members",
+      "full_url": "http://localhost:3000/api/v1/groups.members",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.members",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_messages",
+      "summary": "Messages groups",
+      "description": "",
+      "http_method": "GET",
+      "path": "/groups.messages",
+      "full_url": "http://localhost:3000/api/v1/groups.messages",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.messages",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_open",
+      "summary": "Open groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.open",
+      "full_url": "http://localhost:3000/api/v1/groups.open",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.open",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_rename",
+      "summary": "Rename groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.rename",
+      "full_url": "http://localhost:3000/api/v1/groups.rename",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.rename",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_setDescription",
+      "summary": "Setdescription groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.setDescription",
+      "full_url": "http://localhost:3000/api/v1/groups.setDescription",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.setDescription",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_setPurpose",
+      "summary": "Setpurpose groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.setPurpose",
+      "full_url": "http://localhost:3000/api/v1/groups.setPurpose",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.setPurpose",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_setReadOnly",
+      "summary": "Setreadonly groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.setReadOnly",
+      "full_url": "http://localhost:3000/api/v1/groups.setReadOnly",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.setReadOnly",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_setTopic",
+      "summary": "Settopic groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.setTopic",
+      "full_url": "http://localhost:3000/api/v1/groups.setTopic",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.setTopic",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_setType",
+      "summary": "Settype groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.setType",
+      "full_url": "http://localhost:3000/api/v1/groups.setType",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.setType",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "groups_unarchive",
+      "summary": "Unarchive groups",
+      "description": "",
+      "http_method": "POST",
+      "path": "/groups.unarchive",
+      "full_url": "http://localhost:3000/api/v1/groups.unarchive",
+      "tags": [
+        "groups"
+      ],
+      "deprecated": false,
+      "potential_database_table": "groups.unarchive",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "chat_delete",
+      "summary": "Delete chat",
+      "description": "",
+      "http_method": "POST",
+      "path": "/chat.delete",
+      "full_url": "http://localhost:3000/api/v1/chat.delete",
+      "tags": [
+        "chat"
+      ],
+      "deprecated": false,
+      "potential_database_table": "chat.delete",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "chat_getMessage",
+      "summary": "Getmessage chat",
+      "description": "",
+      "http_method": "GET",
+      "path": "/chat.getMessage",
+      "full_url": "http://localhost:3000/api/v1/chat.getMessage",
+      "tags": [
+        "chat"
+      ],
+      "deprecated": false,
+      "potential_database_table": "chat.getMessage",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "chat_pinMessage",
+      "summary": "Pinmessage chat",
+      "description": "",
+      "http_method": "POST",
+      "path": "/chat.pinMessage",
+      "full_url": "http://localhost:3000/api/v1/chat.pinMessage",
+      "tags": [
+        "chat"
+      ],
+      "deprecated": false,
+      "potential_database_table": "chat.pinMessage",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "chat_postMessage",
+      "summary": "Postmessage chat",
+      "description": "",
+      "http_method": "POST",
+      "path": "/chat.postMessage",
+      "full_url": "http://localhost:3000/api/v1/chat.postMessage",
+      "tags": [
+        "chat"
+      ],
+      "deprecated": false,
+      "potential_database_table": "chat.postMessage",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "chat_react",
+      "summary": "React chat",
+      "description": "",
+      "http_method": "POST",
+      "path": "/chat.react",
+      "full_url": "http://localhost:3000/api/v1/chat.react",
+      "tags": [
+        "chat"
+      ],
+      "deprecated": false,
+      "potential_database_table": "chat.react",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "chat_starMessage",
+      "summary": "Starmessage chat",
+      "description": "",
+      "http_method": "POST",
+      "path": "/chat.starMessage",
+      "full_url": "http://localhost:3000/api/v1/chat.starMessage",
+      "tags": [
+        "chat"
+      ],
+      "deprecated": false,
+      "potential_database_table": "chat.starMessage",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "chat_sendMessage",
+      "summary": "Sendmessage chat",
+      "description": "",
+      "http_method": "POST",
+      "path": "/chat.sendMessage",
+      "full_url": "http://localhost:3000/api/v1/chat.sendMessage",
+      "tags": [
+        "chat"
+      ],
+      "deprecated": false,
+      "potential_database_table": "chat.sendMessage",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "chat_update",
+      "summary": "Update chat",
+      "description": "",
+      "http_method": "POST",
+      "path": "/chat.update",
+      "full_url": "http://localhost:3000/api/v1/chat.update",
+      "tags": [
+        "chat"
+      ],
+      "deprecated": false,
+      "potential_database_table": "chat.update",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "chat_unPinMessage",
+      "summary": "Unpinmessage chat",
+      "description": "",
+      "http_method": "POST",
+      "path": "/chat.unPinMessage",
+      "full_url": "http://localhost:3000/api/v1/chat.unPinMessage",
+      "tags": [
+        "chat"
+      ],
+      "deprecated": false,
+      "potential_database_table": "chat.unPinMessage",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "chat_unStarMessage",
+      "summary": "Unstarmessage chat",
+      "description": "",
+      "http_method": "POST",
+      "path": "/chat.unStarMessage",
+      "full_url": "http://localhost:3000/api/v1/chat.unStarMessage",
+      "tags": [
+        "chat"
+      ],
+      "deprecated": false,
+      "potential_database_table": "chat.unStarMessage",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "chat_getMessageReadReceipts",
+      "summary": "Getmessagereadreceipts chat",
+      "description": "",
+      "http_method": "GET",
+      "path": "/chat.getMessageReadReceipts",
+      "full_url": "http://localhost:3000/api/v1/chat.getMessageReadReceipts",
+      "tags": [
+        "chat"
+      ],
+      "deprecated": false,
+      "potential_database_table": "chat.getMessageReadReceipts",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "chat_reportMessage",
+      "summary": "Reportmessage chat",
+      "description": "",
+      "http_method": "POST",
+      "path": "/chat.reportMessage",
+      "full_url": "http://localhost:3000/api/v1/chat.reportMessage",
+      "tags": [
+        "chat"
+      ],
+      "deprecated": false,
+      "potential_database_table": "chat.reportMessage",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "chat_ignoreUser",
+      "summary": "Ignoreuser chat",
+      "description": "",
+      "http_method": "GET",
+      "path": "/chat.ignoreUser",
+      "full_url": "http://localhost:3000/api/v1/chat.ignoreUser",
+      "tags": [
+        "chat"
+      ],
+      "deprecated": false,
+      "potential_database_table": "chat.ignoreUser",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "dm_create",
+      "summary": "Create dm",
+      "description": "",
+      "http_method": "POST",
+      "path": "/dm.create",
+      "full_url": "http://localhost:3000/api/v1/dm.create",
+      "tags": [
+        "dm"
+      ],
+      "deprecated": false,
+      "potential_database_table": "dm.create",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "dm_close",
+      "summary": "Close dm",
+      "description": "",
+      "http_method": "POST",
+      "path": "/dm.close",
+      "full_url": "http://localhost:3000/api/v1/dm.close",
+      "tags": [
+        "dm"
+      ],
+      "deprecated": false,
+      "potential_database_table": "dm.close",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "dm_history",
+      "summary": "History dm",
+      "description": "",
+      "http_method": "GET",
+      "path": "/dm.history",
+      "full_url": "http://localhost:3000/api/v1/dm.history",
+      "tags": [
+        "dm"
+      ],
+      "deprecated": false,
+      "potential_database_table": "dm.history",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "dm_list",
+      "summary": "List dm",
+      "description": "",
+      "http_method": "GET",
+      "path": "/dm.list",
+      "full_url": "http://localhost:3000/api/v1/dm.list",
+      "tags": [
+        "dm"
+      ],
+      "deprecated": false,
+      "potential_database_table": "dm.list",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "dm_messages",
+      "summary": "Messages dm",
+      "description": "",
+      "http_method": "GET",
+      "path": "/dm.messages",
+      "full_url": "http://localhost:3000/api/v1/dm.messages",
+      "tags": [
+        "dm"
+      ],
+      "deprecated": false,
+      "potential_database_table": "dm.messages",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "dm_open",
+      "summary": "Open dm",
+      "description": "",
+      "http_method": "POST",
+      "path": "/dm.open",
+      "full_url": "http://localhost:3000/api/v1/dm.open",
+      "tags": [
+        "dm"
+      ],
+      "deprecated": false,
+      "potential_database_table": "dm.open",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "integrations_create",
+      "summary": "Create integrations",
+      "description": "",
+      "http_method": "POST",
+      "path": "/integrations.create",
+      "full_url": "http://localhost:3000/api/v1/integrations.create",
+      "tags": [
+        "integrations"
+      ],
+      "deprecated": false,
+      "potential_database_table": "integrations.create",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "integrations_get",
+      "summary": "Get integrations",
+      "description": "",
+      "http_method": "GET",
+      "path": "/integrations.get",
+      "full_url": "http://localhost:3000/api/v1/integrations.get",
+      "tags": [
+        "integrations"
+      ],
+      "deprecated": false,
+      "potential_database_table": "integrations.get",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "integrations_history",
+      "summary": "History integrations",
+      "description": "",
+      "http_method": "GET",
+      "path": "/integrations.history",
+      "full_url": "http://localhost:3000/api/v1/integrations.history",
+      "tags": [
+        "integrations"
+      ],
+      "deprecated": false,
+      "potential_database_table": "integrations.history",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "integrations_list",
+      "summary": "List integrations",
+      "description": "",
+      "http_method": "GET",
+      "path": "/integrations.list",
+      "full_url": "http://localhost:3000/api/v1/integrations.list",
+      "tags": [
+        "integrations"
+      ],
+      "deprecated": false,
+      "potential_database_table": "integrations.list",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "integrations_remove",
+      "summary": "Remove integrations",
+      "description": "",
+      "http_method": "POST",
+      "path": "/integrations.remove",
+      "full_url": "http://localhost:3000/api/v1/integrations.remove",
+      "tags": [
+        "integrations"
+      ],
+      "deprecated": false,
+      "potential_database_table": "integrations.remove",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "roles_create",
+      "summary": "Create roles",
+      "description": "",
+      "http_method": "POST",
+      "path": "/roles.create",
+      "full_url": "http://localhost:3000/api/v1/roles.create",
+      "tags": [
+        "roles"
+      ],
+      "deprecated": false,
+      "potential_database_table": "roles.create",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "roles_delete",
+      "summary": "Delete roles",
+      "description": "",
+      "http_method": "POST",
+      "path": "/roles.delete",
+      "full_url": "http://localhost:3000/api/v1/roles.delete",
+      "tags": [
+        "roles"
+      ],
+      "deprecated": false,
+      "potential_database_table": "roles.delete",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "roles_list",
+      "summary": "List roles",
+      "description": "",
+      "http_method": "GET",
+      "path": "/roles.list",
+      "full_url": "http://localhost:3000/api/v1/roles.list",
+      "tags": [
+        "roles"
+      ],
+      "deprecated": false,
+      "potential_database_table": "roles.list",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "roles_update",
+      "summary": "Update roles",
+      "description": "",
+      "http_method": "POST",
+      "path": "/roles.update",
+      "full_url": "http://localhost:3000/api/v1/roles.update",
+      "tags": [
+        "roles"
+      ],
+      "deprecated": false,
+      "potential_database_table": "roles.update",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "roles_addUserToRole",
+      "summary": "Addusertorole roles",
+      "description": "",
+      "http_method": "POST",
+      "path": "/roles.addUserToRole",
+      "full_url": "http://localhost:3000/api/v1/roles.addUserToRole",
+      "tags": [
+        "roles"
+      ],
+      "deprecated": false,
+      "potential_database_table": "roles.addUserToRole",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "settings_get",
+      "summary": "Get settings",
+      "description": "",
+      "http_method": "GET",
+      "path": "/settings/{_id}",
+      "full_url": "http://localhost:3000/api/v1/settings/{_id}",
+      "tags": [
+        "settings"
+      ],
+      "deprecated": false,
+      "potential_database_table": "settings",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "settings_update",
+      "summary": "Update settings",
+      "description": "",
+      "http_method": "POST",
+      "path": "/settings/{_id}",
+      "full_url": "http://localhost:3000/api/v1/settings/{_id}",
+      "tags": [
+        "settings"
+      ],
+      "deprecated": false,
+      "potential_database_table": "settings",
+      "input_arguments": {
+        "path_parameters": [
+          {
+            "name": "_id",
+            "location": "path",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "settings_public",
+      "summary": "Public settings",
+      "description": "",
+      "http_method": "GET",
+      "path": "/settings.public",
+      "full_url": "http://localhost:3000/api/v1/settings.public",
+      "tags": [
+        "settings"
+      ],
+      "deprecated": false,
+      "potential_database_table": "settings.public",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "subscriptions_get",
+      "summary": "Get subscriptions",
+      "description": "",
+      "http_method": "GET",
+      "path": "/subscriptions.get",
+      "full_url": "http://localhost:3000/api/v1/subscriptions.get",
+      "tags": [
+        "subscriptions"
+      ],
+      "deprecated": false,
+      "potential_database_table": "subscriptions.get",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "subscriptions_getOne",
+      "summary": "Getone subscriptions",
+      "description": "",
+      "http_method": "GET",
+      "path": "/subscriptions.getOne",
+      "full_url": "http://localhost:3000/api/v1/subscriptions.getOne",
+      "tags": [
+        "subscriptions"
+      ],
+      "deprecated": false,
+      "potential_database_table": "subscriptions.getOne",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "subscriptions_read",
+      "summary": "Read subscriptions",
+      "description": "",
+      "http_method": "POST",
+      "path": "/subscriptions.read",
+      "full_url": "http://localhost:3000/api/v1/subscriptions.read",
+      "tags": [
+        "subscriptions"
+      ],
+      "deprecated": false,
+      "potential_database_table": "subscriptions.read",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "subscriptions_unread",
+      "summary": "Unread subscriptions",
+      "description": "",
+      "http_method": "POST",
+      "path": "/subscriptions.unread",
+      "full_url": "http://localhost:3000/api/v1/subscriptions.unread",
+      "tags": [
+        "subscriptions"
+      ],
+      "deprecated": false,
+      "potential_database_table": "subscriptions.unread",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "teams_create",
+      "summary": "Create teams",
+      "description": "",
+      "http_method": "POST",
+      "path": "/teams.create",
+      "full_url": "http://localhost:3000/api/v1/teams.create",
+      "tags": [
+        "teams"
+      ],
+      "deprecated": false,
+      "potential_database_table": "teams.create",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "teams_delete",
+      "summary": "Delete teams",
+      "description": "",
+      "http_method": "POST",
+      "path": "/teams.delete",
+      "full_url": "http://localhost:3000/api/v1/teams.delete",
+      "tags": [
+        "teams"
+      ],
+      "deprecated": false,
+      "potential_database_table": "teams.delete",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "teams_info",
+      "summary": "Info teams",
+      "description": "",
+      "http_method": "GET",
+      "path": "/teams.info",
+      "full_url": "http://localhost:3000/api/v1/teams.info",
+      "tags": [
+        "teams"
+      ],
+      "deprecated": false,
+      "potential_database_table": "teams.info",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "teams_list",
+      "summary": "List teams",
+      "description": "",
+      "http_method": "GET",
+      "path": "/teams.list",
+      "full_url": "http://localhost:3000/api/v1/teams.list",
+      "tags": [
+        "teams"
+      ],
+      "deprecated": false,
+      "potential_database_table": "teams.list",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "teams_listAll",
+      "summary": "Listall teams",
+      "description": "",
+      "http_method": "GET",
+      "path": "/teams.listAll",
+      "full_url": "http://localhost:3000/api/v1/teams.listAll",
+      "tags": [
+        "teams"
+      ],
+      "deprecated": false,
+      "potential_database_table": "teams.listAll",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "teams_members",
+      "summary": "Members teams",
+      "description": "",
+      "http_method": "GET",
+      "path": "/teams.members",
+      "full_url": "http://localhost:3000/api/v1/teams.members",
+      "tags": [
+        "teams"
+      ],
+      "deprecated": false,
+      "potential_database_table": "teams.members",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": []
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "teams_update",
+      "summary": "Update teams",
+      "description": "",
+      "http_method": "POST",
+      "path": "/teams.update",
+      "full_url": "http://localhost:3000/api/v1/teams.update",
+      "tags": [
+        "teams"
+      ],
+      "deprecated": false,
+      "potential_database_table": "teams.update",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    },
+    {
+      "operation_id": "teams_addMembers",
+      "summary": "Addmembers teams",
+      "description": "",
+      "http_method": "POST",
+      "path": "/teams.addMembers",
+      "full_url": "http://localhost:3000/api/v1/teams.addMembers",
+      "tags": [
+        "teams"
+      ],
+      "deprecated": false,
+      "potential_database_table": "teams.addMembers",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [],
+        "header_parameters": [],
+        "cookie_parameters": [],
+        "body": {
+          "required": true,
+          "description": "",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "output_responses": {
+        "200": {
+          "status_code": "200",
+          "description": "Success",
+          "content_type": "application/json",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "400": {
+          "status_code": "400",
+          "description": "Bad Request"
+        },
+        "401": {
+          "status_code": "401",
+          "description": "Unauthorized"
+        }
+      }
+    }
+  ],
+  "openapi_version": "3.0.0",
+  "components": {
+    "schemas": {},
+    "responses": {},
+    "parameters": {},
+    "examples": {},
+    "requestBodies": {},
+    "headers": {},
+    "securitySchemes": {
+      "authToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Auth-Token"
+      },
+      "userId": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-User-Id"
+      }
+    },
+    "links": {},
+    "callbacks": {}
+  },
+  "notes": {
+    "source": "Converted from OpenAPI 3.0 specification",
+    "faithfulness": "100% - All information from original OpenAPI preserved",
+    "potential_database_table": "Inferred from API path, may need manual verification"
+  }
+}

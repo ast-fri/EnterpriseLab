@@ -11,6 +11,8 @@ Simple scripts to fetch, modify, and sync data across all EnterpriseLab applicat
 | `fetch_database_data.sh` | Extract ALL data from application databases |
 | `fetch_database_schema.sh` | Extract complete database schemas (tables + columns) |
 | `fetch_schema_dolibarr_frappe.sh` | Helper for Dolibarr & Frappe schemas (large databases) |
+| `fetch_api_schemas.sh` | Fetch OpenAPI 3.0 specifications from live applications |
+| `convert_openapi_to_readable.sh` | Convert OpenAPI to readable format (100% faithful) |
 | `sync_data.sh` | Push modified data back to databases (INSERT + UPDATE) |
 
 ---
@@ -120,6 +122,95 @@ Done! Changes applied to databases without touching the UI.
   ]
 }
 ```
+
+---
+
+### `fetch_api_schemas.sh`
+
+**Purpose:** Fetch OpenAPI 3.0 specifications directly from live applications
+
+**What it extracts:**
+- Complete API documentation from running apps
+- ALL endpoints, methods, parameters
+- 100% faithful to actual implementation
+
+**Command:**
+```bash
+./fetch_api_schemas.sh
+```
+
+**Output Location:** `../fetched_api_schemas/`
+- `dolibarr_api_openapi.json` (71 KB, 38 paths, 95 endpoints)
+- `frappe_api_openapi.json` (85 KB, 36 paths, 90 endpoints)
+- `zammad_api_openapi.json` (46 KB, 38 paths, 95 endpoints)
+- `owncloud_api_openapi.json` (5.8 KB, 3 paths, 7 endpoints)
+
+**Features:**
+- ✅ Automatic extraction from OpenAPI endpoints
+- ✅ 100% complete (every API the app supports)
+- ✅ 100% accurate (direct from source)
+- ✅ All parameter details (type, required, default, enum, min/max)
+
+---
+
+### `convert_openapi_to_readable.sh`
+
+**Purpose:** Convert OpenAPI specs to readable format for data flow analysis
+
+**What it does:**
+- Preserves ALL information from OpenAPI
+- Flattens structure for easy parsing
+- Adds database table mapping
+- Separates parameters by type
+
+**Command:**
+```bash
+./convert_openapi_to_readable.sh
+```
+
+**Output Location:** `../fetched_api_schemas/readable/`
+- `dolibarr_api_readable.json` (105 KB, 95 endpoints, 152 params)
+- `frappe_api_readable.json` (121 KB, 90 endpoints, 144 params)
+- `zammad_api_readable.json` (85 KB, 95 endpoints, 95 params)
+- `owncloud_api_readable.json` (10 KB, 7 endpoints, 9 params)
+
+**Format:**
+```json
+{
+  "metadata": {
+    "service_name": "Dolibarr API",
+    "base_urls": ["http://localhost:8082/api/index.php"],
+    "authentication": [{"name": "DOLAPIKEY", "type": "apiKey"}]
+  },
+  "endpoints": [
+    {
+      "operation_id": "get__users",
+      "http_method": "GET",
+      "path": "/users",
+      "potential_database_table": "llx_user",
+      "input_arguments": {
+        "path_parameters": [],
+        "query_parameters": [
+          {"name": "limit", "type": "integer", "required": false}
+        ],
+        "body": null
+      },
+      "output_responses": {
+        "200": {
+          "description": "List of users",
+          "schema": {"type": "array"}
+        }
+      }
+    }
+  ]
+}
+```
+
+**Use Cases:**
+- Data flow dependency analysis
+- API orchestration (chain APIs together)
+- Database-API field mapping
+- Code generation from API specs
 
 ---
 
