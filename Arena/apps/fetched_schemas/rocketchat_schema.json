@@ -1,0 +1,3002 @@
+{
+    "service": "rocketchat",
+    "database_type": "mongodb",
+    "url": "http://localhost:3000",
+    "tables": [
+        {
+            "name": "omnichannel_auto_close_on_hold_scheduler",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_export_operations",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "omnichannel_queue_inactivity_monitor",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_import_data",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "68a6e2ef83b91c07ba8e747a"
+                },
+                {
+                    "column_name": "data",
+                    "ordinal_position": 2,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"importIds\":[\"receiver/sender\"],\"users\":[\"sender\",\"receiver\"],\"t\":\"d\"}"
+                },
+                {
+                    "column_name": "dataType",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "channel"
+                },
+                {
+                    "column_name": "options",
+                    "ordinal_position": 4,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{}"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 5,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T09:15:28.462Z\""
+                },
+                {
+                    "column_name": "errors",
+                    "ordinal_position": 6,
+                    "data_type": "array<object>",
+                    "is_nullable": "NO",
+                    "sample_value": "[{\"message\":\"importer-channel-missing-users\",\"stack\":\"Error: importer-channel-missing-users\\n    at "
+                }
+            ],
+            "document_count": 3031
+        },
+        {
+            "name": "rocketchat_apps_logs",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_matrix_bridged_rooms",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_apps_persistence",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_livechat_inquiry",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_team_member",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_livechat_department",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "migrations",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "upgrade"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 2,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2026-06-17T06:01:39.403Z\""
+                },
+                {
+                    "column_name": "hash",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "0baa49edb207340a30a8d9a20c15f2348940ec58"
+                }
+            ],
+            "document_count": 2
+        },
+        {
+            "name": "rocketchat_canned_response",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_livechat_unit_monitors",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_nps",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "a496614f-5f4e-42f0-85e5-selfhosted04042022"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 2,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2026-05-08T00:08:01.197Z\""
+                },
+                {
+                    "column_name": "createdAt",
+                    "ordinal_position": 3,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-11T12:58:11.435Z\""
+                },
+                {
+                    "column_name": "createdBy",
+                    "ordinal_position": 4,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"_id\":\"rocket.cat\",\"username\":\"rocket.cat\"}"
+                },
+                {
+                    "column_name": "expireAt",
+                    "ordinal_position": 5,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-25T08:34:41.125Z\""
+                },
+                {
+                    "column_name": "startAt",
+                    "ordinal_position": 6,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2026-05-12T08:34:41.125Z\""
+                },
+                {
+                    "column_name": "status",
+                    "ordinal_position": 7,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "sent"
+                }
+            ],
+            "document_count": 1
+        },
+        {
+            "name": "rocketchat_livechat_business_hours",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "68a6d97283b91c07ba8e7455"
+                },
+                {
+                    "column_name": "name",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": ""
+                },
+                {
+                    "column_name": "active",
+                    "ordinal_position": 3,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "type",
+                    "ordinal_position": 4,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "default"
+                },
+                {
+                    "column_name": "ts",
+                    "ordinal_position": 5,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:46.665Z\""
+                },
+                {
+                    "column_name": "workHours",
+                    "ordinal_position": 6,
+                    "data_type": "array<object>",
+                    "is_nullable": "NO",
+                    "sample_value": "[{\"day\":\"Monday\",\"start\":{\"time\":\"08:00\",\"utc\":{\"dayOfWeek\":\"Monday\",\"time\":\"08:00\"},\"cron\":{\"dayOfW"
+                },
+                {
+                    "column_name": "timezone",
+                    "ordinal_position": 7,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"name\":\"Africa/Abidjan\",\"utc\":\"0\"}"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 8,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:46.665Z\""
+                }
+            ],
+            "document_count": 1
+        },
+        {
+            "name": "rocketchat_user_data_files",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_statistics",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "68a6d97283b91c07ba8e7454"
+                },
+                {
+                    "column_name": "wizard",
+                    "ordinal_position": 2,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"organizationType\":\"\",\"industry\":\"\",\"size\":\"\",\"country\":\"\",\"language\":\"\",\"serverType\":\"\",\"registerS"
+                },
+                {
+                    "column_name": "uniqueId",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "c9eda73f-8f36-4b8b-903f-786d1d6781f1"
+                },
+                {
+                    "column_name": "installedAt",
+                    "ordinal_position": 4,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "2025-08-21T08:31:42.322Z"
+                },
+                {
+                    "column_name": "deploymentFingerprintHash",
+                    "ordinal_position": 5,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": ""
+                },
+                {
+                    "column_name": "deploymentFingerprintVerified",
+                    "ordinal_position": 6,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "version",
+                    "ordinal_position": 7,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "7.9.3"
+                },
+                {
+                    "column_name": "tag",
+                    "ordinal_position": 8,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "branch",
+                    "ordinal_position": 9,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "totalUsers",
+                    "ordinal_position": 10,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "activeUsers",
+                    "ordinal_position": 11,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "activeGuests",
+                    "ordinal_position": 12,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "nonActiveUsers",
+                    "ordinal_position": 13,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "appUsers",
+                    "ordinal_position": 14,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "onlineUsers",
+                    "ordinal_position": 15,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "awayUsers",
+                    "ordinal_position": 16,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "busyUsers",
+                    "ordinal_position": 17,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalConnectedUsers",
+                    "ordinal_position": 18,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "offlineUsers",
+                    "ordinal_position": 19,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "userLanguages",
+                    "ordinal_position": 20,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"none\":0}"
+                },
+                {
+                    "column_name": "totalRooms",
+                    "ordinal_position": 21,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalChannels",
+                    "ordinal_position": 22,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalPrivateGroups",
+                    "ordinal_position": 23,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalDirect",
+                    "ordinal_position": 24,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalLivechat",
+                    "ordinal_position": 25,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalDiscussions",
+                    "ordinal_position": 26,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalThreads",
+                    "ordinal_position": 27,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalLivechatVisitors",
+                    "ordinal_position": 28,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalLivechatAgents",
+                    "ordinal_position": 29,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalLivechatManagers",
+                    "ordinal_position": 30,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "livechatEnabled",
+                    "ordinal_position": 31,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "isDepartmentRemovalEnabled",
+                    "ordinal_position": 32,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "departments",
+                    "ordinal_position": 33,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalTriggers",
+                    "ordinal_position": 34,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalCustomFields",
+                    "ordinal_position": 35,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalLivechatRoomsWithDepartment",
+                    "ordinal_position": 36,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "archivedDepartments",
+                    "ordinal_position": 37,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalLivechatPublicCustomFields",
+                    "ordinal_position": 38,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "livechatAutomaticForwardingUnansweredChats",
+                    "ordinal_position": 39,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "routingAlgorithm",
+                    "ordinal_position": 40,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "Auto_Selection"
+                },
+                {
+                    "column_name": "onHoldEnabled",
+                    "ordinal_position": 41,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "lastChattedAgentPreferred",
+                    "ordinal_position": 42,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "assignNewConversationsToContactManager",
+                    "ordinal_position": 43,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "visitorAbandonment",
+                    "ordinal_position": 44,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "voipEnabled",
+                    "ordinal_position": 45,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "emailInboxes",
+                    "ordinal_position": 46,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "omnichannelSources",
+                    "ordinal_position": 47,
+                    "data_type": "array",
+                    "is_nullable": "NO",
+                    "sample_value": "[]"
+                },
+                {
+                    "column_name": "BusinessHours",
+                    "ordinal_position": 48,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"total\":0,\"strategy\":\"\"}"
+                },
+                {
+                    "column_name": "voipSuccessfulCalls",
+                    "ordinal_position": 49,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "voipExtensions",
+                    "ordinal_position": 50,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "chatsOnHold",
+                    "ordinal_position": 51,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "voipCalls",
+                    "ordinal_position": 52,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalChannelMessages",
+                    "ordinal_position": 53,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "voipErrorCalls",
+                    "ordinal_position": 54,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "voipOnHoldCalls",
+                    "ordinal_position": 55,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "omnichannelContactsBySource",
+                    "ordinal_position": 56,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"contactsCount\":0,\"conversationsCount\":0,\"sources\":[]}"
+                },
+                {
+                    "column_name": "uniqueContactsOfYesterday",
+                    "ordinal_position": 57,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"contactsCount\":0,\"conversationsCount\":0,\"sources\":[]}"
+                },
+                {
+                    "column_name": "uniqueContactsOfLastWeek",
+                    "ordinal_position": 58,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"contactsCount\":0,\"conversationsCount\":0,\"sources\":[]}"
+                },
+                {
+                    "column_name": "uniqueContactsOfLastMonth",
+                    "ordinal_position": 59,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"contactsCount\":0,\"conversationsCount\":0,\"sources\":[]}"
+                },
+                {
+                    "column_name": "totalPrivateGroupMessages",
+                    "ordinal_position": 60,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalDiscussionsMessages",
+                    "ordinal_position": 61,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalDirectMessages",
+                    "ordinal_position": 62,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalLivechatMessages",
+                    "ordinal_position": 63,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalMessages",
+                    "ordinal_position": 64,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "lastLogin",
+                    "ordinal_position": 65,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": ""
+                },
+                {
+                    "column_name": "lastMessageSentAt",
+                    "ordinal_position": 66,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "lastSeenSubscription",
+                    "ordinal_position": 67,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": ""
+                },
+                {
+                    "column_name": "os",
+                    "ordinal_position": 68,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"type\":\"Linux\",\"platform\":\"linux\",\"arch\":\"x64\",\"release\":\"6.8.0-1030-oracle\",\"uptime\":1650962.55,\"l"
+                },
+                {
+                    "column_name": "process",
+                    "ordinal_position": 69,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"nodeVersion\":\"v22.16.0\",\"pid\":1,\"uptime\":23.334524029}"
+                },
+                {
+                    "column_name": "deploy",
+                    "ordinal_position": 70,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"method\":\"docker\",\"platform\":\"selfinstall\"}"
+                },
+                {
+                    "column_name": "readReceiptsEnabled",
+                    "ordinal_position": 71,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "readReceiptsDetailed",
+                    "ordinal_position": 72,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "enterpriseReady",
+                    "ordinal_position": 73,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "federatedServers",
+                    "ordinal_position": 74,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "federatedUsers",
+                    "ordinal_position": 75,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "uploadsTotal",
+                    "ordinal_position": 76,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "migration",
+                    "ordinal_position": 77,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"_id\":\"control\",\"_updatedAt\":\"2025-08-21T08:31:43.041Z\",\"locked\":false,\"version\":0}"
+                },
+                {
+                    "column_name": "uploadsTotalSize",
+                    "ordinal_position": 78,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "instanceCount",
+                    "ordinal_position": 79,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "msEnabled",
+                    "ordinal_position": 80,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "oplogEnabled",
+                    "ordinal_position": 81,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "mongoVersion",
+                    "ordinal_position": 82,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "6.0.13"
+                },
+                {
+                    "column_name": "mongoStorageEngine",
+                    "ordinal_position": 83,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "wiredTiger"
+                },
+                {
+                    "column_name": "apps",
+                    "ordinal_position": 84,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"engineVersion\":\"1.54.0\",\"totalInstalled\":false,\"totalActive\":false,\"totalFailed\":false,\"totalPriva"
+                },
+                {
+                    "column_name": "uniqueOSOfLastWeek",
+                    "ordinal_position": 85,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"year\":2025,\"month\":8,\"day\":20,\"data\":[]}"
+                },
+                {
+                    "column_name": "uniqueDevicesOfYesterday",
+                    "ordinal_position": 86,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"year\":2025,\"month\":8,\"day\":20,\"data\":[]}"
+                },
+                {
+                    "column_name": "uniqueDevicesOfLastWeek",
+                    "ordinal_position": 87,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"year\":2025,\"month\":8,\"day\":20,\"data\":[]}"
+                },
+                {
+                    "column_name": "uniqueOSOfYesterday",
+                    "ordinal_position": 88,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"year\":2025,\"month\":8,\"day\":20,\"data\":[]}"
+                },
+                {
+                    "column_name": "uniqueUsersOfLastWeek",
+                    "ordinal_position": 89,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"year\":2025,\"month\":8,\"day\":20,\"data\":[]}"
+                },
+                {
+                    "column_name": "uniqueOSOfLastMonth",
+                    "ordinal_position": 90,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"year\":2025,\"month\":8,\"day\":20,\"data\":[]}"
+                },
+                {
+                    "column_name": "uniqueUsersOfYesterday",
+                    "ordinal_position": 91,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"year\":2025,\"month\":8,\"day\":20,\"data\":[]}"
+                },
+                {
+                    "column_name": "uniqueDevicesOfLastMonth",
+                    "ordinal_position": 92,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"year\":2025,\"month\":8,\"day\":20,\"data\":[]}"
+                },
+                {
+                    "column_name": "uniqueUsersOfLastMonth",
+                    "ordinal_position": 93,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"year\":2025,\"month\":8,\"day\":20,\"data\":[]}"
+                },
+                {
+                    "column_name": "services",
+                    "ordinal_position": 94,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"ldap\":{\"users\":0,\"enabled\":false,\"loginFallback\":false,\"encryption\":\"plain\",\"mergeUsers\":false,\"sy"
+                },
+                {
+                    "column_name": "importer",
+                    "ordinal_position": 95,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"totalCSVImportedUsers\":0,\"totalHipchatEnterpriseImportedUsers\":0,\"totalSlackImportedUsers\":0,\"tota"
+                },
+                {
+                    "column_name": "videoConf",
+                    "ordinal_position": 96,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"videoConference\":{\"started\":0,\"ended\":0},\"direct\":{\"calling\":0,\"started\":0,\"ended\":0},\"livechat\":{"
+                },
+                {
+                    "column_name": "contactVerification",
+                    "ordinal_position": 97,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"totalContacts\":0,\"totalUnknownContacts\":0,\"totalMergedContacts\":null,\"totalConflicts\":0,\"totalReso"
+                },
+                {
+                    "column_name": "dashboardCount",
+                    "ordinal_position": 98,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "messageAuditApply",
+                    "ordinal_position": 99,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "messageAuditLoad",
+                    "ordinal_position": 100,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "joinJitsiButton",
+                    "ordinal_position": 101,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "slashCommandsJitsi",
+                    "ordinal_position": 102,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "settings",
+                    "ordinal_position": 103,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"accounts\":{\"account2fa\":true},\"e2ee\":{\"e2e\":false,\"e2eDefaultDirectRoom\":false,\"e2eDefaultPrivateR"
+                },
+                {
+                    "column_name": "pushQueue",
+                    "ordinal_position": 104,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "integrations",
+                    "ordinal_position": 105,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"totalIntegrations\":0,\"totalIncoming\":0,\"totalIncomingActive\":0,\"totalOutgoing\":0,\"totalOutgoingAct"
+                },
+                {
+                    "column_name": "enterprise",
+                    "ordinal_position": 106,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"modules\":[],\"tags\":[],\"seatRequests\":0}"
+                },
+                {
+                    "column_name": "totalOTRRooms",
+                    "ordinal_position": 107,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalOTR",
+                    "ordinal_position": 108,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "teams",
+                    "ordinal_position": 109,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"totalTeams\":0,\"totalRoomsInsideTeams\":0,\"totalDefaultRoomsInsideTeams\":0}"
+                },
+                {
+                    "column_name": "totalBroadcastRooms",
+                    "ordinal_position": 110,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalTriggeredEmails",
+                    "ordinal_position": 111,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalRoomsWithStarred",
+                    "ordinal_position": 112,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalRoomsWithPinned",
+                    "ordinal_position": 113,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalUserTOTP",
+                    "ordinal_position": 114,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalUserEmail2fa",
+                    "ordinal_position": 115,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalPinned",
+                    "ordinal_position": 116,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalStarred",
+                    "ordinal_position": 117,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalLinkInvitation",
+                    "ordinal_position": 118,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalLinkInvitationUses",
+                    "ordinal_position": 119,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalEmailInvitation",
+                    "ordinal_position": 120,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalE2ERooms",
+                    "ordinal_position": 121,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "logoChange",
+                    "ordinal_position": 122,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "showHomeButton",
+                    "ordinal_position": 123,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "totalEncryptedMessages",
+                    "ordinal_position": 124,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalManuallyAddedUsers",
+                    "ordinal_position": 125,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalSubscriptionRoles",
+                    "ordinal_position": 126,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 3
+                },
+                {
+                    "column_name": "totalUserRoles",
+                    "ordinal_position": 127,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 8
+                },
+                {
+                    "column_name": "totalCustomRoles",
+                    "ordinal_position": 128,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "totalWebRTCCalls",
+                    "ordinal_position": 129,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "uncaughtExceptionsCount",
+                    "ordinal_position": 130,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "push",
+                    "ordinal_position": 131,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 3
+                },
+                {
+                    "column_name": "pushSecured",
+                    "ordinal_position": 132,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "homeTitleChanged",
+                    "ordinal_position": 133,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "homeBodyChanged",
+                    "ordinal_position": 134,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "customCSSChanged",
+                    "ordinal_position": 135,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "onLogoutCustomScriptChanged",
+                    "ordinal_position": 136,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "loggedOutCustomScriptChanged",
+                    "ordinal_position": 137,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "loggedInCustomScriptChanged",
+                    "ordinal_position": 138,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "dailyPeakConnections",
+                    "ordinal_position": 139,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "maxMonthlyPeakConnections",
+                    "ordinal_position": 140,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "matrixFederation",
+                    "ordinal_position": 141,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"enabled\":false,\"maximumSizeOfPublicRoomsUsers\":false,\"biggestRoom\":null,\"smallestRoom\":null,\"amoun"
+                },
+                {
+                    "column_name": "webRTCEnabled",
+                    "ordinal_position": 142,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "webRTCEnabledForOmnichannel",
+                    "ordinal_position": 143,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "omnichannelWebRTCCalls",
+                    "ordinal_position": 144,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "createdAt",
+                    "ordinal_position": 145,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:46.374Z\""
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 146,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:47.305Z\""
+                },
+                {
+                    "column_name": "statsToken",
+                    "ordinal_position": 147,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3b3Jrc3BhY2VJZCI6IiIsInVuaXF1ZUlkIjoiYzllZGE3M2YtOGYzNi00Yjh"
+                }
+            ],
+            "document_count": 130
+        },
+        {
+            "name": "rocketchat_livechat_tag",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_livechat_custom_field",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_livechat_priority",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "68a6da3f83b91c07ba8e746c"
+                },
+                {
+                    "column_name": "i18n",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "Lowest"
+                },
+                {
+                    "column_name": "sortItem",
+                    "ordinal_position": 3,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 5
+                },
+                {
+                    "column_name": "dirty",
+                    "ordinal_position": 4,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                }
+            ],
+            "document_count": 5
+        },
+        {
+            "name": "rocketchat_omnichannel_service_level_agreements",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_sessions",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "ObjectId",
+                    "is_nullable": "NO",
+                    "sample_value": "\"690b816e44017a6b8648098d\""
+                },
+                {
+                    "column_name": "day",
+                    "ordinal_position": 2,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 5
+                },
+                {
+                    "column_name": "instanceId",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "dd5c2267-3c10-4281-aa11-58b666790977"
+                },
+                {
+                    "column_name": "month",
+                    "ordinal_position": 4,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 11
+                },
+                {
+                    "column_name": "sessionId",
+                    "ordinal_position": 5,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "HW3riZ9sQRFp2ErgN"
+                },
+                {
+                    "column_name": "year",
+                    "ordinal_position": 6,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 2025
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 7,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-05T16:56:30.119Z\""
+                },
+                {
+                    "column_name": "createdAt",
+                    "ordinal_position": 8,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-05T16:55:10.017Z\""
+                },
+                {
+                    "column_name": "device",
+                    "ordinal_position": 9,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"type\":\"browser\",\"name\":\"Edge\",\"longVersion\":\"142.0.0.0\",\"os\":{\"name\":\"Windows\",\"version\":\"10\"},\"ve"
+                },
+                {
+                    "column_name": "host",
+                    "ordinal_position": 10,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "localhost:3000"
+                },
+                {
+                    "column_name": "ip",
+                    "ordinal_position": 11,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "loginAt",
+                    "ordinal_position": 12,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-05T16:55:10.014Z\""
+                },
+                {
+                    "column_name": "loginToken",
+                    "ordinal_position": 13,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "moXf+S6hOQdjfCaVyf+vbyCqM3fjWSMfZD626vwt5QY="
+                },
+                {
+                    "column_name": "mostImportantRole",
+                    "ordinal_position": 14,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "user"
+                },
+                {
+                    "column_name": "roles",
+                    "ordinal_position": 15,
+                    "data_type": "array<string>",
+                    "is_nullable": "NO",
+                    "sample_value": "[\"user\"]"
+                },
+                {
+                    "column_name": "searchTerm",
+                    "ordinal_position": 16,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "EdgebrowserWindowsHW3riZ9sQRFp2ErgNszWdaS2qW7xeoQtH7"
+                },
+                {
+                    "column_name": "type",
+                    "ordinal_position": 17,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "session"
+                },
+                {
+                    "column_name": "userId",
+                    "ordinal_position": 18,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "szWdaS2qW7xeoQtH7"
+                },
+                {
+                    "column_name": "closedAt",
+                    "ordinal_position": 19,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-05T16:56:30.119Z\""
+                },
+                {
+                    "column_name": "lastActivityAt",
+                    "ordinal_position": 20,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-05T16:56:30.119Z\""
+                }
+            ],
+            "document_count": 24
+        },
+        {
+            "name": "rocketchat_custom_emoji",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_read_receipts",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_notification_queue",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_oauth_auth_codes",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_livechat_contact",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_credential_tokens",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "_raix_push_app_tokens",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_workspace_credentials",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "ObjectId",
+                    "is_nullable": "NO",
+                    "sample_value": "\"68a6da3fcd4a9495cad8df08\""
+                },
+                {
+                    "column_name": "scope",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "workspace:license:read workspace:client:write workspace:stats:write workspace:push:send marketplace:"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 3,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2026-06-18T05:21:44.466Z\""
+                },
+                {
+                    "column_name": "accessToken",
+                    "ordinal_position": 4,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "7LY06QTnSSWbT/B/jKdD4/j+GQQ6wES5ojHyrEvoc8CKHCZVkuzMLd14FalaB269GAMo9w7zw7Y58AePoXcIcpM/POUpqVe6/fTL"
+                },
+                {
+                    "column_name": "expirationDate",
+                    "ordinal_position": 5,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2026-06-18T07:21:44.466Z\""
+                }
+            ],
+            "document_count": 2
+        },
+        {
+            "name": "rocketchat_import",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "68a6e2ee83b91c07ba8e7479"
+                },
+                {
+                    "column_name": "type",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "CSV"
+                },
+                {
+                    "column_name": "importerKey",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "csv"
+                },
+                {
+                    "column_name": "ts",
+                    "ordinal_position": 4,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T09:12:14.889Z\""
+                },
+                {
+                    "column_name": "status",
+                    "ordinal_position": 5,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "importer_done"
+                },
+                {
+                    "column_name": "valid",
+                    "ordinal_position": 6,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "user",
+                    "ordinal_position": 7,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "GKsJemPaPcnMctcja"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 8,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-09-16T16:32:17.373Z\""
+                },
+                {
+                    "column_name": "contentType",
+                    "ordinal_position": 9,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "application/x-zip-compressed"
+                },
+                {
+                    "column_name": "file",
+                    "ordinal_position": 10,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "202572191214_GKsJemPaPcnMctcja_enterprise_chats.zip"
+                },
+                {
+                    "column_name": "messagesstatus",
+                    "ordinal_position": 11,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "count",
+                    "ordinal_position": 12,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"messages\":41345,\"users\":1261,\"total\":42606,\"completed\":45933,\"error\":0}"
+                }
+            ],
+            "document_count": 1
+        },
+        {
+            "name": "rocketchat_avatars",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "68a6d97283b91c07ba8e7453"
+                },
+                {
+                    "column_name": "userId",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "rocket.cat"
+                },
+                {
+                    "column_name": "type",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "image/png"
+                },
+                {
+                    "column_name": "size",
+                    "ordinal_position": 4,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 14779
+                },
+                {
+                    "column_name": "store",
+                    "ordinal_position": 5,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "GridFS:Avatars"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 6,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:46.443Z\""
+                },
+                {
+                    "column_name": "name",
+                    "ordinal_position": 7,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "rocket.cat"
+                },
+                {
+                    "column_name": "complete",
+                    "ordinal_position": 8,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "etag",
+                    "ordinal_position": 9,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "JaRvgNuZkEypoMC2r"
+                },
+                {
+                    "column_name": "path",
+                    "ordinal_position": 10,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "/ufs/GridFS:Avatars/68a6d97283b91c07ba8e7453/undefined"
+                },
+                {
+                    "column_name": "progress",
+                    "ordinal_position": 11,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 1
+                },
+                {
+                    "column_name": "token",
+                    "ordinal_position": 12,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "CBFBA97ab9"
+                },
+                {
+                    "column_name": "uploadedAt",
+                    "ordinal_position": 13,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:46.439Z\""
+                },
+                {
+                    "column_name": "uploading",
+                    "ordinal_position": 14,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "url",
+                    "ordinal_position": 15,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "http://localhost:3000/ufs/GridFS:Avatars/68a6d97283b91c07ba8e7453/undefined"
+                }
+            ],
+            "document_count": 1
+        },
+        {
+            "name": "rocketchat_email_inbox",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_uploads",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_analytics",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "ObjectId",
+                    "is_nullable": "NO",
+                    "sample_value": "\"68a6d972cd4a9495cad8da98\""
+                },
+                {
+                    "column_name": "type",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "seat-request"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 3,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2026-06-18T06:12:00.513Z\""
+                },
+                {
+                    "column_name": "count",
+                    "ordinal_position": 4,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                }
+            ],
+            "document_count": 68
+        },
+        {
+            "name": "rocketchat_subscription",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "68a6d99f83b91c07ba8e745a"
+                },
+                {
+                    "column_name": "open",
+                    "ordinal_position": 2,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "alert",
+                    "ordinal_position": 3,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "unread",
+                    "ordinal_position": 4,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 2
+                },
+                {
+                    "column_name": "userMentions",
+                    "ordinal_position": 5,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "groupMentions",
+                    "ordinal_position": 6,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 2
+                },
+                {
+                    "column_name": "ts",
+                    "ordinal_position": 7,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:32:31.009Z\""
+                },
+                {
+                    "column_name": "rid",
+                    "ordinal_position": 8,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "GENERAL"
+                },
+                {
+                    "column_name": "name",
+                    "ordinal_position": 9,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "general"
+                },
+                {
+                    "column_name": "fname",
+                    "ordinal_position": 10,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "t",
+                    "ordinal_position": 11,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "c"
+                },
+                {
+                    "column_name": "u",
+                    "ordinal_position": 12,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"_id\":\"GKsJemPaPcnMctcja\",\"username\":\"suraj.nagaje\",\"name\":\"suraj\"}"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 13,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-13T01:40:47.002Z\""
+                },
+                {
+                    "column_name": "ls",
+                    "ordinal_position": 14,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-10T17:06:37.175Z\""
+                }
+            ],
+            "document_count": 5450
+        },
+        {
+            "name": "rocketchat_avatars.chunks",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "ObjectId",
+                    "is_nullable": "NO",
+                    "sample_value": "\"68a6d972267c3ae7be01fb72\""
+                },
+                {
+                    "column_name": "files_id",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "68a6d97283b91c07ba8e7453"
+                },
+                {
+                    "column_name": "n",
+                    "ordinal_position": 3,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "data",
+                    "ordinal_position": 4,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "\"iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAgAElEQVR4nO19CXQc1ZW2YYa"
+                }
+            ],
+            "document_count": 1
+        },
+        {
+            "name": "usersSessions",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "GKsJemPaPcnMctcja"
+                },
+                {
+                    "column_name": "connections",
+                    "ordinal_position": 2,
+                    "data_type": "array",
+                    "is_nullable": "NO",
+                    "sample_value": "[]"
+                }
+            ],
+            "document_count": 9
+        },
+        {
+            "name": "rocketchat_freeswitch_channel_events",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_roles",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "admin"
+                },
+                {
+                    "column_name": "scope",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "Users"
+                },
+                {
+                    "column_name": "description",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "Admin"
+                },
+                {
+                    "column_name": "mandatory2fa",
+                    "ordinal_position": 4,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "name",
+                    "ordinal_position": 5,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "admin"
+                },
+                {
+                    "column_name": "protected",
+                    "ordinal_position": 6,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 7,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-12-12T16:41:20.074Z\""
+                }
+            ],
+            "document_count": 14
+        },
+        {
+            "name": "pbx_events",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_freeswitch_channels",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_livechat_trigger",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_settings",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "SMS"
+                },
+                {
+                    "column_name": "i18nLabel",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "SMS"
+                },
+                {
+                    "column_name": "i18nDescription",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "SMS_Description"
+                },
+                {
+                    "column_name": "sorter",
+                    "ordinal_position": 4,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "blocked",
+                    "ordinal_position": 5,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "hidden",
+                    "ordinal_position": 6,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "type",
+                    "ordinal_position": 7,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "group"
+                },
+                {
+                    "column_name": "ts",
+                    "ordinal_position": 8,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:41.138Z\""
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 9,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:41.138Z\""
+                }
+            ],
+            "document_count": 1036
+        },
+        {
+            "name": "meteor_oauth_pendingCredentials",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "_queue",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_integration_history",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_server_events",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "68a6d96e83b91c07ba8e7451"
+                },
+                {
+                    "column_name": "t",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "settings.changed"
+                },
+                {
+                    "column_name": "ts",
+                    "ordinal_position": 3,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:42.405Z\""
+                },
+                {
+                    "column_name": "actor",
+                    "ordinal_position": 4,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"type\":\"system\",\"reason\":\"updateFingerprint\"}"
+                },
+                {
+                    "column_name": "data",
+                    "ordinal_position": 5,
+                    "data_type": "array<object>",
+                    "is_nullable": "NO",
+                    "sample_value": "[{\"key\":\"id\",\"value\":\"Deployment_FingerPrint_Hash\"},{\"key\":\"previous\",\"value\":\"\"},{\"key\":\"current\",\""
+                },
+                {
+                    "column_name": "ip",
+                    "ordinal_position": 6,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "0.0.0.0"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 7,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:42.405Z\""
+                }
+            ],
+            "document_count": 1178
+        },
+        {
+            "name": "rocketchat_room",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "GENERAL"
+                },
+                {
+                    "column_name": "ts",
+                    "ordinal_position": 2,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:46.293Z\""
+                },
+                {
+                    "column_name": "t",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "c"
+                },
+                {
+                    "column_name": "name",
+                    "ordinal_position": 4,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "general"
+                },
+                {
+                    "column_name": "usernames",
+                    "ordinal_position": 5,
+                    "data_type": "array",
+                    "is_nullable": "NO",
+                    "sample_value": "[]"
+                },
+                {
+                    "column_name": "msgs",
+                    "ordinal_position": 6,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 647
+                },
+                {
+                    "column_name": "usersCount",
+                    "ordinal_position": 7,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 1260
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 8,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2026-04-21T10:35:24.130Z\""
+                },
+                {
+                    "column_name": "u",
+                    "ordinal_position": 9,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"_id\":\"rocket.cat\",\"username\":\"rocket.cat\",\"name\":\"Rocket.Cat\"}"
+                },
+                {
+                    "column_name": "default",
+                    "ordinal_position": 10,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "lastMessage",
+                    "ordinal_position": 11,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"alias\":\"\",\"msg\":\"MCP agent is active.\",\"attachments\":[],\"parseUrls\":true,\"groupable\":false,\"ts\":\"2"
+                },
+                {
+                    "column_name": "lm",
+                    "ordinal_position": 12,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2026-04-21T10:35:24.037Z\""
+                },
+                {
+                    "column_name": "rolePrioritiesCreated",
+                    "ordinal_position": 13,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 2
+                }
+            ],
+            "document_count": 2136
+        },
+        {
+            "name": "rocketchat_banner",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "starter_active"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 2,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-10T17:14:19.251Z\""
+                },
+                {
+                    "column_name": "active",
+                    "ordinal_position": 3,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "createdAt",
+                    "ordinal_position": 4,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-10T09:12:15.882Z\""
+                },
+                {
+                    "column_name": "createdBy",
+                    "ordinal_position": 5,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "cloud"
+                },
+                {
+                    "column_name": "expireAt",
+                    "ordinal_position": 6,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-17T09:12:15.884Z\""
+                },
+                {
+                    "column_name": "inactivedAt",
+                    "ordinal_position": 7,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "platform",
+                    "ordinal_position": 8,
+                    "data_type": "array<string>",
+                    "is_nullable": "NO",
+                    "sample_value": "[\"web\",\"mobile\"]"
+                },
+                {
+                    "column_name": "roles",
+                    "ordinal_position": 9,
+                    "data_type": "array<string>",
+                    "is_nullable": "NO",
+                    "sample_value": "[\"admin\"]"
+                },
+                {
+                    "column_name": "selector",
+                    "ordinal_position": 10,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"roles\":[\"admin\"]}"
+                },
+                {
+                    "column_name": "startAt",
+                    "ordinal_position": 11,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-10T09:12:15.882Z\""
+                },
+                {
+                    "column_name": "surface",
+                    "ordinal_position": 12,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "modal"
+                },
+                {
+                    "column_name": "view",
+                    "ordinal_position": 13,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"id\":\"starter_active_main\",\"viewId\":\"starter_active\",\"appId\":\"cloud-announcements-core\",\"title\":{\"t"
+                }
+            ],
+            "document_count": 9
+        },
+        {
+            "name": "omnichannel_scheduler",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_custom_sounds",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_livechat_agent_activity",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_federation_servers",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_video_conference",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_oauth_access_tokens",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_oauth_refresh_tokens",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_livechat_department_agents",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_freeswitch_channel_event_deltas",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_federation_room_events",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_cron_history",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "QPfXmMWAnwoXtS6pu"
+                },
+                {
+                    "column_name": "intendedAt",
+                    "ordinal_position": 2,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:32:00.010Z\""
+                },
+                {
+                    "column_name": "name",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "UserDataDownload"
+                },
+                {
+                    "column_name": "startedAt",
+                    "ordinal_position": 4,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:32:00.010Z\""
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 5,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:32:00.016Z\""
+                },
+                {
+                    "column_name": "finishedAt",
+                    "ordinal_position": 6,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:32:00.016Z\""
+                },
+                {
+                    "column_name": "result",
+                    "ordinal_position": 7,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                }
+            ],
+            "document_count": 182968
+        },
+        {
+            "name": "rocketchat_message_reads",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_matrix_bridged_users",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat__trash",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_email_message_history",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_oauth_apps",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_calendar_event",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_federation_keys",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "68a6d96e83b91c07ba8e744f"
+                },
+                {
+                    "column_name": "type",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "private"
+                },
+                {
+                    "column_name": "key",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "-----BEGIN PRIVATE KEY-----MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCMOWDOPlVMwB9hTW5aFQDEm"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 4,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:42.076Z\""
+                }
+            ],
+            "document_count": 2
+        },
+        {
+            "name": "rocketchat_team",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_nps_vote",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "users",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "rocket.cat"
+                },
+                {
+                    "column_name": "createdAt",
+                    "ordinal_position": 2,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:46.347Z\""
+                },
+                {
+                    "column_name": "avatarOrigin",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "local"
+                },
+                {
+                    "column_name": "name",
+                    "ordinal_position": 4,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "Rocket.Cat"
+                },
+                {
+                    "column_name": "username",
+                    "ordinal_position": 5,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "rocket.cat"
+                },
+                {
+                    "column_name": "status",
+                    "ordinal_position": 6,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "online"
+                },
+                {
+                    "column_name": "statusDefault",
+                    "ordinal_position": 7,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "online"
+                },
+                {
+                    "column_name": "utcOffset",
+                    "ordinal_position": 8,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "active",
+                    "ordinal_position": 9,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": true
+                },
+                {
+                    "column_name": "type",
+                    "ordinal_position": 10,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "bot"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 11,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:46.445Z\""
+                },
+                {
+                    "column_name": "roles",
+                    "ordinal_position": 12,
+                    "data_type": "array<string>",
+                    "is_nullable": "NO",
+                    "sample_value": "[\"bot\"]"
+                },
+                {
+                    "column_name": "avatarETag",
+                    "ordinal_position": 13,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "JaRvgNuZkEypoMC2r"
+                }
+            ],
+            "document_count": 1261
+        },
+        {
+            "name": "rocketchat_apps_scheduler",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_livechat_visitor",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "meteor_accounts_loginServiceConfiguration",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_moderation_reports",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_webdav_accounts",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_custom_user_status",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_oembed_cache",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "https://github.com/RocketChat/Rocket.Chat/releases/tag/8.5.1"
+                },
+                {
+                    "column_name": "data",
+                    "ordinal_position": 2,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"url\":\"https://github.com/RocketChat/Rocket.Chat/releases/tag/8.5.1\",\"meta\":{\"pageTitle\":\"Release 8"
+                },
+                {
+                    "column_name": "updatedAt",
+                    "ordinal_position": 3,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2026-06-17T06:01:42.329Z\""
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 4,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2026-06-17T06:01:42.329Z\""
+                }
+            ],
+            "document_count": 1
+        },
+        {
+            "name": "rocketchat_cron",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "ObjectId",
+                    "is_nullable": "NO",
+                    "sample_value": "\"68a6d972cd4a9495cad8d9cb\""
+                },
+                {
+                    "column_name": "name",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "Cleanup OEmbed cache"
+                },
+                {
+                    "column_name": "type",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "single"
+                },
+                {
+                    "column_name": "data",
+                    "ordinal_position": 4,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{}"
+                },
+                {
+                    "column_name": "lastModifiedBy",
+                    "ordinal_position": 5,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "nextRunAt",
+                    "ordinal_position": 6,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2026-06-19T02:24:00.000Z\""
+                },
+                {
+                    "column_name": "priority",
+                    "ordinal_position": 7,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 0
+                },
+                {
+                    "column_name": "repeatInterval",
+                    "ordinal_position": 8,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "24 2 * * *"
+                },
+                {
+                    "column_name": "repeatTimezone",
+                    "ordinal_position": 9,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "lockedAt",
+                    "ordinal_position": 10,
+                    "data_type": "null",
+                    "is_nullable": "YES",
+                    "sample_value": null
+                },
+                {
+                    "column_name": "lastRunAt",
+                    "ordinal_position": 11,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2026-06-18T02:24:00.000Z\""
+                },
+                {
+                    "column_name": "lastFinishedAt",
+                    "ordinal_position": 12,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2026-06-18T02:24:00.018Z\""
+                }
+            ],
+            "document_count": 13
+        },
+        {
+            "name": "rocketchat_message",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "68a6d99f83b91c07ba8e745b"
+                },
+                {
+                    "column_name": "t",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "uj"
+                },
+                {
+                    "column_name": "rid",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "GENERAL"
+                },
+                {
+                    "column_name": "ts",
+                    "ordinal_position": 4,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:32:31.020Z\""
+                },
+                {
+                    "column_name": "msg",
+                    "ordinal_position": 5,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "suraj.nagaje"
+                },
+                {
+                    "column_name": "u",
+                    "ordinal_position": 6,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"_id\":\"GKsJemPaPcnMctcja\",\"username\":\"suraj.nagaje\",\"name\":\"suraj\"}"
+                },
+                {
+                    "column_name": "groupable",
+                    "ordinal_position": 7,
+                    "data_type": "boolean",
+                    "is_nullable": "NO",
+                    "sample_value": false
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 8,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:32:31.020Z\""
+                }
+            ],
+            "document_count": 39326
+        },
+        {
+            "name": "meteor_oauth_pendingRequestTokens",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_integrations",
+            "columns": [],
+            "document_count": 0
+        },
+        {
+            "name": "rocketchat_banner_dismiss",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "6913373c707d1820ee3d848d"
+                },
+                {
+                    "column_name": "userId",
+                    "ordinal_position": 2,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "w5gW7yX8A4HWDiqdE"
+                },
+                {
+                    "column_name": "bannerId",
+                    "ordinal_position": 3,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "a496614f-5f4e-42f0-85e5-selfhosted04042022"
+                },
+                {
+                    "column_name": "dismissedBy",
+                    "ordinal_position": 4,
+                    "data_type": "object",
+                    "is_nullable": "NO",
+                    "sample_value": "{\"_id\":\"w5gW7yX8A4HWDiqdE\",\"username\":\"suraj12\"}"
+                },
+                {
+                    "column_name": "dismissedAt",
+                    "ordinal_position": 5,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-11T13:16:44.888Z\""
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 6,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-11-11T13:16:44.888Z\""
+                }
+            ],
+            "document_count": 2
+        },
+        {
+            "name": "rocketchat_permissions",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "access-permissions"
+                },
+                {
+                    "column_name": "_updatedAt",
+                    "ordinal_position": 2,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:43.066Z\""
+                },
+                {
+                    "column_name": "roles",
+                    "ordinal_position": 3,
+                    "data_type": "array<string>",
+                    "is_nullable": "NO",
+                    "sample_value": "[\"admin\"]"
+                }
+            ],
+            "document_count": 1188
+        },
+        {
+            "name": "rocketchat_avatars.files",
+            "columns": [
+                {
+                    "column_name": "_id",
+                    "ordinal_position": 1,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "68a6d97283b91c07ba8e7453"
+                },
+                {
+                    "column_name": "length",
+                    "ordinal_position": 2,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 14779
+                },
+                {
+                    "column_name": "chunkSize",
+                    "ordinal_position": 3,
+                    "data_type": "number",
+                    "is_nullable": "NO",
+                    "sample_value": 261120
+                },
+                {
+                    "column_name": "uploadDate",
+                    "ordinal_position": 4,
+                    "data_type": "date",
+                    "is_nullable": "NO",
+                    "sample_value": "\"2025-08-21T08:31:46.434Z\""
+                },
+                {
+                    "column_name": "filename",
+                    "ordinal_position": 5,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "68a6d97283b91c07ba8e7453"
+                },
+                {
+                    "column_name": "contentType",
+                    "ordinal_position": 6,
+                    "data_type": "string",
+                    "is_nullable": "NO",
+                    "sample_value": "image/png"
+                }
+            ],
+            "document_count": 1
+        }
+    ],
+    "timestamp": "2026-06-18T13:47:10+05:30"
+}

@@ -1,0 +1,862 @@
+{
+    "service": "owncloud",
+    "url": "http://localhost:8081",
+    "database": "mariadb",
+    "data": {
+        "users": [
+            {
+                "uid": "FRJ",
+                "displayname": null,
+                "password": "SET"
+            },
+            {
+                "uid": "aarav.mittal",
+                "displayname": null,
+                "password": "SET"
+            },
+            {
+                "uid": "admin",
+                "displayname": null,
+                "password": "SET"
+            },
+            {
+                "uid": "surya.reddy",
+                "displayname": null,
+                "password": "SET"
+            }
+        ],
+        "storage_stats": {
+            "total_files": 159,
+            "total_size": 182822905
+        },
+        "shares": [],
+        "groups": [
+            {
+                "gid": "Employee"
+            },
+            {
+                "gid": "admin"
+            }
+        ],
+        "group_users": [
+            {
+                "gid": "Employee",
+                "uid": "FRJ"
+            },
+            {
+                "gid": "Employee",
+                "uid": "aarav.mittal"
+            },
+            {
+                "gid": "Employee",
+                "uid": "surya.reddy"
+            },
+            {
+                "gid": "admin",
+                "uid": "admin"
+            }
+        ],
+        "recent_activity": [
+            {
+                "activity_id": 1,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 2,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 3,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 4,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 5,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 6,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 7,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 8,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 9,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 10,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 11,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 12,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 13,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 14,
+                "timestamp": 1763001205,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 15,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 16,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 17,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 18,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 19,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 20,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 21,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 22,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 23,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 24,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 25,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 26,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 27,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 28,
+                "timestamp": 1763001618,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 29,
+                "timestamp": 1763001630,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 30,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 31,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 32,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 33,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 34,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 35,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 36,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 37,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 38,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 39,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 40,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 41,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 42,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 43,
+                "timestamp": 1763002893,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 44,
+                "timestamp": 1763002912,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 45,
+                "timestamp": 1763003561,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 46,
+                "timestamp": 1763003568,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 47,
+                "timestamp": 1763038707,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 48,
+                "timestamp": 1763038715,
+                "subject": "created_self",
+                "user": "aarav.mittal",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 49,
+                "timestamp": 1763040890,
+                "subject": "created_self",
+                "user": "surya.reddy",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 50,
+                "timestamp": 1765845432,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 51,
+                "timestamp": 1765845595,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 52,
+                "timestamp": 1765928371,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 53,
+                "timestamp": 1765928720,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 54,
+                "timestamp": 1765928913,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 55,
+                "timestamp": 1765929601,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 56,
+                "timestamp": 1765929688,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 57,
+                "timestamp": 1765929722,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 58,
+                "timestamp": 1765929727,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 59,
+                "timestamp": 1767602877,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 60,
+                "timestamp": 1767602896,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 61,
+                "timestamp": 1767603046,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 62,
+                "timestamp": 1767603099,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 63,
+                "timestamp": 1767603099,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 64,
+                "timestamp": 1767603100,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 65,
+                "timestamp": 1767603109,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 66,
+                "timestamp": 1767603113,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 67,
+                "timestamp": 1767603114,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 68,
+                "timestamp": 1767603154,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 69,
+                "timestamp": 1767603159,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 70,
+                "timestamp": 1767603167,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 71,
+                "timestamp": 1767683013,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 72,
+                "timestamp": 1767683030,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 73,
+                "timestamp": 1767683042,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 74,
+                "timestamp": 1767683067,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 75,
+                "timestamp": 1767683080,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 76,
+                "timestamp": 1767683091,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 77,
+                "timestamp": 1767683105,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 78,
+                "timestamp": 1767683118,
+                "subject": "changed_self",
+                "user": "admin",
+                "type": "file_changed"
+            },
+            {
+                "activity_id": 79,
+                "timestamp": 1768197763,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 80,
+                "timestamp": 1768200627,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 81,
+                "timestamp": 1768209278,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 82,
+                "timestamp": 1768209393,
+                "subject": "deleted_self",
+                "user": "admin",
+                "type": "file_deleted"
+            },
+            {
+                "activity_id": 83,
+                "timestamp": 1768209454,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 84,
+                "timestamp": 1768294948,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 85,
+                "timestamp": 1768325197,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 86,
+                "timestamp": 1768831061,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 87,
+                "timestamp": 1768833944,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 88,
+                "timestamp": 1768833957,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 89,
+                "timestamp": 1768833971,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 90,
+                "timestamp": 1768833984,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 91,
+                "timestamp": 1768833997,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 92,
+                "timestamp": 1768834776,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 93,
+                "timestamp": 1769148428,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 94,
+                "timestamp": 1769168562,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 95,
+                "timestamp": 1769168581,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 96,
+                "timestamp": 1769168598,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 97,
+                "timestamp": 1769168617,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 98,
+                "timestamp": 1770911519,
+                "subject": "deleted_self",
+                "user": "admin",
+                "type": "file_deleted"
+            },
+            {
+                "activity_id": 99,
+                "timestamp": 1770911519,
+                "subject": "deleted_self",
+                "user": "admin",
+                "type": "file_deleted"
+            },
+            {
+                "activity_id": 100,
+                "timestamp": 1770911519,
+                "subject": "deleted_self",
+                "user": "admin",
+                "type": "file_deleted"
+            },
+            {
+                "activity_id": 101,
+                "timestamp": 1770911519,
+                "subject": "deleted_self",
+                "user": "admin",
+                "type": "file_deleted"
+            },
+            {
+                "activity_id": 102,
+                "timestamp": 1770911519,
+                "subject": "deleted_self",
+                "user": "admin",
+                "type": "file_deleted"
+            },
+            {
+                "activity_id": 103,
+                "timestamp": 1770911543,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 104,
+                "timestamp": 1770911590,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 105,
+                "timestamp": 1774344133,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 106,
+                "timestamp": 1776150166,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 107,
+                "timestamp": 1776335707,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 108,
+                "timestamp": 1776335719,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 109,
+                "timestamp": 1776336617,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 110,
+                "timestamp": 1776763926,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 111,
+                "timestamp": 1776763940,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 112,
+                "timestamp": 1776763951,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 113,
+                "timestamp": 1776763967,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            },
+            {
+                "activity_id": 114,
+                "timestamp": 1776764462,
+                "subject": "created_self",
+                "user": "admin",
+                "type": "file_created"
+            }
+        ],
+        "comments": []
+    },
+    "timestamp": "2026-06-18T13:53:01+05:30"
+}

@@ -1,0 +1,35 @@
+{
+    "fetch_timestamp": "2026-06-18T10:45:08+05:30",
+    "script_location": "/mnt/home-ldap/vkharsh_ldap/Research/EnterpriseLab/Arena/apps",
+    "output_directory": "/mnt/home-ldap/vkharsh_ldap/Research/EnterpriseLab/Arena/apps/fetched_data",
+    "services": {
+        "rocketchat": {
+            "file": "rocketchat.json",
+            "url": "http://localhost:3000"
+        },
+        "gitlab": {
+            "file": "gitlab.json",
+            "url": "http://localhost:8080"
+        },
+        "owncloud": {
+            "file": "owncloud.json",
+            "url": "http://localhost:8081"
+        },
+        "plane": {
+            "file": "plane.json",
+            "url": "http://localhost:80"
+        },
+        "dolibarr": {
+            "file": "dolibarr.json",
+            "url": "http://localhost:8082"
+        },
+        "zammad": {
+            "file": "zammad.json",
+            "url": "http://localhost:8083"
+        },
+        "frappe": {
+            "file": "frappe.json",
+            "url": "http://localhost:8084"
+        }
+    }
+}

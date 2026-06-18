@@ -1,0 +1,43 @@
+{
+    "fetch_timestamp": "2026-06-18T13:53:06+05:30",
+    "fetch_method": "Direct Database Access",
+    "script_location": "/mnt/home-ldap/vkharsh_ldap/Research/EnterpriseLab/Arena/apps",
+    "output_directory": "/mnt/home-ldap/vkharsh_ldap/Research/EnterpriseLab/Arena/apps/fetched_data",
+    "services": {
+        "rocketchat": {
+            "file": "rocketchat.json",
+            "database": "mongodb",
+            "app_url": "http://localhost:3000"
+        },
+        "owncloud": {
+            "file": "owncloud.json",
+            "database": "mariadb",
+            "app_url": "http://localhost:8081"
+        },
+        "gitlab": {
+            "file": "gitlab.json",
+            "database": "postgresql",
+            "app_url": "http://localhost:8080"
+        },
+        "plane": {
+            "file": "plane.json",
+            "database": "postgresql",
+            "app_url": "http://localhost:80"
+        },
+        "zammad": {
+            "file": "zammad.json",
+            "database": "postgresql",
+            "app_url": "http://localhost:8083"
+        },
+        "dolibarr": {
+            "file": "dolibarr.json",
+            "database": "mariadb",
+            "app_url": "http://localhost:8082"
+        },
+        "frappe": {
+            "file": "frappe.json",
+            "database": "mariadb",
+            "app_url": "http://localhost:8084"
+        }
+    }
+}
