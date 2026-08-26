@@ -103,6 +103,15 @@ class TrajectorySegment:
             )
 
 
+@dataclass
+class PlannerTurn:
+    """Exact prompt/response pair produced by the trainable AgentFlow planner."""
+
+    prompt: str
+    response: str
+    turn_index: int
+
+
 # ---------------------------------------------------------------------------
 # JSON extraction helper (brace-matching)
 # ---------------------------------------------------------------------------
@@ -180,6 +189,8 @@ class CompletedTrajectory:
     _full_text:        Optional[str] = field(default=None, repr=False)
     _trainable_text:   Optional[str] = field(default=None, repr=False)
     executed_tool_calls: List[ExecutedToolCall] = field(default_factory=list)
+    planner_turns: List[PlannerTurn] = field(default_factory=list)
+    metadata: Dict[str, Any] = field(default_factory=dict)
 
     # ------------------------------------------------------------------
     # Properties
@@ -215,6 +226,30 @@ class CompletedTrajectory:
         """
         text = segment.text
         results: List[Tuple[str, str]] = []
+
+        artist_match = re.search(r"<tool>\s*(.*?)\s*</tool>", text, re.DOTALL | re.IGNORECASE)
+        if artist_match:
+            try:
+                payload = json.loads(artist_match.group(1).strip())
+                if isinstance(payload, list) and payload:
+                    payload = payload[0]
+                if isinstance(payload, dict):
+                    name = str(
+                        payload.get("name")
+                        or payload.get("tool_name")
+                        or payload.get("tool")
+                        or ""
+                    ).strip()
+                    args = payload.get("args", payload.get("arguments", {}))
+                    if isinstance(args, str):
+                        try:
+                            args = json.loads(args)
+                        except json.JSONDecodeError:
+                            pass
+                    if name and isinstance(args, dict):
+                        return [(name, json.dumps(args))]
+            except (json.JSONDecodeError, TypeError):
+                pass
 
         # Find the opening bracket of a top-level JSON array
         for i, ch in enumerate(text):
@@ -274,13 +309,19 @@ class CompletedTrajectory:
 
         # Loop detection: 3+ consecutive identical tool calls
         if self.num_tool_calls >= 3:
-            action_segs = [
-                s for s in self.segments if s.segment_type == "thought_and_action"
-            ]
-            call_signatures: List[str] = []
-            for seg in action_segs:
-                for name, args in self._extract_tool_calls_from_segment(seg):
-                    call_signatures.append(f"{name}::{args}")
+            if self.executed_tool_calls:
+                call_signatures = [
+                    f"{call.tool_name}::{json.dumps(call.args, sort_keys=True, default=str)}"
+                    for call in self.executed_tool_calls
+                ]
+            else:
+                action_segs = [
+                    s for s in self.segments if s.segment_type == "thought_and_action"
+                ]
+                call_signatures = []
+                for seg in action_segs:
+                    for name, args in self._extract_tool_calls_from_segment(seg):
+                        call_signatures.append(f"{name}::{args}")
 
             for i in range(len(call_signatures) - 2):
                 if call_signatures[i] == call_signatures[i+1] == call_signatures[i+2]:
@@ -311,9 +352,10 @@ class CompletedTrajectory:
         return self.termination_reason == "success"
 
     def has_final_answer(self) -> bool:
-        """True if any assistant segment ends with <TASK_FINISHED>."""
+        """True if any assistant segment contains a supported completion marker."""
         return any(
             "<TASK_FINISHED>" in s.text
+            or bool(re.search(r"<answer>\s*.*?\s*</answer>", s.text, re.DOTALL | re.IGNORECASE))
             for s in self.segments
             if s.segment_type == "thought_and_action"
         )
@@ -321,11 +363,16 @@ class CompletedTrajectory:
     def get_final_answer(self) -> Optional[str]:
         """
         Return the text of the last assistant segment that contains
-        <TASK_FINISHED>, stripped of the tag itself.
+        a supported completion marker, stripped of the marker itself.
         """
         for seg in reversed(self.segments):
-            if seg.segment_type == "thought_and_action" and "<TASK_FINISHED>" in seg.text:
+            if seg.segment_type != "thought_and_action":
+                continue
+            if "<TASK_FINISHED>" in seg.text:
                 return seg.text.replace("<TASK_FINISHED>", "").strip()
+            answer_match = re.search(r"<answer>\s*(.*?)\s*</answer>", seg.text, re.DOTALL | re.IGNORECASE)
+            if answer_match:
+                return answer_match.group(1).strip()
         return None
 
     def get_action_sequence(self) -> List[str]:

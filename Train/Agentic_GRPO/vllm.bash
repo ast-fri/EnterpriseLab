@@ -1,4 +1,16 @@
 #!/bin/bash
+#SBATCH --job-name=vllm
+#SBATCH --output=output_%j.txt
+#SBATCH --error=error_%j.txt
+#SBATCH --partition=batch-4gpu
+#SBATCH --nodelist=gpu07
+#SBATCH --gres=gpu:1
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=140G
+#SBATCH --time=24:00:00
+
 echo "=== Job Started: $(date) ==="
 echo "Node: $SLURM_NODELIST"
 echo "Allocated GPUs: $SLURM_JOB_GPUS"
@@ -53,7 +65,7 @@ MONITOR_PID=$!
 
 nvidia-smi pmon -c 1 -s mu -d 5 -f gpu_pmon_${SLURM_JOB_ID}.log &
 PMON_PID=$!
-MODEL_PATH="/path/to/your/model"  # <-- UPDATE THIS PATH
+MODEL_PATH="/home/fripl/vharsh/research/models/models/Qwen3-32b"
 PORT=8001
 API_KEY="judge"
 echo "GPU monitoring started"

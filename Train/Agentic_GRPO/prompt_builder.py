@@ -21,6 +21,7 @@ No XML action tags (<think>, <tool_call>, etc.) are used.
 """
 
 import json
+import os
 from typing import Any, Dict, List, Union
 
 
@@ -252,6 +253,41 @@ class PromptBuilder:
         ]
 
         return "\n".join(lines)
+
+    def build_prompt(
+        self,
+        prompt_mode: str = "default",
+        prompt_template_path: str | None = None,
+    ) -> str:
+        """Build either the default ReAct prompt or an external ARTIST prompt."""
+        mode = (prompt_mode or "default").strip().lower()
+        if mode in {"default", "react_json", "custom_react_json"}:
+            return self.build_react_prompt()
+        if mode == "artist":
+            return self.build_artist_prompt(prompt_template_path)
+        raise ValueError(f"Unsupported prompt_mode: {prompt_mode!r}")
+
+    def build_artist_prompt(self, prompt_template_path: str | None) -> str:
+        """Load the exact ARTIST prompt template and inject the tool catalog."""
+        if not prompt_template_path:
+            raise ValueError("ARTIST prompt mode requires a prompt_template_path")
+        if not os.path.exists(prompt_template_path):
+            raise FileNotFoundError(
+                f"ARTIST prompt template not found: {prompt_template_path}"
+            )
+        with open(prompt_template_path, "r") as handle:
+            template = handle.read()
+        full_tools = []
+        for tool in self.tool_methods:
+            full_tools.append(
+                {
+                    "name": tool.get("name", ""),
+                    "description": tool.get("description", ""),
+                    "args_schema": tool.get("args_schema", {}),
+                }
+            )
+        tool_block = json.dumps(full_tools, indent=2, ensure_ascii=True)
+        return template.replace("{tools}", tool_block)
 
     # ------------------------------------------------------------------
     # Compact / utility variants

@@ -70,6 +70,129 @@ def _extract_gold_messages(messages: List[Dict[str, Any]]) -> List[Dict[str, Any
     return gold_messages
 
 
+# def load_enterprise_tasks_v2(
+#     path: str,
+#     max_tasks: int = None,
+#     difficulty_filter: str = None,  # "EASY", "MEDIUM", "HARD"
+#     domain_filter: str = None,       # "HR", "CRM", "GitHub", etc.
+#     min_steps: int = None,
+#     max_steps: int = None
+# ) -> List[Dict]:
+#     """
+#     Load EnterpriseBench tasks from your exact JSON format.
+
+#     Your task format:
+#     {
+#         "task_id": "task_seq_0_3_filtered_1",
+#         "instruction": "As part of maintaining...",
+#         "prerequisite_context": [],
+#         "chain_of_thought": [
+#             {
+#                 "step": 3,
+#                 "rationale": "...",
+#                 "tool": "delete_message",
+#                 "inputs": {...},
+#                 "expected_output": "..."
+#             }
+#         ],
+#         "required_tools": ["delete_message"],
+#         "success_criteria": [...],
+#         "domain": "HR",
+#         "difficulty": "EASY",
+#         "ground_truth": {
+#             "final_output": "...",
+#             "all_step_outputs": [...],
+#             "final_entities": [...]
+#         },
+#         "meta": {...}
+#     }
+
+#     Args:
+#         path: Path to your tasks JSON file
+#         max_tasks: Limit number of tasks (for testing)
+#         difficulty_filter: Only load tasks with this difficulty
+#         domain_filter: Only load tasks from this domain
+#         min_steps: Minimum number of steps
+#         max_steps: Maximum number of steps
+
+#     Returns:
+#         List of formatted tasks for GRPO training
+#     """
+#     try:
+#         with open(path, 'r') as f:
+#             raw_tasks = json.load(f)
+#         logger.info("Tasks Shuffled")
+#         random.shuffle(raw_tasks)   # Shuffles the list in-place
+#         logger.info(f"Loaded {len(raw_tasks)} raw tasks from {path}")
+
+#         # Apply filters
+#         filtered_tasks = []
+#         for task in raw_tasks:
+#             # Difficulty filter
+#             if difficulty_filter and task.get('difficulty') != difficulty_filter:
+#                 continue
+
+#             # Domain filter
+#             if domain_filter and task.get('domain') != domain_filter:
+#                 continue
+
+#             # Steps filter - FIXED: fallback to chain_of_thought length
+#             num_steps = task.get('meta', {}).get('num_steps')
+#             if num_steps is None:
+#                 num_steps = len(task.get('chain_of_thought', []))
+            
+#             if min_steps and num_steps < min_steps:
+#                 continue
+#             if max_steps and num_steps > max_steps:
+#                 continue
+
+#             filtered_tasks.append(task)
+
+#         logger.info(f"After filtering: {len(filtered_tasks)} tasks")
+
+#         # Convert to GRPO training format
+#         formatted_tasks = []
+#         for task in filtered_tasks:
+#             formatted_task = {
+#                 # Required fields
+#                 'id': task['task_id'],
+#                 'user': task['instruction'],
+
+#                 # Optional: Gold trajectory for ground truth rewards
+#                 'gold_chain_of_thought': task.get('chain_of_thought', []),
+#                 'gold_final_output': task.get('ground_truth', {}).get('final_output'),
+#                 'gold_step_outputs': task.get('ground_truth', {}).get('all_step_outputs', []),
+
+#                 # Metadata for analysis
+#                 'required_tools': task.get('required_tools', []),
+#                 'domain': task.get('domain'),
+#                 'difficulty': task.get('difficulty'),
+#                 'num_steps': num_steps,
+#                 'success_criteria': task.get('success_criteria', []),
+#             }
+
+#             formatted_tasks.append(formatted_task)
+        
+#         # Limit if specified (FIXED: handle max_tasks=0)
+#         if max_tasks and max_tasks > 0:
+#             formatted_tasks = formatted_tasks[:max_tasks]
+#             logger.info(f"Limited to {max_tasks} tasks for this run")
+
+#         # Log statistics
+#         log_dataset_statistics(formatted_tasks)
+
+#         return formatted_tasks
+
+#     except FileNotFoundError:
+#         logger.error(f"Dataset file not found: {path}")
+#         raise
+#     except json.JSONDecodeError as e:
+#         logger.error(f"Invalid JSON in dataset file: {e}")
+#         raise
+#     except Exception as e:
+#         logger.error(f"Error loading dataset: {e}")
+#         raise
+
 import json
 import random
 import logging
@@ -77,13 +200,212 @@ from typing import List, Dict, Any
 
 logger = logging.getLogger(__name__)
 
+
+def _deepcopy_jsonable(value: Any) -> Any:
+    return json.loads(json.dumps(value))
+
+
+def _checkpoint_rationale(
+    checkpoint: Dict[str, Any],
+    cot_steps: List[Dict[str, Any]],
+) -> str:
+    step_number = checkpoint.get("step")
+    if isinstance(step_number, int):
+        for cot_step in cot_steps:
+            if cot_step.get("step") == step_number:
+                return str(
+                    cot_step.get("subgoal")
+                    or cot_step.get("rationale")
+                    or cot_step.get("expected_output")
+                    or ""
+                ).strip()
+    return ""
+
+
+def _expected_output_payload(checkpoint: Dict[str, Any]) -> Any:
+    if "expected_output_parsed" in checkpoint:
+        return checkpoint.get("expected_output_parsed")
+
+    payload: Dict[str, Any] = {}
+    expected_fields = checkpoint.get("expected_output_fields", []) or []
+    if expected_fields:
+        payload["expected_output_fields"] = expected_fields
+    success_validation = checkpoint.get("success_validation")
+    if isinstance(success_validation, dict) and success_validation:
+        payload["success_validation"] = success_validation
+    expected_effects = checkpoint.get("expected_effects", []) or []
+    if expected_effects:
+        payload["expected_effects"] = expected_effects
+    state_tracking = checkpoint.get("state_tracking")
+    if isinstance(state_tracking, dict) and state_tracking:
+        payload["state_tracking"] = state_tracking
+    return payload or None
+
+
+def _build_gold_steps_from_checkpoints(
+    reward_checkpoints: List[Dict[str, Any]],
+    cot_steps: List[Dict[str, Any]],
+) -> List[Dict[str, Any]]:
+    gold_steps: List[Dict[str, Any]] = []
+
+    for checkpoint in reward_checkpoints:
+        if not isinstance(checkpoint, dict):
+            continue
+        tool_name = checkpoint.get("tool") or checkpoint.get("api_id")
+        if not tool_name:
+            continue
+
+        gold_steps.append(
+            {
+                "step": checkpoint.get("step", len(gold_steps) + 1),
+                "rationale": _checkpoint_rationale(checkpoint, cot_steps),
+                "tool": tool_name,
+                "inputs": checkpoint.get("input_bindings", {}) or {},
+                "expected_output": _expected_output_payload(checkpoint),
+                "must_succeed": bool(checkpoint.get("must_succeed", False)),
+                "operation": checkpoint.get("operation"),
+            }
+        )
+
+    return gold_steps
+
+
+def _build_gold_final_output_from_task(task: Dict[str, Any]) -> str:
+    success_criteria = task.get("success_criteria", []) or []
+    criteria_text = "\n".join(
+        f"- {criterion}" for criterion in success_criteria if isinstance(criterion, str)
+    ).strip()
+
+    ground_truth = task.get("ground_truth", {}) or {}
+    tool_sequence = ground_truth.get("expected_tool_sequence", []) or []
+    tool_sequence_text = ", ".join(str(tool) for tool in tool_sequence if tool)
+
+    sections: List[str] = []
+    if criteria_text:
+        sections.append("Success criteria:\n" + criteria_text)
+    if tool_sequence_text:
+        sections.append(f"Expected tool sequence: {tool_sequence_text}")
+    if ground_truth.get("low_level_subgoals"):
+        subgoals = "\n".join(
+            f"- {goal}" for goal in ground_truth.get("low_level_subgoals", []) if goal
+        ).strip()
+        if subgoals:
+            sections.append("Low-level subgoals:\n" + subgoals)
+
+    return "\n\n".join(sections).strip()
+
+
+def _format_checkpoint_task(item: Dict[str, Any], idx: int) -> Dict[str, Any]:
+    cot_steps = item.get("chain_of_thought", []) or []
+    reward_checkpoints = _deepcopy_jsonable(item.get("reward_checkpoints", []) or [])
+    gold_steps = _build_gold_steps_from_checkpoints(reward_checkpoints, cot_steps)
+    required_tools = item.get("required_tools", []) or [
+        step.get("tool") for step in gold_steps if step.get("tool")
+    ]
+
+    return {
+        "id": item.get("task_id") or item.get("id") or f"enterprise_task_{idx}",
+        "user": str(item.get("instruction", "")).strip(),
+        "gold_chain_of_thought": cot_steps,
+        "gold_step_outputs": gold_steps,
+        "gold_final_output": _build_gold_final_output_from_task(item),
+        "gold_messages": [],
+        "required_tools": sorted({tool for tool in required_tools if tool}),
+        "domain": item.get("domain"),
+        "difficulty": item.get("difficulty"),
+        "num_steps": len(gold_steps),
+        "success_criteria": item.get("success_criteria", []) or [],
+        "reward_checkpoints": reward_checkpoints,
+        "ground_truth": _deepcopy_jsonable(item.get("ground_truth", {}) or {}),
+        "meta": _deepcopy_jsonable(item.get("meta", {}) or {}),
+        "prerequisite_context": _deepcopy_jsonable(item.get("prerequisite_context", {}) or {}),
+    }
+
+
+def _format_messages_task(item: Dict[str, Any], idx: int) -> Dict[str, Any]:
+    messages = item.get("messages")
+    if not isinstance(messages, list) or len(messages) == 0:
+        return {}
+
+    user_texts = [m.get("content", "") for m in messages if m.get("role") == "user" and m.get("content")]
+    instruction = "\n".join(user_texts).strip()
+    if not instruction:
+        return {}
+
+    gold_steps = []
+    required_tools = []
+    last_assistant_text = None
+    final_answer = None
+
+    i = 0
+    while i < len(messages):
+        m = messages[i]
+        role = m.get("role")
+
+        if role == "assistant":
+            if m.get("content") and not m.get("tool_calls"):
+                last_assistant_text = str(m["content"]).strip()
+                final_answer = last_assistant_text
+
+            if m.get("tool_calls"):
+                tool_calls = m.get("tool_calls", [])
+                tool_outputs = []
+                j = i + 1
+                while j < len(messages) and messages[j].get("role") == "tool":
+                    tool_outputs.append(messages[j])
+                    j += 1
+
+                for k, tc in enumerate(tool_calls):
+                    fn = (tc or {}).get("function", {}) or {}
+                    tool_name = fn.get("name")
+                    args = fn.get("arguments", {})
+                    if not tool_name:
+                        continue
+
+                    required_tools.append(tool_name)
+                    expected_output = None
+                    if k < len(tool_outputs):
+                        expected_output = tool_outputs[k].get("content")
+
+                    gold_steps.append(
+                        {
+                            "step": len(gold_steps) + 1,
+                            "rationale": last_assistant_text or "",
+                            "tool": tool_name,
+                            "inputs": args if isinstance(args, dict) else {},
+                            "expected_output": expected_output,
+                        }
+                    )
+
+                i = j
+                continue
+
+        i += 1
+
+    return {
+        "id": item.get("task_id") or item.get("id") or f"chatlog_{idx}",
+        "user": instruction,
+        "gold_chain_of_thought": [],
+        "gold_step_outputs": gold_steps,
+        "gold_final_output": final_answer,
+        "gold_messages": _extract_gold_messages(messages),
+        "required_tools": sorted(set(required_tools)),
+        "domain": item.get("domain"),
+        "difficulty": item.get("difficulty"),
+        "num_steps": len(gold_steps),
+        "success_criteria": item.get("success_criteria", []),
+        "timestamp": item.get("timestamp"),
+    }
+
 def load_enterprise_tasks_v2(
     path: str,
     max_tasks: int = None,
     difficulty_filter: str = None,
     domain_filter: str = None,
     min_steps: int = None,
-    max_steps: int = None
+    max_steps: int = None,
+    shuffle: bool = True,
+    seed: int = None
 ) -> List[Dict]:
     """
     Load tasks from the NEW dataset format:
@@ -117,88 +439,35 @@ def load_enterprise_tasks_v2(
         else:
             raw_tasks = raw
 
-        logger.info("Tasks Shuffled")
-        # random.shuffle(raw_tasks)
+        if shuffle:
+            if seed is not None:
+                random.seed(seed)
+                logger.info(f"Shuffling tasks with seed={seed}")
+            else:
+                logger.info("Shuffling tasks with random seed")
+            random.shuffle(raw_tasks)
+        else:
+            logger.info("Keeping tasks in original order (shuffle=False)")
+
         logger.info(f"Loaded {len(raw_tasks)} raw tasks from {path}")
 
         formatted_tasks: List[Dict[str, Any]] = []
 
         for idx, item in enumerate(raw_tasks):
-            messages = item.get("messages")
-            if not isinstance(messages, list) or len(messages) == 0:
+            if not isinstance(item, dict):
                 continue
 
-            # ---- Extract instruction (exclude system) ----
-            user_texts = [m.get("content", "") for m in messages if m.get("role") == "user" and m.get("content")]
-            instruction = "\n".join(user_texts).strip()
-            if not instruction:
-                # No user instruction => skip
+            if isinstance(item.get("messages"), list):
+                formatted_task = _format_messages_task(item, idx)
+            else:
+                formatted_task = _format_checkpoint_task(item, idx)
+
+            if not formatted_task or not formatted_task.get("user"):
                 continue
 
-            # ---- Parse gold steps from tool_calls ----
-            gold_steps = []
-            required_tools = []
-
-            last_assistant_text = None  # rationale carrier (assistant content before tool call)
-            final_answer = None
-
-            # We'll walk in order and pair assistant.tool_calls with subsequent tool messages
-            i = 0
-            while i < len(messages):
-                m = messages[i]
-                role = m.get("role")
-
-                if role == "assistant":
-                    # If this assistant message has plain content, treat as rationale or final answer candidate
-                    if m.get("content") and not m.get("tool_calls"):
-                        last_assistant_text = str(m["content"]).strip()
-                        final_answer = last_assistant_text  # will be overwritten if more assistant content appears later
-
-                    # Tool call block
-                    if m.get("tool_calls"):
-                        tool_calls = m.get("tool_calls", [])
-                        # collect tool outputs right after (there may be multiple tool messages)
-                        tool_outputs = []
-                        j = i + 1
-                        while j < len(messages) and messages[j].get("role") == "tool":
-                            tool_outputs.append(messages[j])
-                            j += 1
-
-                        # Pair in order (best-effort). If names mismatch, still pair by position.
-                        for k, tc in enumerate(tool_calls):
-                            fn = (tc or {}).get("function", {}) or {}
-                            tool_name = fn.get("name")
-                            args = fn.get("arguments", {})
-
-                            if not tool_name:
-                                continue
-
-                            required_tools.append(tool_name)
-
-                            expected_output = None
-                            if k < len(tool_outputs):
-                                expected_output = tool_outputs[k].get("content")
-
-                            gold_steps.append({
-                                "step": len(gold_steps) + 1,
-                                "rationale": last_assistant_text or "",
-                                "tool": tool_name,
-                                "inputs": args if isinstance(args, dict) else {},
-                                "expected_output": expected_output
-                            })
-
-                        # jump past the consumed tool messages
-                        i = j
-                        continue
-
-                i += 1
-
-            required_tools = sorted(set(required_tools))
-            num_steps = len(gold_steps)
-
-            # ---- Apply filters (optional; most new logs won't have these fields) ----
-            difficulty = item.get("difficulty")  # may be absent
-            domain = item.get("domain")          # may be absent
+            num_steps = int(formatted_task.get("num_steps", 0) or 0)
+            difficulty = formatted_task.get("difficulty")
+            domain = formatted_task.get("domain")
 
             if difficulty_filter and difficulty != difficulty_filter:
                 continue
@@ -208,27 +477,6 @@ def load_enterprise_tasks_v2(
                 continue
             if max_steps is not None and num_steps > max_steps:
                 continue
-
-            formatted_task = {
-                "id": item.get("task_id") or item.get("id") or f"chatlog_{idx}",
-                "user": instruction,
-
-                # Gold references derived from messages
-                "gold_chain_of_thought": [],  # optional; you can populate from assistant content if you want
-                "gold_step_outputs": gold_steps,
-                "gold_final_output": final_answer,
-                "gold_messages": _extract_gold_messages(messages),
-
-                # Metadata
-                "required_tools": required_tools,
-                "domain": domain,
-                "difficulty": difficulty,
-                "num_steps": num_steps,
-                "success_criteria": item.get("success_criteria", []),
-
-                # Optional: keep timestamp for debugging
-                "timestamp": item.get("timestamp"),
-            }
 
             formatted_tasks.append(formatted_task)
 
@@ -655,8 +903,9 @@ def load_claude_model():
     )
     
     llm = ChatBedrock(
-        model_id="",
-       
+        model_id="global.anthropic.claude-sonnet-4-5-20250929-v1:0",
+        # model_id="meta.llama3-1-70b-instruct-v1:0",
+        # model_id="anthropic.claude-3-5-sonnet-20241022-v2:0",
         client=bedrock_client,
         model_kwargs={
             "temperature": 0,
@@ -669,6 +918,300 @@ def load_claude_model():
     # llm_with_tools = llm.bind_tools(tools) if tools else llm
     return llm
 
+# =========================================================================
+# 2. SYSTEM PROMPT
+# =========================================================================
+
+# JUDGE_SYSTEM_PROMPT = """
+# You are a precision evaluator for an AI Agent in a **dynamic enterprise tool environment**.
+
+# The agent MUST use tools to interact with the environment. **Skipping tools and guessing answers is a critical failure.**
+
+# You must score the agent's performance on **5 independent dimensions** using **step-by-step evaluation**.
+
+# ---
+
+# ### TASK DATA
+
+# Instruction:
+# {instruction}
+
+# REFERENCE – Gold Chain of Thought (one possible correct solution):
+# {gold_chain_of_thought}
+
+# REFERENCE – Expected Step Outputs:
+# {gold_step_outputs}
+
+# REFERENCE – Expected Final Answer:
+# {gold_final_output}
+
+# ---
+
+# ### AGENT TRAJECTORY
+
+# {agent_trajectory}
+
+# ---
+
+# ### SCORING METHODOLOGY
+
+# **Step-by-Step Evaluation:**
+
+# For each turn in the agent's trajectory, evaluate:
+# 1. **Thought Quality:** Is the reasoning correct and aligned with the task? (+1 if correct)
+# 2. **Tool Selection:** Is the selected tool correct for this step? (+1 if correct)
+# 3. **Tool Execution:** Did the tool execute successfully (check Observation)? (+1 if successful)
+
+# Then **normalize** scores by trajectory length to get a 0.0 - 1.0 range for each dimension.
+
+# ---
+
+# ### SCORING DIMENSIONS (0.0 – 1.0 each)
+
+# #### 1. **format_compliance** (Structural correctness)
+
+# Does the agent follow the required Thought/Action/Action Input/Observation/Final Answer format?
+
+# **Scoring:**
+# - Check EACH turn for proper format.
+# - Score = (Turns with valid format) / (Total turns in trajectory)
+
+# **Examples:**
+# - Perfect format all turns: 1.0
+# - 3 out of 4 turns have valid format: 0.75
+# - Completely broken format: 0.0
+
+# ---
+
+# #### 2. **tool_selection** (Correctness of tool choices)
+
+# **Step-by-step evaluation:**
+
+# For each turn where a tool is called:
+# 1. Compare agent's selected tool against the Gold Chain of Thought.
+# 2. Award **+1** if the tool matches the expected tool OR is a valid alternative/verification step.
+# 3. Award **0** if the tool is wrong, hallucinated, or irrelevant.
+
+# **Normalization:**
+# tool_selection_score = (Correct Tool Selections) / (Total Tool Calls in Trajectory)
+
+
+# **Special cases:**
+# - If agent calls 0 tools but gold requires tools: 0.0
+# - If agent calls extra valid tools (verification): Count as correct (+1)
+# - If agent hallucinates non-existent tools: Count as incorrect (0)
+
+# ---
+
+# #### 3. **thought_quality** (Reasoning correctness)
+
+# **Step-by-step evaluation:**
+
+# For each Thought in the trajectory:
+# 1. Check if reasoning is logical and correct based on the Instruction and previous Observations.
+# 2. Award **+1** for correct reasoning.
+# 3. Award **0** for flawed, hallucinated, or nonsensical reasoning.
+
+# **Normalization:**
+# thought_quality_score = (Correct Thoughts) / (Total Thoughts in Trajectory)
+
+
+# **Examples:**
+# - Correct (+1): "The product was created successfully. Now I need to retrieve reviews."
+# - Incorrect (0): Agent claims success when Observation clearly shows an ERROR.
+
+# ---
+
+# #### 4. **tool_execution** (Successful tool execution)
+
+# **Step-by-step evaluation:**
+
+# For each tool call in the trajectory:
+# 1. Check the Observation output.
+# 2. Award **+1** if execution was successful (no errors, valid return data).
+# 3. Award **0** if execution failed (error messages in Observation or empty/invalid return).
+
+# **Normalization:**
+# tool_execution_score = (Successful Executions) / (Total Tool Calls in Trajectory)
+
+
+# ---
+
+# #### 5. **final_success** (Overall task completion)
+
+# **Holistic evaluation:** Did the agent complete the task requirements?
+
+# **Scoring:**
+# - 1.0: All required operations completed successfully with correct Final Answer.
+# - 0.5: Partial completion (some operations done, but critical parts missing).
+# - 0.0: Task not completed (no tools called OR all tools failed).
+
+# ---
+
+# ### SPECIAL CASES
+
+# 1. **Agent calls 0 tools:**
+#    - `tool_selection`: 0.0
+#    - `tool_execution`: 0.0
+#    - `final_success`: 0.0
+#    - `format_compliance`: Evaluate based on text structure.
+#    - `thought_quality`: Evaluate based on text reasoning.
+
+# 2. **Premature Final Answer:**
+#    - If agent outputs Final Answer immediately without calling required tools:
+#    - `final_success`: 0.0
+#    - `tool_selection`: 0.0
+
+# ---
+
+# ### OUTPUT FORMAT
+
+# First, provide step-by-step analysis in `<step_by_step_analysis>...</step_by_step_analysis>` tags:
+
+# <step_by_step_analysis>
+# Turn 0:
+# Thought: [Correct/Incorrect] - [Reason]
+# Tool: [Selected Tool] - [Correct/Incorrect]
+# Execution: [Success/Fail]
+
+# Turn 1:
+# ...
+
+# Summary:
+
+# Valid Format Turns: X/Total
+
+# Correct Tool Selections: Y/Total Tools
+
+# Correct Thoughts: Z/Total Thoughts
+
+# Successful Executions: A/Total Tools
+# </step_by_step_analysis>
+
+# text
+
+# Then output ONLY this JSON (no code fences, no extra keys):
+
+# {{
+#   "format_compliance": 0.0,
+#   "tool_selection": 0.0,
+#   "thought_quality": 0.0,
+#   "tool_execution": 0.0,
+#   "final_success": 0.0,
+#   "critique": "Brief summary of the evaluation."
+# }}
+# """
+
+
+# # =========================================================================
+# # 3. HELPER FUNCTIONS
+# # =========================================================================
+# def serialize_trajectory(trajectory: Any) -> str:
+#     """Converts the trajectory object into a readable text string."""
+#     text_log = []
+#     for i, seg in enumerate(trajectory.segments):
+#         header = f"[STEP {i+1} - {seg.segment_type.upper()}]"
+#         content = seg.text.strip()
+#         text_log.append(f"{header}\n{content}")
+#     return "\n\n".join(text_log)
+
+# def get_gold_references(gt: Dict) -> Dict[str, str]:
+#     """Safely extracts and formats gold references from the task dict."""
+#     gold_chain = gt.get('gold_chain_of_thought', [])
+#     if isinstance(gold_chain, list):
+#         gold_chain = "\n".join([f"- {step}" for step in gold_chain])
+        
+#     gold_steps = gt.get('gold_step_outputs', [])
+#     if isinstance(gold_steps, list):
+#         gold_steps = json.dumps(gold_steps, indent=2)
+        
+#     return {
+#         "chain": gold_chain or "Not provided.",
+#         "steps": gold_steps or "Not provided."
+#     }
+
+# # =========================================================================
+# # 4. MAIN REWARD FUNCTION
+# # =========================================================================
+# def create_ground_truth_reward_function(tasks: List[Dict]):
+#     """
+#     Creates the reward function with integrated GPTCaller.
+#     Does NOT require passing llm_client as an argument.
+#     """
+    
+#     # Initialize the Caller ONCE
+#     # Ensure env vars AZURE_CHAT_API_KEY and AZURE_CHAT_ENDPOINT are set
+#     # gpt_caller = LocalQwenCaller(model_name="/home/fripl/vharsh/research/models/models/Qwen-8b",api_base="http://localhost:8001/v1", api_key="judge")
+#     gpt_caller = GPTCaller()
+#     # Fast lookup
+#     task_map = {t['id']: t for t in tasks}
+
+#     def llm_reward_function(task_id: str, trajectory: Any) -> float:
+#         gt = task_map.get(task_id)
+#         logger.info(f"Evaluating reward for Task ID: {task_id}")
+#         logger.info(f"Evaluating task {gt.get('user', 'No instruction found')}")
+        
+#         if not gt: return 0.0
+
+#         # A. Serialize Trajectory
+#         traj_text = serialize_trajectory(trajectory)
+        
+#         # B. Prepare References
+#         refs = get_gold_references(gt)
+
+#         # C. Construct Prompt
+#         prompt = JUDGE_SYSTEM_PROMPT.format(
+#             instruction=gt.get('user', "No instruction provided."),
+#             success_criteria=gt.get('success_criteria', ["Solve the task correctly."]),
+#             gold_chain_of_thought=refs['chain'],
+#             gold_step_outputs=refs['steps'],
+#             gold_final_output=gt.get('gold_final_output', "Not provided."),
+#             agent_trajectory=traj_text
+#         )
+
+#         # D. Call Judge (Synchronous)
+#         try:
+#             # We use sync_call because typical RL loops are not async
+#             # Use temperature=0.0 for deterministic grading
+#             scores = gpt_caller.sync_call(
+#                 prompt=prompt, 
+#                 response_format="json", 
+#                 temperature=0.0
+#             )
+#             # logger.info(f"prompt to judge: {prompt}")
+#         except Exception as e:
+#             logger.error(f"Judge GPT Call Failed completely: {e}")
+#             return -0.1 # Penalty for infrastructure failure
+#         logger.info(f"Judge Scores for Task {task_id}: {scores}")
+#         # E. Normalize Scores (MO-GRPO Weights)
+#         # Weights derived from ARTIST & DeepSeekMath
+#         weights = {
+#             "thought_quality": 0.1,    # Reasoning (Reduced slightly)
+#             "tool_selection": 0.25,    # Action: Picking the right tool
+#             "tool_execution": 0.15,    # NEW: Using the tool successfully (syntax/params)
+#             "format_compliance": 0.1,  # Constraints
+#             "final_success": 0.4       # Outcome (Still the most important)
+#         }
+
+#         # Calculate weighted score (your existing loop is perfect)
+#         weighted_score = 0.0
+#         for key, w in weights.items():
+#             val = float(scores.get(key, 0.0))
+#             val = max(0.0, min(1.0, val)) # Clip 0-1
+#             weighted_score += val * w
+
+#         # F. Critical Failure Gate
+#         # If format is totally broken (< 0.2), apply hard penalty override
+#         if float(scores.get("format_compliance", 1.0)) < 0.2:
+#              return 0.0
+
+#         # G. Return Reward [-1.0, 1.0]
+#         final_reward = weighted_score  # Already 0-1 from weighted sum
+#         return max(0.0, min(1.0, final_reward))
+
+#     return llm_reward_function
+
+# Example usage in train_enterprise.py:
 """
 # In main() function, replace load_enterprise_tasks with:
 

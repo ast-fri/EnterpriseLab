@@ -29,6 +29,7 @@ Termination conditions
 
 import json
 import logging
+import re
 import time
 from typing import Any, Callable, Dict, List, Optional
 
@@ -63,6 +64,51 @@ PLANNER_SYSTEM_PROMPT = """{tool_descriptions}"""
 def _extract_task_finished(text: str) -> bool:
     """Return True if the assistant turn signals task completion."""
     return "<TASK_FINISHED>" in text
+
+
+def _extract_artist_finished(text: str) -> bool:
+    """Return True if the assistant turn signals ARTIST-style completion."""
+    return bool(re.search(r"<answer>\s*.*?\s*</answer>", text, re.DOTALL | re.IGNORECASE))
+
+
+def _truncate_artist_response(text: str) -> str:
+    """
+    Truncate artist-mode response at the first complete </tool> or </answer> tag.
+
+    This prevents the model from generating multiple tool calls, fabricated tool results,
+    or mixing tool and answer in the same turn.
+
+    Returns:
+        Truncated text ending at the first complete action boundary.
+    """
+    # Find the first </tool> tag (case-insensitive)
+    tool_match = re.search(r"</tool>", text, re.IGNORECASE)
+    # Find the first </answer> tag (case-insensitive)
+    answer_match = re.search(r"</answer>", text, re.IGNORECASE)
+
+    # Determine which comes first
+    truncate_at = None
+    if tool_match and answer_match:
+        # Both exist, take the earlier one
+        truncate_at = min(tool_match.end(), answer_match.end())
+    elif tool_match:
+        truncate_at = tool_match.end()
+    elif answer_match:
+        truncate_at = answer_match.end()
+
+    # If we found a tag, truncate at that position
+    if truncate_at is not None:
+        truncated = text[:truncate_at]
+        if len(truncated) < len(text):
+            logger.debug(
+                "Artist-mode response truncated from %d to %d chars at first complete tag",
+                len(text),
+                len(truncated),
+            )
+        return truncated
+
+    # No tags found, return as-is
+    return text
 
 
 def _extract_tool_call_array(text: str) -> Optional[str]:
@@ -139,6 +185,8 @@ class AgenticRolloutManager:
         temperature:            float = 1.0,
         device:                 str   = "cuda",
         max_turns:              int   = 10,
+        prompt_mode:            str   = "default",
+        prompt_template_path:   str | None = None,
     ):
         self.model                  = model
         self.tokenizer              = tokenizer
@@ -150,6 +198,9 @@ class AgenticRolloutManager:
         self.temperature            = temperature
         self.device                 = device
         self.max_turns              = max_turns
+        self.prompt_mode            = (prompt_mode or "default").strip().lower()
+        self.prompt_template_path   = prompt_template_path
+        self.rollout_observer       = None
 
         # Build tool descriptions once from a sample environment
         sample_env = tool_env_factory()
@@ -161,12 +212,43 @@ class AgenticRolloutManager:
             tools = []
             logger.warning("Could not find tools in environment")
 
+        # Store all tools for filtering (if enabled later)
+        self.all_tools = tools
+        self.enable_tool_filtering = False  # Can be set externally
+        self.num_random_tools = 30  # Can be set externally
+
         self.prompt_builder      = PromptBuilder(tools)
-        self._system_prompt_text = self.prompt_builder.build_react_prompt()
-        logger.info(
-            "AgenticRolloutManager initialised with %d tools, max_turns=%d",
-            len(tools), max_turns,
+        self._system_prompt_text = self.prompt_builder.build_prompt(
+            prompt_mode=self.prompt_mode,
+            prompt_template_path=self.prompt_template_path,
         )
+        logger.info(
+            "AgenticRolloutManager initialised with %d tools, max_turns=%d, prompt_mode=%s",
+            len(tools), max_turns, self.prompt_mode,
+        )
+
+    def set_rollout_observer(self, observer: Any) -> None:
+        """Attach an optional benchmark-agnostic rollout lifecycle observer."""
+        self.rollout_observer = observer
+
+    def _notify_rollout_observer(
+        self,
+        method_name: str,
+        *,
+        default: Any = None,
+        **kwargs: Any,
+    ) -> Any:
+        observer = self.rollout_observer
+        method = getattr(observer, method_name, None) if observer is not None else None
+        if not callable(method):
+            return default
+        try:
+            return method(manager=self, **kwargs)
+        except Exception:
+            if bool(getattr(observer, "strict", False)):
+                raise
+            logger.exception("Rollout observer hook %s failed", method_name)
+            return default
 
     # ------------------------------------------------------------------
     # LLM generation
@@ -367,7 +449,7 @@ class AgenticRolloutManager:
     # ------------------------------------------------------------------
 
     @staticmethod
-    def _format_observation(
+    def _format_default_observation(
         tool_name: str, args: Dict[str, Any], result: ToolExecutionResult
     ) -> str:
         """
@@ -394,6 +476,29 @@ class AgenticRolloutManager:
 
         return json.dumps([body])
 
+    @staticmethod
+    def _format_artist_observation(
+        tool_name: str, args: Dict[str, Any], result: ToolExecutionResult
+    ) -> str:
+        payload = {
+            "tool": tool_name,
+            "args": args,
+            "status": str(result.status),
+            "output": result.output,
+            "error_message": result.error_message,
+        }
+        return f"<tool_result>{json.dumps(payload, sort_keys=True, ensure_ascii=True)}</tool_result>"
+
+    def _format_observation(
+        self,
+        tool_name: str,
+        args: Dict[str, Any],
+        result: ToolExecutionResult,
+    ) -> str:
+        if self.prompt_mode == "artist":
+            return self._format_artist_observation(tool_name, args, result)
+        return self._format_default_observation(tool_name, args, result)
+
     # ------------------------------------------------------------------
     # Prompt assembly
     # ------------------------------------------------------------------
@@ -412,6 +517,105 @@ class AgenticRolloutManager:
                 tokenize=False,
                 add_generation_prompt=True,
             )
+
+    def _parse_artist_turn(self, text: str) -> Dict[str, Any]:
+        tool_matches = re.findall(r"<tool>\s*(.*?)\s*</tool>", text, re.DOTALL | re.IGNORECASE)
+        has_answer = _extract_artist_finished(text)
+
+        if tool_matches:
+            if len(tool_matches) > 1:
+                return {
+                    "error_reason": "invalid_tool_call_json",
+                    "error": "Multiple <tool> blocks found in one turn; exactly one tool call is allowed per sub-step.",
+                }
+            if has_answer:
+                return {
+                    "error_reason": "invalid_tool_call_json",
+                    "error": "Turn contains both <tool> and <answer>; tool and final answer must be in separate turns.",
+                }
+            raw_payload = tool_matches[0].strip()
+        else:
+            if has_answer:
+                return {"finished": True}
+            return {"error_reason": "no_tool_call"}
+
+        try:
+            parsed = json.loads(raw_payload)
+        except json.JSONDecodeError as exc:
+            return {"error_reason": "invalid_tool_call_json", "error": str(exc)}
+
+        if isinstance(parsed, list):
+            if len(parsed) != 1:
+                return {
+                    "error_reason": "invalid_tool_call_json",
+                    "error": "Tool payload list must contain exactly one tool call.",
+                }
+            if not parsed:
+                return {"error_reason": "invalid_tool_call_json", "error": "Empty tool list"}
+            parsed = parsed[0]
+
+        if not isinstance(parsed, dict):
+            return {"error_reason": "invalid_tool_call_json", "error": "Tool payload must be a JSON object"}
+
+        tool_name = (
+            parsed.get("name")
+            or parsed.get("tool_name")
+            or parsed.get("tool")
+            or parsed.get("function", {}).get("name")
+        )
+        tool_args = (
+            parsed.get("args")
+            or parsed.get("arguments")
+            or parsed.get("input")
+            or parsed.get("function", {}).get("arguments")
+            or {}
+        )
+        if isinstance(tool_args, str):
+            try:
+                tool_args = json.loads(tool_args)
+            except json.JSONDecodeError:
+                pass
+
+        tool_name = str(tool_name or "").strip()
+        if not tool_name or tool_name.lower() in ("none", "null"):
+            return {"error_reason": "invalid_action"}
+        if not isinstance(tool_args, dict):
+            return {"error_reason": "invalid_args"}
+        return {
+            "finished": False,
+            "tool_name": tool_name,
+            "tool_args": tool_args,
+        }
+
+    def _parse_assistant_turn(self, text: str) -> Dict[str, Any]:
+        if self.prompt_mode == "artist":
+            return self._parse_artist_turn(text)
+        if _extract_task_finished(text):
+            return {"finished": True}
+
+        tool_call_raw = _extract_tool_call_array(text)
+        if tool_call_raw is None:
+            return {"error_reason": "no_tool_call"}
+
+        try:
+            calls = json.loads(tool_call_raw)
+            if not isinstance(calls, list) or not calls:
+                raise ValueError("Tool call must be a non-empty JSON array.")
+            command = calls[0]
+        except (json.JSONDecodeError, ValueError) as exc:
+            return {"error_reason": "invalid_tool_call_json", "error": str(exc)}
+
+        tool_name = str(command.get("name", "")).strip()
+        tool_args = command.get("args", {})
+        if not tool_name or tool_name.lower() in ("none", "null"):
+            return {"error_reason": "invalid_action"}
+        if not isinstance(tool_args, dict):
+            return {"error_reason": "invalid_args"}
+        return {
+            "finished": False,
+            "tool_name": tool_name,
+            "tool_args": tool_args,
+        }
 
     # ------------------------------------------------------------------
     # Single trajectory (multi-turn loop)
@@ -466,13 +670,33 @@ class AgenticRolloutManager:
             logger.info("[%d/%d] Query: %s", q_idx + 1, len(queries), qid)
 
             environments = [self.tool_env_factory() for _ in range(group_size)]
-            system_prompt = query.get("system") or self._system_prompt_text
+
+            # Filter tools if enabled (for memory optimization during training)
+            system_prompt = query.get("system")
+            if system_prompt is None and self.enable_tool_filtering:
+                # Filter tools: gold + random, shuffled per task
+                from tool_filter_for_training import filter_tools_for_training
+                filtered_tools = filter_tools_for_training(
+                    all_tools=self.all_tools,
+                    task_data=query,  # Expects 'required_tools' field
+                    num_random_tools=self.num_random_tools,
+                    random_seed=hash(qid)  # Same shuffle for all trajectories of this task
+                )
+                # Rebuild prompt with filtered tools
+                prompt_builder_filtered = PromptBuilder(filtered_tools)
+                system_prompt = prompt_builder_filtered.build_prompt(
+                    prompt_mode=self.prompt_mode,
+                    prompt_template_path=self.prompt_template_path,
+                )
+            elif system_prompt is None:
+                system_prompt = self._system_prompt_text
+
             states: List[Dict[str, Any]] = []
             completed: Dict[int, CompletedTrajectory] = {}
 
             for g in range(group_size):
                 logger.info("  Trajectory %d/%d …", g + 1, group_size)
-                states.append({
+                state = {
                     "group_idx": g,
                     "query_id": f"{qid}_g{g}",
                     "history": [
@@ -496,7 +720,13 @@ class AgenticRolloutManager:
                     "done": False,
                     "tool_env": environments[g],
                     "t_start": time.time(),
-                })
+                }
+                states.append(state)
+                self._notify_rollout_observer(
+                    "on_state_initialized",
+                    query=query,
+                    state=state,
+                )
 
             for turn in range(self.max_turns):
                 active_states = [state for state in states if not state["done"]]
@@ -565,6 +795,18 @@ class AgenticRolloutManager:
                     segments = state["segments"]
                     executed_calls = state["executed_calls"]
 
+                    # Truncate artist-mode responses at first complete tag
+                    if self.prompt_mode == "artist":
+                        original_len = len(response_text)
+                        response_text = _truncate_artist_response(response_text)
+                        if len(response_text) < original_len:
+                            logger.info(
+                                "[%s] Artist-mode truncation: %d → %d chars",
+                                query_id,
+                                original_len,
+                                len(response_text),
+                            )
+
                     logger.info(
                         "[%s] Turn %d (%d chars): %s…",
                         query_id,
@@ -580,7 +822,9 @@ class AgenticRolloutManager:
                         segment_type="thought_and_action",
                     ))
 
-                    if _extract_task_finished(response_text):
+                    parsed_turn = self._parse_assistant_turn(response_text)
+
+                    if parsed_turn.get("finished"):
                         logger.info("[%s] <TASK_FINISHED> found on turn %d.", query_id, turn + 1)
                         state["termination_reason"] = "success"
                         state["done"] = True
@@ -593,8 +837,7 @@ class AgenticRolloutManager:
                         )
                         continue
 
-                    tool_call_raw = _extract_tool_call_array(response_text)
-                    if tool_call_raw is None:
+                    if parsed_turn.get("error_reason") == "no_tool_call":
                         logger.warning(
                             "[%s] Turn %d: no tool call and no <TASK_FINISHED>. Terminating.",
                             query_id,
@@ -611,17 +854,12 @@ class AgenticRolloutManager:
                         )
                         continue
 
-                    try:
-                        calls = json.loads(tool_call_raw)
-                        if not isinstance(calls, list) or not calls:
-                            raise ValueError("Tool call must be a non-empty JSON array.")
-                        command = calls[0]
-                    except (json.JSONDecodeError, ValueError) as exc:
+                    if parsed_turn.get("error_reason") == "invalid_tool_call_json":
                         logger.warning(
                             "[%s] Invalid tool-call JSON on turn %d: %s",
                             query_id,
                             turn + 1,
-                            exc,
+                            parsed_turn.get("error", "invalid tool-call JSON"),
                         )
                         state["termination_reason"] = "invalid_tool_call_json"
                         state["done"] = True
@@ -634,11 +872,8 @@ class AgenticRolloutManager:
                         )
                         continue
 
-                    tool_name = str(command.get("name", "")).strip()
-                    tool_args = command.get("args", {})
-
-                    if not tool_name or tool_name.lower() in ("none", "null"):
-                        logger.warning("[%s] Missing/null tool name: '%s'", query_id, tool_name)
+                    if parsed_turn.get("error_reason") == "invalid_action":
+                        logger.warning("[%s] Missing/null tool name in assistant turn", query_id)
                         state["termination_reason"] = "invalid_action"
                         state["done"] = True
                         completed[state["group_idx"]] = self._build_completed_trajectory(
@@ -650,11 +885,11 @@ class AgenticRolloutManager:
                         )
                         continue
 
-                    if not isinstance(tool_args, dict):
+                    if parsed_turn.get("error_reason") == "invalid_args":
                         logger.warning(
                             "[%s] 'args' must be a dict, got %s",
                             query_id,
-                            type(tool_args).__name__,
+                            type(parsed_turn.get("tool_args")).__name__,
                         )
                         state["termination_reason"] = "invalid_args"
                         state["done"] = True
@@ -667,7 +902,18 @@ class AgenticRolloutManager:
                         )
                         continue
 
+                    tool_name = parsed_turn["tool_name"]
+                    tool_args = parsed_turn["tool_args"]
+
                     logger.info("[%s] Executing '%s' with args: %s", query_id, tool_name, tool_args)
+                    self._notify_rollout_observer(
+                        "before_tool_execution",
+                        query=query,
+                        state=state,
+                        turn_index=turn,
+                        tool_name=tool_name,
+                        tool_args=tool_args,
+                    )
                     result = self._execute_tool(state["tool_env"], tool_name, tool_args)
 
                     executed_calls.append(ExecutedToolCall(
@@ -693,6 +939,16 @@ class AgenticRolloutManager:
                         is_trainable=False,
                         segment_type="observation",
                     ))
+                    self._notify_rollout_observer(
+                        "after_tool_execution",
+                        query=query,
+                        state=state,
+                        turn_index=turn,
+                        tool_name=tool_name,
+                        tool_args=tool_args,
+                        result=result,
+                        observation_text=observation_text,
+                    )
             else:
                 for state in states:
                     if state["done"]:
@@ -732,6 +988,16 @@ class AgenticRolloutManager:
                     traj.termination_reason,
                     traj.generation_time_ms,
                 )
+
+            additional_trajectories = self._notify_rollout_observer(
+                "augment_group",
+                query=query,
+                states=states,
+                trajectories=trajectories,
+                default=[],
+            )
+            if additional_trajectories:
+                trajectories.extend(additional_trajectories)
 
             results[qid] = trajectories
 
