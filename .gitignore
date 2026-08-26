@@ -63,3 +63,7 @@ htmlcov/
 .coverage.*
 coverage.xml
 *.cover
+
+# Generated database dumps
+Arena/apps/database_management/fetched_data_from_db/
+Arena/apps/database_management/fetched_data_from_db_backup/
