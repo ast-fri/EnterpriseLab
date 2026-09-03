@@ -1,24 +1,30 @@
-Zammad Server (Docker-Compose)
-Deployment Steps
-1. Clone the Repository
-git clone https://github.com/zammad/zammad-docker-compose.git
+# Seeded Zammad
 
+This stack imports `Extracted_data/zammad_from_db.json` into isolated Docker
+volumes, preserves its tickets and related records, and activates the same 13
+local users used by Rocket.Chat and Dolibarr.
 
-Run git pull regularly to get updates.
-You may also download files from the releases page.
+Reset and seed from the repository root:
 
-2. Adjust Environment (Optional)
+```bash
+./zammad/seed.sh \
+  Extracted_data/zammad_from_db.json \
+  zammad/docker-compose.yml
+```
 
-Modify environment variables or choose predefined scenarios if needed.
+The UI is available at <http://localhost:8050>. Credentials are in
+`user-credentials.json`. The `admin` user is the sole
+administrator; the other 12 users are agents with full access to all four
+active ticket groups. Historical export-only users remain as inactive reference
+records so imported tickets keep valid owners and customers.
 
-3. Start the Stack
-cd zammad-docker-compose
-docker compose up -d
+After seeding, ordinary starts reuse the seeded database:
 
-Help & Documentation
+```bash
+docker compose -p zammad-seeded \
+  -f zammad/docker-compose.yml up -d
+```
 
-For any queries, refer to:
-👉 https://docs.zammad.org/en/latest/install/docker-compose.html
-
-ADMINISTRATOR SETUP comes with new installation setup only
-
+Run `seed.sh` again to remove only the `zammad-seeded` containers and volumes
+and reconstruct the baseline from JSON. The built-in backup service is behind
+the optional `backup` profile because this workflow treats JSON as the baseline.

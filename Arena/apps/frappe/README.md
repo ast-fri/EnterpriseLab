@@ -1,16 +1,35 @@
-# 🚀 HRMS Docker Setup Guide
+# Seeded Frappe HRMS
 
-This repository provides a simple way to run **Frappe HRMS** using Docker.
+This stack creates a fresh Frappe/ERPNext/HRMS v15 site, imports validated
+records from `Extracted_data/frappe_from_db.json` through Frappe's document API,
+and creates reusable project/task fixtures.
 
-## 📥 Clone the Repository
+From the repository root:
 
 ```bash
-git clone https://github.com/frappe/hrms
-cd hrms/docker
+./frappe/seed/seed.sh \
+  Extracted_data/frappe_from_db.json \
+  frappe/docker-compose.yml
+```
 
+The UI is at <http://localhost:8084>. All credentials are stored in
+`user-credentials.json`. The 12 non-admin accounts have HR,
+Projects, Accounts, Sales, Purchase and Stock user access; `admin` is the only
+administrator.
 
-▶️ Start the HRMS Server
-Run the following command from inside the docker directory:
+The baseline keeps the compatible exported company, employees, attendance,
+customers, suppliers, items and warehouses. It adds 3 projects, 24 tasks and 24
+assignments so workflows can create, update, complete and reassign tasks.
 
-docker compose up
-This command will start all the required HRMS services.
+The first reset downloads and builds Frappe, ERPNext and HRMS v15 and may take
+several minutes. Later ordinary starts reuse the installed apps and seeded data.
+
+Ordinary starts preserve the seeded site:
+
+```bash
+docker compose -p frappe-seeded \
+  -f frappe/docker-compose.yml up -d
+```
+
+Run `seed.sh` again to delete only the `frappe-seeded` volumes and reconstruct
+the baseline.

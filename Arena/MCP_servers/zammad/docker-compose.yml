@@ -5,6 +5,8 @@ services:
     ports:
       - "12010:12010"
     environment:
-      - ZAMMAD_URL=http://localhost:8050
+      - ZAMMAD_URL=http://host.docker.internal:8050
       - ZAMMAD_TOKEN=_XRj_9kV0TKJJDdIoRop8qV5Xa_eD-VY3t8CDG1Ac7_IbUbGxMb-4AdKIhJdYKKY
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped

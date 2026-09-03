@@ -126,9 +126,14 @@ services:
     environment:
       <<: [*app-env, *db-env, *redis-env, *minio-env, *aws-s3-env, *proxy-env]
     depends_on:
-      - plane-db
-      - plane-redis
-      - plane-mq
+      seed:
+        condition: service_completed_successfully
+      plane-db:
+        condition: service_healthy
+      plane-redis:
+        condition: service_healthy
+      plane-mq:
+        condition: service_healthy
 
 
   worker:
@@ -179,8 +184,30 @@ services:
     environment:
       <<: [*app-env, *db-env, *redis-env, *minio-env, *aws-s3-env, *proxy-env]
     depends_on:
-      - plane-db
-      - plane-redis
+      plane-db:
+        condition: service_healthy
+      plane-redis:
+        condition: service_healthy
+
+  seed:
+    image: artifacts.plane.so/makeplane/plane-backend:${APP_RELEASE:-v0.28.0}
+    command: ["bash", "/seed/seed-container.sh"]
+    restart: "no"
+    environment:
+      <<: [*app-env, *db-env, *redis-env, *minio-env, *aws-s3-env, *proxy-env]
+    volumes:
+      - ./seed-container.sh:/seed/seed-container.sh:ro
+      - ./seed_plane.py:/seed/seed_plane.py:ro
+      - ../user-credentials.json:/seed/user-credentials.json:ro
+      - ../Extracted_data/plane_from_db.json:/seed/plane_from_db.json:ro
+      - seed_state:/seed-state
+    depends_on:
+      migrator:
+        condition: service_completed_successfully
+      plane-db:
+        condition: service_healthy
+      plane-redis:
+        condition: service_healthy
 
 
   # Comment this if you already have a database running
@@ -193,6 +220,11 @@ services:
         condition: on-failure
     environment:
       <<: *db-env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -203,6 +235,11 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
     volumes:
       - redisdata:/data
 
@@ -215,6 +252,11 @@ services:
         condition: on-failure
     environment:
       <<: *mq-env
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
 
@@ -273,17 +315,10 @@ services:
 
 volumes:
   pgdata:
-    external: true
-    name: plane_pgdata
   redisdata:
-    external: true
-    name: plane_redisdata
   uploads:
-    external: true
-    name: plane_uploads
   rabbitmq_data:
-    external: true
-    name: plane_rabbitmq_data
+  seed_state:
   logs_api:
   logs_worker:
   logs_beat-worker:

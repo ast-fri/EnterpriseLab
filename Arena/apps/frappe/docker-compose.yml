@@ -1,0 +1,65 @@
+services:
+  mariadb:
+    image: mariadb:10.8
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+      - --skip-innodb-read-only-compressed
+    environment:
+      MYSQL_ROOT_PASSWORD: ${FRAPPE_DB_ROOT_PASSWORD:-frappe}
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -p\"$${MYSQL_ROOT_PASSWORD}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+    volumes:
+      - mariadb-data:/var/lib/mysql
+
+  redis:
+    image: redis:7.4.6-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    volumes:
+      - redis-data:/data
+
+  bench-volume-init:
+    image: alpine:3.22
+    command: ["chown", "-R", "1000:1000", "/home/frappe/frappe-bench"]
+    user: root
+    volumes:
+      - bench-data:/home/frappe/frappe-bench
+
+  frappe:
+    image: frappe/bench:latest
+    command: ["bash", "/workspace/init.sh"]
+    environment:
+      SHELL: /bin/bash
+      FRAPPE_SITE: ${FRAPPE_SITE:-hrms.localhost}
+      FRAPPE_DB_ROOT_PASSWORD: ${FRAPPE_DB_ROOT_PASSWORD:-frappe}
+    working_dir: /home/frappe
+    depends_on:
+      bench-volume-init:
+        condition: service_completed_successfully
+      mariadb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - bench-data:/home/frappe/frappe-bench
+      - ./seed/init.sh:/workspace/init.sh:ro
+      - ./seed/seed_frappe.py:/workspace/seed_frappe.py:ro
+      - ../user-credentials.json:/workspace/user-credentials.json:ro
+      - ../Extracted_data/frappe_from_db.json:/workspace/frappe_from_db.json:ro
+    ports:
+      - "${FRAPPE_BIND_IP:-127.0.0.1}:${FRAPPE_HOST_PORT:-8084}:8000"
+      - "${FRAPPE_BIND_IP:-127.0.0.1}:${FRAPPE_SOCKETIO_PORT:-9002}:9000"
+    restart: unless-stopped
+
+volumes:
+  bench-data:
+  mariadb-data:
+  redis-data:

@@ -1,6 +1,9 @@
+name: dolibarr-seeded
+
 services:
   mariadb:
-    image: mariadb:latest
+    image: mariadb:${MARIADB_VERSION:-11.4}
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
       MYSQL_DATABASE: ${MYSQL_DATABASE:-dolidb}
@@ -8,30 +11,52 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-dolidbpass}
     volumes:
       - mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
 
   web:
-    image: dolibarr/dolibarr:latest
-    environment:
-      DOLI_INIT_DEMO: ${DOLI_INIT_DEMO:-0}
-      DOLI_DB_HOST: mariadb
-      DOLI_DB_NAME: ${DOLI_DB_NAME:-dolidb}
-      DOLI_DB_USER: ${DOLI_DB_USER:-dolidbuser}
-      DOLI_DB_PASSWORD: ${DOLI_DB_PASSWORD:-dolidbpass}
-      DOLI_URL_ROOT: ${DOLI_URL_ROOT:-http://0.0.0.0}
-      DOLI_ADMIN_LOGIN: ${DOLI_ADMIN_LOGIN:-admin}
-      DOLI_ADMIN_PASSWORD: ${DOLI_ADMIN_PASSWORD:-admin}
-      DOLI_CRON: ${DOLI_CRON:-0}
-      DOLI_CRON_KEY: ${DOLI_CRON_KEY:-mycronsecurekey}
-      DOLI_COMPANY_NAME: ${DOLI_COMPANY_NAME:-MyBigCompany}
-      WWW_USER_ID: ${WWW_USER_ID:-1000}
-      WWW_GROUP_ID: ${WWW_GROUP_ID:-1000}
-    ports:
-      - "8082:80"
+    image: dolibarr/dolibarr:${DOLIBARR_VERSION:-23.0.2}
+    restart: always
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
+    environment:
+      DOLI_INSTALL_AUTO: "1"
+      DOLI_INIT_DEMO: "0"
+      DOLI_DB_HOST: mariadb
+      DOLI_DB_NAME: ${MYSQL_DATABASE:-dolidb}
+      DOLI_DB_USER: ${MYSQL_USER:-dolidbuser}
+      DOLI_DB_PASSWORD: ${MYSQL_PASSWORD:-dolidbpass}
+      DOLI_URL_ROOT: ${DOLI_URL_ROOT:-http://localhost:8082}
+      DOLI_ADMIN_LOGIN: admin
+      DOLI_ADMIN_PASSWORD: Admin123!
+      DOLI_CRON: "0"
+      DOLI_COMPANY_NAME: Inazuma
+      PHP_INI_DATE_TIMEZONE: ${TZ:-Asia/Kolkata}
+      DOLIBARR_SEED_JSON: /seed/dolibarr_from_db.json
+      DOLIBARR_CREDENTIALS_JSON: /seed/user-credentials.json
+      DOLIBARR_SEED_MARKER: /var/www/documents/.json-seed-complete
+    ports:
+      - "${DOLIBARR_BIND_IP:-127.0.0.1}:${DOLIBARR_HOST_PORT:-8082}:80"
     volumes:
       - dolibarr_documents:/var/www/documents
       - dolibarr_custom:/var/www/html/custom
+      - ../Extracted_data/dolibarr_from_db.json:/seed/dolibarr_from_db.json:ro
+      - ../user-credentials.json:/seed/user-credentials.json:ro
+      - ./import-dolibarr.php:/var/www/scripts/docker-init.d/50-import-json.php:ro
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          test -s /var/www/documents/.json-seed-complete
+          && curl -fsS http://127.0.0.1/index.php >/dev/null
+      start_period: 5m
+      interval: 10s
+      timeout: 10s
+      retries: 60
 
 volumes:
   mariadb_data:

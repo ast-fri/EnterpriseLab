@@ -1,0 +1,14 @@
+# Local runtime state
+Arena/apps/logs/
+Arena/apps/generated-mcp-credentials.json
+Arena/apps/**/__pycache__/
+Arena/apps/**/*.py[cod]
+Arena/apps/**/*.tar.gz
+
+# Optional runtime upstream checkouts (not committed)
+Arena/apps/frappe/.runtime/
+Arena/apps/zammad/.runtime/
+
+# Local environment overrides
+Arena/apps/**/.env
+!Arena/apps/plane/plane.env

@@ -1,24 +1,53 @@
-# 🛠️ Self-Hosting GitLab with Docker
+# Seeded GitLab
 
-This guide explains how to deploy a self-hosted GitLab instance using Docker. It ensures persistent storage and supports access through a web browser via SSH tunneling.
+This stack initializes GitLab CE 18.5.7 with the database-backed state in
+`../Extracted_data/gitlab_from_db.json` and sets deterministic UI passwords from
+`user-credentials.json`.
 
----
+## Fresh reset and seed
 
-## 🚀 Run GitLab Container
+From the repository root:
 
-Run the following command on your server to start the GitLab instance:
+```bash
+./gitlab/seed.sh
+```
 
-docker compose up -d
+This deliberately removes **only** the Compose project named `gitlab-seeded`,
+including its three isolated volumes. It does not reuse or delete volumes from
+the old Compose project named `gitlab`.
 
+Initial GitLab startup commonly takes 10-20 minutes. The script waits until the
+database import, password setup, and record-count checks all finish.
 
+Open <http://localhost:8081> and use an account from
+`gitlab/user-credentials.json`. `aarav.mittal` is the seeded administrator.
 
+## Normal restart
 
-📁 Replace /path/to/gitlab/config, /logs, and /data with appropriate absolute paths on your server to enable data persistence.
+After the first successful seed, this preserves the seeded database:
 
-Accessing GitLab in a Web Browser (Optional)
-If you're working on a remote machine, you can access the GitLab web interface using SSH port forwarding:
-ssh -L 8080:localhost:8080 your_user@your_server_ip
-Then open your browser and navigate to:
-http://localhost:8080
+```bash
+docker compose -f gitlab/docker-compose.yaml up -d
+```
 
-ADMINISTRATOR setup option comes with new installation only.
+The seed service recognizes the existing import and only reapplies the known
+passwords. To return to the original exported state, run `./gitlab/seed.sh`.
+
+## Export limitation
+
+The JSON is a PostgreSQL table export, not a GitLab backup. It does not contain
+Git repository object storage or uploaded file bodies. The imported project
+shells are therefore retained only as hidden legacy records. Seeding creates six
+clean GitLab-managed projects at the intended paths, initializes each repository
+with a README, and restores the intended user memberships. The original commits,
+branches, issues, merge requests, and attachment bodies are not copied into
+these replacement repositories. Use `gitlab-backup` to preserve those parts in
+a future export.
+
+## Diagnostics
+
+```bash
+docker compose -f gitlab/docker-compose.yaml ps
+docker compose -f gitlab/docker-compose.yaml logs seed
+docker compose -f gitlab/docker-compose.yaml logs --tail=200 gitlab
+```

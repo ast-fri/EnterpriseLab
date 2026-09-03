@@ -1,3 +1,5 @@
+name: rocketchat-seeded
+
 volumes:
   mongodb_data: { driver: local }
 
@@ -18,10 +20,16 @@ services:
       DEPLOY_METHOD: docker
       DEPLOY_PLATFORM: ${DEPLOY_PLATFORM:-}
       REG_TOKEN: ${REG_TOKEN:-}
-      TRANSPORTER: tcp://0.0.0.0:40000  
-
+      TRANSPORTER: ${TRANSPORTER:-monolith+nats://nats:4222}
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
+      nats:
+        condition: service_healthy
+      seed:
+        condition: service_completed_successfully
+      credentials:
+        condition: service_completed_successfully
     expose:
       - ${PORT:-3000}
     ports:
@@ -41,3 +49,57 @@ services:
       MONGODB_ADVERTISED_HOSTNAME: ${MONGODB_ADVERTISED_HOSTNAME:-mongodb}
       MONGODB_ENABLE_JOURNAL: ${MONGODB_ENABLE_JOURNAL:-true}
       ALLOW_EMPTY_PASSWORD: ${ALLOW_EMPTY_PASSWORD:-yes}
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          mongosh --quiet 'mongodb://localhost:27017/admin?replicaSet=rs0'
+          --eval 'quit(db.hello().isWritablePrimary ? 0 : 1)'
+      start_period: 30s
+      interval: 5s
+      timeout: 5s
+      retries: 60
+
+  nats:
+    image: docker.io/nats:${NATS_VERSION:-2.10-alpine}
+    restart: always
+    command: ["--http_port", "8222"]
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8222/healthz"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  seed:
+    image: docker.io/bitnamilegacy/mongodb:${MONGODB_VERSION:-6.0}
+    restart: "no"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      SEED_JSON_PATH: /seed/rocketchat_from_db.json
+      SEED_MODE: ${ROCKETCHAT_SEED_MODE:-if-needed}
+    volumes:
+      - ../Extracted_data/rocketchat_from_db.json:/seed/rocketchat_from_db.json:ro
+      - ./import-rocketchat.js:/seed/import-rocketchat.js:ro
+    entrypoint:
+      - mongosh
+      - --quiet
+      - mongodb://mongodb:27017/rocketchat?replicaSet=rs0
+      - /seed/import-rocketchat.js
+
+  credentials:
+    image: ${IMAGE:-registry.rocket.chat/rocketchat/rocket.chat:7.9.6}
+    restart: "no"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      seed:
+        condition: service_completed_successfully
+    environment:
+      MONGO_URL: mongodb://mongodb:27017/rocketchat?replicaSet=rs0
+      USER_CREDENTIALS_PATH: /seed/user-credentials.json
+    volumes:
+      - ../user-credentials.json:/seed/user-credentials.json:ro
+      - ./set-user-passwords.js:/seed/set-user-passwords.js:ro
+    entrypoint: ["node", "/seed/set-user-passwords.js"]

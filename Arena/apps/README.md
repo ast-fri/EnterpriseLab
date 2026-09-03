@@ -1,58 +1,44 @@
-# 🧪 Enterprise Lab – Applications Overview
+# Seeded Enterprise Applications
 
-This directory contains the set of enterprise applications used in the **Enterprise Lab** environment.  
-Each application is provided with its own configuration and setup instructions.
+This directory contains reproducible Docker environments for Rocket.Chat,
+GitLab, Dolibarr, Zammad, Frappe HRMS, Plane, and ownCloud. The sanitized JSON
+baselines are under `Extracted_data/`, and all applications use the same 13
+dummy identities from `user-credentials.json`.
 
----
+No upstream Frappe or Zammad Git repository needs to be cloned. Their Compose
+files use official container images and mount the seed overlay committed here.
 
-## 📦 Available Applications
+## First-time setup
 
-The following applications are available in this lab:
-
-- **Dolibarr**  
-  CRM system  
-  📁 `dolibarr/`
-
-- **Frappe**  
-  ERM system  
-  📁 `frappe/`
-
-- **GitLab**  
-  Source code management and DevOps platform  
-  📁 `gitlab/`
-
-- **ownCloud**  
-  File sharing and collaboration platform  
-  📁 `owncloud/`
-
-- **Plane**  
-  Project management and issue tracking tool  
-  📁 `plane/`
-
-- **Rocket.Chat**  
-  Team communication and collaboration platform  
-  📁 `rocketchat/`
-
-- **Zammad**  
-  Helpdesk and ticketing system  
-  📁 `zammad/`
-
-Each application directory contains a `README.md` with app-specific setup instructions.  
-Some applications also include a `docker-compose.yml` file for containerized deployment.
-
----
-
-## ▶️ Starting All Application Servers
-
-To start **all application servers at once**, run the following command from this directory:
+From `Arena/apps`:
 
 ```bash
-./start_all_servers.sh
+./start_all_servers.sh --reset
 ```
 
+This creates fresh isolated volumes and seeds every application. The first run
+can take more than an hour because large images and application dependencies
+must be downloaded.
 
-Ensure the script has execute permissions:
+## Reuse or stop the current state
 
 ```bash
-chmod +x start_all_servers.sh
+./start_all_servers.sh --continue
+./start_all_servers.sh --stop
+./start_all_servers.sh --status
 ```
+
+## Start applications and MCP servers
+
+After the applications have been seeded at least once:
+
+```bash
+./setup_complete_environment.sh --user surya.reddy --continue
+```
+
+Use `--reset` instead of `--continue` to rebuild all application baselines.
+The setup script refreshes user-specific API credentials, writes them into the
+Compose definitions under `../MCP_servers`, and starts those MCP servers last.
+
+The credentials are deliberately dummy evaluation credentials. Never reuse
+their passwords or generated tokens outside this disposable environment.

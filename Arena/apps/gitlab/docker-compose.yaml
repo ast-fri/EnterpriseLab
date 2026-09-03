@@ -1,0 +1,52 @@
+name: gitlab-seeded
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:18.5.7-ce.0
+    restart: always
+    hostname: localhost
+    shm_size: "512m"
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost:8081'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+        puma['worker_processes'] = 2
+    ports:
+      - "8081:8081"
+      - "4430:443"
+      - "2222:22"
+    volumes:
+      - gitlab_config:/etc/gitlab
+      - gitlab_logs:/var/log/gitlab
+      - gitlab_data:/var/opt/gitlab
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8081/users/sign_in"]
+      interval: 20s
+      timeout: 10s
+      retries: 45
+      start_period: 10m
+
+  seed:
+    image: gitlab/gitlab-ce:18.5.7-ce.0
+    restart: "no"
+    depends_on:
+      gitlab:
+        condition: service_healthy
+    entrypoint: ["/bin/bash", "/seed/seed-entrypoint.sh"]
+    environment:
+      SEED_JSON: /seed-data/gitlab_from_db.json
+      CREDENTIALS_JSON: /seed/user-credentials.json
+    volumes:
+      - gitlab_config:/etc/gitlab
+      - gitlab_logs:/var/log/gitlab
+      - gitlab_data:/var/opt/gitlab
+      - ./seed-entrypoint.sh:/seed/seed-entrypoint.sh:ro
+      - ./import-gitlab.rb:/seed/import-gitlab.rb:ro
+      - ./create-blank-projects.rb:/seed/create-blank-projects.rb:ro
+      - ../user-credentials.json:/seed/user-credentials.json:ro
+      - ../Extracted_data/gitlab_from_db.json:/seed-data/gitlab_from_db.json:ro
+
+volumes:
+  gitlab_config:
+  gitlab_logs:
+  gitlab_data:

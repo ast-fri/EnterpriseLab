@@ -8,4 +8,6 @@ services:
       - FRAPPE_URL=http://host.docker.internal:8084
       - FRAPPE_API_KEY=71f6e1bb8d5851b
       - FRAPPE_API_SECRET=4754019131a21ec
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
