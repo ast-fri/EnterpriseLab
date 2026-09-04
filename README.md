@@ -86,118 +86,64 @@ You can either edit those constants to match your checkout or mount/symlink your
 
 ## 1. EnterpriseArena
 
-EnterpriseArena is the execution environment. It has two layers:
+EnterpriseArena combines seven seeded application environments (Rocket.Chat, GitLab, Dolibarr, Zammad, Frappe HRMS, Plane, and ownCloud) in `Arena/apps/` with MCP servers in `Arena/MCP_servers/` that expose them as agent tools. Follow the [apps README](Arena/apps/README.md) for the maintained environment setup instructions.
 
-- Application containers in `Arena/apps/`.
-- MCP servers in `Arena/MCP_servers/` that expose those applications as agent tools.
+The applications use sanitized JSON baselines from `Arena/apps/Extracted_data/` and the same 13 dummy identities from `Arena/apps/user-credentials.json`. Frappe and Zammad use official container images with committed seed overlays; no upstream repository clones are required.
 
-Start the application layer first, create or verify credentials inside each application, then start the corresponding MCP layer.
+### 1.1 First-time setup
 
-### 1.1 Application services
-
-Application service definitions live under `Arena/apps/`.
-
-| Application | Directory | Default access | Notes |
-| --- | --- | --- | --- |
-| GitLab | `Arena/apps/gitlab` | `http://localhost:8080` | SSH is mapped to port `2222`. |
-| Plane | `Arena/apps/plane` | `http://localhost:3001` | Uses `plane.env`; workspace slug is expected by the Plane MCP server. |
-| ownCloud | `Arena/apps/owncloud` | `http://localhost:3001` by default | This conflicts with Plane's default port. Change one port before running both together. |
-| Rocket.Chat | `Arena/apps/rocketchat` | `http://localhost:3000` | Requires user ID and auth token for the MCP server. |
-| Dolibarr | `Arena/apps/dolibarr` | `http://localhost:8082` | Default admin credentials are `admin` / `admin`. |
-| Frappe HRMS | `Arena/apps/frappe` | See app README | This checkout contains setup notes, not a compose file. |
-| Zammad | `Arena/apps/zammad` | See app README | This checkout contains setup notes, not a compose file. |
-
-To start every application with a compose file:
+Seed all applications once, then start the complete environment:
 
 ```bash
 cd /EnterpriseLab/Arena/apps
-chmod +x start_all_servers.sh
-./start_all_servers.sh start
-./start_all_servers.sh status
+./start_all_servers.sh --reset
+./setup_complete_environment.sh --user surya.reddy --continue
 ```
 
-To stop them:
+The initial reset creates fresh isolated volumes and seeds every application. The first run can take more than an hour while images and dependencies download.
+
+The main entry point is `setup_complete_environment.sh`: it starts the applications, refreshes user-specific API credentials, writes them into the Compose definitions under `Arena/MCP_servers/`, and starts the MCP servers last. Replace `surya.reddy` with the seeded identity you want agents to use.
+
+These are dummy evaluation credentials. Do not reuse their passwords or generated tokens outside this disposable environment.
+
+### 1.2 Reuse, reset, inspect, or stop the environment
+
+For subsequent runs, reuse the seeded data and start both applications and MCP servers:
 
 ```bash
 cd /EnterpriseLab/Arena/apps
-./start_all_servers.sh stop
+./setup_complete_environment.sh --user surya.reddy --continue
 ```
 
-To start one application, run Docker Compose from that application directory. For example:
+To rebuild all application baselines and start the complete environment, use `--reset`. This deletes the seeded projects' existing volumes and replaces their data:
 
 ```bash
-cd /EnterpriseLab/Arena/apps/gitlab
-docker compose up -d
+./setup_complete_environment.sh --user surya.reddy --reset
 ```
 
-Plane requires its env file:
+For application-only operations, run these commands from `Arena/apps/`:
 
 ```bash
-cd /EnterpriseLab/Arena/apps/plane
-docker compose --env-file plane.env up -d
+./start_all_servers.sh --continue  # Reuse existing application state
+./start_all_servers.sh --status    # Show container status and application URLs
+./start_all_servers.sh --stop      # Stop applications while preserving data
 ```
 
-After startup, check containers:
-
-```bash
-docker ps
-```
-
-### 1.2 MCP servers
-
-MCP servers translate application APIs into streamable HTTP MCP tools. Their compose files live under `Arena/MCP_servers/`.
-
-| MCP server | Directory | MCP URL used by configs | Application credentials to verify |
-| --- | --- | --- | --- |
-| GitLab | `Arena/MCP_servers/gitlab` | `http://localhost:8008/mcp` | `GITLAB_PERSONAL_ACCESS_TOKEN`, `GITLAB_API_URL` |
-| Plane | `Arena/MCP_servers/plane` | `http://localhost:12023/mcp` | `PLANE_API_KEY`, `PLANE_API_HOST_URL`, `PLANE_WORKSPACE_SLUG` |
-| ownCloud | `Arena/MCP_servers/owncloud` | `http://localhost:12001/mcp` | `OWNCLOUD_URL`, `OWNCLOUD_USERNAME`, `OWNCLOUD_PASSWORD` |
-| Dolibarr | `Arena/MCP_servers/dolibarr` | `http://localhost:12000/mcp` | `DOLIBARR_BASE_URL`, `DOLIBARR_API_KEY` |
-| Rocket.Chat | `Arena/MCP_servers/rocketchat` | `http://localhost:12004/mcp` | `ROCKETCHAT_URL`, `ROCKETCHAT_USER_ID`, `ROCKETCHAT_AUTH_TOKEN` |
-| Zammad | `Arena/MCP_servers/zammad` | `http://localhost:12010/mcp` | `ZAMMAD_URL`, `ZAMMAD_TOKEN` |
-| Frappe HRMS | `Arena/MCP_servers/frappe` | `http://localhost:12013/mcp` by default | `FRAPPE_URL`, `FRAPPE_API_KEY`, `FRAPPE_API_SECRET` |
-| Aider | `Arena/MCP_servers/aider` | `http://localhost:12011/mcp` | Azure/Aider settings in `.env` |
-| Playwright | `Arena/MCP_servers/playwright` | `http://localhost:12012/mcp` | Browser automation only |
-
-Start all MCP servers with compose files:
-
-```bash
-cd /EnterpriseLab/Arena/MCP_servers
-chmod +x start_all_servers.sh
-./start_all_servers.sh
-```
-
-Stop them:
+To stop the MCP servers as well:
 
 ```bash
 cd /EnterpriseLab/Arena/MCP_servers
 ./start_all_servers.sh stop
 ```
 
-Start one MCP server:
+### 1.3 Agent MCP configuration
 
-```bash
-cd /EnterpriseLab/Arena/MCP_servers/dolibarr
-docker compose up -d
-```
-
-### 1.3 Align ports, URLs, and tokens
-
-Before using agents against EnterpriseArena, make sure application ports and MCP environment variables point to the same place.
-
-Examples to check:
-
-- `Arena/MCP_servers/owncloud/docker-compose.yml` defaults to `OWNCLOUD_URL=http://host.docker.internal:8081`, while `Arena/apps/owncloud/docker-compose.yml` maps ownCloud to host port `3001`. Update one side so they match.
-- `Evaluate/EnterpriseArena/mcp_config_http.json` currently lists Frappe HRMS on `12021`, while the Frappe MCP compose file exposes `12013`. Use the port you actually run.
-- Replace hard-coded sample API tokens in MCP compose files with tokens generated by your local app instances.
-- If an MCP server runs in Docker and needs to call an app on the host, use `host.docker.internal` where supported, or configure Docker networking explicitly.
-
-The active MCP configs are:
+Keep the MCP endpoint URLs in these files aligned with the servers you run:
 
 - `TaskGenerationPipeline/mcp_config_http.json` for task generation.
 - `Evaluate/EnterpriseArena/mcp_config_http.json` for evaluation.
 
-Keep both files aligned with the MCP servers you started.
+See the [apps README](Arena/apps/README.md) for the setup workflow and `Arena/MCP_servers/` for individual server definitions.
 
 ## 2. TaskGenerationPipeline
 
@@ -324,6 +270,15 @@ The task synthesis exporter writes JSON objects like:
 ```
 
 This is a task-spec format. `Train/Agentic_GRPO` currently expects chat-style tool trajectories with a `messages` list. If you want to train Agentic-GRPO directly on generated task specs, convert them into the chat trajectory format described in the training section, or point Agentic-GRPO at an existing chat trajectory dataset such as `Data/enterprise_arena_gold.json`.
+
+### 2.5 Local task-generation skills
+
+Local Claude skill files live under `.claude/skills/`:
+
+- `.claude/skills/create_data/SKILL.md` (`create-data`) guides task generation and validation against the live seeded applications and MCP adapters.
+- `.claude/skills/create_data_from_exports/SKILL.md` (`create-data-from-exports`) guides task generation from JSON database exports when live services are unavailable or a specific snapshot is required.
+
+Both skills produce task datasets in `Data/` with a `query` and a golden-trajectory `hint` for each task. The `.claude/` directory is local-only and excluded by `.gitignore`; do not commit or push it. These skill files are not included in a fresh clone.
 
 ## 3. Train: Agentic-GRPO
 

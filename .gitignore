@@ -12,3 +12,6 @@ Arena/apps/zammad/.runtime/
 # Local environment overrides
 Arena/apps/**/.env
 !Arena/apps/plane/plane.env
+
+# Local Claude settings and skills (not committed)
+/.claude/
